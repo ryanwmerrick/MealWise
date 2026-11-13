@@ -6,11 +6,40 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		507B4ABDF28C4292A9DA0377 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F03C39DD30A77D0800F15BEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F03C39E430A77D0800F15BEC;
+			remoteInfo = MealWise;
+		};
+		A244DE8AAB944D7FBB43D227 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F03C39DD30A77D0800F15BEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F03C39E430A77D0800F15BEC;
+			remoteInfo = MealWise;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		3869A7DBDE734EB0813E6711 /* MealWiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = MealWiseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5673627237F349EBA4305E23 /* MealWiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = MealWiseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F03C39E530A77D0800F15BEC /* MealWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		27E9BC28DBA14676A2E52977 /* MealWiseTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MealWiseTests;
+			sourceTree = "<group>";
+		};
+		B224D9DD52134EC2BE44B401 /* MealWiseUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MealWiseUITests;
+			sourceTree = "<group>";
+		};
 		F03C39E730A77D0800F15BEC /* MealWise */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MealWise;
@@ -19,6 +48,16 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		33D1482606974E45B1E66289 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		D946A045C2F14F429C7B19F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 		F03C39E230A77D0800F15BEC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
@@ -31,6 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				F03C39E730A77D0800F15BEC /* MealWise */,
+				B224D9DD52134EC2BE44B401 /* MealWiseUITests */,
+				27E9BC28DBA14676A2E52977 /* MealWiseTests */,
 				F03C39E630A77D0800F15BEC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				F03C39E530A77D0800F15BEC /* MealWise.app */,
+				3869A7DBDE734EB0813E6711 /* MealWiseTests.xctest */,
+				5673627237F349EBA4305E23 /* MealWiseUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -46,6 +89,48 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		947EA7DCC29444D8A462B7D2 /* MealWiseUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 329B31C9B9CF48C0A618AA7C /* Build configuration list for PBXNativeTarget "MealWiseUITests" */;
+			buildPhases = (
+				37C0182BBFD84BA68F9D8719 /* Sources */,
+				D946A045C2F14F429C7B19F6 /* Frameworks */,
+				61AC115F5A58417CAA76B6BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				735831EC7406442B979DD1F7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B224D9DD52134EC2BE44B401 /* MealWiseUITests */,
+			);
+			name = MealWiseUITests;
+			productName = MealWiseUITests;
+			productReference = 5673627237F349EBA4305E23 /* MealWiseUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C5F91F5B16784806BF0A334F /* MealWiseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AA1E8721313438A92D69080 /* Build configuration list for PBXNativeTarget "MealWiseTests" */;
+			buildPhases = (
+				8535707D6A70414D957A1973 /* Sources */,
+				33D1482606974E45B1E66289 /* Frameworks */,
+				98C4BF840149484A9E6D5650 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0072F175A164513AF1A89A6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				27E9BC28DBA14676A2E52977 /* MealWiseTests */,
+			);
+			name = MealWiseTests;
+			productName = MealWiseTests;
+			productReference = 3869A7DBDE734EB0813E6711 /* MealWiseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F03C39E430A77D0800F15BEC /* MealWise */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F03C39F030A77D0800F15BEC /* Build configuration list for PBXNativeTarget "MealWise" */;
@@ -74,6 +159,14 @@
 				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
+					947EA7DCC29444D8A462B7D2 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = F03C39E430A77D0800F15BEC;
+					};
+					C5F91F5B16784806BF0A334F = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = F03C39E430A77D0800F15BEC;
+					};
 					F03C39E430A77D0800F15BEC = {
 						CreatedOnToolsVersion = 27.0;
 					};
@@ -94,11 +187,23 @@
 			projectRoot = "";
 			targets = (
 				F03C39E430A77D0800F15BEC /* MealWise */,
+				C5F91F5B16784806BF0A334F /* MealWiseTests */,
+				947EA7DCC29444D8A462B7D2 /* MealWiseUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		61AC115F5A58417CAA76B6BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		98C4BF840149484A9E6D5650 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
 		F03C39E330A77D0800F15BEC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
@@ -107,6 +212,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		37C0182BBFD84BA68F9D8719 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		8535707D6A70414D957A1973 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 		F03C39E130A77D0800F15BEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
@@ -114,7 +229,90 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		735831EC7406442B979DD1F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F03C39E430A77D0800F15BEC /* MealWise */;
+			targetProxy = A244DE8AAB944D7FBB43D227 /* PBXContainerItemProxy */;
+		};
+		B0072F175A164513AF1A89A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F03C39E430A77D0800F15BEC /* MealWise */;
+			targetProxy = 507B4ABDF28C4292A9DA0377 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		19E21087F4624F30AAF33EA4 /* Release configuration for PBXNativeTarget "MealWiseUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ryanmerrick.MealWiseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MealWise;
+			};
+			name = Release;
+		};
+		6BAA0A404E7241D5843AB54A /* Release configuration for PBXNativeTarget "MealWiseTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ryanmerrick.MealWiseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealWise.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MealWise";
+			};
+			name = Release;
+		};
+		C27B0433695C41A7BA76A1AC /* Debug configuration for PBXNativeTarget "MealWiseUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ryanmerrick.MealWiseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MealWise;
+			};
+			name = Debug;
+		};
+		EC140CFB19F641F6A2D61519 /* Debug configuration for PBXNativeTarget "MealWiseTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ryanmerrick.MealWiseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealWise.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MealWise";
+			};
+			name = Debug;
+		};
 		F03C39EE30A77D0800F15BEC /* Debug configuration for PBXProject "MealWise" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -257,10 +455,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -288,10 +486,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -299,6 +497,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		329B31C9B9CF48C0A618AA7C /* Build configuration list for PBXNativeTarget "MealWiseUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C27B0433695C41A7BA76A1AC /* Debug configuration for PBXNativeTarget "MealWiseUITests" */,
+				19E21087F4624F30AAF33EA4 /* Release configuration for PBXNativeTarget "MealWiseUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		5AA1E8721313438A92D69080 /* Build configuration list for PBXNativeTarget "MealWiseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC140CFB19F641F6A2D61519 /* Debug configuration for PBXNativeTarget "MealWiseTests" */,
+				6BAA0A404E7241D5843AB54A /* Release configuration for PBXNativeTarget "MealWiseTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
 		F03C39E030A77D0800F15BEC /* Build configuration list for PBXProject "MealWise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
