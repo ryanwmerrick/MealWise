@@ -4,6 +4,23 @@ extension Int64 {
     var currency: String { (Decimal(self) / 100).formatted(.currency(code: "USD")) }
 }
 
+extension Quantity {
+    var display: String {
+        QuantityFormatting.display(amount: canonicalAmount, unit: unit)
+    }
+}
+
+enum QuantityFormatting {
+    static func display(amount: Int64, unit: QuantityUnit) -> String {
+        switch unit {
+        case .milligrams: String(localized: "\((Decimal(amount) / 1000).formatted(.number)) g")
+        case .milliliters: String(localized: "\(amount.formatted()) mL")
+        case .count: String(localized: "\(amount.formatted()) items")
+        default: amount.formatted()
+        }
+    }
+}
+
 extension MealSlot {
     var title: String {
         switch self { case .breakfast: "Breakfast"; case .lunch: "Lunch"; case .dinner: "Dinner" }

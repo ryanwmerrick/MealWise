@@ -14,7 +14,10 @@ struct WeekView: View {
                 LazyVStack(alignment: .leading, spacing: 16) {
                     DevelopmentNotice()
                     Text("Ingredients repeat on purpose.").font(.headline)
-                    ForEach(viewModel.plan.meals) { meal in mealRow(meal) }
+                    ForEach(viewModel.plan.meals) { meal in
+                        NavigationLink(value: MealRoute.detail(planID: viewModel.plan.id, mealID: meal.id)) { mealRow(meal) }
+                            .buttonStyle(.plain).accessibilityIdentifier("week.meal")
+                    }
                 }.padding(20)
             }
             .background(DesignTokens.surface)
@@ -29,6 +32,13 @@ struct WeekView: View {
             }
             .sheet(isPresented: $showBudget) { budgetDetail }
             .sheet(isPresented: $showSettings) { SettingsView() }
+            .navigationDestination(for: MealRoute.self) { route in
+                if let services = session.services {
+                    switch route {
+                    case .detail(let planID, let mealID): MealDetailView(planID: planID, mealID: mealID, plans: services.plans)
+                    }
+                }
+            }
         }
     }
 
@@ -42,10 +52,14 @@ struct WeekView: View {
                 Text(viewModel.plan.totalMinorUnits.currency).font(.largeTitle.bold())
                 Text("of \(viewModel.plan.profile.budgetMinorUnits.currency)").font(.subheadline)
                 UsageMeter(progress: viewModel.progress, label: "Budget used", value: Text(viewModel.plan.totalMinorUnits.currency))
+                    .accessibilityHidden(true)
             }.padding(18).foregroundStyle(.white)
                 .background(DesignTokens.panel, in: RoundedRectangle(cornerRadius: 23))
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("Estimated checkout \(viewModel.plan.totalMinorUnits.currency) of \(viewModel.plan.profile.budgetMinorUnits.currency), \(viewModel.plan.remainingMinorUnits.currency) remaining. Budget details."))
         .accessibilityIdentifier("week.budget")
     }
 

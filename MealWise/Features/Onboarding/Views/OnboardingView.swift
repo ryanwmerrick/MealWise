@@ -199,7 +199,7 @@ struct OnboardingView: View {
     private var summary: some View {
         VStack(spacing: 12) {
             summaryRow("Weekly budget", value: viewModel.profile.budgetMinorUnits.currency, step: 0, id: "budget")
-            summaryRow("Household", value: String(localized: "\(viewModel.profile.adults) adults, \(viewModel.profile.children) children"), step: 1, id: "household")
+            summaryRow("Household", value: String(localized: "Adults: \(viewModel.profile.adults); children: \(viewModel.profile.children)"), step: 1, id: "household")
             summaryRow("Schedule", value: String(localized: "\(viewModel.profile.days.count) days, \(viewModel.profile.mealSlots.count) meals per day"), step: 2, id: "schedule")
             summaryRow("Cooking time", value: String(localized: String.LocalizationValue(viewModel.profile.cookingTime.title)), step: 3, id: "time")
             summaryRow("Cooking experience", value: String(localized: String.LocalizationValue(viewModel.profile.skill.title)), step: 4, id: "skill")

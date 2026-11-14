@@ -25,4 +25,10 @@ Complete. All eight setup steps, persisted drafts, bounded deterministic generat
 
 ## Approved later-phase decisions
 
+## Phase 4 — groceries and recipe details
+
+Complete. Every planned meal opens its own scaled recipe; groceries reconcile to the committed package cart, and checks persist across relaunch. Full build/test passes: 42 Swift Testing tests and six UI tests. The nested budget-progress accessibility regression found during integration was fixed and its test now opens Budget Details after scrolling. Recipe/grocery screenshots and a household quantity walkthrough were inspected. See [verification](phase-4-verification.md).
+
+## Approved later-phase decisions
+
 User approved [remaining-cycle rules](remaining-cycle-policy.md) for Phases 5–9 and selected CloudKit with the user's iCloud account for Phase 10. Developer/iCloud configuration and device verification are still required for actual sync/release readiness.

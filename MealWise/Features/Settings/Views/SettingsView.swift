@@ -13,7 +13,7 @@ struct SettingsView: View {
                 if let plan = session.plan {
                     Section("Current choices") {
                         LabeledContent("Weekly budget", value: plan.profile.budgetMinorUnits.currency)
-                        LabeledContent("Household", value: String(localized: "\(plan.profile.adults) adults, \(plan.profile.children) children"))
+                        LabeledContent("Household", value: String(localized: "Adults: \(plan.profile.adults); children: \(plan.profile.children)"))
                         LabeledContent("Days", value: plan.profile.days.count.formatted())
                         LabeledContent("Meals each day", value: plan.profile.mealSlots.count.formatted())
                         LabeledContent("Cooking time", value: String(localized: String.LocalizationValue(plan.profile.cookingTime.title)))

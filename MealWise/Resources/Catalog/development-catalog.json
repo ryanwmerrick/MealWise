@@ -24,7 +24,8 @@
         "protein": false,
         "wholeGrain": true
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "apple",
@@ -37,7 +38,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "produce"
     },
     {
       "id": "banana",
@@ -50,7 +52,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "produce"
     },
     {
       "id": "cinnamon",
@@ -63,7 +66,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "peanut-butter",
@@ -78,7 +82,8 @@
         "protein": true,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "spinach",
@@ -91,7 +96,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "frozen"
     },
     {
       "id": "chickpeas",
@@ -104,7 +110,8 @@
         "protein": true,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "black-beans",
@@ -117,7 +124,8 @@
         "protein": true,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "white-beans",
@@ -130,7 +138,8 @@
         "protein": true,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "quick-brown-rice",
@@ -143,7 +152,8 @@
         "protein": false,
         "wholeGrain": true
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "whole-wheat-pasta",
@@ -158,7 +168,8 @@
         "protein": false,
         "wholeGrain": true
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "whole-wheat-couscous",
@@ -173,7 +184,8 @@
         "protein": false,
         "wholeGrain": true
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "corn-tortillas",
@@ -186,7 +198,8 @@
         "protein": false,
         "wholeGrain": true
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "tomatoes",
@@ -199,7 +212,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     },
     {
       "id": "sweet-potato",
@@ -212,7 +226,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "produce"
     },
     {
       "id": "pepper",
@@ -225,7 +240,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "produce"
     },
     {
       "id": "onion",
@@ -238,7 +254,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "produce"
     },
     {
       "id": "oil",
@@ -251,7 +268,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milliliters"
+      "unit": "milliliters",
+      "category": "pantry"
     },
     {
       "id": "cumin",
@@ -264,7 +282,8 @@
         "protein": false,
         "wholeGrain": false
       },
-      "unit": "milligrams"
+      "unit": "milligrams",
+      "category": "pantry"
     }
   ],
   "offers": [

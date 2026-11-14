@@ -6,6 +6,7 @@ struct AppServices: Sendable {
     let profiles: any ProfileRepositoryProtocol
     let plans: any PlanRepositoryProtocol
     let planner: any PlanServiceProtocol
+    let checklist: any ChecklistRepositoryProtocol
 }
 
 protocol AppBootstrapProtocol: Sendable {
@@ -23,7 +24,8 @@ actor AppBootstrap: AppBootstrapProtocol {
             guard let saved else { throw CatalogError.expiredPrices }
             catalog = saved.catalog
         }
-        return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans, planner: PlanService())
+        return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
+                           planner: PlanService(), checklist: ChecklistRepository(container: container))
     }
 }
 

@@ -21,12 +21,52 @@
         }
       }
     },
+    "%@ adult-equivalent portions": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ adult-equivalent portions"
+          }
+        }
+      }
+    },
+    "%@ g": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ g"
+          }
+        }
+      }
+    },
+    "%@ items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ items"
+          }
+        }
+      }
+    },
     "%@ left": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ left"
+          }
+        }
+      }
+    },
+    "%@ mL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mL"
           }
         }
       }
@@ -81,12 +121,42 @@
         }
       }
     },
+    "%lld minutes · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutes · %@"
+          }
+        }
+      }
+    },
+    "%lld of %lld items checked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of %lld items checked"
+          }
+        }
+      }
+    },
     "%lld of 8": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld of 8"
+          }
+        }
+      }
+    },
+    "%lld packages × %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld packages × %@"
           }
         }
       }
@@ -101,7 +171,18 @@
         }
       }
     },
+    "%lld × %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@"
+          }
+        }
+      }
+    },
     "15 minutes or less": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -132,6 +213,7 @@
       }
     },
     "About 30 minutes": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -162,6 +244,7 @@
       }
     },
     "Add beans and cumin, stir until hot throughout, and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -172,6 +255,7 @@
       }
     },
     "Add oats and the package-directed amount of tap water to a saucepan. Cook according to the oat package.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -182,11 +266,22 @@
       }
     },
     "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
+          }
+        }
+      }
+    },
+    "Adult-equivalent portions: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adult-equivalent portions: %@"
           }
         }
       }
@@ -197,6 +292,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Adults, age 13+: %lld"
+          }
+        }
+      }
+    },
+    "Adults: %lld · Children: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adults: %lld · Children: %lld"
+          }
+        }
+      }
+    },
+    "Adults: %lld; children: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adults: %lld; children: %lld"
           }
         }
       }
@@ -254,6 +369,7 @@
       }
     },
     "Apple": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -264,6 +380,7 @@
       }
     },
     "Apple cinnamon oats": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -274,6 +391,7 @@
       }
     },
     "Banana": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -284,6 +402,7 @@
       }
     },
     "Banana peanut oats": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -294,6 +413,7 @@
       }
     },
     "Bean pepper quesadillas": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -304,6 +424,7 @@
       }
     },
     "Beginner": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -314,6 +435,7 @@
       }
     },
     "Bell pepper": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -324,6 +446,7 @@
       }
     },
     "Black bean rice bowl": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -334,6 +457,7 @@
       }
     },
     "Black bean sweet potato skillet": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -344,11 +468,22 @@
       }
     },
     "Breakfast": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Breakfast"
+          }
+        }
+      }
+    },
+    "Budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget"
           }
         }
       }
@@ -364,7 +499,6 @@
       }
     },
     "Budget used": {
-      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -405,6 +539,7 @@
       }
     },
     "Canned black beans, drained": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -415,6 +550,7 @@
       }
     },
     "Canned chickpeas, drained": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -425,6 +561,7 @@
       }
     },
     "Canned diced tomatoes with juice": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -435,6 +572,7 @@
       }
     },
     "Canned white beans, drained": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -455,6 +593,7 @@
       }
     },
     "Check your budget, household, selected meals and price dates, then try again.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -475,6 +614,7 @@
       }
     },
     "Chickpea breakfast skillet": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -485,6 +625,7 @@
       }
     },
     "Chickpea tomato rice": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -495,6 +636,7 @@
       }
     },
     "Chickpea tortilla wraps": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -545,6 +687,7 @@
       }
     },
     "Comfortable": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -564,8 +707,17 @@
         }
       }
     },
+    "Consumed ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consumed ingredients"
+          }
+        }
+      }
+    },
     "Continue": {
-      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -576,6 +728,7 @@
       }
     },
     "Cook pasta in tap water according to its package and drain. Drain white beans.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -586,6 +739,7 @@
       }
     },
     "Cook pasta in tap water according to its package; drain.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -596,6 +750,7 @@
       }
     },
     "Cook quick-cooking brown rice according to its package using tap water.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -606,6 +761,7 @@
       }
     },
     "Cook quick-cooking brown rice with tap water according to its package. Drain chickpeas; peel and dice onion.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -616,6 +772,7 @@
       }
     },
     "Cook the oats with the package-directed amount of tap water.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -646,6 +803,7 @@
       }
     },
     "Corn tortillas": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -706,6 +864,7 @@
       }
     },
     "Development prices have expired. An updated catalog is needed to make a new estimate.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -757,6 +916,7 @@
       }
     },
     "Drain and mash beans. Wash pepper and remove stem and seeds. Dice pepper and peeled onion.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -767,6 +927,7 @@
       }
     },
     "Drain beans. Combine beans, tomatoes and cumin in a saucepan and simmer, stirring, until hot throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -777,6 +938,7 @@
       }
     },
     "Drain beans. Warm oil, tomatoes and beans in a saucepan and simmer until hot throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -787,6 +949,7 @@
       }
     },
     "Drain chickpeas. Cook oats with the package-directed amount of tap water.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -797,6 +960,7 @@
       }
     },
     "Drain chickpeas. Peel and chop onion.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -807,6 +971,7 @@
       }
     },
     "Drain chickpeas. Warm oil in a skillet, add spinach and chickpeas, and cook according to the spinach package until hot throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -817,6 +982,7 @@
       }
     },
     "Drain chickpeas. Wash pepper, remove stem and seeds, and dice.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -867,6 +1033,7 @@
       }
     },
     "Eggs": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -886,12 +1053,32 @@
         }
       }
     },
+    "Estimated %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated %@"
+          }
+        }
+      }
+    },
     "Estimated checkout": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Estimated checkout"
+          }
+        }
+      }
+    },
+    "Estimated checkout %@ of %@, %@ remaining. Budget details.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated checkout %@ of %@, %@ remaining. Budget details."
           }
         }
       }
@@ -907,6 +1094,7 @@
       }
     },
     "Experienced": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -917,6 +1105,7 @@
       }
     },
     "Fish": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -927,6 +1116,7 @@
       }
     },
     "Flexible": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -946,7 +1136,19 @@
         }
       }
     },
+    "Frozen": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frozen"
+          }
+        }
+      }
+    },
     "Frozen chopped spinach": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -957,6 +1159,7 @@
       }
     },
     "Gluten-free": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -967,7 +1170,6 @@
       }
     },
     "Go back": {
-      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -987,7 +1189,18 @@
         }
       }
     },
+    "Grocery list": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grocery list"
+          }
+        }
+      }
+    },
     "Ground cinnamon": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -998,6 +1211,7 @@
       }
     },
     "Ground cumin": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1013,6 +1227,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Household"
+          }
+        }
+      }
+    },
+    "Household: %lld adults, %lld children": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household: %lld adults, %lld children"
           }
         }
       }
@@ -1038,11 +1262,32 @@
       }
     },
     "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout."
+          }
+        }
+      }
+    },
+    "Included": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Included"
+          }
+        }
+      }
+    },
+    "Ingredients for this meal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients for this meal"
           }
         }
       }
@@ -1078,6 +1323,26 @@
         }
       }
     },
+    "Meal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meal"
+          }
+        }
+      }
+    },
+    "Meal unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meal unavailable"
+          }
+        }
+      }
+    },
     "Meals each day": {
       "localizations": {
         "en": {
@@ -1098,7 +1363,19 @@
         }
       }
     },
+    "Meat & dairy": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meat & dairy"
+          }
+        }
+      }
+    },
     "Milk": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1139,6 +1416,7 @@
       }
     },
     "No complete plan fits these choices. Try fewer meals, more time or a higher budget. Allergy requirements will never be relaxed; this development catalog has no supplier-verified allergens.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1149,6 +1427,7 @@
       }
     },
     "No groceries yet": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1169,6 +1448,7 @@
       }
     },
     "No weekly plan yet": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1189,12 +1469,53 @@
         }
       }
     },
+    "Not indicated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not indicated"
+          }
+        }
+      }
+    },
     "Opening MealWise": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Opening MealWise"
+          }
+        }
+      }
+    },
+    "Opening recipe": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening recipe"
+          }
+        }
+      }
+    },
+    "Other": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        }
+      }
+    },
+    "Other meals using these ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other meals using these ingredients"
           }
         }
       }
@@ -1210,6 +1531,7 @@
       }
     },
     "Peanut butter": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1220,6 +1542,7 @@
       }
     },
     "Peanuts": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1230,6 +1553,7 @@
       }
     },
     "Peel and slice the banana.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1290,6 +1614,7 @@
       }
     },
     "Prepare couscous with tap water according to its package.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1299,12 +1624,74 @@
         }
       }
     },
+    "Price date: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Price date: %@"
+          }
+        }
+      }
+    },
+    "Price information": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Price information"
+          }
+        }
+      }
+    },
+    "Produce": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produce"
+          }
+        }
+      }
+    },
+    "Protein": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        }
+      }
+    },
     "Quick-cooking brown rice, dry": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Quick-cooking brown rice, dry"
+          }
+        }
+      }
+    },
+    "Recipe": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe"
+          }
+        }
+      }
+    },
+    "Recipe steps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe steps"
           }
         }
       }
@@ -1360,6 +1747,7 @@
       }
     },
     "Rolled oats": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1370,6 +1758,7 @@
       }
     },
     "Savory spinach oats": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1390,6 +1779,7 @@
       }
     },
     "Serve the tomato chickpeas over the rice.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1400,6 +1790,7 @@
       }
     },
     "Sesame": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1420,6 +1811,7 @@
       }
     },
     "Shellfish": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1429,7 +1821,18 @@
         }
       }
     },
+    "Simple balance indicators": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simple balance indicators"
+          }
+        }
+      }
+    },
     "Soy": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1440,6 +1843,7 @@
       }
     },
     "Spinach chickpea couscous": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1450,6 +1854,7 @@
       }
     },
     "Spinach white bean pasta": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1460,6 +1865,7 @@
       }
     },
     "Spoon the bean mixture over the rice and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1470,6 +1876,7 @@
       }
     },
     "Spoon the spinach and chickpeas over the oats and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1480,6 +1887,7 @@
       }
     },
     "Spread filling on tortillas, fold in half and warm each side in the skillet until lightly crisp; serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1500,6 +1908,7 @@
       }
     },
     "Stir in cooked pasta, warm through, and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1510,6 +1919,7 @@
       }
     },
     "Stir in the apple and cinnamon; cook until the apple is softened and the oats are ready. Serve warm.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1520,6 +1930,7 @@
       }
     },
     "Stir into the couscous and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1530,6 +1941,7 @@
       }
     },
     "Stir peanut butter into the cooked oats, top with banana, and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1550,11 +1962,22 @@
       }
     },
     "Sweet potato": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Sweet potato"
+          }
+        }
+      }
+    },
+    "Synthetic development prices, not observed retailer prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synthetic development prices, not observed retailer prices"
           }
         }
       }
@@ -1575,6 +1998,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "THIS WEEK"
+          }
+        }
+      }
+    },
+    "Tax, deposits and fees are excluded. Checking an item is a shopping reminder, not a recorded purchase.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tax, deposits and fees are excluded. Checking an item is a shopping reminder, not a recorded purchase."
           }
         }
       }
@@ -1600,6 +2033,7 @@
       }
     },
     "The plan could not be built. Your previous plan is unchanged. Please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1610,6 +2044,7 @@
       }
     },
     "The plan could not be saved. Your previous plan is unchanged. Please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1620,11 +2055,33 @@
       }
     },
     "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
+          }
+        }
+      }
+    },
+    "These are the amounts to use for this meal. Your grocery list rounds the combined week up to whole packages.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These are the amounts to use for this meal. Your grocery list rounds the combined week up to whole packages."
+          }
+        }
+      }
+    },
+    "This meal could not be opened. Return to your current week or retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This meal could not be opened. Return to your current week or retry."
           }
         }
       }
@@ -1640,6 +2097,7 @@
       }
     },
     "Tomato bean pasta": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1650,6 +2108,7 @@
       }
     },
     "Toss the pasta with the sauce and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1660,6 +2119,7 @@
       }
     },
     "Tree nuts": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1669,6 +2129,7 @@
         }
       }
     },
+    "Unavailable": {},
     "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans.": {
       "localizations": {
         "en": {
@@ -1680,6 +2141,7 @@
       }
     },
     "Up to 45 minutes": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1690,6 +2152,7 @@
       }
     },
     "Vegan": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1700,6 +2163,7 @@
       }
     },
     "Vegetable oil": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1709,7 +2173,18 @@
         }
       }
     },
+    "Vegetables": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetables"
+          }
+        }
+      }
+    },
     "Vegetarian": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1720,6 +2195,7 @@
       }
     },
     "Warm oil in a skillet and soften onion. Add tomatoes and chickpeas, stirring until hot throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1730,6 +2206,7 @@
       }
     },
     "Warm oil in a skillet over medium heat. Add onion and cook, stirring, until softened.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1740,6 +2217,7 @@
       }
     },
     "Warm oil in a skillet. Add onion and sweet potato with a splash of tap water, cover and cook, stirring regularly and adding water as needed, until the potato is tender.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1750,6 +2228,7 @@
       }
     },
     "Warm oil in a skillet. Add spinach and beans and cook according to the spinach package until hot throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1760,6 +2239,7 @@
       }
     },
     "Warm oil in a skillet. Cook pepper and onion until tender; stir in beans and cumin and heat throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1770,6 +2250,7 @@
       }
     },
     "Warm oil in a skillet. Cook pepper until softened, then add chickpeas and cumin and heat throughout.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1780,6 +2261,7 @@
       }
     },
     "Warm tortillas according to their package. Divide filling among them and serve.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1790,6 +2272,7 @@
       }
     },
     "Wash and chop the apple, removing the core.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1800,6 +2283,7 @@
       }
     },
     "Wash and cut sweet potato into small, even cubes. Peel and chop onion; drain beans.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1850,6 +2334,7 @@
       }
     },
     "Wheat": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1879,6 +2364,16 @@
         }
       }
     },
+    "Whole grains": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole grains"
+          }
+        }
+      }
+    },
     "Whole-package checkout estimate": {
       "localizations": {
         "en": {
@@ -1890,6 +2385,7 @@
       }
     },
     "Whole-wheat couscous, dry": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1900,6 +2396,7 @@
       }
     },
     "Whole-wheat pasta, dry": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1910,6 +2407,7 @@
       }
     },
     "Yellow onion": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1920,6 +2418,7 @@
       }
     },
     "Your answers could not be saved. Please retry before leaving setup.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1939,7 +2438,30 @@
         }
       }
     },
+    "Your checklist change could not be saved. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your checklist change could not be saved. Please retry."
+          }
+        }
+      }
+    },
+    "Your grocery list could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your grocery list could not be loaded. Please retry."
+          }
+        }
+      }
+    },
     "Your grocery list will come from your weekly plan.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1950,6 +2472,7 @@
       }
     },
     "Your meals will appear here after setup.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1980,6 +2503,7 @@
       }
     },
     "Your plan could not be reset. Please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2000,6 +2524,7 @@
       }
     },
     "Your saved information could not be opened. Please retry. Your data has not been reset.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {

@@ -59,8 +59,9 @@ private struct PlanSearch {
         try Task.checkCancellation()
         guard nodes < limit else { limitReached = true; return }
         nodes += 1
-        let cart = try CartCalculator.calculate(meals: meals, profile: request.profile, catalog: request.catalog)
-        let cost = try CartCalculator.total(cart)
+        let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog))
+        let cart = priced.items
+        let cost = priced.totalMinorUnits
         guard cost <= request.profile.budgetMinorUnits else { return }
         if meals.count == slots.count {
             let repeats = meals.count - Set(meals.map(\.recipeID)).count

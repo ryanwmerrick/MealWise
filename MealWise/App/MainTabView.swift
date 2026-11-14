@@ -9,7 +9,9 @@ struct MainTabView: View {
                 if let plan = session.plan { WeekView(plan: plan).id(plan.revision) }
             }
             Tab("Groceries", image: "IconBasket") {
-                emptyState("No groceries yet", detail: "Your grocery list will come from your weekly plan.", icon: "IconBasket")
+                if let plan = session.plan, let services = session.services {
+                    GroceryView(plan: plan, checklist: services.checklist).id(plan.revision)
+                }
             }
             Tab("Today", image: "IconPot") {
                 emptyState("No meal scheduled", detail: "Your planned meals will guide you through the day.", icon: "IconPot")

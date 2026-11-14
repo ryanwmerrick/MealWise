@@ -26,15 +26,12 @@ final class WeekViewModel: ObservableObject {
     }
 
     func consumptionCost(for meal: ScheduledMeal, perServing: Bool = false) -> String {
-        guard let recipe = recipe(for: meal) else { return "" }
-        let amount = recipe.ingredients.reduce(Decimal(0)) { sum, requirement in
-            guard let cartItem = plan.cart.first(where: { $0.ingredientID == requirement.ingredientID }),
-                  let offer = plan.catalog.offers.first(where: { $0.id == cartItem.offerID }),
-                  offer.packageQuantity > 0 else { return sum }
-            let scaled = Decimal(requirement.quantity) * Decimal(plan.profile.adultHalfPortions) / Decimal(recipe.baseAdultPortions * 2)
-            return sum + scaled * Decimal(offer.priceMinorUnits) / Decimal(offer.packageQuantity)
+        do {
+            let detail = try PlanCostBreakdown.detail(plan: plan, mealID: meal.id)
+            let servingScale = perServing ? Decimal(2) / Decimal(detail.adultHalfPortions) : 1
+            return (detail.ingredientCost * servingScale).formatted(.currency(code: "USD"))
+        } catch {
+            return String(localized: "Unavailable")
         }
-        let servingScale = perServing ? Decimal(2) / Decimal(plan.profile.adultHalfPortions) : 1
-        return (amount * servingScale / 100).formatted(.currency(code: "USD"))
     }
 }

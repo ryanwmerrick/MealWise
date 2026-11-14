@@ -34,7 +34,13 @@ final class OnboardingUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
         XCTAssertTrue(app.buttons["week.budget"].exists)
         app.swipeUp()
-        XCTAssertTrue(app.buttons["week.budget"].isHittable)
+        let capture = XCTAttachment(screenshot: app.screenshot())
+        capture.name = "Week after scrolling"
+        capture.lifetime = .keepAlways
+        add(capture)
+        app.buttons["week.budget"].tap()
+        XCTAssertTrue(app.staticTexts["Budget details"].waitForExistence(timeout: 5))
+        app.buttons["Done"].tap()
         for tab in ["Groceries", "Today", "Pantry", "Week"] {
             app.tabBars.buttons[tab].tap()
             XCTAssertTrue(app.tabBars.buttons[tab].isSelected)
