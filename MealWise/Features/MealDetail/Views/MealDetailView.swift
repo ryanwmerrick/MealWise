@@ -1,9 +1,5 @@
 import SwiftUI
 
-enum MealRoute: Hashable {
-    case detail(planID: UUID, mealID: UUID)
-}
-
 struct MealDetailView: View {
     @StateObject private var viewModel: MealDetailViewModel
     @State private var reload = 0
@@ -61,6 +57,9 @@ struct MealDetailView: View {
                     }.padding(.vertical, 8)
                 }
             }
+            if !viewModel.reservations.isEmpty {
+                Section("Save for later meals") { ReservationNotes(notes: viewModel.reservations) }
+            }
             Section("Simple balance indicators") {
                 nutritionRow("Vegetables", included: detail.nutrition.vegetable)
                 nutritionRow("Protein", included: detail.nutrition.protein)
@@ -69,12 +68,13 @@ struct MealDetailView: View {
             if !detail.linkedMeals.isEmpty {
                 Section("Other meals using these ingredients") {
                     ForEach(detail.linkedMeals) { meal in
-                        NavigationLink(value: MealRoute.detail(planID: plan.id, mealID: meal.id)) {
+                        NavigationLink(value: PlanRoute.meal(planID: plan.id, mealID: meal.id)) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(LocalizedStringKey(plan.catalog.recipes.first { $0.id == meal.recipeID }?.title ?? "Meal"))
                                 Text(meal.date, format: .dateTime.weekday().month().day()).font(.caption)
                             }
                         }
+                        .accessibilityIdentifier("recipe.related")
                     }
                 }
             }

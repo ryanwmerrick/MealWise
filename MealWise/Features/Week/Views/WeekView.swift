@@ -13,9 +13,15 @@ struct WeekView: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 16) {
                     DevelopmentNotice()
-                    Text("Ingredients repeat on purpose.").font(.headline)
+                    HStack {
+                        Text("Ingredients repeat on purpose.").font(.headline)
+                        Spacer()
+                        NavigationLink("Map", value: PlanRoute.ingredientMap(planID: viewModel.plan.id))
+                            .frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("week.map")
+                    }
+                    leftoverForecast
                     ForEach(viewModel.plan.meals) { meal in
-                        NavigationLink(value: MealRoute.detail(planID: viewModel.plan.id, mealID: meal.id)) { mealRow(meal) }
+                        NavigationLink(value: PlanRoute.meal(planID: viewModel.plan.id, mealID: meal.id)) { mealRow(meal) }
                             .buttonStyle(.plain).accessibilityIdentifier("week.meal")
                     }
                 }.padding(20)
@@ -32,14 +38,34 @@ struct WeekView: View {
             }
             .sheet(isPresented: $showBudget) { budgetDetail }
             .sheet(isPresented: $showSettings) { SettingsView() }
-            .navigationDestination(for: MealRoute.self) { route in
+            .navigationDestination(for: PlanRoute.self) { route in
                 if let services = session.services {
                     switch route {
-                    case .detail(let planID, let mealID): MealDetailView(planID: planID, mealID: mealID, plans: services.plans)
+                    case .meal(let planID, let mealID):
+                        MealDetailView(planID: planID, mealID: mealID, plans: services.plans)
+                    case .ingredientMap(let planID):
+                        IngredientMapView(planID: planID, plans: services.plans)
+                    case .ingredientDetail(let planID, let ingredientID):
+                        IngredientDetailScreen(planID: planID, ingredientID: ingredientID, plans: services.plans)
                     }
                 }
             }
         }
+    }
+
+    private var leftoverForecast: some View {
+        NavigationLink(value: PlanRoute.ingredientMap(planID: viewModel.plan.id)) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Leftover forecast").font(.headline)
+                if let count = viewModel.attentionCount {
+                    Text("Storage-sensitive remainders: \(count)").font(.subheadline)
+                } else {
+                    Text("Forecast unavailable. Open the map to retry.").font(.subheadline)
+                }
+                Text("Forecast quantities need confirmation before carryover.").font(.footnote)
+            }.padding(14).frame(maxWidth: .infinity, alignment: .leading)
+                .background(DesignTokens.selection, in: RoundedRectangle(cornerRadius: 18))
+        }.buttonStyle(.plain)
     }
 
     private var budgetCard: some View {

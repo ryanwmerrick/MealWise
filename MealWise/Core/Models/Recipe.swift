@@ -44,6 +44,7 @@ struct Ingredient: Codable, Equatable, Sendable, Identifiable {
     let nutrition: NutritionFlags
     let unit: QuantityUnit
     var category: IngredientCategory? = nil
+    var storage: StorageKind? = nil
 
     func isSafe(excluding excluded: Set<Allergen>) -> Bool {
         excluded.isEmpty || (allergensVerified && allergens.isDisjoint(with: excluded))

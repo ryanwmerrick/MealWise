@@ -48,6 +48,8 @@ extension XCTestCase {
             }
             app.buttons["Start over"].tap()
             app.buttons["Reset plan"].tap()
+            XCTAssertTrue(app.buttons["Reset plan"].waitForNonExistence(timeout: 5))
+            XCTAssertTrue(app.buttons["welcome.start"].waitForExistence(timeout: 10))
         }
     }
 }

@@ -4,6 +4,10 @@ import Foundation
 @MainActor
 final class WeekViewModel: ObservableObject {
     let plan: WeeklyPlan
+    var attentionCount: Int? {
+        do { return try IngredientAllocationService().allocate(plan: plan).items.filter { $0.status == .needsAttention }.count }
+        catch { return nil }
+    }
     init(plan: WeeklyPlan) { self.plan = plan }
 
     var progress: Double { Double(plan.totalMinorUnits) / Double(plan.profile.budgetMinorUnits) }

@@ -25,7 +25,8 @@
         "wholeGrain": true
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "apple",
@@ -39,7 +40,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "produce"
+      "category": "produce",
+      "storage": "fresh"
     },
     {
       "id": "banana",
@@ -53,7 +55,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "produce"
+      "category": "produce",
+      "storage": "fresh"
     },
     {
       "id": "cinnamon",
@@ -67,7 +70,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "peanut-butter",
@@ -83,7 +87,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "spinach",
@@ -97,7 +102,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "frozen"
+      "category": "frozen",
+      "storage": "frozen"
     },
     {
       "id": "chickpeas",
@@ -111,7 +117,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "openedCan"
     },
     {
       "id": "black-beans",
@@ -125,7 +132,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "openedCan"
     },
     {
       "id": "white-beans",
@@ -139,7 +147,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "openedCan"
     },
     {
       "id": "quick-brown-rice",
@@ -153,7 +162,8 @@
         "wholeGrain": true
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "whole-wheat-pasta",
@@ -169,7 +179,8 @@
         "wholeGrain": true
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "whole-wheat-couscous",
@@ -185,7 +196,8 @@
         "wholeGrain": true
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "corn-tortillas",
@@ -199,7 +211,8 @@
         "wholeGrain": true
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "tomatoes",
@@ -213,7 +226,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "openedCan"
     },
     {
       "id": "sweet-potato",
@@ -227,7 +241,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "produce"
+      "category": "produce",
+      "storage": "fresh"
     },
     {
       "id": "pepper",
@@ -241,7 +256,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "produce"
+      "category": "produce",
+      "storage": "fresh"
     },
     {
       "id": "onion",
@@ -255,7 +271,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "produce"
+      "category": "produce",
+      "storage": "fresh"
     },
     {
       "id": "oil",
@@ -269,7 +286,8 @@
         "wholeGrain": false
       },
       "unit": "milliliters",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     },
     {
       "id": "cumin",
@@ -283,7 +301,8 @@
         "wholeGrain": false
       },
       "unit": "milligrams",
-      "category": "pantry"
+      "category": "pantry",
+      "storage": "shelfStable"
     }
   ],
   "offers": [

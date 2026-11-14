@@ -37,7 +37,7 @@ struct SettingsView: View {
             .confirmationDialog("Remove your current plan and setup answers?", isPresented: $confirmingReset, titleVisibility: .visible) {
                 Button("Reset plan", role: .destructive) {
                     Task {
-                        do { try await session.reset(); dismiss() }
+                        do { try await session.reset() }
                         catch { self.error = "Your plan could not be reset. Please retry." }
                     }
                 }

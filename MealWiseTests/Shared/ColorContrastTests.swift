@@ -6,7 +6,7 @@ struct ColorContrastTests {
     @Test(arguments: [UIUserInterfaceStyle.light, .dark])
     func textRemainsReadable(style: UIUserInterfaceStyle) throws {
         let bundle = Bundle.main
-        for (foreground, background) in [("TextPrimary", "WelcomeSurface"), ("TextSecondary", "WelcomeSurface"), ("ButtonText", "Brand"), ("Action", "Surface")] {
+        for (foreground, background) in [("TextPrimary", "WelcomeSurface"), ("TextSecondary", "WelcomeSurface"), ("ButtonText", "Brand"), ("Action", "Surface"), ("NoteText", "NoteFill")] {
             let front = try #require(UIColor(named: foreground, in: bundle, compatibleWith: UITraitCollection(userInterfaceStyle: style)))
             let back = try #require(UIColor(named: background, in: bundle, compatibleWith: UITraitCollection(userInterfaceStyle: style)))
             let values = [front, back].map { color -> Double in

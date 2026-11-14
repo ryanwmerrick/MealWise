@@ -254,7 +254,7 @@ struct OnboardingView: View {
     }
 
     private func accept() async {
-        if let plan = await viewModel.acceptPreview() { session.accept(plan); dismiss() }
+        if let plan = await viewModel.acceptPreview() { session.accept(plan) }
     }
 }
 

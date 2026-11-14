@@ -23,11 +23,15 @@ Complete for the explicitly approved development-only catalog and policy. See [c
 
 Complete. All eight setup steps, persisted drafts, bounded deterministic generation, pinned Week budget, budget detail, settings preview/accept and confirmed reset are implemented. Full build/test passes: 37 Swift Testing tests and five UI tests, including keyboard validation, same-session draft reentry, setup/edit/build/relaunch and accessibility. See [verification](phase-3-verification.md).
 
-## Approved later-phase decisions
-
 ## Phase 4 — groceries and recipe details
 
 Complete. Every planned meal opens its own scaled recipe; groceries reconcile to the committed package cart, and checks persist across relaunch. Full build/test passes: 42 Swift Testing tests and six UI tests. The nested budget-progress accessibility regression found during integration was fixed and its test now opens Budget Details after scrolling. Recipe/grocery screenshots and a household quantity walkthrough were inspected. See [verification](phase-4-verification.md).
+
+## Approved later-phase decisions
+
+## Phase 5 — allocations and leftover forecasts
+
+Complete. Purchased quantities reconcile with dated meal allocations and remainders, Map/Ingredient/Recipe navigation uses one typed route, and recipe notes reserve later-meal amounts. Full build/test passes: 47 unit tests and seven UI tests. Map screenshot and package arithmetic were inspected. See [verification](phase-5-verification.md). An unsourced keyboard/reentry frame warning remains recorded for release investigation; the flow's focused regression passes.
 
 ## Approved later-phase decisions
 

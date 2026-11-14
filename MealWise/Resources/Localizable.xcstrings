@@ -81,6 +81,16 @@
         }
       }
     },
+    "%@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@"
+          }
+        }
+      }
+    },
     "%lld adults, %lld children": {
       "localizations": {
         "en": {
@@ -167,6 +177,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld shared ingredients"
+          }
+        }
+      }
+    },
+    "%lld storage-sensitive remainders to review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld storage-sensitive remainders to review"
           }
         }
       }
@@ -333,6 +353,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Allergies"
+          }
+        }
+      }
+    },
+    "Allocated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allocated"
           }
         }
       }
@@ -592,6 +622,16 @@
         }
       }
     },
+    "Check the package storage instructions. At wrap-up, confirm what remains before carrying it into the next plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check the package storage instructions. At wrap-up, confirm what remains before carrying it into the next plan."
+          }
+        }
+      }
+    },
     "Check your budget, household, selected meals and price dates, then try again.": {
       "extractionState": "stale",
       "localizations": {
@@ -599,6 +639,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Check your budget, household, selected meals and price dates, then try again."
+          }
+        }
+      }
+    },
+    "Checking package allocations": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking package allocations"
           }
         }
       }
@@ -1093,6 +1143,26 @@
         }
       }
     },
+    "Expected remaining": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected remaining"
+          }
+        }
+      }
+    },
+    "Expected remaining: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected remaining: %@"
+          }
+        }
+      }
+    },
     "Experienced": {
       "extractionState": "stale",
       "localizations": {
@@ -1136,6 +1206,26 @@
         }
       }
     },
+    "Forecast quantities need confirmation before carryover.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forecast quantities need confirmation before carryover."
+          }
+        }
+      }
+    },
+    "Forecast unavailable. Open the map to retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forecast unavailable. Open the map to retry."
+          }
+        }
+      }
+    },
     "Frozen": {
       "extractionState": "stale",
       "localizations": {
@@ -1154,6 +1244,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Frozen chopped spinach"
+          }
+        }
+      }
+    },
+    "Fully allocated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fully allocated"
           }
         }
       }
@@ -1282,6 +1382,56 @@
         }
       }
     },
+    "Ingredient details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient details"
+          }
+        }
+      }
+    },
+    "Ingredient map": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient map"
+          }
+        }
+      }
+    },
+    "Ingredient map unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient map unavailable"
+          }
+        }
+      }
+    },
+    "Ingredient unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient unavailable"
+          }
+        }
+      }
+    },
+    "Ingredient usage could not be loaded. Return to your week or retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient usage could not be loaded. Return to your week or retry."
+          }
+        }
+      }
+    },
     "Ingredients for this meal": {
       "localizations": {
         "en": {
@@ -1312,6 +1462,26 @@
         }
       }
     },
+    "Later meals using this ingredient: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later meals using this ingredient: %lld"
+          }
+        }
+      }
+    },
+    "Leftover forecast": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leftover forecast"
+          }
+        }
+      }
+    },
     "Lunch": {
       "extractionState": "stale",
       "localizations": {
@@ -1319,6 +1489,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lunch"
+          }
+        }
+      }
+    },
+    "Map": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Map"
           }
         }
       }
@@ -1381,6 +1561,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Milk"
+          }
+        }
+      }
+    },
+    "Needs attention": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs attention"
           }
         }
       }
@@ -1489,6 +1679,16 @@
         }
       }
     },
+    "Opening ingredient": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening ingredient"
+          }
+        }
+      }
+    },
     "Opening recipe": {
       "localizations": {
         "en": {
@@ -1516,6 +1716,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Other meals using these ingredients"
+          }
+        }
+      }
+    },
+    "Package checkout": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package checkout"
           }
         }
       }
@@ -1603,6 +1813,36 @@
         }
       }
     },
+    "Planned meals using this item: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned meals using this item: %lld"
+          }
+        }
+      }
+    },
+    "Planned package use": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned package use"
+          }
+        }
+      }
+    },
+    "Planned use": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned use"
+          }
+        }
+      }
+    },
     "Preferences": {
       "localizations": {
         "en": {
@@ -1665,6 +1905,26 @@
         }
       }
     },
+    "Purchased": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased"
+          }
+        }
+      }
+    },
+    "Purchased: %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased: %@ · %@"
+          }
+        }
+      }
+    },
     "Quick-cooking brown rice, dry": {
       "extractionState": "stale",
       "localizations": {
@@ -1716,6 +1976,26 @@
         }
       }
     },
+    "Reserve %@ for %lld later meals.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reserve %@ for %lld later meals."
+          }
+        }
+      }
+    },
+    "Reserve %@ for the remaining planned meals.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reserve %@ for the remaining planned meals."
+          }
+        }
+      }
+    },
     "Reset plan": {
       "localizations": {
         "en": {
@@ -1732,6 +2012,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Retry"
+          }
+        }
+      }
+    },
+    "Return to your current ingredient map.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return to your current ingredient map."
           }
         }
       }
@@ -1753,6 +2043,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rolled oats"
+          }
+        }
+      }
+    },
+    "Save for later meals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save for later meals"
           }
         }
       }
@@ -1806,6 +2106,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Settings"
+          }
+        }
+      }
+    },
+    "Shelf-stable carryover": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shelf-stable carryover"
           }
         }
       }
@@ -1951,6 +2261,26 @@
         }
       }
     },
+    "Storage-sensitive remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage-sensitive remainder"
+          }
+        }
+      }
+    },
+    "Storage-sensitive remainders: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage-sensitive remainders: %lld"
+          }
+        }
+      }
+    },
     "Store": {
       "localizations": {
         "en": {
@@ -2065,12 +2395,32 @@
         }
       }
     },
+    "These amounts belong to other planned recipes. Follow package storage instructions when saving ingredients.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These amounts belong to other planned recipes. Follow package storage instructions when saving ingredients."
+          }
+        }
+      }
+    },
     "These are the amounts to use for this meal. Your grocery list rounds the combined week up to whole packages.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "These are the amounts to use for this meal. Your grocery list rounds the combined week up to whole packages."
+          }
+        }
+      }
+    },
+    "This is planned usage, not confirmed inventory. Storage and freshness are uncertain; check package handling instructions before keeping or reusing food.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is planned usage, not confirmed inventory. Storage and freshness are uncertain; check package handling instructions before keeping or reusing food."
           }
         }
       }
@@ -2082,6 +2432,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "This meal could not be opened. Return to your current week or retry."
+          }
+        }
+      }
+    },
+    "This remainder needs a storage check. Consider using it in another meal, following the package guidance; no shelf-life duration is assumed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This remainder needs a storage check. Consider using it in another meal, following the package guidance; no shelf-life duration is assumed."
           }
         }
       }
@@ -2147,6 +2507,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Up to 45 minutes"
+          }
+        }
+      }
+    },
+    "Used across %lld planned meals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Used across %lld planned meals"
           }
         }
       }
@@ -2329,6 +2699,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "What can you spend this week?"
+          }
+        }
+      }
+    },
+    "What to do with the remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What to do with the remainder"
           }
         }
       }

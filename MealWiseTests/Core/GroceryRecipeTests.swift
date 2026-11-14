@@ -10,7 +10,10 @@ struct GroceryRecipeTests {
         var payload = try #require(JSONSerialization.jsonObject(with: JSONEncoder().encode(plan)) as? [String: Any])
         var catalog = try #require(payload["catalog"] as? [String: Any])
         var ingredients = try #require(catalog["ingredients"] as? [[String: Any]])
-        for index in ingredients.indices { ingredients[index].removeValue(forKey: "category") }
+        for index in ingredients.indices {
+            ingredients[index].removeValue(forKey: "category")
+            ingredients[index].removeValue(forKey: "storage")
+        }
         catalog["ingredients"] = ingredients; payload["catalog"] = catalog
         let container = try await LocalStore.makeContainer(inMemory: true)
         let context = ModelContext(container)

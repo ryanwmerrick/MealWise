@@ -6,11 +6,10 @@ struct WelcomeView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                brandmark
-                WelcomeIllustration().padding(.horizontal, -DesignTokens.inset)
-                welcomeCopy
+                brandmark.padding(.horizontal, DesignTokens.inset).padding(.top, DesignTokens.inset)
+                WelcomeIllustration()
+                welcomeCopy.padding(.horizontal, DesignTokens.inset).padding(.bottom, DesignTokens.inset)
             }
-            .padding(DesignTokens.inset)
             .frame(maxWidth: 560)
             .frame(maxWidth: .infinity)
         }
