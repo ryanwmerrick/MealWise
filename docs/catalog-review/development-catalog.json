@@ -1,0 +1,1249 @@
+{
+  "version": "development-draft-2026-11-13",
+  "reviewStatus": "draft",
+  "currencyCode": "USD",
+  "authorship": "Codex development fixture; recipes not cooking-tested",
+  "priceProvenance": "Synthetic development prices, not observed retailer prices",
+  "stores": [
+    {
+      "id": "development-grocery",
+      "name": "Development grocery",
+      "region": "synthetic",
+      "location": null
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "oats",
+      "name": "Rolled oats",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": true
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "banana",
+      "name": "Banana",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "cinnamon",
+      "name": "Ground cinnamon",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "peanut-butter",
+      "name": "Peanut butter",
+      "allergens": [
+        "peanut"
+      ],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "spinach",
+      "name": "Frozen chopped spinach",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": true,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "chickpeas",
+      "name": "Canned chickpeas, drained",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "black-beans",
+      "name": "Canned black beans, drained",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "white-beans",
+      "name": "Canned white beans, drained",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "quick-brown-rice",
+      "name": "Quick-cooking brown rice, dry",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": true
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "whole-wheat-pasta",
+      "name": "Whole-wheat pasta, dry",
+      "allergens": [
+        "wheat"
+      ],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": true
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "whole-wheat-couscous",
+      "name": "Whole-wheat couscous, dry",
+      "allergens": [
+        "wheat"
+      ],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": true
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "corn-tortillas",
+      "name": "Corn tortillas",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": true
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "tomatoes",
+      "name": "Canned diced tomatoes with juice",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": true,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "sweet-potato",
+      "name": "Sweet potato",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": true,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "pepper",
+      "name": "Bell pepper",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": true,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "onion",
+      "name": "Yellow onion",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": true,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    },
+    {
+      "id": "oil",
+      "name": "Vegetable oil",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milliliters"
+    },
+    {
+      "id": "cumin",
+      "name": "Ground cumin",
+      "allergens": [],
+      "allergensVerified": false,
+      "reviewStatus": "draft",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams"
+    }
+  ],
+  "offers": [
+    {
+      "id": "development-oats",
+      "ingredientID": "oats",
+      "storeID": "development-grocery",
+      "packageQuantity": 500000,
+      "unit": "milligrams",
+      "priceMinorUnits": 199,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-apple",
+      "ingredientID": "apple",
+      "storeID": "development-grocery",
+      "packageQuantity": 1000000,
+      "unit": "milligrams",
+      "priceMinorUnits": 299,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-banana",
+      "ingredientID": "banana",
+      "storeID": "development-grocery",
+      "packageQuantity": 1000000,
+      "unit": "milligrams",
+      "priceMinorUnits": 149,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-cinnamon",
+      "ingredientID": "cinnamon",
+      "storeID": "development-grocery",
+      "packageQuantity": 40000,
+      "unit": "milligrams",
+      "priceMinorUnits": 149,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-peanut-butter",
+      "ingredientID": "peanut-butter",
+      "storeID": "development-grocery",
+      "packageQuantity": 450000,
+      "unit": "milligrams",
+      "priceMinorUnits": 199,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-spinach",
+      "ingredientID": "spinach",
+      "storeID": "development-grocery",
+      "packageQuantity": 300000,
+      "unit": "milligrams",
+      "priceMinorUnits": 129,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-chickpeas",
+      "ingredientID": "chickpeas",
+      "storeID": "development-grocery",
+      "packageQuantity": 240000,
+      "unit": "milligrams",
+      "priceMinorUnits": 89,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-black-beans",
+      "ingredientID": "black-beans",
+      "storeID": "development-grocery",
+      "packageQuantity": 240000,
+      "unit": "milligrams",
+      "priceMinorUnits": 89,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-white-beans",
+      "ingredientID": "white-beans",
+      "storeID": "development-grocery",
+      "packageQuantity": 240000,
+      "unit": "milligrams",
+      "priceMinorUnits": 89,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-quick-brown-rice",
+      "ingredientID": "quick-brown-rice",
+      "storeID": "development-grocery",
+      "packageQuantity": 500000,
+      "unit": "milligrams",
+      "priceMinorUnits": 249,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-whole-wheat-pasta",
+      "ingredientID": "whole-wheat-pasta",
+      "storeID": "development-grocery",
+      "packageQuantity": 450000,
+      "unit": "milligrams",
+      "priceMinorUnits": 149,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-whole-wheat-couscous",
+      "ingredientID": "whole-wheat-couscous",
+      "storeID": "development-grocery",
+      "packageQuantity": 500000,
+      "unit": "milligrams",
+      "priceMinorUnits": 249,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-corn-tortillas",
+      "ingredientID": "corn-tortillas",
+      "storeID": "development-grocery",
+      "packageQuantity": 300000,
+      "unit": "milligrams",
+      "priceMinorUnits": 199,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-tomatoes",
+      "ingredientID": "tomatoes",
+      "storeID": "development-grocery",
+      "packageQuantity": 400000,
+      "unit": "milligrams",
+      "priceMinorUnits": 99,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-sweet-potato",
+      "ingredientID": "sweet-potato",
+      "storeID": "development-grocery",
+      "packageQuantity": 1000000,
+      "unit": "milligrams",
+      "priceMinorUnits": 249,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-pepper",
+      "ingredientID": "pepper",
+      "storeID": "development-grocery",
+      "packageQuantity": 500000,
+      "unit": "milligrams",
+      "priceMinorUnits": 199,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-onion",
+      "ingredientID": "onion",
+      "storeID": "development-grocery",
+      "packageQuantity": 1000000,
+      "unit": "milligrams",
+      "priceMinorUnits": 199,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-oil",
+      "ingredientID": "oil",
+      "storeID": "development-grocery",
+      "packageQuantity": 500,
+      "unit": "milliliters",
+      "priceMinorUnits": 299,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "development-cumin",
+      "ingredientID": "cumin",
+      "storeID": "development-grocery",
+      "packageQuantity": 40000,
+      "unit": "milligrams",
+      "priceMinorUnits": 149,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "draft"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "apple-oats",
+      "title": "Apple cinnamon oats",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 10,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "oats",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "apple",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cinnamon",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Wash and chop the apple, removing the core."
+        },
+        {
+          "number": 2,
+          "instruction": "Add oats and the package-directed amount of tap water to a saucepan. Cook according to the oat package."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the apple and cinnamon; cook until the apple is softened and the oats are ready. Serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "banana-peanut-oats",
+      "title": "Banana peanut oats",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 10,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "oats",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "banana",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "peanut-butter",
+          "quantity": 20000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Cook the oats with the package-directed amount of tap water."
+        },
+        {
+          "number": 2,
+          "instruction": "Peel and slice the banana."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir peanut butter into the cooked oats, top with banana, and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "spinach-oats",
+      "title": "Savory spinach oats",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "oats",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain chickpeas. Cook oats with the package-directed amount of tap water."
+        },
+        {
+          "number": 2,
+          "instruction": "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon the spinach and chickpeas over the oats and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "chickpea-breakfast",
+      "title": "Chickpea breakfast skillet",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 20,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "onion",
+          "quantity": 40000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain chickpeas. Peel and chop onion."
+        },
+        {
+          "number": 2,
+          "instruction": "Warm oil in a skillet over medium heat. Add onion and cook, stirring, until softened."
+        },
+        {
+          "number": 3,
+          "instruction": "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      }
+    },
+    {
+      "id": "chickpea-wrap",
+      "title": "Chickpea tortilla wraps",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain chickpeas. Wash pepper, remove stem and seeds, and dice."
+        },
+        {
+          "number": 2,
+          "instruction": "Warm oil in a skillet. Cook pepper until softened, then add chickpeas and cumin and heat throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Warm tortillas according to their package. Divide filling among them and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "black-bean-bowl",
+      "title": "Black bean rice bowl",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 20,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "black-beans",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "quick-brown-rice",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Cook quick-cooking brown rice according to its package using tap water."
+        },
+        {
+          "number": 2,
+          "instruction": "Drain beans. Combine beans, tomatoes and cumin in a saucepan and simmer, stirring, until hot throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon the bean mixture over the rice and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "tomato-bean-pasta",
+      "title": "Tomato bean pasta",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 25,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "whole-wheat-pasta",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "white-beans",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Cook pasta in tap water according to its package; drain."
+        },
+        {
+          "number": 2,
+          "instruction": "Drain beans. Warm oil, tomatoes and beans in a saucepan and simmer until hot throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Toss the pasta with the sauce and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "spinach-couscous",
+      "title": "Spinach chickpea couscous",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "whole-wheat-couscous",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Prepare couscous with tap water according to its package."
+        },
+        {
+          "number": 2,
+          "instruction": "Drain chickpeas. Warm oil in a skillet, add spinach and chickpeas, and cook according to the spinach package until hot throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir into the couscous and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "sweet-potato-beans",
+      "title": "Black bean sweet potato skillet",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 30,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "black-beans",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "sweet-potato",
+          "quantity": 180000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "onion",
+          "quantity": 40000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Wash and cut sweet potato into small, even cubes. Peel and chop onion; drain beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Warm oil in a skillet. Add onion and sweet potato with a splash of tap water, cover and cook, stirring regularly and adding water as needed, until the potato is tender."
+        },
+        {
+          "number": 3,
+          "instruction": "Add beans and cumin, stir until hot throughout, and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      }
+    },
+    {
+      "id": "chickpea-rice",
+      "title": "Chickpea tomato rice",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 25,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "quick-brown-rice",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "onion",
+          "quantity": 40000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Cook quick-cooking brown rice with tap water according to its package. Drain chickpeas; peel and dice onion."
+        },
+        {
+          "number": 2,
+          "instruction": "Warm oil in a skillet and soften onion. Add tomatoes and chickpeas, stirring until hot throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Serve the tomato chickpeas over the rice."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "spinach-bean-pasta",
+      "title": "Spinach white bean pasta",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 25,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "white-beans",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "whole-wheat-pasta",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Cook pasta in tap water according to its package and drain. Drain white beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Warm oil in a skillet. Add spinach and beans and cook according to the spinach package until hot throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in cooked pasta, warm through, and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    },
+    {
+      "id": "bean-quesadillas",
+      "title": "Bean pepper quesadillas",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 20,
+      "skill": "beginner",
+      "reviewStatus": "draft",
+      "ingredients": [
+        {
+          "ingredientID": "black-beans",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "onion",
+          "quantity": 30000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and mash beans. Wash pepper and remove stem and seeds. Dice pepper and peeled onion."
+        },
+        {
+          "number": 2,
+          "instruction": "Warm oil in a skillet. Cook pepper and onion until tender; stir in beans and cumin and heat throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Spread filling on tortillas, fold in half and warm each side in the skillet until lightly crisp; serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      }
+    }
+  ]
+}

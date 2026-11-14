@@ -16,3 +16,5 @@ Complete. Build, full test suite, accessibility audit and small-screen large-tex
 ## Phase 2 — Data and persistence
 
 User requested a development catalog for review; it must not be represented as reviewed launch content or real retailer prices.
+
+Complete for the explicitly approved development-only catalog and policy. See [catalog review](catalog-review/README.md) and [Phase 2 verification](phase-2-verification.md). Full build/test passes: 22 Swift Testing tests (including parameterized cases) and three UI tests. Launch recipe/price/allergen review remains required before real-world release.
