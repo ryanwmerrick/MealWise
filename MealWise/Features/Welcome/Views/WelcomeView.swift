@@ -45,7 +45,7 @@ struct WelcomeView: View {
 
     private var actions: some View {
         VStack(spacing: 12) {
-            NavigationLink(value: AppRoute.shell) {
+            NavigationLink(value: AppRoute.setup) {
                 HStack {
                     Text("Plan my week")
                     Image("IconArrow").accessibilityHidden(true)

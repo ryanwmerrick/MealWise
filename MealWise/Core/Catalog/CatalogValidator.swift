@@ -1,7 +1,7 @@
 import Foundation
 
 enum CatalogValidator {
-    static func validate(_ catalog: RecipeCatalog, allowDevelopment: Bool, now: Date) throws {
+    static func validate(_ catalog: RecipeCatalog, allowDevelopment: Bool, now: Date, validatePriceFreshness: Bool = true) throws {
         guard approved(catalog.reviewStatus, allowDevelopment), hasText(catalog.version) else {
             throw CatalogError.unreviewedContent
         }
@@ -17,11 +17,11 @@ enum CatalogValidator {
                   ingredient.unit == ingredient.unit.canonicalUnit else { throw CatalogError.invalidData }
             if !allowDevelopment && !ingredient.allergensVerified { throw CatalogError.unreviewedContent }
         }
-        for offer in catalog.offers { try validate(offer, catalog: catalog, allowDevelopment: allowDevelopment, now: now) }
+        for offer in catalog.offers { try validate(offer, catalog: catalog, allowDevelopment: allowDevelopment, now: now, validatePriceFreshness: validatePriceFreshness) }
         for recipe in catalog.recipes { try validate(recipe, catalog: catalog, allowDevelopment: allowDevelopment) }
     }
 
-    private static func validate(_ offer: PackageOffer, catalog: RecipeCatalog, allowDevelopment: Bool, now: Date) throws {
+    private static func validate(_ offer: PackageOffer, catalog: RecipeCatalog, allowDevelopment: Bool, now: Date, validatePriceFreshness: Bool) throws {
         guard approved(offer.reviewStatus, allowDevelopment), offer.packageQuantity > 0,
               offer.priceMinorUnits > 0, offer.currencyCode == catalog.currencyCode,
               hasText(offer.provenance),
@@ -33,7 +33,9 @@ enum CatalogValidator {
               let expiry = formatter.date(from: offer.validThrough + "T23:59:59Z"), date <= expiry else {
             throw CatalogError.invalidData
         }
-        guard date <= now, now <= expiry else { throw CatalogError.expiredPrices }
+        if validatePriceFreshness {
+            guard date <= now, now <= expiry else { throw CatalogError.expiredPrices }
+        }
     }
 
     private static func validate(_ recipe: Recipe, catalog: RecipeCatalog, allowDevelopment: Bool) throws {

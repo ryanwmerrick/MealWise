@@ -569,7 +569,11 @@
         "vegetable": false,
         "protein": false,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "banana-peanut-oats",
@@ -623,7 +627,11 @@
         "vegetable": false,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "spinach-oats",
@@ -682,7 +690,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "chickpea-breakfast",
@@ -746,7 +758,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": false
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "chickpea-wrap",
@@ -810,7 +826,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "black-bean-bowl",
@@ -869,7 +889,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "tomato-bean-pasta",
@@ -928,7 +952,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "spinach-couscous",
@@ -987,7 +1015,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "sweet-potato-beans",
@@ -1051,7 +1083,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": false
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "chickpea-rice",
@@ -1115,7 +1151,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "spinach-bean-pasta",
@@ -1174,7 +1214,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     },
     {
       "id": "bean-quesadillas",
@@ -1243,7 +1287,11 @@
         "vegetable": true,
         "protein": true,
         "wholeGrain": true
-      }
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan"
+      ]
     }
   ],
   "approval": "User approved development-only policy/catalog in conversation, 2026-11-13. Not launch reviewed."

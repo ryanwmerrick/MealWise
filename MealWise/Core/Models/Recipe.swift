@@ -32,6 +32,7 @@ struct Recipe: Codable, Equatable, Sendable, Identifiable {
     let steps: [RecipeStep]
     let equipment: [String]
     let nutrition: NutritionFlags
+    let dietaryPreferences: Set<DietPreference>
 }
 
 struct Ingredient: Codable, Equatable, Sendable, Identifiable {

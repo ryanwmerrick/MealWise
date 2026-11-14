@@ -1,314 +1,2054 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "$5.70 left" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "$5.70 left"
+  "sourceLanguage": "en",
+  "strings": {
+    "$5.70 left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$5.70 left"
           }
         }
       }
     },
-    "$64.30" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "$64.30"
+    "$64.30": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$64.30"
           }
         }
       }
     },
-    "5 dinners" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 dinners"
+    "%@ left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ left"
           }
         }
       }
     },
-    "All" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All"
+    "%@ per adult-equivalent serving": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ per adult-equivalent serving"
           }
         }
       }
     },
-    "Almost all" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Almost all"
+    "%lld adults, %lld children": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld adults, %lld children"
           }
         }
       }
     },
-    "Budget used" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget used"
+    "%lld allergies, %lld preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld allergies, %lld preferences"
           }
         }
       }
     },
-    "Confirmed ingredients left over from a week will appear here." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Confirmed ingredients left over from a week will appear here."
+    "%lld days, %lld meals per day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days, %lld meals per day"
           }
         }
       }
     },
-    "Continue" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue"
+    "%lld min · %@ ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min · %@ ingredients"
           }
         }
       }
     },
-    "Dinner" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dinner"
+    "%lld of 8": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of 8"
           }
         }
       }
     },
-    "Go back" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go back"
+    "%lld shared ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld shared ingredients"
           }
         }
       }
     },
-    "Groceries" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Groceries"
+    "15 minutes or less": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "15 minutes or less"
           }
         }
       }
     },
-    "Lunch" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lunch"
+    "5 dinners": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 dinners"
           }
         }
       }
     },
-    "mealwise" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "mealwise"
+    "A child portion is half an adult portion. Checkout averages allocate packages, including leftovers; meal ingredient costs show only what is consumed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A child portion is half an adult portion. Checkout averages allocate packages, including leftovers; meal ingredient costs show only what is consumed."
           }
         }
       }
     },
-    "No account. No payment. Just a plan." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No account. No payment. Just a plan."
+    "About 30 minutes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About 30 minutes"
           }
         }
       }
     },
-    "No groceries yet" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No groceries yet"
+    "Accept new plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accept new plan"
           }
         }
       }
     },
-    "No meal scheduled" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No meal scheduled"
+    "Accepting replaces your current planned week. Your new estimate stays within the selected budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accepting replaces your current planned week. Your new estimate stays within the selected budget."
           }
         }
       }
     },
-    "No weekly plan yet" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No weekly plan yet"
+    "Add beans and cumin, stir until hot throughout, and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add beans and cumin, stir until hot throughout, and serve."
           }
         }
       }
     },
-    "None" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "None"
+    "Add oats and the package-directed amount of tap water to a saucepan. Cook according to the oat package.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add oats and the package-directed amount of tap water to a saucepan. Cook according to the oat package."
           }
         }
       }
     },
-    "of your $70 budget" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "of your $70 budget"
+    "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
           }
         }
       }
     },
-    "Pantry" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pantry"
+    "Adults, age 13+: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adults, age 13+: %lld"
           }
         }
       }
     },
-    "Plan my week" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plan my week"
+    "All": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
           }
         }
       }
     },
-    "Tell us your grocery budget. We’ll build a healthy week that fits it—and uses what you buy." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tell us your grocery budget. We’ll build a healthy week that fits it—and uses what you buy."
+    "Allergies": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allergies"
           }
         }
       }
     },
-    "THIS WEEK" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "THIS WEEK"
+    "Allocated checkout averages": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allocated checkout averages"
           }
         }
       }
     },
-    "Today" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Today"
+    "Almost all": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almost all"
           }
         }
       }
     },
-    "Week" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Week"
+    "Any needs or preferences?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any needs or preferences?"
           }
         }
       }
     },
-    "Your grocery list will come from your weekly plan." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your grocery list will come from your weekly plan."
+    "Apple": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple"
           }
         }
       }
     },
-    "Your meals will appear here after setup." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your meals will appear here after setup."
+    "Apple cinnamon oats": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple cinnamon oats"
           }
         }
       }
     },
-    "Your money sets\nthe menu." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your money sets\nthe menu."
+    "Banana": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banana"
           }
         }
       }
     },
-    "Your pantry is empty" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your pantry is empty"
+    "Banana peanut oats": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banana peanut oats"
           }
         }
       }
     },
-    "Your planned meals will guide you through the day." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your planned meals will guide you through the day."
+    "Bean pepper quesadillas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bean pepper quesadillas"
+          }
+        }
+      }
+    },
+    "Beginner": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        }
+      }
+    },
+    "Bell pepper": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bell pepper"
+          }
+        }
+      }
+    },
+    "Black bean rice bowl": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean rice bowl"
+          }
+        }
+      }
+    },
+    "Black bean sweet potato skillet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean sweet potato skillet"
+          }
+        }
+      }
+    },
+    "Breakfast": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breakfast"
+          }
+        }
+      }
+    },
+    "Budget details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget details"
+          }
+        }
+      }
+    },
+    "Budget used": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget used"
+          }
+        }
+      }
+    },
+    "Build my plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build my plan"
+          }
+        }
+      }
+    },
+    "Building your week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Building your week"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Canned black beans, drained": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned black beans, drained"
+          }
+        }
+      }
+    },
+    "Canned chickpeas, drained": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned chickpeas, drained"
+          }
+        }
+      }
+    },
+    "Canned diced tomatoes with juice": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned diced tomatoes with juice"
+          }
+        }
+      }
+    },
+    "Canned white beans, drained": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned white beans, drained"
+          }
+        }
+      }
+    },
+    "Changing your answers creates a new plan preview. Your saved plan changes only after you accept.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changing your answers creates a new plan preview. Your saved plan changes only after you accept."
+          }
+        }
+      }
+    },
+    "Check your budget, household, selected meals and price dates, then try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check your budget, household, selected meals and price dates, then try again."
+          }
+        }
+      }
+    },
+    "Checking shared ingredients and whole-package costs.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking shared ingredients and whole-package costs."
+          }
+        }
+      }
+    },
+    "Chickpea breakfast skillet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea breakfast skillet"
+          }
+        }
+      }
+    },
+    "Chickpea tomato rice": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea tomato rice"
+          }
+        }
+      }
+    },
+    "Chickpea tortilla wraps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea tortilla wraps"
+          }
+        }
+      }
+    },
+    "Children use half an adult portion for planning. Meals for children under two are outside this planner. Maximum household: 12 people.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Children use half an adult portion for planning. Meals for children under two are outside this planner. Maximum household: 12 people."
+          }
+        }
+      }
+    },
+    "Children, age 2–12: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Children, age 2–12: %lld"
+          }
+        }
+      }
+    },
+    "Choose at least one day and one meal.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose at least one day and one meal."
+          }
+        }
+      }
+    },
+    "Choose your grocery store": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your grocery store"
+          }
+        }
+      }
+    },
+    "Comfortable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comfortable"
+          }
+        }
+      }
+    },
+    "Confirmed ingredients left over from a week will appear here.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmed ingredients left over from a week will appear here."
+          }
+        }
+      }
+    },
+    "Continue": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "Cook pasta in tap water according to its package and drain. Drain white beans.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook pasta in tap water according to its package and drain. Drain white beans."
+          }
+        }
+      }
+    },
+    "Cook pasta in tap water according to its package; drain.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook pasta in tap water according to its package; drain."
+          }
+        }
+      }
+    },
+    "Cook quick-cooking brown rice according to its package using tap water.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook quick-cooking brown rice according to its package using tap water."
+          }
+        }
+      }
+    },
+    "Cook quick-cooking brown rice with tap water according to its package. Drain chickpeas; peel and dice onion.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook quick-cooking brown rice with tap water according to its package. Drain chickpeas; peel and dice onion."
+          }
+        }
+      }
+    },
+    "Cook the oats with the package-directed amount of tap water.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook the oats with the package-directed amount of tap water."
+          }
+        }
+      }
+    },
+    "Cooking experience": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooking experience"
+          }
+        }
+      }
+    },
+    "Cooking time": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooking time"
+          }
+        }
+      }
+    },
+    "Corn tortillas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corn tortillas"
+          }
+        }
+      }
+    },
+    "Could not open MealWise": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not open MealWise"
+          }
+        }
+      }
+    },
+    "Current choices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current choices"
+          }
+        }
+      }
+    },
+    "Current estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current estimate"
+          }
+        }
+      }
+    },
+    "Days": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days"
+          }
+        }
+      }
+    },
+    "Development grocery": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development grocery"
+          }
+        }
+      }
+    },
+    "Development prices have expired. An updated catalog is needed to make a new estimate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development prices have expired. An updated catalog is needed to make a new estimate."
+          }
+        }
+      }
+    },
+    "Development recipes and synthetic prices. Not verified for real shopping or allergy-safe use.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development recipes and synthetic prices. Not verified for real shopping or allergy-safe use."
+          }
+        }
+      }
+    },
+    "Dinner": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dinner"
+          }
+        }
+      }
+    },
+    "Does everything look right?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Does everything look right?"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "Drain and mash beans. Wash pepper and remove stem and seeds. Dice pepper and peeled onion.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain and mash beans. Wash pepper and remove stem and seeds. Dice pepper and peeled onion."
+          }
+        }
+      }
+    },
+    "Drain beans. Combine beans, tomatoes and cumin in a saucepan and simmer, stirring, until hot throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain beans. Combine beans, tomatoes and cumin in a saucepan and simmer, stirring, until hot throughout."
+          }
+        }
+      }
+    },
+    "Drain beans. Warm oil, tomatoes and beans in a saucepan and simmer until hot throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain beans. Warm oil, tomatoes and beans in a saucepan and simmer until hot throughout."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Cook oats with the package-directed amount of tap water.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Cook oats with the package-directed amount of tap water."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Peel and chop onion.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Peel and chop onion."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Warm oil in a skillet, add spinach and chickpeas, and cook according to the spinach package until hot throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Warm oil in a skillet, add spinach and chickpeas, and cook according to the spinach package until hot throughout."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Wash pepper, remove stem and seeds, and dice.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Wash pepper, remove stem and seeds, and dice."
+          }
+        }
+      }
+    },
+    "Edit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "Edit %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit %@"
+          }
+        }
+      }
+    },
+    "Edit answers": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit answers"
+          }
+        }
+      }
+    },
+    "Edit plan settings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit plan settings"
+          }
+        }
+      }
+    },
+    "Eggs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eggs"
+          }
+        }
+      }
+    },
+    "Enter a positive dollar amount with at most two decimal places.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a positive dollar amount with at most two decimal places."
+          }
+        }
+      }
+    },
+    "Estimated checkout": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated checkout"
+          }
+        }
+      }
+    },
+    "Estimated total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated total"
+          }
+        }
+      }
+    },
+    "Experienced": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Experienced"
+          }
+        }
+      }
+    },
+    "Fish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fish"
+          }
+        }
+      }
+    },
+    "Flexible": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flexible"
+          }
+        }
+      }
+    },
+    "Food needs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Food needs"
+          }
+        }
+      }
+    },
+    "Frozen chopped spinach": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frozen chopped spinach"
+          }
+        }
+      }
+    },
+    "Gluten-free": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gluten-free"
+          }
+        }
+      }
+    },
+    "Go back": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go back"
+          }
+        }
+      }
+    },
+    "Groceries": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Groceries"
+          }
+        }
+      }
+    },
+    "Ground cinnamon": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ground cinnamon"
+          }
+        }
+      }
+    },
+    "Ground cumin": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ground cumin"
+          }
+        }
+      }
+    },
+    "Household": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household"
+          }
+        }
+      }
+    },
+    "How comfortable are you cooking?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How comfortable are you cooking?"
+          }
+        }
+      }
+    },
+    "How much time do you have?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How much time do you have?"
+          }
+        }
+      }
+    },
+    "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout."
+          }
+        }
+      }
+    },
+    "Ingredients repeat on purpose.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients repeat on purpose."
+          }
+        }
+      }
+    },
+    "Keep current plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep current plan"
+          }
+        }
+      }
+    },
+    "Lunch": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lunch"
+          }
+        }
+      }
+    },
+    "Meals each day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals each day"
+          }
+        }
+      }
+    },
+    "Meals to include": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals to include"
+          }
+        }
+      }
+    },
+    "Milk": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milk"
+          }
+        }
+      }
+    },
+    "New budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New budget"
+          }
+        }
+      }
+    },
+    "New estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New estimate"
+          }
+        }
+      }
+    },
+    "No account. No payment. Just a plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No account. No payment. Just a plan."
+          }
+        }
+      }
+    },
+    "No complete plan fits these choices. Try fewer meals, more time or a higher budget. Allergy requirements will never be relaxed; this development catalog has no supplier-verified allergens.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No complete plan fits these choices. Try fewer meals, more time or a higher budget. Allergy requirements will never be relaxed; this development catalog has no supplier-verified allergens."
+          }
+        }
+      }
+    },
+    "No groceries yet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No groceries yet"
+          }
+        }
+      }
+    },
+    "No meal scheduled": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No meal scheduled"
+          }
+        }
+      }
+    },
+    "No weekly plan yet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No weekly plan yet"
+          }
+        }
+      }
+    },
+    "None": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "Opening MealWise": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening MealWise"
+          }
+        }
+      }
+    },
+    "Pantry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry"
+          }
+        }
+      }
+    },
+    "Peanut butter": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peanut butter"
+          }
+        }
+      }
+    },
+    "Peanuts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peanuts"
+          }
+        }
+      }
+    },
+    "Peel and slice the banana.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peel and slice the banana."
+          }
+        }
+      }
+    },
+    "Per adult-equivalent serving": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per adult-equivalent serving"
+          }
+        }
+      }
+    },
+    "Per planned day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per planned day"
+          }
+        }
+      }
+    },
+    "Plan my week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan my week"
+          }
+        }
+      }
+    },
+    "Plan settings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan settings"
+          }
+        }
+      }
+    },
+    "Preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferences"
+          }
+        }
+      }
+    },
+    "Prepare couscous with tap water according to its package.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare couscous with tap water according to its package."
+          }
+        }
+      }
+    },
+    "Quick-cooking brown rice, dry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick-cooking brown rice, dry"
+          }
+        }
+      }
+    },
+    "Remaining": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remaining"
+          }
+        }
+      }
+    },
+    "Remove your current plan and setup answers?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove your current plan and setup answers?"
+          }
+        }
+      }
+    },
+    "Reset plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset plan"
+          }
+        }
+      }
+    },
+    "Retry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry"
+          }
+        }
+      }
+    },
+    "Review your new plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review your new plan"
+          }
+        }
+      }
+    },
+    "Rolled oats": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rolled oats"
+          }
+        }
+      }
+    },
+    "Savory spinach oats": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savory spinach oats"
+          }
+        }
+      }
+    },
+    "Schedule": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule"
+          }
+        }
+      }
+    },
+    "Serve the tomato chickpeas over the rice.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve the tomato chickpeas over the rice."
+          }
+        }
+      }
+    },
+    "Sesame": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesame"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Shellfish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shellfish"
+          }
+        }
+      }
+    },
+    "Soy": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soy"
+          }
+        }
+      }
+    },
+    "Spinach chickpea couscous": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spinach chickpea couscous"
+          }
+        }
+      }
+    },
+    "Spinach white bean pasta": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spinach white bean pasta"
+          }
+        }
+      }
+    },
+    "Spoon the bean mixture over the rice and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spoon the bean mixture over the rice and serve."
+          }
+        }
+      }
+    },
+    "Spoon the spinach and chickpeas over the oats and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spoon the spinach and chickpeas over the oats and serve."
+          }
+        }
+      }
+    },
+    "Spread filling on tortillas, fold in half and warm each side in the skillet until lightly crisp; serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spread filling on tortillas, fold in half and warm each side in the skillet until lightly crisp; serve."
+          }
+        }
+      }
+    },
+    "Start over": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start over"
+          }
+        }
+      }
+    },
+    "Stir in cooked pasta, warm through, and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir in cooked pasta, warm through, and serve."
+          }
+        }
+      }
+    },
+    "Stir in the apple and cinnamon; cook until the apple is softened and the oats are ready. Serve warm.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir in the apple and cinnamon; cook until the apple is softened and the oats are ready. Serve warm."
+          }
+        }
+      }
+    },
+    "Stir into the couscous and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir into the couscous and serve."
+          }
+        }
+      }
+    },
+    "Stir peanut butter into the cooked oats, top with banana, and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir peanut butter into the cooked oats, top with banana, and serve."
+          }
+        }
+      }
+    },
+    "Store": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Store"
+          }
+        }
+      }
+    },
+    "Sweet potato": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sweet potato"
+          }
+        }
+      }
+    },
+    "Synthetic package prices for development. No retailer location or availability is implied.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synthetic package prices for development. No retailer location or availability is implied."
+          }
+        }
+      }
+    },
+    "THIS WEEK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "THIS WEEK"
+          }
+        }
+      }
+    },
+    "Tell us your grocery budget. We’ll build a healthy week that fits it—and uses what you buy.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tell us your grocery budget. We’ll build a healthy week that fits it—and uses what you buy."
+          }
+        }
+      }
+    },
+    "The estimate includes whole packages and required staples. Tax, deposits and fees are excluded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The estimate includes whole packages and required staples. Tax, deposits and fees are excluded."
+          }
+        }
+      }
+    },
+    "The plan could not be built. Your previous plan is unchanged. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The plan could not be built. Your previous plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "The plan could not be saved. Your previous plan is unchanged. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The plan could not be saved. Your previous plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
+          }
+        }
+      }
+    },
+    "Today": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
+    "Tomato bean pasta": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomato bean pasta"
+          }
+        }
+      }
+    },
+    "Toss the pasta with the sauce and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toss the pasta with the sauce and serve."
+          }
+        }
+      }
+    },
+    "Tree nuts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tree nuts"
+          }
+        }
+      }
+    },
+    "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans."
+          }
+        }
+      }
+    },
+    "Up to 45 minutes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up to 45 minutes"
+          }
+        }
+      }
+    },
+    "Vegan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegan"
+          }
+        }
+      }
+    },
+    "Vegetable oil": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetable oil"
+          }
+        }
+      }
+    },
+    "Vegetarian": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetarian"
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet and soften onion. Add tomatoes and chickpeas, stirring until hot throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet and soften onion. Add tomatoes and chickpeas, stirring until hot throughout."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet over medium heat. Add onion and cook, stirring, until softened.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet over medium heat. Add onion and cook, stirring, until softened."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Add onion and sweet potato with a splash of tap water, cover and cook, stirring regularly and adding water as needed, until the potato is tender.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Add onion and sweet potato with a splash of tap water, cover and cook, stirring regularly and adding water as needed, until the potato is tender."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Add spinach and beans and cook according to the spinach package until hot throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Add spinach and beans and cook according to the spinach package until hot throughout."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Cook pepper and onion until tender; stir in beans and cumin and heat throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Cook pepper and onion until tender; stir in beans and cumin and heat throughout."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Cook pepper until softened, then add chickpeas and cumin and heat throughout.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Cook pepper until softened, then add chickpeas and cumin and heat throughout."
+          }
+        }
+      }
+    },
+    "Warm tortillas according to their package. Divide filling among them and serve.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm tortillas according to their package. Divide filling among them and serve."
+          }
+        }
+      }
+    },
+    "Wash and chop the apple, removing the core.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wash and chop the apple, removing the core."
+          }
+        }
+      }
+    },
+    "Wash and cut sweet potato into small, even cubes. Peel and chop onion; drain beans.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wash and cut sweet potato into small, even cubes. Peel and chop onion; drain beans."
+          }
+        }
+      }
+    },
+    "Week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week"
+          }
+        }
+      }
+    },
+    "Weekly budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly budget"
+          }
+        }
+      }
+    },
+    "Weekly budget in dollars": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly budget in dollars"
+          }
+        }
+      }
+    },
+    "What can you spend this week?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What can you spend this week?"
+          }
+        }
+      }
+    },
+    "Wheat": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wheat"
+          }
+        }
+      }
+    },
+    "Which days should we plan?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Which days should we plan?"
+          }
+        }
+      }
+    },
+    "Who are you cooking for?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who are you cooking for?"
+          }
+        }
+      }
+    },
+    "Whole-package checkout estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole-package checkout estimate"
+          }
+        }
+      }
+    },
+    "Whole-wheat couscous, dry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole-wheat couscous, dry"
+          }
+        }
+      }
+    },
+    "Whole-wheat pasta, dry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole-wheat pasta, dry"
+          }
+        }
+      }
+    },
+    "Yellow onion": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yellow onion"
+          }
+        }
+      }
+    },
+    "Your answers could not be saved. Please retry before leaving setup.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your answers could not be saved. Please retry before leaving setup."
+          }
+        }
+      }
+    },
+    "Your budget: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your budget: %@"
+          }
+        }
+      }
+    },
+    "Your grocery list will come from your weekly plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your grocery list will come from your weekly plan."
+          }
+        }
+      }
+    },
+    "Your meals will appear here after setup.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your meals will appear here after setup."
+          }
+        }
+      }
+    },
+    "Your money sets\nthe menu.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your money sets\nthe menu."
+          }
+        }
+      }
+    },
+    "Your pantry is empty": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your pantry is empty"
+          }
+        }
+      }
+    },
+    "Your plan could not be reset. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your plan could not be reset. Please retry."
+          }
+        }
+      }
+    },
+    "Your planned meals will guide you through the day.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your planned meals will guide you through the day."
+          }
+        }
+      }
+    },
+    "Your saved information could not be opened. Please retry. Your data has not been reset.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your saved information could not be opened. Please retry. Your data has not been reset."
+          }
+        }
+      }
+    },
+    "Your week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your week"
+          }
+        }
+      }
+    },
+    "mealwise": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mealwise"
+          }
+        }
+      }
+    },
+    "of %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of %@"
+          }
+        }
+      }
+    },
+    "of your $70 budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of your $70 budget"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

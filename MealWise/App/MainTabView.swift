@@ -2,10 +2,11 @@ import SwiftUI
 
 /// Phase 1 contains navigation foundations; later phases supply committed plan content.
 struct MainTabView: View {
+    @Environment(AppSession.self) private var session
     var body: some View {
         TabView {
             Tab("Week", image: "IconCalendar") {
-                emptyState("No weekly plan yet", detail: "Your meals will appear here after setup.", icon: "IconCalendar")
+                if let plan = session.plan { WeekView(plan: plan).id(plan.revision) }
             }
             Tab("Groceries", image: "IconBasket") {
                 emptyState("No groceries yet", detail: "Your grocery list will come from your weekly plan.", icon: "IconBasket")
@@ -32,4 +33,4 @@ struct MainTabView: View {
     }
 }
 
-#Preview { MainTabView() }
+#Preview { MainTabView().environment(AppSession()) }
