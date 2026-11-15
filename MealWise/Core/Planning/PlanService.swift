@@ -25,7 +25,7 @@ actor PlanService: PlanServiceProtocol {
             let fixed = request.fixedMeals.first { $0.date == day && $0.slot == slot }
             let avoid = request.avoidMeals.first { $0.date == day && $0.slot == slot }?.recipeID
             return request.catalog.recipes.filter {
-                Self.isEligible($0, slot: slot, profile: request.profile, catalog: request.catalog) &&
+                (request.resources?.cookedMeals?.contains(where: { $0.id == fixed?.id && $0.recipe.id == $0.meal.recipeID }) == true || Self.isEligible($0, slot: slot, profile: request.profile, catalog: request.catalog)) &&
                 (fixed == nil ? !request.excludedRecipeIDs.contains($0.id) : $0.id == fixed?.recipeID)
             }.sorted {
                 if ($0.id == avoid) != ($1.id == avoid) { return $1.id == avoid }
@@ -113,12 +113,15 @@ enum PlanValidation {
         try plan.profile.validate()
         guard plan.meals.count == plan.profile.days.count * plan.profile.mealSlots.count,
               Set(plan.meals.map(\.id)).count == plan.meals.count else { throw PlanningError.invalidPlan }
+        for record in plan.resources?.cookedMeals ?? [] {
+            guard plan.meals.contains(record.meal) else { throw PlanningError.invalidPlan }
+        }
         for day in plan.profile.days {
             for slot in plan.profile.mealSlots {
                 let matches = plan.meals.filter { $0.date == day && $0.slot == slot }
                 guard matches.count == 1,
                       let recipe = plan.catalog.recipes.first(where: { $0.id == matches[0].recipeID }),
-                      PlanService.isEligible(recipe, slot: slot, profile: plan.profile, catalog: plan.catalog) else {
+                      (plan.cookedRecord(for: matches[0].id) != nil || PlanService.isEligible(recipe, slot: slot, profile: plan.profile, catalog: plan.catalog)) else {
                     throw PlanningError.invalidPlan
                 }
             }

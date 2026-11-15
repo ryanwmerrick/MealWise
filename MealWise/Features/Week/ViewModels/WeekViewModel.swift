@@ -15,8 +15,8 @@ final class WeekViewModel: ObservableObject {
         (Decimal(plan.totalMinorUnits) / 100 / Decimal(plan.profile.days.count)).formatted(.currency(code: "USD"))
     }
     var checkoutPerAdultPortion: String {
-        (Decimal(plan.totalMinorUnits) * 2 / 100 / Decimal(plan.profile.adultHalfPortions) / Decimal(plan.meals.count))
-            .formatted(.currency(code: "USD"))
+        let halfPortions = plan.meals.reduce(0) { $0 + plan.portionProfile(for: $1.id).adultHalfPortions }
+        return (Decimal(plan.totalMinorUnits) * 2 / 100 / Decimal(halfPortions)).formatted(.currency(code: "USD"))
     }
 
     func recipe(for meal: ScheduledMeal) -> Recipe? { plan.catalog.recipes.first { $0.id == meal.recipeID } }

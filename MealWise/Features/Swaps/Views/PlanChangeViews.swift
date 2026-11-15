@@ -4,6 +4,7 @@ struct ChangePreviewCard: View {
     let preview: PlanChangePreview
 
     var body: some View {
+        let allocationReport = preview.proposedPlan.flatMap { try? IngredientAllocationService().allocate(plan: $0) }
         Section("Before and after") {
             LabeledContent("Current projection", value: preview.oldTotalMinorUnits.currency)
             if let plan = preview.proposedPlan {
@@ -20,6 +21,13 @@ struct ChangePreviewCard: View {
                             Text(meal.date, format: .dateTime.weekday().month().day()).font(.caption)
                             Text(LocalizedStringKey(plan.catalog.recipes.first { $0.id == meal.recipeID }?.title ?? "Meal"))
                             Text(LocalizedStringKey(meal.slot.title)).font(.caption)
+                            if let allocationReport {
+                                let notes = allocationReport.reservations(after: meal)
+                                if !notes.isEmpty {
+                                    DisclosureGroup("Save for later meals") { ReservationNotes(notes: notes) }
+                                        .accessibilityIdentifier("preview.reservations")
+                                }
+                            }
                         }.padding(.vertical, 4)
                     }
                 }

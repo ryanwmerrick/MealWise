@@ -69,8 +69,10 @@ struct OnboardingTests {
     private func services(plans: (any PlanRepositoryProtocol)? = nil) async throws -> AppServices {
         let container = try await LocalStore.makeContainer(inMemory: true)
         let catalog = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
+        let localPlans = PlanRepository(container: container)
+        let changes = PlanChangeService(plans: localPlans, planner: PlanService(), preferences: MealPreferenceRepository(container: container))
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container),
-                           plans: plans ?? PlanRepository(container: container), planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), checklist: ChecklistRepository(container: container), preferences: MealPreferenceRepository(container: container), shopping: ShoppingService(container: container))
+                           plans: plans ?? PlanRepository(container: container), planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), checklist: ChecklistRepository(container: container), preferences: MealPreferenceRepository(container: container), shopping: ShoppingService(plans: localPlans), cooking: CookingService(plans: localPlans, changes: changes), timers: TimerService(plans: localPlans))
     }
 }
 

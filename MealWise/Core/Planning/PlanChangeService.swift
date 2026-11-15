@@ -5,6 +5,7 @@ enum PlanChange: Sendable {
     case regenerateDay(Date)
     case regenerateWeek
     case profile(PlanningProfile)
+    case move(mealID: UUID, date: Date)
     case packageOffer(ingredientID: String, offerID: String)
 }
 
@@ -73,6 +74,20 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         try PlanValidation.validate(plan)
         try CatalogValidator.validate(plan.catalog, allowDevelopment: true, now: clock())
         let excluded = try await preferences.loadExcludedRecipeIDs()
+        if case .move(let mealID, let date) = change {
+            guard let original = plan.meals.first(where: { $0.id == mealID }),
+                  let other = plan.meals.first(where: { $0.date == date && $0.slot == original.slot }),
+                  original.id != other.id else { throw PlanChangeError.invalidTarget }
+            guard plan.cookedRecord(for: original.id) == nil, plan.cookedRecord(for: other.id) == nil else { throw CookingError.alreadyCooked }
+            let meals = plan.meals.map { meal in
+                ScheduledMeal(id: meal.id, date: meal.id == original.id ? other.date : (meal.id == other.id ? original.date : meal.date),
+                              slot: meal.slot, recipeID: meal.recipeID)
+            }
+            let proposed = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog, meals: meals,
+                                      cart: plan.cart, totalMinorUnits: plan.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides)
+            try PlanValidation.validate(proposed)
+            return makePreview(base: plan, proposed: proposed, constraint: proposed.remainingMinorUnits >= 0 ? .feasible : .overBudget)
+        }
         if case .packageOffer(let ingredientID, let offerID) = change {
             guard let item = plan.cart.first(where: { $0.id == ingredientID }), item.packageCount > 0,
                   let offer = plan.catalog.offers.first(where: { $0.id == offerID }),
@@ -87,6 +102,7 @@ actor PlanChangeService: PlanChangeServiceProtocol {
             return makePreview(base: plan, proposed: proposed, constraint: proposed.remainingMinorUnits >= 0 ? .feasible : .overBudget)
         }
         if case .swap(let mealID, let recipeID) = change {
+            guard plan.cookedRecord(for: mealID) == nil else { throw CookingError.alreadyCooked }
             guard let original = plan.meals.first(where: { $0.id == mealID }),
                   let recipe = plan.catalog.recipes.first(where: { $0.id == recipeID }),
                   recipeID != original.recipeID, !excluded.contains(recipeID),
@@ -106,12 +122,15 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         let fixed: [ScheduledMeal]
         let avoid: [ScheduledMeal]
         switch change {
-        case .profile(let requested): profile = requested; fixed = []; avoid = plan.meals
+        case .profile(let requested):
+            let cooked = plan.resources?.cookedMeals?.map(\.meal) ?? []
+            guard cooked.allSatisfy({ requested.days.contains($0.date) && requested.mealSlots.contains($0.slot) }) else { throw CookingError.alreadyCooked }
+            profile = requested; fixed = cooked; avoid = plan.meals.filter { plan.cookedRecord(for: $0.id) == nil }
         case .regenerateDay(let date):
             guard plan.profile.days.contains(date) else { throw PlanChangeError.invalidTarget }
-            profile = plan.profile; fixed = plan.meals.filter { $0.date != date }; avoid = plan.meals.filter { $0.date == date }
-        case .regenerateWeek: profile = plan.profile; fixed = []; avoid = plan.meals
-        case .swap, .packageOffer: throw PlanChangeError.invalidTarget
+            profile = plan.profile; fixed = plan.meals.filter { $0.date != date || plan.cookedRecord(for: $0.id) != nil }; avoid = plan.meals.filter { $0.date == date && plan.cookedRecord(for: $0.id) == nil }
+        case .regenerateWeek: profile = plan.profile; fixed = plan.resources?.cookedMeals?.map(\.meal) ?? []; avoid = plan.meals.filter { plan.cookedRecord(for: $0.id) == nil }
+        case .swap, .packageOffer, .move: throw PlanChangeError.invalidTarget
         }
         let outcome = try await planner.generate(PlanRequest(profile: profile, catalog: plan.catalog,
                                                             excludedRecipeIDs: excluded, fixedMeals: fixed, avoidMeals: avoid, resources: plan.resources, offerOverrides: plan.offerOverrides))

@@ -1,6 +1,12 @@
 import Foundation
 import SwiftData
 
+struct PlanArchive: Codable, Equatable, Sendable, Identifiable {
+    let plan: WeeklyPlan
+    let archivedAt: Date
+    var id: UUID { plan.id }
+}
+
 protocol PlanRepositoryProtocol: Sendable {
     func loadActivePlan() async throws -> WeeklyPlan?
     func saveActivePlan(_ plan: WeeklyPlan) async throws
@@ -17,6 +23,17 @@ actor PlanRepository: PlanRepositoryProtocol {
         context.autosaveEnabled = false
         do {
             let documents = try context.fetch(FetchDescriptor<StoredDocument>())
+            if let active = documents.first(where: { $0.key == "activePlan" }) {
+                let plan = try JSONDecoder().decode(WeeklyPlan.self, from: active.payload)
+                try PlanValidation.validate(plan)
+                if plan.resources?.purchases.isEmpty == false || plan.resources?.cookedMeals?.isEmpty == false {
+                    let key = "archived-plan-" + plan.id.uuidString
+                    if !documents.contains(where: { $0.key == key }) {
+                        let archive = PlanArchive(plan: plan, archivedAt: .now)
+                        context.insert(StoredDocument(key: key, payload: try JSONEncoder().encode(archive)))
+                    }
+                }
+            }
             for document in documents where document.key == "activePlan" || document.key == "profile" {
                 context.delete(document)
             }
@@ -24,6 +41,16 @@ actor PlanRepository: PlanRepositoryProtocol {
             try context.save()
         } catch is CancellationError { context.rollback(); throw CancellationError() }
         catch { context.rollback(); throw PersistenceError.saveFailed }
+    }
+
+    func loadArchivedPlans() throws -> [PlanArchive] {
+        let context = ModelContext(container)
+        do {
+            let archives = try context.fetch(FetchDescriptor<StoredDocument>()).filter { $0.key.hasPrefix("archived-plan-") }
+                .map { try JSONDecoder().decode(PlanArchive.self, from: $0.payload) }
+            for archive in archives { try PlanValidation.validate(archive.plan) }
+            return archives.sorted { $0.archivedAt > $1.archivedAt }
+        } catch { throw PersistenceError.corruptData }
     }
 
     func loadActivePlan() async throws -> WeeklyPlan? {

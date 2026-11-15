@@ -8,6 +8,7 @@ struct MealAllocation: Sendable, Identifiable {
     let slot: MealSlot
     let recipeTitle: String
     let quantity: Int64
+    var isCooked: Bool = false
     var id: UUID { mealID }
 }
 
@@ -40,7 +41,7 @@ struct IngredientAllocationReport: Sendable {
     func reservations(after meal: ScheduledMeal) -> [ReservationNote] {
         items.compactMap { item in
             let later = item.allocations.filter {
-                $0.date > meal.date || ($0.date == meal.date && $0.slot.order > meal.slot.order)
+                !$0.isCooked && ($0.date > meal.date || ($0.date == meal.date && $0.slot.order > meal.slot.order))
             }
             guard item.allocations.contains(where: { $0.mealID == meal.id }), !later.isEmpty else { return nil }
             // The service already checked that the full allocation sum fits in Int64.
@@ -68,7 +69,7 @@ struct IngredientAllocationService: IngredientAllocationServiceProtocol {
                       let requirement = recipe.ingredients.first(where: { $0.ingredientID == ingredient.id }) else { return nil }
                 guard requirement.unit == ingredient.unit else { throw QuantityError.incompatibleUnits }
                 return try MealAllocation(mealID: meal.id, date: meal.date, slot: meal.slot, recipeTitle: recipe.title,
-                                          quantity: CartCalculator.scaledAmount(requirement, recipe: recipe, profile: plan.profile))
+                                          quantity: CartCalculator.scaledAmount(requirement, recipe: recipe, profile: plan.portionProfile(for: meal.id)), isCooked: plan.cookedRecord(for: meal.id) != nil)
             }
             let allocated = try allocations.reduce(Int64(0)) { sum, allocation in
                 let next = sum.addingReportingOverflow(allocation.quantity)

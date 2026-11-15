@@ -22,6 +22,7 @@ struct IngredientDetailView: View {
                             Text(allocation.date, format: .dateTime.weekday().month().day()).font(.caption)
                             Text(LocalizedStringKey(allocation.recipeTitle)).font(.headline)
                             Text("\(String(localized: String.LocalizationValue(allocation.slot.title))) · \(QuantityFormatting.display(amount: allocation.quantity, unit: item.unit))")
+                            if allocation.isCooked { Text("Consumed when cooked").font(.caption) }
                         }.padding(.vertical, 6)
                     }
                     .accessibilityIdentifier("allocation.meal")

@@ -53,11 +53,13 @@ struct PurchasedStock: Codable, Equatable, Sendable {
 
 struct PlanResources: Codable, Equatable, Sendable {
     var purchases: [PurchasedStock] = []
+    var cookedMeals: [CookedMealRecord]? = nil
     var committedMinorUnits: Int64 { purchases.reduce(0) { $0 + ($1.actualMinorUnits ?? $1.estimatedMinorUnits) } }
     var knownActualMinorUnits: Int64 { purchases.reduce(0) { $0 + ($1.actualMinorUnits ?? 0) } }
     var missingPriceCount: Int { purchases.filter { $0.actualMinorUnits == nil }.count }
     func quantity(for id: String) -> Int64 { purchases.filter { $0.ingredientID == id }.reduce(0) { $0 + $1.quantity } }
     func validate(catalog: RecipeCatalog) throws {
+        guard Set((cookedMeals ?? []).map(\.id)).count == (cookedMeals ?? []).count else { throw PlanningError.invalidPlan }
         var quantities: [String: Int64] = [:]
         var spending: Int64 = 0
         for purchase in purchases {
@@ -69,6 +71,16 @@ struct PlanResources: Codable, Equatable, Sendable {
             quantities[purchase.ingredientID] = try checkedSum(quantities[purchase.ingredientID] ?? 0, purchase.quantity)
             spending = try checkedSum(spending, purchase.actualMinorUnits ?? purchase.estimatedMinorUnits)
         }
+        var consumed: [String: Int64] = [:]
+        for record in cookedMeals ?? [] {
+            try record.profile.validate()
+            guard record.recipe == catalog.recipes.first(where: { $0.id == record.meal.recipeID }) else { throw PlanningError.invalidPlan }
+            for requirement in record.recipe.ingredients {
+                let amount = try CartCalculator.scaledAmount(requirement, recipe: record.recipe, profile: record.profile)
+                consumed[requirement.ingredientID] = try checkedSum(consumed[requirement.ingredientID] ?? 0, amount)
+            }
+        }
+        for (id, amount) in consumed where amount > (quantities[id] ?? 0) { throw CookingError.insufficientStock }
     }
 }
 

@@ -15,7 +15,8 @@ enum CartCalculator {
         for meal in meals {
             guard let recipe = catalog.recipes.first(where: { $0.id == meal.recipeID }) else { throw PlanningError.invalidPlan }
             for item in recipe.ingredients {
-                let amount = try scaledAmount(item, recipe: recipe, profile: profile)
+                let portionProfile = resources?.cookedMeals?.first { $0.id == meal.id }?.profile ?? profile
+                let amount = try scaledAmount(item, recipe: recipe, profile: portionProfile)
                 let quantity = try Quantity(amount: amount, unit: item.unit)
                 if let previous = requirements[item.ingredientID] {
                     requirements[item.ingredientID] = try previous.adding(quantity)

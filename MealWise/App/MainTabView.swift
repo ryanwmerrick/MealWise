@@ -15,7 +15,7 @@ struct MainTabView: View {
                 }
             }
             Tab("Today", image: "IconPot", value: 2) {
-                emptyState("No meal scheduled", detail: "Your planned meals will guide you through the day.", icon: "IconPot")
+                if let plan = session.plan, let services = session.services { TodayView(plan: plan, services: services).id(plan.revision) }
             }
             Tab("Pantry", image: "IconPantry", value: 3) {
                 emptyState("Your pantry is empty", detail: "Confirmed ingredients left over from a week will appear here.", icon: "IconPantry")

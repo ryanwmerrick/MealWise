@@ -49,7 +49,7 @@ enum PlanCostBreakdown {
             guard let ingredient = plan.catalog.ingredients.first(where: { $0.id == requirement.ingredientID }),
                   let cart = plan.cart.first(where: { $0.ingredientID == ingredient.id }),
                   let offer = plan.catalog.offers.first(where: { $0.id == cart.offerID }) else { throw PlanningError.missingIngredient }
-            let amount = try CartCalculator.scaledAmount(requirement, recipe: recipe, profile: plan.profile)
+            let amount = try CartCalculator.scaledAmount(requirement, recipe: recipe, profile: plan.portionProfile(for: mealID))
             cost += Decimal(amount) * Decimal(offer.priceMinorUnits) / Decimal(offer.packageQuantity) / 100
             return MealIngredient(id: ingredient.id, name: ingredient.name, amount: amount, unit: ingredient.unit)
         }
@@ -58,7 +58,7 @@ enum PlanCostBreakdown {
             other.id != mealID && plan.catalog.recipes.first(where: { $0.id == other.recipeID })?.ingredients.contains(where: { ingredientIDs.contains($0.ingredientID) }) == true
         }
         return MealDetail(mealID: meal.id, title: recipe.title, minutes: recipe.minutes, skill: recipe.skill,
-                          adultHalfPortions: plan.profile.adultHalfPortions, ingredients: ingredients,
+                          adultHalfPortions: plan.portionProfile(for: mealID).adultHalfPortions, ingredients: ingredients,
                           steps: recipe.steps, nutrition: recipe.nutrition, ingredientCost: cost, linkedMeals: linked)
     }
 }

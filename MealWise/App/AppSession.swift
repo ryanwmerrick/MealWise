@@ -10,13 +10,15 @@ struct AppServices: Sendable {
     let preferences: any MealPreferenceRepositoryProtocol
     let changes: any PlanChangeServiceProtocol
     let shopping: any ShoppingServiceProtocol
+    let cooking: any CookingServiceProtocol
+    let timers: any TimerServiceProtocol
 
     init(catalog: RecipeCatalog, profiles: any ProfileRepositoryProtocol, plans: any PlanRepositoryProtocol,
          planner: any PlanServiceProtocol, checklist: any ChecklistRepositoryProtocol,
-         preferences: any MealPreferenceRepositoryProtocol, shopping: any ShoppingServiceProtocol, changes: (any PlanChangeServiceProtocol)? = nil) {
+         preferences: any MealPreferenceRepositoryProtocol, shopping: any ShoppingServiceProtocol, cooking: any CookingServiceProtocol, timers: any TimerServiceProtocol, changes: (any PlanChangeServiceProtocol)? = nil) {
         self.catalog = catalog; self.profiles = profiles; self.plans = plans; self.planner = planner
         self.checklist = checklist; self.preferences = preferences
-        self.shopping = shopping
+        self.shopping = shopping; self.cooking = cooking; self.timers = timers
         self.changes = changes ?? PlanChangeService(plans: plans, planner: planner, preferences: preferences)
     }
 }
@@ -36,9 +38,13 @@ actor AppBootstrap: AppBootstrapProtocol {
             guard let saved else { throw CatalogError.expiredPrices }
             catalog = saved.catalog
         }
+        let preferences = MealPreferenceRepository(container: container)
+        let planner = PlanService()
+        let changes = PlanChangeService(plans: plans, planner: planner, preferences: preferences)
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
-                           planner: PlanService(), checklist: ChecklistRepository(container: container),
-                           preferences: MealPreferenceRepository(container: container), shopping: ShoppingService(plans: plans))
+                           planner: planner, checklist: ChecklistRepository(container: container),
+                           preferences: preferences, shopping: ShoppingService(plans: plans),
+                           cooking: CookingService(plans: plans, changes: changes), timers: TimerService(plans: plans), changes: changes)
     }
 }
 
