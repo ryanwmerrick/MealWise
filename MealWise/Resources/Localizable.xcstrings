@@ -243,6 +243,16 @@
         }
       }
     },
+    "Accept change": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accept change"
+          }
+        }
+      }
+    },
     "Accept new plan": {
       "localizations": {
         "en": {
@@ -292,6 +302,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
+          }
+        }
+      }
+    },
+    "Adjust budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjust budget"
           }
         }
       }
@@ -377,6 +397,16 @@
         }
       }
     },
+    "Allow again": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow again"
+          }
+        }
+      }
+    },
     "Almost all": {
       "extractionState": "stale",
       "localizations": {
@@ -449,6 +479,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bean pepper quesadillas"
+          }
+        }
+      }
+    },
+    "Before and after": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before and after"
           }
         }
       }
@@ -612,6 +652,16 @@
         }
       }
     },
+    "Cart and ingredient impact": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cart and ingredient impact"
+          }
+        }
+      }
+    },
     "Changing your answers creates a new plan preview. Your saved plan changes only after you accept.": {
       "localizations": {
         "en": {
@@ -628,6 +678,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Check the package storage instructions. At wrap-up, confirm what remains before carrying it into the next plan."
+          }
+        }
+      }
+    },
+    "Check the selected settings and price dates, then try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check the selected settings and price dates, then try again."
           }
         }
       }
@@ -653,12 +713,42 @@
         }
       }
     },
+    "Checking remainder swaps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking remainder swaps"
+          }
+        }
+      }
+    },
     "Checking shared ingredients and whole-package costs.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Checking shared ingredients and whole-package costs."
+          }
+        }
+      }
+    },
+    "Checking the complete cart": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking the complete cart"
+          }
+        }
+      }
+    },
+    "Checkout: %@ → %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checkout: %@ → %@"
           }
         }
       }
@@ -743,6 +833,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Comfortable"
+          }
+        }
+      }
+    },
+    "Confirm swap": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm swap"
           }
         }
       }
@@ -1143,6 +1243,26 @@
         }
       }
     },
+    "Exclude this recipe from future plans": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude this recipe from future plans"
+          }
+        }
+      }
+    },
+    "Excluded recipes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluded recipes"
+          }
+        }
+      }
+    },
     "Expected remaining": {
       "localizations": {
         "en": {
@@ -1170,6 +1290,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Experienced"
+          }
+        }
+      }
+    },
+    "Find a meal using this remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find a meal using this remainder"
           }
         }
       }
@@ -1452,6 +1582,26 @@
         }
       }
     },
+    "Ingredients reused": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients reused"
+          }
+        }
+      }
+    },
+    "Ingredients reused: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients reused: %lld"
+          }
+        }
+      }
+    },
     "Keep current plan": {
       "localizations": {
         "en": {
@@ -1585,12 +1735,32 @@
         }
       }
     },
+    "New checkout: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New checkout: %@"
+          }
+        }
+      }
+    },
     "New estimate": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "New estimate"
+          }
+        }
+      }
+    },
+    "New spending cap": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New spending cap"
           }
         }
       }
@@ -1616,6 +1786,26 @@
         }
       }
     },
+    "No complete plan fits these choices. Try fewer meals, more time or a higher budget; hard food requirements will never be relaxed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No complete plan fits these choices. Try fewer meals, more time or a higher budget; hard food requirements will never be relaxed."
+          }
+        }
+      }
+    },
+    "No different combination was found with these choices. Your current plan is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No different combination was found with these choices. Your current plan is unchanged."
+          }
+        }
+      }
+    },
     "No groceries yet": {
       "extractionState": "stale",
       "localizations": {
@@ -1633,6 +1823,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "No meal scheduled"
+          }
+        }
+      }
+    },
+    "No recipes are excluded from future plans.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recipes are excluded from future plans."
+          }
+        }
+      }
+    },
+    "No suitable replacements are available with the current catalog and constraints.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No suitable replacements are available with the current catalog and constraints."
+          }
+        }
+      }
+    },
+    "No suitable swap was found. Keep the current plan and review the remainder at wrap-up.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No suitable swap was found. Keep the current plan and review the remainder at wrap-up."
           }
         }
       }
@@ -1720,12 +1940,32 @@
         }
       }
     },
+    "Over budget — comparison only": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over budget — comparison only"
+          }
+        }
+      }
+    },
     "Package checkout": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Package checkout"
+          }
+        }
+      }
+    },
+    "Packages: %lld → %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packages: %lld → %lld"
           }
         }
       }
@@ -1793,6 +2033,16 @@
         }
       }
     },
+    "Plan actions": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan actions"
+          }
+        }
+      }
+    },
     "Plan my week": {
       "localizations": {
         "en": {
@@ -1843,6 +2093,16 @@
         }
       }
     },
+    "Planned use: %@ → %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned use: %@ → %@"
+          }
+        }
+      }
+    },
     "Preferences": {
       "localizations": {
         "en": {
@@ -1864,6 +2124,16 @@
         }
       }
     },
+    "Preview budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview budget"
+          }
+        }
+      }
+    },
     "Price date: %@": {
       "localizations": {
         "en": {
@@ -1880,6 +2150,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Price information"
+          }
+        }
+      }
+    },
+    "Prices have expired. Updated estimates are needed before changing this plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prices have expired. Updated estimates are needed before changing this plan."
+          }
+        }
+      }
+    },
+    "Pricing replacements": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pricing replacements"
           }
         }
       }
@@ -1936,6 +2226,16 @@
         }
       }
     },
+    "Re-optimizing your week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Re-optimizing your week"
+          }
+        }
+      }
+    },
     "Recipe": {
       "localizations": {
         "en": {
@@ -1946,12 +2246,72 @@
         }
       }
     },
+    "Recipe preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe preferences"
+          }
+        }
+      }
+    },
+    "Recipe preferences could not be loaded. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe preferences could not be loaded. Please retry."
+          }
+        }
+      }
+    },
     "Recipe steps": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Recipe steps"
+          }
+        }
+      }
+    },
+    "Regenerate %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenerate %@"
+          }
+        }
+      }
+    },
+    "Regenerate this day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenerate this day"
+          }
+        }
+      }
+    },
+    "Regenerate week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenerate week"
+          }
+        }
+      }
+    },
+    "Remainder suggestions could not be loaded. Your current plan is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remainder suggestions could not be loaded. Your current plan is unchanged."
           }
         }
       }
@@ -1972,6 +2332,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Remove your current plan and setup answers?"
+          }
+        }
+      }
+    },
+    "Replacement meals could not be loaded. Your current plan is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replacement meals could not be loaded. Your current plan is unchanged."
           }
         }
       }
@@ -2022,6 +2392,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Return to your current ingredient map."
+          }
+        }
+      }
+    },
+    "Review change": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review change"
           }
         }
       }
@@ -2127,6 +2507,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Shellfish"
+          }
+        }
+      }
+    },
+    "Show over-budget comparisons": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show over-budget comparisons"
+          }
+        }
+      }
+    },
+    "Show proposed schedule": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show proposed schedule"
           }
         }
       }
@@ -2291,6 +2691,16 @@
         }
       }
     },
+    "Swap meal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swap meal"
+          }
+        }
+      }
+    },
     "Sweet potato": {
       "extractionState": "stale",
       "localizations": {
@@ -2352,6 +2762,26 @@
         }
       }
     },
+    "The bounded search did not find a complete plan. Try fewer meals or a higher budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The bounded search did not find a complete plan. Try fewer meals or a higher budget."
+          }
+        }
+      }
+    },
+    "The change could not be saved. Your current plan is unchanged. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The change could not be saved. Your current plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
     "The estimate includes whole packages and required staples. Tax, deposits and fees are excluded.": {
       "localizations": {
         "en": {
@@ -2384,6 +2814,16 @@
         }
       }
     },
+    "The recipe preference could not be saved. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The recipe preference could not be saved. Please retry."
+          }
+        }
+      }
+    },
     "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget.": {
       "extractionState": "stale",
       "localizations": {
@@ -2391,6 +2831,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
+          }
+        }
+      }
+    },
+    "The swap could not be saved. Your current plan is unchanged. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The swap could not be saved. Your current plan is unchanged. Please retry."
           }
         }
       }
@@ -2415,6 +2865,46 @@
         }
       }
     },
+    "These swaps use more of the selected ingredient without adding another package of it. All proposed carts fit the budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These swaps use more of the selected ingredient without adding another package of it. All proposed carts fit the budget."
+          }
+        }
+      }
+    },
+    "This change could not be previewed. Your current plan is unchanged. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This change could not be previewed. Your current plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "This change fits your budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This change fits your budget."
+          }
+        }
+      }
+    },
+    "This comparison is over budget and cannot be accepted. Adjust your budget explicitly or choose another option.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This comparison is over budget and cannot be accepted. Adjust your budget explicitly or choose another option."
+          }
+        }
+      }
+    },
     "This is planned usage, not confirmed inventory. Storage and freshness are uncertain; check package handling instructions before keeping or reusing food.": {
       "localizations": {
         "en": {
@@ -2432,6 +2922,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "This meal could not be opened. Return to your current week or retry."
+          }
+        }
+      }
+    },
+    "This meal is no longer in your current plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This meal is no longer in your current plan."
+          }
+        }
+      }
+    },
+    "This preview is out of date. Reopen it from your current week.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This preview is out of date. Reopen it from your current week."
           }
         }
       }
@@ -2507,6 +3017,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Up to 45 minutes"
+          }
+        }
+      }
+    },
+    "Use a remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use a remainder"
           }
         }
       }
@@ -2950,6 +3470,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "of your $70 budget"
+          }
+        }
+      }
+    },
+    "This recipe is excluded from future choices. Your current plan changes only after you accept a preview.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This recipe is excluded from future choices. Your current plan changes only after you accept a preview."
+          }
+        }
+      }
+    },
+    "Unavailable recipe": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unavailable recipe"
           }
         }
       }

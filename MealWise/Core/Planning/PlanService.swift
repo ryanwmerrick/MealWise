@@ -17,9 +17,20 @@ actor PlanService: PlanServiceProtocol {
         let slots = request.profile.days.sorted().flatMap { day in
             MealSlot.allCases.filter { request.profile.mealSlots.contains($0) }.map { (day, $0) }
         }
-        let candidates = slots.map { _, slot in
-            request.catalog.recipes.filter { Self.isEligible($0, slot: slot, profile: request.profile, catalog: request.catalog) }
-                .sorted { $0.id < $1.id }
+        for fixed in request.fixedMeals {
+            guard slots.contains(where: { $0.0 == fixed.date && $0.1 == fixed.slot }),
+                  request.fixedMeals.filter({ $0.date == fixed.date && $0.slot == fixed.slot }).count == 1 else { return .invalidInputs }
+        }
+        let candidates = slots.map { day, slot in
+            let fixed = request.fixedMeals.first { $0.date == day && $0.slot == slot }
+            let avoid = request.avoidMeals.first { $0.date == day && $0.slot == slot }?.recipeID
+            return request.catalog.recipes.filter {
+                Self.isEligible($0, slot: slot, profile: request.profile, catalog: request.catalog) &&
+                (fixed == nil ? !request.excludedRecipeIDs.contains($0.id) : $0.id == fixed?.recipeID)
+            }.sorted {
+                if ($0.id == avoid) != ($1.id == avoid) { return $1.id == avoid }
+                return $0.id < $1.id
+            }
         }
         guard candidates.allSatisfy({ !$0.isEmpty }) else { return .noFeasiblePlan }
         var search = PlanSearch(request: request, slots: slots, candidates: candidates, limit: nodeLimit)
@@ -53,7 +64,7 @@ private struct PlanSearch {
     let limit: Int
     var nodes = 0
     var limitReached = false
-    var best: (meals: [ScheduledMeal], cart: [CartItem], cost: Int64, repeats: Int, waste: Decimal)?
+    var best: (meals: [ScheduledMeal], cart: [CartItem], cost: Int64, repeats: Int, unchanged: Int, waste: Decimal)?
 
     mutating func visit(_ meals: [ScheduledMeal]) throws {
         try Task.checkCancellation()
@@ -65,18 +76,23 @@ private struct PlanSearch {
         guard cost <= request.profile.budgetMinorUnits else { return }
         if meals.count == slots.count {
             let repeats = meals.count - Set(meals.map(\.recipeID)).count
+            let unchanged = meals.filter { meal in
+                request.avoidMeals.contains { $0.date == meal.date && $0.slot == meal.slot && $0.recipeID == meal.recipeID }
+            }.count
             let waste = unusedPackageValue(cart)
-            if best == nil || repeats < best!.repeats ||
-                (repeats == best!.repeats && cost < best!.cost) ||
-                (repeats == best!.repeats && cost == best!.cost && waste < best!.waste) {
-                best = (meals, cart, cost, repeats, waste)
+            if best == nil || unchanged < best!.unchanged ||
+                (unchanged == best!.unchanged && repeats < best!.repeats) ||
+                (repeats == best!.repeats && unchanged == best!.unchanged && cost < best!.cost) ||
+                (repeats == best!.repeats && unchanged == best!.unchanged && cost == best!.cost && waste < best!.waste) {
+                best = (meals, cart, cost, repeats, unchanged, waste)
             }
             return
         }
         let index = meals.count
         for recipe in candidates[index] {
             guard !limitReached else { break }
-            let meal = ScheduledMeal(id: UUID(), date: slots[index].0, slot: slots[index].1, recipeID: recipe.id)
+            let meal = request.fixedMeals.first { $0.date == slots[index].0 && $0.slot == slots[index].1 } ??
+                ScheduledMeal(id: UUID(), date: slots[index].0, slot: slots[index].1, recipeID: recipe.id)
             try visit(meals + [meal])
         }
     }

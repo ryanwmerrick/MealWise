@@ -7,6 +7,16 @@ struct AppServices: Sendable {
     let plans: any PlanRepositoryProtocol
     let planner: any PlanServiceProtocol
     let checklist: any ChecklistRepositoryProtocol
+    let preferences: any MealPreferenceRepositoryProtocol
+    let changes: any PlanChangeServiceProtocol
+
+    init(catalog: RecipeCatalog, profiles: any ProfileRepositoryProtocol, plans: any PlanRepositoryProtocol,
+         planner: any PlanServiceProtocol, checklist: any ChecklistRepositoryProtocol,
+         preferences: any MealPreferenceRepositoryProtocol, changes: (any PlanChangeServiceProtocol)? = nil) {
+        self.catalog = catalog; self.profiles = profiles; self.plans = plans; self.planner = planner
+        self.checklist = checklist; self.preferences = preferences
+        self.changes = changes ?? PlanChangeService(plans: plans, planner: planner, preferences: preferences)
+    }
 }
 
 protocol AppBootstrapProtocol: Sendable {
@@ -25,7 +35,8 @@ actor AppBootstrap: AppBootstrapProtocol {
             catalog = saved.catalog
         }
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
-                           planner: PlanService(), checklist: ChecklistRepository(container: container))
+                           planner: PlanService(), checklist: ChecklistRepository(container: container),
+                           preferences: MealPreferenceRepository(container: container))
     }
 }
 

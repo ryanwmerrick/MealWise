@@ -24,6 +24,7 @@ struct SettingsView: View {
                     }
                     Section {
                         Button("Edit plan settings") { editing = true }.frame(minHeight: 44)
+                        NavigationLink("Excluded recipes", value: SettingsRoute.excluded)
                         Text("Changing your answers creates a new plan preview. Your saved plan changes only after you accept.").font(.footnote)
                     }
                     Section {
@@ -45,11 +46,16 @@ struct SettingsView: View {
             }
             .fullScreenCover(isPresented: $editing) {
                 if let plan = session.plan, let services = session.services {
-                    NavigationStack { OnboardingView(profile: plan.profile, services: services, isEditing: true) }
+                    NavigationStack { OnboardingView(profile: plan.profile, services: services, isEditing: true, basePlan: plan) }
                 }
+            }
+            .navigationDestination(for: SettingsRoute.self) { _ in
+                if let services = session.services { ExcludedRecipesView(catalog: services.catalog, preferences: services.preferences) }
             }
         }
     }
 }
 
 #Preview { SettingsView().environment(AppSession()) }
+
+private enum SettingsRoute: Hashable { case excluded }

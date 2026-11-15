@@ -17,12 +17,15 @@ final class OnboardingViewModel: ObservableObject {
     private var returnToSummary = false
     private let services: AppServices
     private let today: Date
+    private let basePlan: WeeklyPlan?
+    private var changePreview: PlanChangePreview?
 
-    init(profile: PlanningProfile, services: AppServices, now: Date = .now) {
+    init(profile: PlanningProfile, services: AppServices, now: Date = .now, basePlan: WeeklyPlan? = nil) {
         self.profile = profile
         self.budgetText = NSDecimalNumber(decimal: Decimal(profile.budgetMinorUnits) / 100).stringValue
         self.services = services
         self.today = now
+        self.basePlan = basePlan
     }
 
     var canContinue: Bool {
@@ -93,7 +96,15 @@ final class OnboardingViewModel: ObservableObject {
         isBuilding = true; errorMessage = nil; preview = nil
         defer { isBuilding = false }
         do {
-            let result = try await services.planner.generate(PlanRequest(profile: profile, catalog: services.catalog))
+            if let basePlan {
+                let change = try await services.changes.preview(.profile(profile), in: basePlan)
+                changePreview = change
+                if change.constraint == .feasible { preview = change.proposedPlan }
+                else { errorMessage = change.constraint.message }
+                return
+            }
+            let excluded = try await services.preferences.loadExcludedRecipeIDs()
+            let result = try await services.planner.generate(PlanRequest(profile: profile, catalog: services.catalog, excludedRecipeIDs: excluded))
             switch result {
             case .feasible(let plan): preview = plan
             case .invalidInputs: errorMessage = "Check your budget, household, selected meals and price dates, then try again."
@@ -107,9 +118,16 @@ final class OnboardingViewModel: ObservableObject {
     func acceptPreview() async -> WeeklyPlan? {
         guard let preview else { return nil }
         do {
-            try await services.plans.saveActivePlan(preview)
+            let accepted: WeeklyPlan
+            if let changePreview {
+                accepted = try await services.changes.accept(changePreview, expectedRevision: changePreview.baseRevision)
+            } else {
+                try await services.plans.saveActivePlan(preview)
+                accepted = preview
+            }
             self.preview = nil
-            return preview
+            self.changePreview = nil
+            return accepted
         } catch is CancellationError { return nil }
         catch {
             errorMessage = "The plan could not be saved. Your previous plan is unchanged. Please retry."

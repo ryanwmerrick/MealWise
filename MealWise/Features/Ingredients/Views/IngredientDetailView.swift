@@ -29,6 +29,7 @@ struct IngredientDetailView: View {
             }
             if item.remainingQuantity > 0 {
                 Section("What to do with the remainder") {
+                    NavigationLink("Find a meal using this remainder", value: PlanRoute.remainderSuggestions(planID: planID, ingredientID: item.id))
                     if item.storage == .shelfStable {
                         Text("Check the package storage instructions. At wrap-up, confirm what remains before carrying it into the next plan.")
                     } else {

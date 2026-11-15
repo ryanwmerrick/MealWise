@@ -5,6 +5,8 @@ struct WeekView: View {
     @StateObject private var viewModel: WeekViewModel
     @State private var showBudget = false
     @State private var showSettings = false
+    @State private var swapTarget: MealSwapTarget?
+    @State private var pendingChange: PendingPlanChange?
 
     init(plan: WeeklyPlan) { _viewModel = StateObject(wrappedValue: WeekViewModel(plan: plan)) }
 
@@ -21,8 +23,14 @@ struct WeekView: View {
                     }
                     leftoverForecast
                     ForEach(viewModel.plan.meals) { meal in
-                        NavigationLink(value: PlanRoute.meal(planID: viewModel.plan.id, mealID: meal.id)) { mealRow(meal) }
-                            .buttonStyle(.plain).accessibilityIdentifier("week.meal")
+                        HStack(spacing: 0) {
+                            NavigationLink(value: PlanRoute.meal(planID: viewModel.plan.id, mealID: meal.id)) { mealRow(meal) }
+                                .buttonStyle(.plain).accessibilityIdentifier("week.meal")
+                                .contextMenu { Button("Regenerate this day") { pendingChange = PendingPlanChange(change: .regenerateDay(meal.date)) } }
+                            Button { swapTarget = MealSwapTarget(id: meal.id) } label: {
+                                Image("IconSwap").frame(width: 44, height: 44)
+                            }.accessibilityLabel("Swap meal").accessibilityIdentifier("week.swap")
+                        }.background(DesignTokens.card, in: RoundedRectangle(cornerRadius: 18))
                     }
                 }.padding(20)
             }
@@ -31,6 +39,16 @@ struct WeekView: View {
             .navigationBarTitleDisplayMode(.inline)
             .safeAreaInset(edge: .top, spacing: 0) { budgetCard.padding(.horizontal, 20).padding(.vertical, 8).background(DesignTokens.surface) }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu("Plan actions") {
+                        Button("Regenerate week") { pendingChange = PendingPlanChange(change: .regenerateWeek) }
+                        ForEach(viewModel.plan.profile.days.sorted(), id: \.self) { day in
+                            Button { pendingChange = PendingPlanChange(change: .regenerateDay(day)) } label: {
+                                Text("Regenerate \(day.formatted(date: .abbreviated, time: .omitted))")
+                            }
+                        }
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showSettings = true } label: { Image("IconSettings").frame(width: 44, height: 44) }
                         .accessibilityLabel("Settings").accessibilityIdentifier("week.settings")
@@ -38,6 +56,12 @@ struct WeekView: View {
             }
             .sheet(isPresented: $showBudget) { budgetDetail }
             .sheet(isPresented: $showSettings) { SettingsView() }
+            .sheet(item: $swapTarget) { target in
+                if let services = session.services { SwapView(plan: viewModel.plan, mealID: target.id, services: services) }
+            }
+            .sheet(item: $pendingChange) { request in
+                if let services = session.services { ChangePreviewScreen(plan: viewModel.plan, change: request.change, services: services) }
+            }
             .navigationDestination(for: PlanRoute.self) { route in
                 if let services = session.services {
                     switch route {
@@ -47,6 +71,8 @@ struct WeekView: View {
                         IngredientMapView(planID: planID, plans: services.plans)
                     case .ingredientDetail(let planID, let ingredientID):
                         IngredientDetailScreen(planID: planID, ingredientID: ingredientID, plans: services.plans)
+                    case .remainderSuggestions(_, let ingredientID):
+                        RemainderSuggestionView(plan: viewModel.plan, ingredientID: ingredientID, services: services)
                     }
                 }
             }
@@ -125,12 +151,22 @@ struct WeekView: View {
                     Text("A child portion is half an adult portion. Checkout averages allocate packages, including leftovers; meal ingredient costs show only what is consumed.")
                         .font(.footnote)
                 }
+                if session.services != nil {
+                    Section { NavigationLink("Adjust budget", value: BudgetRoute.adjust) }
+                }
                 Section { DevelopmentNotice() }
             }
             .navigationTitle("Budget details")
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showBudget = false } } }
+            .navigationDestination(for: BudgetRoute.self) { _ in
+                if let services = session.services { BudgetAdjustmentView(plan: viewModel.plan, services: services) }
+            }
         }
     }
 }
 
 #Preview { RootView().environment(AppSession()) }
+
+private struct MealSwapTarget: Identifiable { let id: UUID }
+private struct PendingPlanChange: Identifiable { let id = UUID(); let change: PlanChange }
+private enum BudgetRoute: Hashable { case adjust }

@@ -6,10 +6,11 @@ struct OnboardingView: View {
     @StateObject private var viewModel: OnboardingViewModel
     @State private var buildRequest: UUID?
     @FocusState private var budgetFocused: Bool
+    @ScaledMetric(relativeTo: .body) private var presetWidth = 72
     let isEditing: Bool
 
-    init(profile: PlanningProfile, services: AppServices, isEditing: Bool = false) {
-        _viewModel = StateObject(wrappedValue: OnboardingViewModel(profile: profile, services: services))
+    init(profile: PlanningProfile, services: AppServices, isEditing: Bool = false, basePlan: WeeklyPlan? = nil) {
+        _viewModel = StateObject(wrappedValue: OnboardingViewModel(profile: profile, services: services, basePlan: basePlan))
         self.isEditing = isEditing
     }
 
@@ -121,7 +122,7 @@ struct OnboardingView: View {
                 .keyboardType(.decimalPad).focused($budgetFocused)
                 .font(.largeTitle.bold()).multilineTextAlignment(.center)
                 .accessibilityIdentifier("setup.budget")
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 64))]) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: presetWidth))]) {
                 ForEach([40, 55, 70, 90], id: \.self) { amount in
                     Button { viewModel.budgetText = String(amount) } label: {
                         Text(Int64(amount * 100).currency).frame(maxWidth: .infinity, minHeight: 44)

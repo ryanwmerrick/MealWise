@@ -3,6 +3,15 @@ import Foundation
 struct PlanRequest: Sendable {
     let profile: PlanningProfile
     let catalog: RecipeCatalog
+    let excludedRecipeIDs: Set<String>
+    let fixedMeals: [ScheduledMeal]
+    let avoidMeals: [ScheduledMeal]
+
+    init(profile: PlanningProfile, catalog: RecipeCatalog, excludedRecipeIDs: Set<String> = [],
+         fixedMeals: [ScheduledMeal] = [], avoidMeals: [ScheduledMeal] = []) {
+        self.profile = profile; self.catalog = catalog; self.excludedRecipeIDs = excludedRecipeIDs
+        self.fixedMeals = fixedMeals; self.avoidMeals = avoidMeals
+    }
 }
 
 struct ScheduledMeal: Codable, Equatable, Sendable, Identifiable {
