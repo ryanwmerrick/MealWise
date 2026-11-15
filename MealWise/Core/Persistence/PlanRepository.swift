@@ -9,7 +9,7 @@ protocol PlanRepositoryProtocol: Sendable {
 }
 
 actor PlanRepository: PlanRepositoryProtocol {
-    private let container: ModelContainer
+    let container: ModelContainer
     init(container: ModelContainer) { self.container = container }
 
     func resetActivePlan() async throws {
@@ -48,6 +48,7 @@ actor PlanRepository: PlanRepositoryProtocol {
     private func writePlan(_ plan: WeeklyPlan, expectedRevision: UUID?) throws {
         try Task.checkCancellation()
         try PlanValidation.validate(plan)
+        guard plan.totalMinorUnits <= plan.profile.budgetMinorUnits else { throw PlanChangeError.infeasible }
         let context = ModelContext(container)
         context.autosaveEnabled = false
         do {
@@ -55,7 +56,7 @@ actor PlanRepository: PlanRepositoryProtocol {
             if let expectedRevision {
                 guard let active = documents.first(where: { $0.key == "activePlan" }) else { throw PlanChangeError.stalePreview }
                 let previous = try JSONDecoder().decode(WeeklyPlan.self, from: active.payload)
-                guard previous.id == plan.id, previous.revision == expectedRevision else { throw PlanChangeError.stalePreview }
+                guard previous.id == plan.id, previous.revision == expectedRevision, previous.resources == plan.resources else { throw PlanChangeError.stalePreview }
                 let key = "checklist-" + plan.id.uuidString
                 if let checklist = documents.first(where: { $0.key == key }) {
                     var checked = try JSONDecoder().decode(Set<String>.self, from: checklist.payload)

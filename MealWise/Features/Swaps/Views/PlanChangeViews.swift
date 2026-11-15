@@ -5,9 +5,9 @@ struct ChangePreviewCard: View {
 
     var body: some View {
         Section("Before and after") {
-            LabeledContent("Current estimate", value: preview.oldTotalMinorUnits.currency)
+            LabeledContent("Current projection", value: preview.oldTotalMinorUnits.currency)
             if let plan = preview.proposedPlan {
-                LabeledContent("New estimate", value: plan.totalMinorUnits.currency)
+                LabeledContent("New projection", value: plan.totalMinorUnits.currency)
                 LabeledContent("New budget", value: plan.profile.budgetMinorUnits.currency)
                 LabeledContent("Remaining", value: plan.remainingMinorUnits.currency)
                 LabeledContent("Ingredients reused", value: preview.reusedIngredientCount.formatted())

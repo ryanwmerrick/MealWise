@@ -151,6 +151,16 @@
         }
       }
     },
+    "%lld of %lld items checked for purchase": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of %lld items checked for purchase"
+          }
+        }
+      }
+    },
     "%lld of 8": {
       "localizations": {
         "en": {
@@ -161,12 +171,42 @@
         }
       }
     },
+    "%lld packages purchased": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld packages purchased"
+          }
+        }
+      }
+    },
+    "%lld packages · %@ each": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld packages · %@ each"
+          }
+        }
+      }
+    },
     "%lld packages × %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld packages × %@"
+          }
+        }
+      }
+    },
+    "%lld purchased · %lld missing prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld purchased · %lld missing prices"
           }
         }
       }
@@ -273,6 +313,46 @@
         }
       }
     },
+    "Actual line total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual line total"
+          }
+        }
+      }
+    },
+    "Actual price": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual price"
+          }
+        }
+      }
+    },
+    "Actual price not entered": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual price not entered"
+          }
+        }
+      }
+    },
+    "Actual price unknown": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual price unknown"
+          }
+        }
+      }
+    },
     "Add beans and cumin, stir until hot throughout, and serve.": {
       "extractionState": "stale",
       "localizations": {
@@ -302,6 +382,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
+          }
+        }
+      }
+    },
+    "Additional estimated checkout": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Additional estimated checkout"
           }
         }
       }
@@ -672,6 +762,26 @@
         }
       }
     },
+    "Cheaper packages": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cheaper packages"
+          }
+        }
+      }
+    },
+    "Check the items you purchased before finishing this trip.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check the items you purchased before finishing this trip."
+          }
+        }
+      }
+    },
     "Check the package storage instructions. At wrap-up, confirm what remains before carrying it into the next plan.": {
       "localizations": {
         "en": {
@@ -709,6 +819,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Checking package allocations"
+          }
+        }
+      }
+    },
+    "Checking package alternatives": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking package alternatives"
           }
         }
       }
@@ -833,6 +953,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Comfortable"
+          }
+        }
+      }
+    },
+    "Compare packages of the same ingredient. Required food quantities and allergy requirements stay unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compare packages of the same ingredient. Required food quantities and allergy requirements stay unchanged."
           }
         }
       }
@@ -993,6 +1123,36 @@
         }
       }
     },
+    "Current projection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current projection"
+          }
+        }
+      }
+    },
+    "Cycle budget at finish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle budget at finish"
+          }
+        }
+      }
+    },
+    "Dated estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dated estimate"
+          }
+        }
+      }
+    },
     "Days": {
       "localizations": {
         "en": {
@@ -1142,6 +1302,26 @@
         }
       }
     },
+    "Earlier purchases": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier purchases"
+          }
+        }
+      }
+    },
+    "Earlier purchases, with estimates for missing prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier purchases, with estimates for missing prices"
+          }
+        }
+      }
+    },
     "Edit": {
       "localizations": {
         "en": {
@@ -1158,6 +1338,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Edit %@"
+          }
+        }
+      }
+    },
+    "Edit actual price": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit actual price"
           }
         }
       }
@@ -1193,12 +1383,42 @@
         }
       }
     },
+    "Enter a nonnegative dollar amount with up to two decimal places.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a nonnegative dollar amount with up to two decimal places."
+          }
+        }
+      }
+    },
     "Enter a positive dollar amount with at most two decimal places.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Enter a positive dollar amount with at most two decimal places."
+          }
+        }
+      }
+    },
+    "Enter the total for all %lld packages of this item, in USD.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter the total for all %lld packages of this item, in USD."
+          }
+        }
+      }
+    },
+    "Entered actual line total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entered actual line total"
           }
         }
       }
@@ -1229,6 +1449,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Estimated checkout %@ of %@, %@ remaining. Budget details."
+          }
+        }
+      }
+    },
+    "Estimated line total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated line total"
           }
         }
       }
@@ -1300,6 +1530,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Find a meal using this remainder"
+          }
+        }
+      }
+    },
+    "Find cheaper package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find cheaper package"
+          }
+        }
+      }
+    },
+    "Finish trip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish trip"
+          }
+        }
+      }
+    },
+    "Finish with only these purchased items?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish with only these purchased items?"
           }
         }
       }
@@ -1602,12 +1862,52 @@
         }
       }
     },
+    "Items missing actual prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Items missing actual prices"
+          }
+        }
+      }
+    },
+    "Keep current package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep current package"
+          }
+        }
+      }
+    },
     "Keep current plan": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Keep current plan"
+          }
+        }
+      }
+    },
+    "Known actual spending": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Known actual spending"
+          }
+        }
+      }
+    },
+    "Known actual this trip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Known actual this trip"
           }
         }
       }
@@ -1715,6 +2015,16 @@
         }
       }
     },
+    "Missing actual prices remain unknown. Tax, deposits and fees are excluded unless you include them in your entered line totals.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing actual prices remain unknown. Tax, deposits and fees are excluded unless you include them in your entered line totals."
+          }
+        }
+      }
+    },
     "Needs attention": {
       "localizations": {
         "en": {
@@ -1755,6 +2065,16 @@
         }
       }
     },
+    "New projection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New projection"
+          }
+        }
+      }
+    },
     "New spending cap": {
       "localizations": {
         "en": {
@@ -1771,6 +2091,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "No account. No payment. Just a plan."
+          }
+        }
+      }
+    },
+    "No additional packages are needed for this plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No additional packages are needed for this plan."
+          }
+        }
+      }
+    },
+    "No catalog-backed cheaper package fits this complete cart. Keep your current choice or review your budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No catalog-backed cheaper package fits this complete cart. Keep your current choice or review your budget."
           }
         }
       }
@@ -1857,6 +2197,16 @@
         }
       }
     },
+    "No trips have been finished for this plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No trips have been finished for this plan."
+          }
+        }
+      }
+    },
     "No weekly plan yet": {
       "extractionState": "stale",
       "localizations": {
@@ -1885,6 +2235,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Not indicated"
+          }
+        }
+      }
+    },
+    "Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown."
           }
         }
       }
@@ -1940,6 +2300,16 @@
         }
       }
     },
+    "Over budget by %@. Real spending will remain in your history.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over budget by %@. Real spending will remain in your history."
+          }
+        }
+      }
+    },
     "Over budget — comparison only": {
       "localizations": {
         "en": {
@@ -1950,12 +2320,32 @@
         }
       }
     },
+    "Package alternatives could not be checked. Your current trip is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package alternatives could not be checked. Your current trip is unchanged."
+          }
+        }
+      }
+    },
     "Package checkout": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Package checkout"
+          }
+        }
+      }
+    },
+    "Package: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package: %@"
           }
         }
       }
@@ -2185,6 +2575,66 @@
         }
       }
     },
+    "Projected cycle at finish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle at finish"
+          }
+        }
+      }
+    },
+    "Projected cycle total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle total"
+          }
+        }
+      }
+    },
+    "Projected cycle total %@ of %@, %@ remaining. Budget details.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle total %@ of %@, %@ remaining. Budget details."
+          }
+        }
+      }
+    },
+    "Projected cycle: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle: %@"
+          }
+        }
+      }
+    },
+    "Projected full cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected full cycle"
+          }
+        }
+      }
+    },
+    "Projected totals include earlier purchases and remaining whole-package checkout. Unknown receipt prices use the original estimate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected totals include earlier purchases and remaining whole-package checkout. Unknown receipt prices use the original estimate."
+          }
+        }
+      }
+    },
     "Protein": {
       "localizations": {
         "en": {
@@ -2201,6 +2651,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Purchased"
+          }
+        }
+      }
+    },
+    "Purchased items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased items"
+          }
+        }
+      }
+    },
+    "Purchased items missing actual prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased items missing actual prices"
+          }
+        }
+      }
+    },
+    "Purchased quantities are credited below. Only additional packages remain to buy.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased quantities are credited below. Only additional packages remain to buy."
+          }
+        }
+      }
+    },
+    "Purchased stock and spending": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased stock and spending"
           }
         }
       }
@@ -2232,6 +2722,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Re-optimizing your week"
+          }
+        }
+      }
+    },
+    "Receipt observations are retained with this package, quantity and store for review in later plans. Tax, deposits and fees are excluded unless entered.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receipt observations are retained with this package, quantity and store for review in later plans. Tax, deposits and fees are excluded unless entered."
           }
         }
       }
@@ -2276,6 +2776,36 @@
         }
       }
     },
+    "Record purchased items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record purchased items"
+          }
+        }
+      }
+    },
+    "Recorded actual": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded actual"
+          }
+        }
+      }
+    },
+    "Recorded purchases": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded purchases"
+          }
+        }
+      }
+    },
     "Regenerate %@": {
       "localizations": {
         "en": {
@@ -2302,6 +2832,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Regenerate week"
+          }
+        }
+      }
+    },
+    "Reload trip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload trip"
           }
         }
       }
@@ -2437,6 +2977,26 @@
         }
       }
     },
+    "Save price": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save price"
+          }
+        }
+      }
+    },
+    "Saving shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saving shopping"
+          }
+        }
+      }
+    },
     "Savory spinach oats": {
       "extractionState": "stale",
       "localizations": {
@@ -2507,6 +3067,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Shellfish"
+          }
+        }
+      }
+    },
+    "Shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping"
+          }
+        }
+      }
+    },
+    "Shopping could not be opened. Return to the current grocery list and retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping could not be opened. Return to the current grocery list and retry."
+          }
+        }
+      }
+    },
+    "Shopping history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping history"
           }
         }
       }
@@ -2613,6 +3203,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Start over"
+          }
+        }
+      }
+    },
+    "Start shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start shopping"
           }
         }
       }
@@ -2814,6 +3414,36 @@
         }
       }
     },
+    "The price could not be saved. Reopen the current trip and retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The price could not be saved. Reopen the current trip and retry."
+          }
+        }
+      }
+    },
+    "The projected cycle exceeds its budget. Purchases and actual overspend remain recorded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The projected cycle exceeds its budget. Purchases and actual overspend remain recorded."
+          }
+        }
+      }
+    },
+    "The projection includes unchecked items. Missing prices use dated estimates; known actuals include only checked items with entered prices.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The projection includes unchecked items. Missing prices use dated estimates; known actuals include only checked items with entered prices."
+          }
+        }
+      }
+    },
     "The recipe preference could not be saved. Please retry.": {
       "localizations": {
         "en": {
@@ -2831,6 +3461,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
+          }
+        }
+      }
+    },
+    "The shopping projection above includes other entered receipt prices. This replacement resets only this item's check and actual price; confirm the replacement package before purchasing.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shopping projection above includes other entered receipt prices. This replacement resets only this item's check and actual price; confirm the replacement package before purchasing."
           }
         }
       }
@@ -2905,6 +3545,16 @@
         }
       }
     },
+    "This is an incomplete receipt. Missing prices remain estimates in cycle projections.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is an incomplete receipt. Missing prices remain estimates in cycle projections."
+          }
+        }
+      }
+    },
     "This is planned usage, not confirmed inventory. Storage and freshness are uncertain; check package handling instructions before keeping or reusing food.": {
       "localizations": {
         "en": {
@@ -2936,6 +3586,16 @@
         }
       }
     },
+    "This package preview is out of date or could not be saved. Reopen it from your current trip.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This package preview is out of date or could not be saved. Reopen it from your current trip."
+          }
+        }
+      }
+    },
     "This preview is out of date. Reopen it from your current week.": {
       "localizations": {
         "en": {
@@ -2946,12 +3606,52 @@
         }
       }
     },
+    "This recipe is excluded from future choices. Your current plan changes only after you accept a preview.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This recipe is excluded from future choices. Your current plan changes only after you accept a preview."
+          }
+        }
+      }
+    },
+    "This records your receipt observation for this package and store. It does not rewrite the catalog estimate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This records your receipt observation for this package and store. It does not rewrite the catalog estimate."
+          }
+        }
+      }
+    },
     "This remainder needs a storage check. Consider using it in another meal, following the package guidance; no shelf-life duration is assumed.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "This remainder needs a storage check. Consider using it in another meal, following the package guidance; no shelf-life duration is assumed."
+          }
+        }
+      }
+    },
+    "This trip could not be finished. Reopen it from the current grocery list; your edits are saved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This trip could not be finished. Reopen it from the current grocery list; your edits are saved."
+          }
+        }
+      }
+    },
+    "This was a partial trip. Unpurchased requirements remain on your grocery list.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This was a partial trip. Unpurchased requirements remain on your grocery list."
           }
         }
       }
@@ -2999,13 +3699,53 @@
         }
       }
     },
+    "Trip spending": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trip spending"
+          }
+        }
+      }
+    },
+    "Trip summary": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trip summary"
+          }
+        }
+      }
+    },
     "Unavailable": {},
+    "Unavailable recipe": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unavailable recipe"
+          }
+        }
+      }
+    },
     "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans."
+          }
+        }
+      }
+    },
+    "Unpurchased items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unpurchased items"
           }
         }
       }
@@ -3027,6 +3767,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Use a remainder"
+          }
+        }
+      }
+    },
+    "Use this package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use this package"
           }
         }
       }
@@ -3371,6 +4121,16 @@
         }
       }
     },
+    "Your latest plan could not be loaded. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your latest plan could not be loaded. Please retry."
+          }
+        }
+      }
+    },
     "Your meals will appear here after setup.": {
       "extractionState": "stale",
       "localizations": {
@@ -3423,6 +4183,16 @@
         }
       }
     },
+    "Your purchase check could not be saved. Reopen the current trip and retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your purchase check could not be saved. Reopen the current trip and retry."
+          }
+        }
+      }
+    },
     "Your saved information could not be opened. Please retry. Your data has not been reset.": {
       "extractionState": "stale",
       "localizations": {
@@ -3470,26 +4240,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "of your $70 budget"
-          }
-        }
-      }
-    },
-    "This recipe is excluded from future choices. Your current plan changes only after you accept a preview.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This recipe is excluded from future choices. Your current plan changes only after you accept a preview."
-          }
-        }
-      }
-    },
-    "Unavailable recipe": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unavailable recipe"
           }
         }
       }

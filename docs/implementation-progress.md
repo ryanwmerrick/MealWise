@@ -35,6 +35,10 @@ Complete. Purchased quantities reconcile with dated meal allocations and remaind
 
 Complete. Full build/test passes with 59 unit and eight UI tests, plus the focused remainder-navigation UI check; its cart preview was visually inspected. Swaps, day/week regeneration, exclusions, remainder suggestions and budget previews share complete-cart validation and atomic revision checks. See [verification](phase-6-verification.md).
 
+## Phase 7 — shopping and actual spending
+
+Complete. Full build/test passes with 65 unit and ten UI tests. Shopping, partial receipts, real overspend, purchased-stock credits and safe package previews are implemented; the relaunch summary was visually inspected. See [verification](phase-7-verification.md).
+
 ## Approved later-phase decisions
 
 User approved [remaining-cycle rules](remaining-cycle-policy.md) for Phases 5–9 and selected CloudKit with the user's iCloud account for Phase 10. Developer/iCloud configuration and device verification are still required for actual sync/release readiness.

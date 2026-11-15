@@ -75,12 +75,13 @@ struct IngredientAllocationService: IngredientAllocationServiceProtocol {
                 guard !next.overflow else { throw PlanningError.overflow }
                 return next.partialValue
             }
-            guard allocated == cart.requiredQuantity, purchased.partialValue >= allocated else { throw PlanningError.invalidPlan }
-            let remaining = purchased.partialValue - allocated
+            guard allocated == cart.requiredQuantity, try checkedSum(purchased.partialValue, plan.resources?.quantity(for: ingredient.id) ?? 0) >= allocated else { throw PlanningError.invalidPlan }
+            let available = try checkedSum(purchased.partialValue, plan.resources?.quantity(for: ingredient.id) ?? 0)
+            let remaining = available - allocated
             let status: AllocationStatus = remaining == 0 ? .fullyUsed : (ingredient.storage == .shelfStable ? .carryOver : .needsAttention)
             return IngredientAllocation(id: ingredient.id, name: ingredient.name, unit: ingredient.unit,
-                                        purchasedQuantity: purchased.partialValue, remainingQuantity: remaining,
-                                        packageCount: cart.packageCount, priceMinorUnits: cart.costMinorUnits,
+                                        purchasedQuantity: available, remainingQuantity: remaining,
+                                        packageCount: cart.packageCount + (plan.resources?.purchases.filter { $0.ingredientID == ingredient.id }.reduce(0) { $0 + $1.packageCount } ?? 0), priceMinorUnits: try checkedSum(cart.costMinorUnits, plan.resources?.purchases.filter { $0.ingredientID == ingredient.id }.reduce(0) { $0 + ($1.actualMinorUnits ?? $1.estimatedMinorUnits) } ?? 0),
                                         allocations: allocations, status: status, storage: ingredient.storage)
         }
         return IngredientAllocationReport(items: items)

@@ -98,8 +98,8 @@ struct WeekView: View {
         Button { showBudget = true } label: {
             VStack(alignment: .leading, spacing: 10) {
                 ViewThatFits(in: .horizontal) {
-                    HStack { Text("Estimated checkout"); Spacer(); Text("\(viewModel.plan.remainingMinorUnits.currency) left").foregroundStyle(DesignTokens.gold) }
-                    VStack(alignment: .leading) { Text("Estimated checkout"); Text("\(viewModel.plan.remainingMinorUnits.currency) left").foregroundStyle(DesignTokens.gold) }
+                    HStack { Text(viewModel.plan.resources == nil ? "Estimated checkout" : "Projected cycle total"); Spacer(); Text("\(viewModel.plan.remainingMinorUnits.currency) left").foregroundStyle(DesignTokens.gold) }
+                    VStack(alignment: .leading) { Text(viewModel.plan.resources == nil ? "Estimated checkout" : "Projected cycle total"); Text("\(viewModel.plan.remainingMinorUnits.currency) left").foregroundStyle(DesignTokens.gold) }
                 }.font(.caption)
                 Text(viewModel.plan.totalMinorUnits.currency).font(.largeTitle.bold())
                 Text("of \(viewModel.plan.profile.budgetMinorUnits.currency)").font(.subheadline)
@@ -111,7 +111,7 @@ struct WeekView: View {
         .buttonStyle(.plain)
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Estimated checkout \(viewModel.plan.totalMinorUnits.currency) of \(viewModel.plan.profile.budgetMinorUnits.currency), \(viewModel.plan.remainingMinorUnits.currency) remaining. Budget details."))
+        .accessibilityLabel(Text("Projected cycle total \(viewModel.plan.totalMinorUnits.currency) of \(viewModel.plan.profile.budgetMinorUnits.currency), \(viewModel.plan.remainingMinorUnits.currency) remaining. Budget details."))
         .accessibilityIdentifier("week.budget")
     }
 
@@ -142,8 +142,15 @@ struct WeekView: View {
             List {
                 Section("Whole-package checkout estimate") {
                     LabeledContent("Weekly budget", value: viewModel.plan.profile.budgetMinorUnits.currency)
-                    LabeledContent("Estimated total", value: viewModel.plan.totalMinorUnits.currency)
+                    LabeledContent("Projected cycle total", value: viewModel.plan.totalMinorUnits.currency)
                     LabeledContent("Remaining", value: viewModel.plan.remainingMinorUnits.currency)
+                }
+                if let resources = viewModel.plan.resources {
+                    Section("Purchased stock and spending") {
+                        LabeledContent("Known actual spending", value: resources.knownActualMinorUnits.currency)
+                        LabeledContent("Items missing actual prices", value: resources.missingPriceCount.formatted())
+                        Text("Projected totals include earlier purchases and remaining whole-package checkout. Unknown receipt prices use the original estimate.")
+                    }
                 }
                 Section("Allocated checkout averages") {
                     LabeledContent("Per planned day", value: viewModel.perDay)

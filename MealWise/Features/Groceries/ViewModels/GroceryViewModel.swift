@@ -31,7 +31,7 @@ final class GroceryViewModel: ObservableObject {
     func load() async {
         do {
             var grouped: [IngredientCategory: [GroceryRow]] = [:]
-            for item in plan.cart {
+            for item in plan.cart where item.packageCount > 0 {
                 guard let ingredient = plan.catalog.ingredients.first(where: { $0.id == item.ingredientID }),
                       let offer = plan.catalog.offers.first(where: { $0.id == item.offerID }) else { throw PlanningError.invalidPlan }
                 let size = try Quantity(amount: offer.packageQuantity, unit: offer.unit)

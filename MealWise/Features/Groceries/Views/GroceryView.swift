@@ -2,6 +2,7 @@ import SwiftUI
 
 struct GroceryView: View {
     @StateObject private var viewModel: GroceryViewModel
+    @Environment(AppSession.self) private var session
     @State private var reload = 0
 
     init(plan: WeeklyPlan, checklist: any ChecklistRepositoryProtocol) {
@@ -12,10 +13,23 @@ struct GroceryView: View {
         NavigationStack {
             List {
                 Section {
-                    LabeledContent("Estimated checkout", value: viewModel.plan.totalMinorUnits.currency).font(.headline)
+                    LabeledContent("Additional estimated checkout", value: (try? CartCalculator.total(viewModel.plan.cart))?.currency ?? String(localized: "Unavailable")).font(.headline)
                     LabeledContent("Budget", value: viewModel.plan.profile.budgetMinorUnits.currency)
-                    Text("\(viewModel.checked.count) of \(viewModel.plan.cart.count) items checked")
+                    Text("\(viewModel.checked.count) of \(viewModel.plan.cart.filter { $0.packageCount > 0 }.count) items checked")
                     DevelopmentNotice()
+                }
+                if let services = session.services {
+                    Section {
+                        NavigationLink("Start shopping") { ShoppingView(planID: viewModel.plan.id, service: services.shopping) }
+                        NavigationLink("Shopping history") { ShoppingHistoryView(planID: viewModel.plan.id, service: services.shopping) }
+                    }
+                }
+                if let resources = viewModel.plan.resources {
+                    Section("Earlier purchases") {
+                        LabeledContent("Known actual spending", value: resources.knownActualMinorUnits.currency)
+                        LabeledContent("Items missing actual prices", value: resources.missingPriceCount.formatted())
+                        Text("Purchased quantities are credited below. Only additional packages remain to buy.")
+                    }
                 }
                 if let error = viewModel.errorMessage {
                     Section {
@@ -35,7 +49,7 @@ struct GroceryView: View {
                 }
             }
             .navigationTitle("Grocery list")
-            .task(id: reload) { await viewModel.load() }
+            .task(id: reload) { await session.refreshPlan(); await viewModel.load() }
         }
     }
 

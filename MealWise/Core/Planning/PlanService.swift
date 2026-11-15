@@ -37,7 +37,7 @@ actor PlanService: PlanServiceProtocol {
         try search.visit([])
         guard let best = search.best else { return search.limitReached ? .searchLimit : .noFeasiblePlan }
         let plan = WeeklyPlan(id: UUID(), revision: UUID(), profile: request.profile, catalog: request.catalog,
-                              meals: best.meals, cart: best.cart, totalMinorUnits: best.cost)
+                              meals: best.meals, cart: best.cart, totalMinorUnits: best.cost, resources: request.resources, offerOverrides: request.offerOverrides)
         try PlanValidation.validate(plan)
         return .feasible(plan)
     }
@@ -70,7 +70,7 @@ private struct PlanSearch {
         try Task.checkCancellation()
         guard nodes < limit else { limitReached = true; return }
         nodes += 1
-        let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog))
+        let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog, resources: request.resources, offerOverrides: request.offerOverrides))
         let cart = priced.items
         let cost = priced.totalMinorUnits
         guard cost <= request.profile.budgetMinorUnits else { return }
@@ -123,9 +123,9 @@ enum PlanValidation {
                 }
             }
         }
-        let cart = try CartCalculator.calculate(meals: plan.meals, profile: plan.profile, catalog: plan.catalog)
-        let total = try CartCalculator.total(cart)
-        guard cart == plan.cart, total == plan.totalMinorUnits, total <= plan.profile.budgetMinorUnits else {
+        let cart = try CartCalculator.calculate(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides)
+        let total = try checkedSum(CartCalculator.total(cart), plan.resources?.committedMinorUnits ?? 0)
+        guard cart == plan.cart, total == plan.totalMinorUnits, (total <= plan.profile.budgetMinorUnits || plan.resources?.purchases.isEmpty == false) else {
             throw PlanningError.invalidPlan
         }
     }

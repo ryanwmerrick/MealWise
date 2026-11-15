@@ -6,11 +6,13 @@ struct PlanRequest: Sendable {
     let excludedRecipeIDs: Set<String>
     let fixedMeals: [ScheduledMeal]
     let avoidMeals: [ScheduledMeal]
+    let resources: PlanResources?
+    let offerOverrides: [String: String]?
 
     init(profile: PlanningProfile, catalog: RecipeCatalog, excludedRecipeIDs: Set<String> = [],
-         fixedMeals: [ScheduledMeal] = [], avoidMeals: [ScheduledMeal] = []) {
+         fixedMeals: [ScheduledMeal] = [], avoidMeals: [ScheduledMeal] = [], resources: PlanResources? = nil, offerOverrides: [String: String]? = nil) {
         self.profile = profile; self.catalog = catalog; self.excludedRecipeIDs = excludedRecipeIDs
-        self.fixedMeals = fixedMeals; self.avoidMeals = avoidMeals
+        self.fixedMeals = fixedMeals; self.avoidMeals = avoidMeals; self.resources = resources; self.offerOverrides = offerOverrides
     }
 }
 
@@ -38,6 +40,15 @@ struct WeeklyPlan: Codable, Equatable, Sendable, Identifiable {
     let meals: [ScheduledMeal]
     let cart: [CartItem]
     let totalMinorUnits: Int64
+
+    let resources: PlanResources?
+    let offerOverrides: [String: String]?
+
+    init(id: UUID, revision: UUID, profile: PlanningProfile, catalog: RecipeCatalog, meals: [ScheduledMeal],
+         cart: [CartItem], totalMinorUnits: Int64, resources: PlanResources? = nil, offerOverrides: [String: String]? = nil) {
+        self.id = id; self.revision = revision; self.profile = profile; self.catalog = catalog
+        self.meals = meals; self.cart = cart; self.totalMinorUnits = totalMinorUnits; self.resources = resources; self.offerOverrides = offerOverrides
+    }
 
     var remainingMinorUnits: Int64 { profile.budgetMinorUnits - totalMinorUnits }
 }

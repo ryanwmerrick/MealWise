@@ -9,12 +9,14 @@ struct AppServices: Sendable {
     let checklist: any ChecklistRepositoryProtocol
     let preferences: any MealPreferenceRepositoryProtocol
     let changes: any PlanChangeServiceProtocol
+    let shopping: any ShoppingServiceProtocol
 
     init(catalog: RecipeCatalog, profiles: any ProfileRepositoryProtocol, plans: any PlanRepositoryProtocol,
          planner: any PlanServiceProtocol, checklist: any ChecklistRepositoryProtocol,
-         preferences: any MealPreferenceRepositoryProtocol, changes: (any PlanChangeServiceProtocol)? = nil) {
+         preferences: any MealPreferenceRepositoryProtocol, shopping: any ShoppingServiceProtocol, changes: (any PlanChangeServiceProtocol)? = nil) {
         self.catalog = catalog; self.profiles = profiles; self.plans = plans; self.planner = planner
         self.checklist = checklist; self.preferences = preferences
+        self.shopping = shopping
         self.changes = changes ?? PlanChangeService(plans: plans, planner: planner, preferences: preferences)
     }
 }
@@ -36,7 +38,7 @@ actor AppBootstrap: AppBootstrapProtocol {
         }
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
                            planner: PlanService(), checklist: ChecklistRepository(container: container),
-                           preferences: MealPreferenceRepository(container: container))
+                           preferences: MealPreferenceRepository(container: container), shopping: ShoppingService(plans: plans))
     }
 }
 
@@ -53,7 +55,7 @@ final class AppSession {
     init(bootstrap: any AppBootstrapProtocol = AppBootstrap()) { self.bootstrap = bootstrap }
 
     func load() async {
-        guard services == nil else { return }
+        guard services == nil else { await refreshPlan(); return }
         isLoading = true
         errorMessage = nil
         do {
@@ -81,6 +83,16 @@ final class AppSession {
     }
 
     func rememberDraft(_ profile: PlanningProfile) { draft = profile }
+
+    func refreshPlan() async {
+        guard let services else { return }
+        do {
+            let updated = try await services.plans.loadActivePlan()
+            if updated?.revision != plan?.revision { plan = updated; draft = updated?.profile }
+            errorMessage = nil
+        } catch is CancellationError { return }
+        catch { errorMessage = "Your latest plan could not be loaded. Please retry." }
+    }
 
     func reset() async throws {
         guard let services else { throw PersistenceError.openFailed }
