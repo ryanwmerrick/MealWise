@@ -26,6 +26,7 @@ actor PlanRepository: PlanRepositoryProtocol {
             if let active = documents.first(where: { $0.key == "activePlan" }) {
                 let plan = try JSONDecoder().decode(WeeklyPlan.self, from: active.payload)
                 try PlanValidation.validate(plan)
+                try releasePantryReservations(planID: plan.id, documents: documents)
                 if plan.resources?.purchases.isEmpty == false || plan.resources?.cookedMeals?.isEmpty == false {
                     let key = "archived-plan-" + plan.id.uuidString
                     if !documents.contains(where: { $0.key == key }) {
@@ -83,6 +84,7 @@ actor PlanRepository: PlanRepositoryProtocol {
             if let expectedRevision {
                 guard let active = documents.first(where: { $0.key == "activePlan" }) else { throw PlanChangeError.stalePreview }
                 let previous = try JSONDecoder().decode(WeeklyPlan.self, from: active.payload)
+                guard previous.closedAt == nil else { throw PantryError.cycleClosed }
                 guard previous.id == plan.id, previous.revision == expectedRevision, previous.resources == plan.resources else { throw PlanChangeError.stalePreview }
                 let key = "checklist-" + plan.id.uuidString
                 if let checklist = documents.first(where: { $0.key == key }) {
@@ -96,6 +98,10 @@ actor PlanRepository: PlanRepositoryProtocol {
                     checklist.payload = try JSONEncoder().encode(checked)
                 }
             }
+            if expectedRevision == nil, plan.resources?.pantryCredits?.isEmpty == false {
+                guard !documents.contains(where: { $0.key == "activePlan" }) else { throw PantryError.activeCycle }
+                try reservePantryCredits(plan, documents: documents, context: context, at: .now)
+            }
             let payloads = [("activePlan", try JSONEncoder().encode(plan)), ("profile", try JSONEncoder().encode(plan.profile))]
             for (key, payload) in payloads {
                 if let existing = documents.first(where: { $0.key == key }) { existing.payload = payload }
@@ -103,6 +109,9 @@ actor PlanRepository: PlanRepositoryProtocol {
             }
             try Task.checkCancellation()
             try context.save()
+        } catch let error as PantryError {
+            context.rollback()
+            throw error
         } catch let error as PlanChangeError {
             context.rollback()
             throw error

@@ -15,6 +15,8 @@ struct WeekView: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 16) {
                     DevelopmentNotice()
+                    if viewModel.plan.closedAt != nil { Text("This cycle is finished. Open Pantry to plan the next week; history stays unchanged.").font(.headline) }
+                    if viewModel.plan.reviewRequired == true { Text("Stock changed and the cycle needs budget review before additional purchases.").font(.headline) }
                     HStack {
                         Text("Ingredients repeat on purpose.").font(.headline)
                         Spacer()
@@ -26,10 +28,10 @@ struct WeekView: View {
                         HStack(spacing: 0) {
                             NavigationLink(value: PlanRoute.meal(planID: viewModel.plan.id, mealID: meal.id)) { mealRow(meal) }
                                 .buttonStyle(.plain).accessibilityIdentifier("week.meal")
-                                .contextMenu { Button("Regenerate this day") { pendingChange = PendingPlanChange(change: .regenerateDay(meal.date)) } }
+                                .contextMenu { Button("Regenerate this day") { pendingChange = PendingPlanChange(change: .regenerateDay(meal.date)) }.disabled(viewModel.plan.closedAt != nil) }
                             Button { swapTarget = MealSwapTarget(id: meal.id) } label: {
                                 Image("IconSwap").frame(width: 44, height: 44)
-                            }.accessibilityLabel("Swap meal").accessibilityIdentifier("week.swap")
+                            }.accessibilityLabel("Swap meal").accessibilityIdentifier("week.swap").disabled(viewModel.plan.closedAt != nil || viewModel.plan.cookedRecord(for: meal.id) != nil)
                         }.background(DesignTokens.card, in: RoundedRectangle(cornerRadius: 18))
                     }
                 }.padding(20)
@@ -47,7 +49,7 @@ struct WeekView: View {
                                 Text("Regenerate \(day.formatted(date: .abbreviated, time: .omitted))")
                             }
                         }
-                    }
+                    }.disabled(viewModel.plan.closedAt != nil)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showSettings = true } label: { Image("IconSettings").frame(width: 44, height: 44) }
@@ -125,6 +127,7 @@ struct WeekView: View {
             if let recipe = viewModel.recipe(for: meal) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(LocalizedStringKey(recipe.title)).font(.headline)
+                    if viewModel.plan.cookedRecord(for: meal.id) != nil { Text("Cooked").font(.caption) }
                     Text(LocalizedStringKey(meal.slot.title)).font(.caption).foregroundStyle(DesignTokens.action)
                     Text("\(recipe.minutes) min · \(viewModel.consumptionCost(for: meal)) ingredients").font(.caption)
                     Text("\(viewModel.consumptionCost(for: meal, perServing: true)) per adult-equivalent serving").font(.caption)
@@ -159,7 +162,7 @@ struct WeekView: View {
                         .font(.footnote)
                 }
                 if session.services != nil {
-                    Section { NavigationLink("Adjust budget", value: BudgetRoute.adjust) }
+                    Section { NavigationLink("Adjust budget", value: BudgetRoute.adjust).disabled(viewModel.plan.closedAt != nil) }
                 }
                 Section { DevelopmentNotice() }
             }

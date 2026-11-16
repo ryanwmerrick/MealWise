@@ -54,6 +54,7 @@ struct PurchasedStock: Codable, Equatable, Sendable {
 struct PlanResources: Codable, Equatable, Sendable {
     var purchases: [PurchasedStock] = []
     var cookedMeals: [CookedMealRecord]? = nil
+    var pantryCredits: [PantryCredit]? = nil
     var committedMinorUnits: Int64 { purchases.reduce(0) { $0 + ($1.actualMinorUnits ?? $1.estimatedMinorUnits) } }
     var knownActualMinorUnits: Int64 { purchases.reduce(0) { $0 + ($1.actualMinorUnits ?? 0) } }
     var missingPriceCount: Int { purchases.filter { $0.actualMinorUnits == nil }.count }
@@ -71,16 +72,35 @@ struct PlanResources: Codable, Equatable, Sendable {
             quantities[purchase.ingredientID] = try checkedSum(quantities[purchase.ingredientID] ?? 0, purchase.quantity)
             spending = try checkedSum(spending, purchase.actualMinorUnits ?? purchase.estimatedMinorUnits)
         }
-        var consumed: [String: Int64] = [:]
+        let credits = pantryCredits ?? []
+        guard Set(credits.map(\.id)).count == credits.count else { throw PlanningError.invalidPlan }
+        var usedCredits: [UUID: Int64] = [:]
+        for credit in credits {
+            guard credit.originalQuantity > 0, credit.remainingQuantity >= 0, credit.remainingQuantity <= credit.originalQuantity,
+                  catalog.ingredients.contains(where: { $0.id == credit.ingredientID && $0.unit == credit.unit }) else { throw PantryError.invalidQuantity }
+        }
         for record in cookedMeals ?? [] {
             try record.profile.validate()
             guard record.recipe == catalog.recipes.first(where: { $0.id == record.meal.recipeID }) else { throw PlanningError.invalidPlan }
+            let debits = try StockAccounting.debits(record)
+            var totals: [String: Int64] = [:]
+            for debit in debits {
+                guard debit.quantity > 0, debit.expiryAtUse.map({ $0 >= record.completedAt }) ?? true else { throw PantryError.invalidQuantity }
+                totals[debit.ingredientID] = try checkedSum(totals[debit.ingredientID] ?? 0, debit.quantity)
+                if let source = debit.pantryItemID {
+                    guard credits.contains(where: { $0.id == source && $0.ingredientID == debit.ingredientID }) else { throw PantryError.invalidQuantity }
+                    usedCredits[source] = try checkedSum(usedCredits[source] ?? 0, debit.quantity)
+                }
+            }
+            guard totals.count == record.recipe.ingredients.count else { throw PlanningError.invalidPlan }
             for requirement in record.recipe.ingredients {
-                let amount = try CartCalculator.scaledAmount(requirement, recipe: record.recipe, profile: record.profile)
-                consumed[requirement.ingredientID] = try checkedSum(consumed[requirement.ingredientID] ?? 0, amount)
+                guard totals[requirement.ingredientID] == (try CartCalculator.scaledAmount(requirement, recipe: record.recipe, profile: record.profile)) else { throw PlanningError.invalidPlan }
             }
         }
-        for (id, amount) in consumed where amount > (quantities[id] ?? 0) { throw CookingError.insufficientStock }
+        for credit in credits {
+            guard try checkedSum(credit.remainingQuantity, usedCredits[credit.id] ?? 0) <= credit.originalQuantity else { throw PantryError.invalidQuantity }
+        }
+        _ = try StockAccounting.purchasedRemaining(self)
     }
 }
 

@@ -16,10 +16,13 @@ struct TodayView: View {
                         Text(context.date, format: .dateTime.weekday().month().day()).font(.headline)
                         DevelopmentNotice()
                     }
-                    if viewModel.meals(on: context.date).isEmpty {
+                    if viewModel.plan.closedAt != nil {
+                        Text("This cycle is finished. Open Pantry to plan your next week.").font(.headline)
+                    }
+                    if viewModel.plan.closedAt == nil && viewModel.meals(on: context.date).isEmpty {
                         ContentUnavailableView("No meal scheduled today", systemImage: "calendar", description: Text("Your saved plan has no meals on this local date. Open Week to review its dates."))
                     }
-                    ForEach(viewModel.meals(on: context.date)) { meal in
+                    ForEach(viewModel.plan.closedAt == nil ? viewModel.meals(on: context.date) : []) { meal in
                         Section(LocalizedStringKey(meal.slot.title)) {
                             Button { cooking = TodayMealTarget(id: meal.id) } label: {
                                 VStack(alignment: .leading, spacing: 8) {

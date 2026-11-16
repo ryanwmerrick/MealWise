@@ -12,13 +12,17 @@ struct AppServices: Sendable {
     let shopping: any ShoppingServiceProtocol
     let cooking: any CookingServiceProtocol
     let timers: any TimerServiceProtocol
+    let pantry: any PantryRepositoryProtocol
+    let history: any HistoryRepositoryProtocol
+    let cycles: any NextCycleServiceProtocol
 
     init(catalog: RecipeCatalog, profiles: any ProfileRepositoryProtocol, plans: any PlanRepositoryProtocol,
          planner: any PlanServiceProtocol, checklist: any ChecklistRepositoryProtocol,
-         preferences: any MealPreferenceRepositoryProtocol, shopping: any ShoppingServiceProtocol, cooking: any CookingServiceProtocol, timers: any TimerServiceProtocol, changes: (any PlanChangeServiceProtocol)? = nil) {
+         preferences: any MealPreferenceRepositoryProtocol, shopping: any ShoppingServiceProtocol, cooking: any CookingServiceProtocol, timers: any TimerServiceProtocol, pantry: any PantryRepositoryProtocol, history: any HistoryRepositoryProtocol, cycles: any NextCycleServiceProtocol, changes: (any PlanChangeServiceProtocol)? = nil) {
         self.catalog = catalog; self.profiles = profiles; self.plans = plans; self.planner = planner
         self.checklist = checklist; self.preferences = preferences
         self.shopping = shopping; self.cooking = cooking; self.timers = timers
+        self.pantry = pantry; self.history = history; self.cycles = cycles
         self.changes = changes ?? PlanChangeService(plans: plans, planner: planner, preferences: preferences)
     }
 }
@@ -44,7 +48,7 @@ actor AppBootstrap: AppBootstrapProtocol {
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
                            planner: planner, checklist: ChecklistRepository(container: container),
                            preferences: preferences, shopping: ShoppingService(plans: plans),
-                           cooking: CookingService(plans: plans, changes: changes), timers: TimerService(plans: plans), changes: changes)
+                           cooking: CookingService(plans: plans, changes: changes), timers: TimerService(plans: plans), pantry: PantryRepository(plans: plans, catalog: catalog), history: HistoryRepository(plans: plans), cycles: NextCycleService(plans: plans), changes: changes)
     }
 }
 

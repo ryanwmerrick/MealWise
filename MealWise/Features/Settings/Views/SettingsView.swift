@@ -23,7 +23,7 @@ struct SettingsView: View {
                         LabeledContent("Preferences", value: plan.profile.preferences.count.formatted())
                     }
                     Section {
-                        Button("Edit plan settings") { editing = true }.frame(minHeight: 44)
+                        Button("Edit plan settings") { editing = true }.frame(minHeight: 44).disabled(plan.closedAt != nil)
                         NavigationLink("Excluded recipes", value: SettingsRoute.excluded)
                         Text("Changing your answers creates a new plan preview. Your saved plan changes only after you accept.").font(.footnote)
                     }

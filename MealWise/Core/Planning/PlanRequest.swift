@@ -8,11 +8,12 @@ struct PlanRequest: Sendable {
     let avoidMeals: [ScheduledMeal]
     let resources: PlanResources?
     let offerOverrides: [String: String]?
+    let confirmedStock: [PantryItem]
 
     init(profile: PlanningProfile, catalog: RecipeCatalog, excludedRecipeIDs: Set<String> = [],
-         fixedMeals: [ScheduledMeal] = [], avoidMeals: [ScheduledMeal] = [], resources: PlanResources? = nil, offerOverrides: [String: String]? = nil) {
+         fixedMeals: [ScheduledMeal] = [], avoidMeals: [ScheduledMeal] = [], resources: PlanResources? = nil, offerOverrides: [String: String]? = nil, confirmedStock: [PantryItem] = []) {
         self.profile = profile; self.catalog = catalog; self.excludedRecipeIDs = excludedRecipeIDs
-        self.fixedMeals = fixedMeals; self.avoidMeals = avoidMeals; self.resources = resources; self.offerOverrides = offerOverrides
+        self.fixedMeals = fixedMeals; self.avoidMeals = avoidMeals; self.resources = resources; self.offerOverrides = offerOverrides; self.confirmedStock = confirmedStock
     }
 }
 
@@ -44,10 +45,15 @@ struct WeeklyPlan: Codable, Equatable, Sendable, Identifiable {
     let resources: PlanResources?
     let offerOverrides: [String: String]?
 
+    let closedAt: Date?
+    let pricedAt: Date?
+    let reviewRequired: Bool?
+
     init(id: UUID, revision: UUID, profile: PlanningProfile, catalog: RecipeCatalog, meals: [ScheduledMeal],
-         cart: [CartItem], totalMinorUnits: Int64, resources: PlanResources? = nil, offerOverrides: [String: String]? = nil) {
+         cart: [CartItem], totalMinorUnits: Int64, resources: PlanResources? = nil, offerOverrides: [String: String]? = nil, closedAt: Date? = nil, pricedAt: Date? = nil, reviewRequired: Bool? = nil) {
         self.id = id; self.revision = revision; self.profile = profile; self.catalog = catalog
         self.meals = meals; self.cart = cart; self.totalMinorUnits = totalMinorUnits; self.resources = resources; self.offerOverrides = offerOverrides
+        self.closedAt = closedAt; self.pricedAt = pricedAt; self.reviewRequired = reviewRequired
     }
 
     var remainingMinorUnits: Int64 { profile.budgetMinorUnits - totalMinorUnits }

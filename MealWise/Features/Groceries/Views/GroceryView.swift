@@ -13,14 +13,16 @@ struct GroceryView: View {
         NavigationStack {
             List {
                 Section {
-                    LabeledContent("Additional estimated checkout", value: (try? CartCalculator.total(viewModel.plan.cart))?.currency ?? String(localized: "Unavailable")).font(.headline)
+                    LabeledContent(viewModel.plan.closedAt == nil ? "Additional estimated checkout" : "Unpurchased forecast at close", value: (try? CartCalculator.total(viewModel.plan.cart))?.currency ?? String(localized: "Unavailable")).font(.headline)
                     LabeledContent("Budget", value: viewModel.plan.profile.budgetMinorUnits.currency)
                     Text("\(viewModel.checked.count) of \(viewModel.plan.cart.filter { $0.packageCount > 0 }.count) items checked")
                     DevelopmentNotice()
                 }
                 if let services = session.services {
                     Section {
-                        NavigationLink("Start shopping") { ShoppingView(planID: viewModel.plan.id, service: services.shopping) }
+                        if viewModel.plan.closedAt == nil {
+                            NavigationLink("Start shopping") { ShoppingView(planID: viewModel.plan.id, service: services.shopping) }
+                        } else { Text("This cycle is finished. Its unpurchased forecast is historical; plan a new week in Pantry.") }
                         NavigationLink("Shopping history") { ShoppingHistoryView(planID: viewModel.plan.id, service: services.shopping) }
                     }
                 }
@@ -37,7 +39,7 @@ struct GroceryView: View {
                         Button("Retry") { reload += 1 }.frame(minHeight: 44)
                     }
                 }
-                ForEach(viewModel.sections) { section in
+                ForEach(viewModel.plan.closedAt == nil ? viewModel.sections : []) { section in
                     Section(LocalizedStringKey(section.category.title)) {
                         ForEach(section.rows) { row in groceryRow(row) }
                     }

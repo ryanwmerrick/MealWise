@@ -8,7 +8,24 @@ actor PlanService: PlanServiceProtocol {
         self.clock = clock
     }
 
-    func generate(_ request: PlanRequest) async throws -> PlanOutcome {
+    func generate(_ input: PlanRequest) async throws -> PlanOutcome {
+        let now = clock()
+        var resources = input.resources
+        if !input.confirmedStock.isEmpty {
+            guard resources == nil else { return .invalidInputs }
+            var credits: [PantryCredit] = []
+            for item in input.confirmedStock {
+                try item.validate(catalog: input.catalog)
+                if item.availabilityConfirmed, item.availableQuantity > 0, item.expiry.map({ $0 >= now }) ?? true {
+                    credits.append(PantryCredit(id: item.id, ingredientID: item.ingredientID, unit: item.unit, sourceRevision: item.revision,
+                                                originalQuantity: item.availableQuantity, remainingQuantity: item.availableQuantity,
+                                                storage: item.storage, expiry: item.expiry, availabilityConfirmed: true))
+                }
+            }
+            resources = PlanResources(pantryCredits: credits)
+        }
+        let request = PlanRequest(profile: input.profile, catalog: input.catalog, excludedRecipeIDs: input.excludedRecipeIDs,
+                                  fixedMeals: input.fixedMeals, avoidMeals: input.avoidMeals, resources: resources, offerOverrides: input.offerOverrides)
         try Task.checkCancellation()
         do { try request.profile.validate() } catch { return .invalidInputs }
         do {
@@ -33,11 +50,24 @@ actor PlanService: PlanServiceProtocol {
             }
         }
         guard candidates.allSatisfy({ !$0.isEmpty }) else { return .noFeasiblePlan }
-        var search = PlanSearch(request: request, slots: slots, candidates: candidates, limit: nodeLimit)
+        var search = PlanSearch(request: request, pricedAt: now, slots: slots, candidates: candidates, limit: nodeLimit)
         try search.visit([])
         guard let best = search.best else { return search.limitReached ? .searchLimit : .noFeasiblePlan }
+        var finalResources = request.resources
+        if !input.confirmedStock.isEmpty, var current = finalResources {
+            let forecast = try StockAccounting.forecast(meals: best.meals, profile: request.profile, catalog: request.catalog, resources: current, at: now)
+            current.pantryCredits = current.pantryCredits?.compactMap { credit in
+                guard let used = forecast.creditUse[credit.id], used > 0 else { return nil }
+                return PantryCredit(id: credit.id, ingredientID: credit.ingredientID, unit: credit.unit, sourceRevision: credit.sourceRevision,
+                                    originalQuantity: used, remainingQuantity: used, storage: credit.storage, expiry: credit.expiry, availabilityConfirmed: true)
+            }
+            finalResources = current
+        }
+        let finalCart = try CartCalculator.calculate(CartRequest(meals: best.meals, profile: request.profile, catalog: request.catalog,
+                                                                resources: finalResources, offerOverrides: request.offerOverrides, pricedAt: now))
         let plan = WeeklyPlan(id: UUID(), revision: UUID(), profile: request.profile, catalog: request.catalog,
-                              meals: best.meals, cart: best.cart, totalMinorUnits: best.cost, resources: request.resources, offerOverrides: request.offerOverrides)
+                              meals: best.meals, cart: finalCart.items, totalMinorUnits: finalCart.totalMinorUnits, resources: finalResources,
+                              offerOverrides: request.offerOverrides, pricedAt: now)
         try PlanValidation.validate(plan)
         return .feasible(plan)
     }
@@ -59,6 +89,7 @@ actor PlanService: PlanServiceProtocol {
 
 private struct PlanSearch {
     let request: PlanRequest
+    let pricedAt: Date
     let slots: [(Date, MealSlot)]
     let candidates: [[Recipe]]
     let limit: Int
@@ -70,7 +101,7 @@ private struct PlanSearch {
         try Task.checkCancellation()
         guard nodes < limit else { limitReached = true; return }
         nodes += 1
-        let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog, resources: request.resources, offerOverrides: request.offerOverrides))
+        let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog, resources: request.resources, offerOverrides: request.offerOverrides, pricedAt: pricedAt))
         let cart = priced.items
         let cost = priced.totalMinorUnits
         guard cost <= request.profile.budgetMinorUnits else { return }
@@ -79,7 +110,7 @@ private struct PlanSearch {
             let unchanged = meals.filter { meal in
                 request.avoidMeals.contains { $0.date == meal.date && $0.slot == meal.slot && $0.recipeID == meal.recipeID }
             }.count
-            let waste = unusedPackageValue(cart)
+            let waste = try unusedPackageValue(cart, meals: meals)
             if best == nil || unchanged < best!.unchanged ||
                 (unchanged == best!.unchanged && repeats < best!.repeats) ||
                 (repeats == best!.repeats && unchanged == best!.unchanged && cost < best!.cost) ||
@@ -97,12 +128,13 @@ private struct PlanSearch {
         }
     }
 
-    private func unusedPackageValue(_ cart: [CartItem]) -> Decimal {
-        cart.reduce(Decimal(0)) { sum, item in
+    private func unusedPackageValue(_ cart: [CartItem], meals: [ScheduledMeal]) throws -> Decimal {
+        let net = try StockAccounting.forecast(meals: meals, profile: request.profile, catalog: request.catalog, resources: request.resources, at: pricedAt).net
+        return cart.reduce(Decimal(0)) { sum, item in
             guard let offer = request.catalog.offers.first(where: { $0.id == item.offerID }) else { return sum }
             let purchased = Decimal(item.packageCount) * Decimal(offer.packageQuantity)
             guard purchased > 0 else { return sum }
-            return sum + Decimal(item.costMinorUnits) * (purchased - Decimal(item.requiredQuantity)) / purchased
+            return sum + Decimal(item.costMinorUnits) * (purchased - Decimal(net[item.id] ?? 0)) / purchased
         }
     }
 }
@@ -126,9 +158,9 @@ enum PlanValidation {
                 }
             }
         }
-        let cart = try CartCalculator.calculate(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides)
+        let cart = try CartCalculator.calculate(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides, at: plan.pricedAt ?? .distantPast)
         let total = try checkedSum(CartCalculator.total(cart), plan.resources?.committedMinorUnits ?? 0)
-        guard cart == plan.cart, total == plan.totalMinorUnits, (total <= plan.profile.budgetMinorUnits || plan.resources?.purchases.isEmpty == false) else {
+        guard cart == plan.cart, total == plan.totalMinorUnits, (total <= plan.profile.budgetMinorUnits || plan.resources?.purchases.isEmpty == false || plan.reviewRequired == true) else {
             throw PlanningError.invalidPlan
         }
     }

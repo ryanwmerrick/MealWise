@@ -40,18 +40,17 @@ extension PlanRepository {
         let context = ModelContext(container); context.autosaveEnabled = false
         let documents = try context.fetch(FetchDescriptor<StoredDocument>())
         let (document, plan, meal, recipe) = try cookingSnapshot(documents, planID: planID, mealID: mealID)
+        guard plan.closedAt == nil else { throw PantryError.cycleClosed }
         if plan.cookedRecord(for: mealID) != nil { return }
         guard expectedRevision == nil || expectedRevision == plan.revision else { throw CookingError.staleMeal }
-        var resources = plan.resources ?? PlanResources()
+        let allocation = try StockAccounting.allocateConsumption(recipe: recipe, profile: plan.profile, resources: plan.resources ?? PlanResources(), at: date)
+        var resources = allocation.0
         var records = resources.cookedMeals ?? []
-        records.append(CookedMealRecord(meal: meal, profile: plan.profile, recipe: recipe, completedAt: date))
+        records.append(CookedMealRecord(meal: meal, profile: plan.profile, recipe: recipe, completedAt: date, stockDebits: allocation.1))
         resources.cookedMeals = records
         try resources.validate(catalog: plan.catalog)
-        let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog,
-                                                              resources: resources, offerOverrides: plan.offerOverrides))
-        let updated = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog, meals: plan.meals,
-                                 cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: resources, offerOverrides: plan.offerOverrides)
-        try PlanValidation.validate(updated)
+        try applyPantryDebits(allocation.1, planID: planID, catalog: plan.catalog, documents: documents, context: context)
+        let updated = try repricedPlan(plan, resources: resources, at: date)
         document.payload = try JSONEncoder().encode(updated)
         let key = cookingKey(planID, mealID)
         if let progressDocument = documents.first(where: { $0.key == key }) {
@@ -74,6 +73,7 @@ extension PlanRepository {
         let context = ModelContext(container); context.autosaveEnabled = false
         let documents = try context.fetch(FetchDescriptor<StoredDocument>())
         let (_, plan, _, recipe) = try cookingSnapshot(documents, planID: planID, mealID: mealID)
+        guard plan.closedAt == nil else { throw PantryError.cycleClosed }
         guard plan.cookedRecord(for: mealID) == nil else { throw CookingError.alreadyCooked }
         guard expectedRecipeID == nil || expectedRecipeID == recipe.id else { throw CookingError.staleMeal }
         var progress = try readCookingProgress(documents, planID: planID, mealID: mealID, recipe: recipe)

@@ -59,7 +59,7 @@ struct IngredientAllocationService: IngredientAllocationServiceProtocol {
     func allocate(plan: WeeklyPlan) throws -> IngredientAllocationReport {
         try PlanValidation.validate(plan)
         let ordered = plan.meals.sorted { $0.date == $1.date ? $0.slot.order < $1.slot.order : $0.date < $1.date }
-        let items = try plan.cart.map { cart in
+        let items = try plan.cart.compactMap { cart -> IngredientAllocation? in
             guard let ingredient = plan.catalog.ingredients.first(where: { $0.id == cart.ingredientID }),
                   let offer = plan.catalog.offers.first(where: { $0.id == cart.offerID }) else { throw PlanningError.missingIngredient }
             let purchased = cart.packageCount.multipliedReportingOverflow(by: offer.packageQuantity)
@@ -76,10 +76,12 @@ struct IngredientAllocationService: IngredientAllocationServiceProtocol {
                 guard !next.overflow else { throw PlanningError.overflow }
                 return next.partialValue
             }
-            guard allocated == cart.requiredQuantity, try checkedSum(purchased.partialValue, plan.resources?.quantity(for: ingredient.id) ?? 0) >= allocated else { throw PlanningError.invalidPlan }
-            let available = try checkedSum(purchased.partialValue, plan.resources?.quantity(for: ingredient.id) ?? 0)
+            guard allocated == cart.requiredQuantity, try checkedSum(purchased.partialValue, StockAccounting.receivedQuantity(resources: plan.resources, ingredientID: ingredient.id, at: plan.pricedAt ?? .distantPast)) >= allocated else { throw PlanningError.invalidPlan }
+            let available = try checkedSum(purchased.partialValue, StockAccounting.receivedQuantity(resources: plan.resources, ingredientID: ingredient.id, at: plan.pricedAt ?? .distantPast))
+            guard available > 0 else { return nil }
             let remaining = available - allocated
-            let status: AllocationStatus = remaining == 0 ? .fullyUsed : (ingredient.storage == .shelfStable ? .carryOver : .needsAttention)
+            let expiresDuringCycle = plan.resources?.pantryCredits?.contains { $0.ingredientID == ingredient.id && $0.remainingQuantity > 0 && ($0.expiry.map { $0 < (plan.profile.days.max() ?? .distantPast) } ?? false) } ?? false
+            let status: AllocationStatus = remaining == 0 ? .fullyUsed : (ingredient.storage == .shelfStable && !expiresDuringCycle ? .carryOver : .needsAttention)
             return IngredientAllocation(id: ingredient.id, name: ingredient.name, unit: ingredient.unit,
                                         purchasedQuantity: available, remainingQuantity: remaining,
                                         packageCount: cart.packageCount + (plan.resources?.purchases.filter { $0.ingredientID == ingredient.id }.reduce(0) { $0 + $1.packageCount } ?? 0), priceMinorUnits: try checkedSum(cart.costMinorUnits, plan.resources?.purchases.filter { $0.ingredientID == ingredient.id }.reduce(0) { $0 + ($1.actualMinorUnits ?? $1.estimatedMinorUnits) } ?? 0),

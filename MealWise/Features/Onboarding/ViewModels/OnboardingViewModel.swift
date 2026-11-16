@@ -18,14 +18,16 @@ final class OnboardingViewModel: ObservableObject {
     private let services: AppServices
     private let today: Date
     private let basePlan: WeeklyPlan?
+    let nextCycle: WeeklyPlan?
+    private let planningCatalog: RecipeCatalog
     private var changePreview: PlanChangePreview?
 
-    init(profile: PlanningProfile, services: AppServices, now: Date = .now, basePlan: WeeklyPlan? = nil) {
+    init(profile: PlanningProfile, services: AppServices, now: Date = .now, basePlan: WeeklyPlan? = nil, nextCycle: WeeklyPlan? = nil, planningCatalog: RecipeCatalog? = nil) {
         self.profile = profile
         self.budgetText = NSDecimalNumber(decimal: Decimal(profile.budgetMinorUnits) / 100).stringValue
         self.services = services
         self.today = now
-        self.basePlan = basePlan
+        self.basePlan = basePlan; self.nextCycle = nextCycle; self.planningCatalog = planningCatalog ?? services.catalog
     }
 
     var canContinue: Bool {
@@ -35,7 +37,12 @@ final class OnboardingViewModel: ObservableObject {
     var selectableDates: [Date] {
         let start = Calendar.current.startOfDay(for: today)
         let upcoming = (0..<7).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: start) }
-        return Array(Set(upcoming + profile.days)).sorted()
+        var byLocalDay: [Date: Date] = [:]
+        for date in profile.days + upcoming {
+            let day = Calendar.autoupdatingCurrent.startOfDay(for: date)
+            if byLocalDay[day] == nil { byLocalDay[day] = date }
+        }
+        return byLocalDay.values.sorted()
     }
 
     static func defaultProfile() -> PlanningProfile {
@@ -104,7 +111,8 @@ final class OnboardingViewModel: ObservableObject {
                 return
             }
             let excluded = try await services.preferences.loadExcludedRecipeIDs()
-            let result = try await services.planner.generate(PlanRequest(profile: profile, catalog: services.catalog, excludedRecipeIDs: excluded))
+            let stock = try await services.pantry.loadItems()
+            let result = try await services.planner.generate(PlanRequest(profile: profile, catalog: planningCatalog, excludedRecipeIDs: excluded, confirmedStock: stock))
             switch result {
             case .feasible(let plan): preview = plan
             case .invalidInputs: errorMessage = "Check your budget, household, selected meals and price dates, then try again."
@@ -116,11 +124,15 @@ final class OnboardingViewModel: ObservableObject {
     }
 
     func acceptPreview() async -> WeeklyPlan? {
-        guard let preview else { return nil }
+        guard let preview, !isBuilding else { return nil }
+        isBuilding = true; defer { isBuilding = false }
         do {
             let accepted: WeeklyPlan
             if let changePreview {
                 accepted = try await services.changes.accept(changePreview, expectedRevision: changePreview.baseRevision)
+            } else if let nextCycle {
+                try await services.cycles.accept(preview, expectedPreviousRevision: nextCycle.revision)
+                accepted = preview
             } else {
                 try await services.plans.saveActivePlan(preview)
                 accepted = preview

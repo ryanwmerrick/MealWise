@@ -19,6 +19,7 @@ final class SwapBudgetUITests: XCTestCase {
         XCTAssertNotEqual(app.buttons.matching(identifier: "week.meal").firstMatch.label, original)
         let budgetBefore = app.buttons["week.budget"].label
         app.buttons["week.budget"].tap()
+        reveal(app.buttons["Adjust budget"], in: app)
         app.buttons["Adjust budget"].tap()
         app.buttons["adjust.preset.40"].tap()
         app.buttons["Preview budget"].tap()
@@ -27,6 +28,7 @@ final class SwapBudgetUITests: XCTestCase {
         app.buttons["Done"].tap()
         XCTAssertEqual(app.buttons["week.budget"].label, budgetBefore)
         app.buttons["week.budget"].tap()
+        reveal(app.buttons["Adjust budget"], in: app)
         app.buttons["Adjust budget"].tap()
         app.buttons["adjust.preset.55"].tap()
         app.buttons["Preview budget"].tap()

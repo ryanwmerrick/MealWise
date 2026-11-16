@@ -119,9 +119,9 @@ extension PlanRepository {
                                                      quantity: quantity.partialValue, packageCount: line.packageCount,
                                                      actualMinorUnits: line.actualMinorUnits, estimatedMinorUnits: line.estimatedMinorUnits))
         }
-        let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: resources, offerOverrides: plan.offerOverrides))
+        let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: .now))
         let updated = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
-                                 meals: plan.meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: resources, offerOverrides: plan.offerOverrides)
+                                 meals: plan.meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: .now)
         try PlanValidation.validate(updated) // Real overspend is retained, rather than rejected or hidden.
         var trip = original; trip.finishedAt = .now
         let summary = ShoppingSummary(trip: trip)
@@ -150,6 +150,7 @@ extension PlanRepository {
         let plan = try JSONDecoder().decode(WeeklyPlan.self, from: document.payload)
         guard plan.id == id else { throw ShoppingError.staleTrip }
         try PlanValidation.validate(plan)
+        guard plan.closedAt == nil else { throw PantryError.cycleClosed }
         return plan
     }
     private func draft(_ id: UUID, documents: [StoredDocument]) throws -> (StoredDocument, ShoppingTrip) {

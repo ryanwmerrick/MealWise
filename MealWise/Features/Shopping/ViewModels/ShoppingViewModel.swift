@@ -21,6 +21,10 @@ final class ShoppingViewModel: ObservableObject {
         } catch is CancellationError { return }
         catch { errorMessage = "Shopping could not be opened. Return to the current grocery list and retry." }
     }
+    func loadHistory() async {
+        do { summaries = try await service.history(planID: planID); errorMessage = nil }
+        catch { errorMessage = "Shopping history could not be loaded. Please retry." }
+    }
     func toggle(_ line: ShoppingLine) async {
         guard let trip, !isWorking else { return }
         isWorking = true; defer { isWorking = false }

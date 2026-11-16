@@ -43,6 +43,10 @@ Complete. Full build/test passes with 65 unit and ten UI tests. Shopping, partia
 
 Complete. Full build/test passes with 70 unit and 13 UI tests. Today, full-screen cooking, persisted steps/deadlines, confirmed consumption, frozen cooked portions and rescheduling previews are implemented. Reset archives preserve history, and weekly averages respect per-meal portions. See [verification](phase-8-verification.md) for accessibility evidence and recorded limitations.
 
+## Phase 9 — wrap-up and pantry
+
+Complete. Full build/test passes with 78 unit and 15 UI tests. Local cycle, confirmed inventory, reservation updates, next-week setup, receipt-estimate review and same-meal savings are implemented. The strengthened two-week test verifies checked carryover, stock use after relaunch and historical receipts. See [verification](phase-9-verification.md).
+
 ## Approved later-phase decisions
 
 User approved [remaining-cycle rules](remaining-cycle-policy.md) for Phases 5–9 and selected CloudKit with the user's iCloud account for Phase 10. Developer/iCloud configuration and device verification are still required for actual sync/release readiness.

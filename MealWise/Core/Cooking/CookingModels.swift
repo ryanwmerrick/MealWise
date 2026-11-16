@@ -5,6 +5,7 @@ struct CookedMealRecord: Codable, Equatable, Sendable, Identifiable {
     let profile: PlanningProfile
     let recipe: Recipe
     let completedAt: Date
+    var stockDebits: [StockDebit]? = nil
     var id: UUID { meal.id }
 }
 

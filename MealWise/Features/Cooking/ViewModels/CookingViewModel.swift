@@ -23,16 +23,13 @@ final class CookingViewModel: ObservableObject {
             let detail = try PlanCostBreakdown.detail(plan: plan, mealID: mealID)
             let progress = try await services.cooking.loadProgress(mealID: mealID, planID: planID)
             let notes = try IngredientAllocationService().allocate(plan: plan).reservations(after: meal)
-            var resources = plan.resources ?? PlanResources()
-            if plan.cookedRecord(for: mealID) == nil,
-               let recipe = plan.catalog.recipes.first(where: { $0.id == meal.recipeID }) {
-                var records = resources.cookedMeals ?? []
-                records.append(CookedMealRecord(meal: meal, profile: plan.profile, recipe: recipe, completedAt: .now))
-                resources.cookedMeals = records
-            }
             let hasStock: Bool
-            do { try resources.validate(catalog: plan.catalog); hasStock = true }
-            catch CookingError.insufficientStock { hasStock = false }
+            do {
+                if plan.cookedRecord(for: mealID) == nil, let recipe = plan.catalog.recipes.first(where: { $0.id == meal.recipeID }) {
+                    _ = try StockAccounting.allocateConsumption(recipe: recipe, profile: plan.profile, resources: plan.resources ?? PlanResources(), at: .now)
+                }
+                hasStock = plan.closedAt == nil
+            } catch CookingError.insufficientStock { hasStock = false }
             try Task.checkCancellation()
             self.plan = plan; self.detail = detail; self.progress = progress; self.notes = notes; self.hasStock = hasStock; errorMessage = nil
         } catch is CancellationError { return }

@@ -9,8 +9,8 @@ struct OnboardingView: View {
     @ScaledMetric(relativeTo: .body) private var presetWidth = 72
     let isEditing: Bool
 
-    init(profile: PlanningProfile, services: AppServices, isEditing: Bool = false, basePlan: WeeklyPlan? = nil) {
-        _viewModel = StateObject(wrappedValue: OnboardingViewModel(profile: profile, services: services, basePlan: basePlan))
+    init(profile: PlanningProfile, services: AppServices, isEditing: Bool = false, basePlan: WeeklyPlan? = nil, nextCycle: WeeklyPlan? = nil, planningCatalog: RecipeCatalog? = nil) {
+        _viewModel = StateObject(wrappedValue: OnboardingViewModel(profile: profile, services: services, now: nextCycle == nil ? .now : (profile.days.min() ?? .now), basePlan: basePlan, nextCycle: nextCycle, planningCatalog: planningCatalog))
         self.isEditing = isEditing
     }
 
@@ -239,13 +239,31 @@ struct OnboardingView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Review your new plan").font(.largeTitle.bold())
-                if let current = session.plan {
+                if let current = session.plan, viewModel.nextCycle == nil {
                     LabeledContent("Current estimate", value: current.totalMinorUnits.currency)
                 }
                 LabeledContent("New estimate", value: preview.totalMinorUnits.currency)
                 LabeledContent("New budget", value: preview.profile.budgetMinorUnits.currency)
                 LabeledContent("Remaining", value: preview.remainingMinorUnits.currency)
-                Text("Accepting replaces your current planned week. Your new estimate stays within the selected budget.")
+                if viewModel.nextCycle != nil {
+                    Text("Accepting starts a separate cycle. Completed history is preserved, and confirmed stock is reserved once.")
+                    if let savings = try? PantrySavings.estimate(plan: preview) { LabeledContent("Estimated package savings from pantry", value: savings.currency) }
+                    DisclosureGroup("Review stock used") {
+                        ForEach(preview.resources?.pantryCredits ?? []) { credit in
+                            LabeledContent { Text(QuantityFormatting.display(amount: credit.remainingQuantity, unit: credit.unit)) }
+                                label: { Text(LocalizedStringKey(preview.catalog.ingredients.first { $0.id == credit.ingredientID }?.name ?? "Ingredient")) }
+                                .accessibilityIdentifier("next.stock.credit")
+                        }
+                    }
+                } else { Text("Accepting replaces your current planned week. Your new estimate stays within the selected budget.") }
+                DisclosureGroup("Review dates and meals") {
+                    ForEach(preview.meals) { meal in
+                        VStack(alignment: .leading) {
+                            Text(meal.date, format: .dateTime.weekday().month().day())
+                            Text(LocalizedStringKey(preview.catalog.recipes.first { $0.id == meal.recipeID }?.title ?? "Meal"))
+                        }.padding(.vertical, 6)
+                    }
+                }
                 if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
                 Button("Accept new plan") { Task { await accept() } }.buttonStyle(MealWiseButtonStyle())
                 Button("Edit answers") { viewModel.edit(7) }.buttonStyle(MealWiseButtonStyle(kind: .secondary))

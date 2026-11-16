@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Phase 1 contains navigation foundations; later phases supply committed plan content.
+/// Tabs share one committed cycle snapshot.
 struct MainTabView: View {
     @Environment(AppSession.self) private var session
     @State private var selectedTab = 0
@@ -18,23 +18,14 @@ struct MainTabView: View {
                 if let plan = session.plan, let services = session.services { TodayView(plan: plan, services: services).id(plan.revision) }
             }
             Tab("Pantry", image: "IconPantry", value: 3) {
-                emptyState("Your pantry is empty", detail: "Confirmed ingredients left over from a week will appear here.", icon: "IconPantry")
+                if let plan = session.plan, let services = session.services { PantryView(plan: plan, services: services).id(plan.revision) }
             }
         }
         .onChange(of: selectedTab) { Task { await session.refreshPlan() } }
         .navigationBarBackButtonHidden()
     }
 
-    private func emptyState(_ title: LocalizedStringKey, detail: LocalizedStringKey, icon: String) -> some View {
-        ContentUnavailableView {
-            Label { Text(title) } icon: { Image(icon) }
-        } description: {
-            Text(detail)
-        }
-        .foregroundStyle(DesignTokens.textPrimary)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(DesignTokens.surface)
-    }
+
 }
 
 #Preview { MainTabView().environment(AppSession()) }

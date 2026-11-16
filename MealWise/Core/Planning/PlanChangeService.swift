@@ -72,6 +72,7 @@ actor PlanChangeService: PlanChangeServiceProtocol {
     func preview(_ change: PlanChange, in plan: WeeklyPlan) async throws -> PlanChangePreview {
         try Task.checkCancellation()
         try PlanValidation.validate(plan)
+        guard plan.closedAt == nil else { throw PantryError.cycleClosed }
         try CatalogValidator.validate(plan.catalog, allowDevelopment: true, now: clock())
         let excluded = try await preferences.loadExcludedRecipeIDs()
         if case .move(let mealID, let date) = change {
@@ -83,8 +84,9 @@ actor PlanChangeService: PlanChangeServiceProtocol {
                 ScheduledMeal(id: meal.id, date: meal.id == original.id ? other.date : (meal.id == other.id ? original.date : meal.date),
                               slot: meal.slot, recipeID: meal.recipeID)
             }
+            let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock()))
             let proposed = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog, meals: meals,
-                                      cart: plan.cart, totalMinorUnits: plan.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides)
+                                      cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock())
             try PlanValidation.validate(proposed)
             return makePreview(base: plan, proposed: proposed, constraint: proposed.remainingMinorUnits >= 0 ? .feasible : .overBudget)
         }
@@ -95,10 +97,10 @@ actor PlanChangeService: PlanChangeServiceProtocol {
                   offerID != item.offerID else { throw PlanChangeError.invalidTarget }
             var overrides = plan.offerOverrides ?? [:]; overrides[ingredientID] = offerID
             let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog,
-                                                                  resources: plan.resources, offerOverrides: overrides))
+                                                                  resources: plan.resources, offerOverrides: overrides, pricedAt: clock()))
             let proposed = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
                                       meals: plan.meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits,
-                                      resources: plan.resources, offerOverrides: overrides)
+                                      resources: plan.resources, offerOverrides: overrides, pricedAt: clock())
             return makePreview(base: plan, proposed: proposed, constraint: proposed.remainingMinorUnits >= 0 ? .feasible : .overBudget)
         }
         if case .swap(let mealID, let recipeID) = change {
@@ -112,9 +114,9 @@ actor PlanChangeService: PlanChangeServiceProtocol {
             let meals = plan.meals.map { meal in
                 meal.id == mealID ? ScheduledMeal(id: meal.id, date: meal.date, slot: meal.slot, recipeID: recipeID) : meal
             }
-            let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides))
+            let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock()))
             let proposed = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
-                                      meals: meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides)
+                                      meals: meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock())
             return makePreview(base: plan, proposed: proposed,
                                constraint: priced.totalMinorUnits <= plan.profile.budgetMinorUnits ? .feasible : .overBudget)
         }
@@ -138,7 +140,7 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         case .feasible(let generated):
             let proposed = WeeklyPlan(id: plan.id, revision: generated.revision, profile: generated.profile,
                                       catalog: generated.catalog, meals: generated.meals, cart: generated.cart,
-                                      totalMinorUnits: generated.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides)
+                                      totalMinorUnits: generated.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: generated.pricedAt)
             let unchanged = proposed.profile == plan.profile && proposed.meals.allSatisfy { meal in
                 plan.meals.contains { $0.date == meal.date && $0.slot == meal.slot && $0.recipeID == meal.recipeID }
             }
@@ -158,6 +160,9 @@ actor PlanChangeService: PlanChangeServiceProtocol {
               proposed.id == preview.basePlanID else { throw PlanChangeError.infeasible }
         try CatalogValidator.validate(proposed.catalog, allowDevelopment: true, now: clock())
         try PlanValidation.validate(proposed)
+        let current = try CartCalculator.calculate(CartRequest(meals: proposed.meals, profile: proposed.profile, catalog: proposed.catalog,
+                                                               resources: proposed.resources, offerOverrides: proposed.offerOverrides, pricedAt: clock()))
+        guard current.items == proposed.cart else { throw PlanChangeError.stalePreview }
         guard proposed.totalMinorUnits <= proposed.profile.budgetMinorUnits else { throw PlanChangeError.infeasible }
         let excluded = try await preferences.loadExcludedRecipeIDs()
         guard proposed.meals.filter({ preview.changedMealIDs.contains($0.id) }).allSatisfy({ !excluded.contains($0.recipeID) }) else {

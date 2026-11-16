@@ -29,6 +29,26 @@ struct OnboardingTests {
         #expect(session.draft?.budgetMinorUnits == 5500)
     }
 
+    @Test func nextWeekRestoresItsSavedAnswers() async throws {
+        let dependencies = try await services()
+        guard case .feasible(let plan) = try await dependencies.planner.generate(PlanRequest(profile: .fixture, catalog: dependencies.catalog)) else { throw PlanningError.invalidPlan }
+        let closed = WeeklyPlan(id: plan.id, revision: plan.revision, profile: plan.profile, catalog: plan.catalog, meals: plan.meals, cart: plan.cart, totalMinorUnits: plan.totalMinorUnits, closedAt: plan.profile.days[0])
+        var draft = plan.profile
+        draft.days = draft.days.compactMap { Calendar.autoupdatingCurrent.date(byAdding: .weekOfYear, value: 1, to: $0) }
+        draft.budgetMinorUnits = 5500
+        try await dependencies.profiles.saveProfile(draft)
+        let next = NextWeekViewModel(plan: closed, services: dependencies, clock: { Date(timeIntervalSince1970: 1794528000) })
+        await next.load()
+        #expect(next.profile == draft)
+    }
+
+    @Test func dateChoicesDoNotDuplicateSelectedLocalDays() async throws {
+        let profile = PlanningProfile.fixture
+        let model = OnboardingViewModel(profile: profile, services: try await services(), now: profile.days[0])
+        let localDays = model.selectableDates.map { Calendar.autoupdatingCurrent.startOfDay(for: $0) }
+        #expect(Set(localDays).count == localDays.count)
+    }
+
     @Test func previouslySelectedDatesRemainEditable() async throws {
         let profile = PlanningProfile.fixture
         let model = OnboardingViewModel(profile: profile, services: try await services(), now: profile.days[0].addingTimeInterval(10 * 86400))
@@ -72,7 +92,7 @@ struct OnboardingTests {
         let localPlans = PlanRepository(container: container)
         let changes = PlanChangeService(plans: localPlans, planner: PlanService(), preferences: MealPreferenceRepository(container: container))
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container),
-                           plans: plans ?? PlanRepository(container: container), planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), checklist: ChecklistRepository(container: container), preferences: MealPreferenceRepository(container: container), shopping: ShoppingService(plans: localPlans), cooking: CookingService(plans: localPlans, changes: changes), timers: TimerService(plans: localPlans))
+                           plans: plans ?? localPlans, planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), checklist: ChecklistRepository(container: container), preferences: MealPreferenceRepository(container: container), shopping: ShoppingService(plans: localPlans), cooking: CookingService(plans: localPlans, changes: changes), timers: TimerService(plans: localPlans), pantry: PantryRepository(plans: localPlans, catalog: catalog), history: HistoryRepository(plans: localPlans), cycles: NextCycleService(plans: localPlans))
     }
 }
 

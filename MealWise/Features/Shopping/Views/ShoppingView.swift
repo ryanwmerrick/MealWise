@@ -149,7 +149,7 @@ struct ShoppingHistoryView: View {
                 }.accessibilityIdentifier("shopping.history")
             }
             if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-        }.navigationTitle("Shopping history").task { await viewModel.load() }
+        }.navigationTitle("Shopping history").task { await viewModel.loadHistory() }
     }
 }
 

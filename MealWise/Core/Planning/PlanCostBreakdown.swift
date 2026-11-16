@@ -6,6 +6,7 @@ struct CartRequest: Sendable {
     let catalog: RecipeCatalog
     var resources: PlanResources? = nil
     var offerOverrides: [String: String]? = nil
+    var pricedAt: Date = .distantPast
 }
 
 struct PricedCart: Sendable {
@@ -15,7 +16,7 @@ struct PricedCart: Sendable {
 
 extension CartCalculator {
     static func calculate(_ request: CartRequest) throws -> PricedCart {
-        let items = try calculate(meals: request.meals, profile: request.profile, catalog: request.catalog, resources: request.resources, offerOverrides: request.offerOverrides)
+        let items = try calculate(meals: request.meals, profile: request.profile, catalog: request.catalog, resources: request.resources, offerOverrides: request.offerOverrides, at: request.pricedAt)
         return try PricedCart(items: items, totalMinorUnits: checkedSum(total(items), request.resources?.committedMinorUnits ?? 0))
     }
 }
