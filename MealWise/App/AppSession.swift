@@ -48,7 +48,8 @@ actor AppBootstrap: AppBootstrapProtocol {
         }
         let preferences = MealPreferenceRepository(plans: plans)
         #if DEBUG
-        let planner = PlanService(menuProposer: GeminiMenuProposer())
+        let isUITest = ProcessInfo.processInfo.environment["MEALWISE_UI_TEST_STORE"] != nil
+        let planner = PlanService(menuProposer: isUITest ? nil : GeminiMenuProposer())
         #else
         let planner = PlanService()
         #endif
