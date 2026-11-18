@@ -3,6 +3,37 @@ import Testing
 @testable import MealWise
 
 struct PlanChangeTests {
+    @Test func editingLegacyPlanUsesExpandedCatalogWithoutChangingSavedPrices() async throws {
+        let now = Date(timeIntervalSince1970: 1794528000)
+        let latest = try await CatalogService(allowDevelopment: true, now: now).loadCatalog()
+        var json = try #require(JSONSerialization.jsonObject(with: JSONEncoder().encode(latest)) as? [String: Any])
+        json["version"] = "legacy-development"
+        json["recipes"] = Array(try #require(json["recipes"] as? [[String: Any]]).prefix(12))
+        var ingredients = Array(try #require(json["ingredients"] as? [[String: Any]]).prefix(19))
+        for index in ingredients.indices { ingredients[index].removeValue(forKey: "developmentAllergensReviewed") }
+        json["ingredients"] = ingredients
+        var offers = Array(try #require(json["offers"] as? [[String: Any]]).prefix(19))
+        offers[0]["priceMinorUnits"] = 321
+        json["offers"] = offers
+        let legacy = try JSONDecoder().decode(RecipeCatalog.self, from: JSONSerialization.data(withJSONObject: json))
+        let (plan, plans, preferences, _) = try await setup(override: legacy)
+        let service = PlanChangeService(plans: plans, planner: PlanService(clock: { now }),
+                                        preferences: preferences, clock: { now }, latestCatalog: latest)
+        var profile = plan.profile
+        profile.cookingTime = .fifteen
+        profile.allergies = Set(Allergen.allCases)
+        profile.preferences = Set(DietPreference.allCases)
+        let preview = try await service.preview(.profile(profile), in: plan)
+        #expect(preview.constraint == .feasible)
+        let proposed = try #require(preview.proposedPlan)
+        #expect(proposed.catalog.recipes.count == 33)
+        #expect(proposed.catalog.offers.first?.priceMinorUnits == 321)
+        #expect(try await plans.loadActivePlan() == plan)
+        let accepted = try await service.accept(preview, expectedRevision: plan.revision)
+        #expect(accepted.profile.allergies == Set(Allergen.allCases))
+        #expect(try await plans.loadActivePlan() == accepted)
+    }
+
     @Test func lowerConsumptionCostCanRequireMoreCheckoutSpending() async throws {
         let original = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
         var json = try #require(JSONSerialization.jsonObject(with: JSONEncoder().encode(original)) as? [String: Any])

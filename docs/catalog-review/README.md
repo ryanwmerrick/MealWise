@@ -32,3 +32,11 @@ See [development-catalog.json](development-catalog.json) for quantities, numbere
 ## Review requested
 
 Approve or adjust the development-only policy above and recipe/offer structure so Phase 2 can proceed against a clearly labeled synthetic catalog. Identify any recipe, allergen, portion or store changes you want before planner implementation. Actual launch review remains a separate prerequisite; approval of synthetic test inputs does not certify recipes, allergens or prices for real shopping.
+
+## November 17 development expansion
+
+The bundled v4 catalog has 33 recipes, including seven additional beginner recipes per meal slot taking at most 15 minutes. The new meals declare vegan, vegetarian and gluten-free eligibility and avoid all nine modeled allergens. Three synthetic ingredients/offers (rice flakes, split red lentils and mixed vegetables) support porridge, tacos, bowls, soups and skillets. Prices retain the existing development validity window. Recipe times and portions remain untested development estimates.
+
+`developmentAllergensReviewed` explicitly records simulated ingredient declarations for development planning. It is distinct from `allergensVerified`, which remains false for every ingredient. Only a `developmentApproved` catalog with `developmentApproved` ingredients can use these declarations; absent metadata still fails closed. Launch catalogs still require actual verified metadata. Oat recipes remain ineligible for gluten-free selection. Wheat and peanut declarations still exclude their ingredients for matching allergies.
+
+Setup explains that these are simulated filters and that plans are not verified for allergy-safe use. This expansion allows dietary combinations to be exercised in the development app; it does not claim supplier certification or cross-contact safety. Existing saved plans retain their snapshots until a settings change is previewed. A settings preview merges the new development recipes and declarations while preserving existing package offers and prices; accepting the preview commits the expanded catalog.

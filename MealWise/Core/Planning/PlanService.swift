@@ -77,11 +77,12 @@ actor PlanService: PlanServiceProtocol {
         if profile.skill == .beginner && recipe.skill != .beginner { return false }
         if profile.skill == .comfortable && recipe.skill == .experienced { return false }
         let ingredients = recipe.ingredients.compactMap { requirement in catalog.ingredients.first { $0.id == requirement.ingredientID } }
+        let allowDevelopment = catalog.reviewStatus == .developmentApproved
         guard ingredients.count == recipe.ingredients.count,
-              ingredients.allSatisfy({ $0.isSafe(excluding: profile.allergies) }) else { return false }
+              ingredients.allSatisfy({ $0.isSafe(excluding: profile.allergies, allowDevelopment: allowDevelopment) }) else { return false }
         guard profile.preferences.isSubset(of: recipe.dietaryPreferences) else { return false }
         if profile.preferences.contains(.glutenFree) {
-            guard ingredients.allSatisfy({ $0.allergensVerified && !$0.allergens.contains(.wheat) }) else { return false }
+            guard ingredients.allSatisfy({ $0.hasAllergenInformation(allowDevelopment: allowDevelopment) && !$0.allergens.contains(.wheat) }) else { return false }
         }
         return true
     }

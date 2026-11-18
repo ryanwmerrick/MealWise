@@ -116,7 +116,7 @@ final class OnboardingViewModel: ObservableObject {
             switch result {
             case .feasible(let plan): preview = plan
             case .invalidInputs: errorMessage = "Check your budget, household, selected meals and price dates, then try again."
-            case .noFeasiblePlan: errorMessage = "No complete plan fits these choices. Try fewer meals, more time or a higher budget. Allergy requirements will never be relaxed; this development catalog has no supplier-verified allergens."
+            case .noFeasiblePlan: errorMessage = "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference."
             case .searchLimit: errorMessage = "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
             }
         } catch is CancellationError { return }

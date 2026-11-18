@@ -2,6 +2,33 @@ import XCTest
 
 final class OnboardingUITests: XCTestCase {
     @MainActor
+    func testFailedBuildShowsPinnedTopBanner() {
+        let app = XCUIApplication()
+        launchFresh(app)
+        app.buttons["welcome.start"].tap()
+        let budget = app.textFields["setup.budget"]
+        XCTAssertTrue(budget.waitForExistence(timeout: 5))
+        budget.tap()
+        budget.tap(withNumberOfTaps: 3, numberOfTouches: 1)
+        budget.typeText("1")
+        XCTAssertEqual(budget.value as? String, "1")
+        app.buttons["Done"].tap()
+        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        app.buttons["setup.build"].tap()
+        let banner = app.descendants(matching: .any)["setup.error.banner"].firstMatch
+        XCTAssertTrue(banner.waitForExistence(timeout: 30))
+        XCTAssertTrue(banner.isHittable)
+        XCTAssertLessThan(banner.frame.maxY, app.frame.midY)
+        app.swipeUp()
+        XCTAssertTrue(banner.isHittable)
+        XCTAssertLessThan(banner.frame.maxY, app.frame.midY)
+        let capture = XCTAttachment(screenshot: app.screenshot())
+        capture.name = "Pinned plan failure banner"
+        capture.lifetime = .keepAlways
+        add(capture)
+    }
+
+    @MainActor
     func testInvalidBudgetAndSameSessionReentry() {
         let app = XCUIApplication()
         launchFresh(app)

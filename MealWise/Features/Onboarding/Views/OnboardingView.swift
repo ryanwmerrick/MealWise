@@ -6,6 +6,7 @@ struct OnboardingView: View {
     @StateObject private var viewModel: OnboardingViewModel
     @State private var buildRequest: UUID?
     @FocusState private var budgetFocused: Bool
+    @AccessibilityFocusState private var errorFocused: Bool
     @ScaledMetric(relativeTo: .body) private var presetWidth = 72
     let isEditing: Bool
 
@@ -22,6 +23,28 @@ struct OnboardingView: View {
         }
         .background(DesignTokens.surface)
         .navigationBarBackButtonHidden()
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if let error = viewModel.errorMessage {
+                HStack(alignment: .top, spacing: 12) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.title2).accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Your plan needs attention").font(.headline)
+                        Text(LocalizedStringKey(error)).font(.callout)
+                    }
+                    Spacer(minLength: 0)
+                }
+                .foregroundStyle(Color("NoteText"))
+                .padding(18)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color("NoteFill"))
+                .overlay(alignment: .bottom) { Rectangle().fill(Color("NoteText")).frame(height: 2) }
+                .accessibilityElement(children: .combine)
+                .accessibilityIdentifier("setup.error.banner")
+                .accessibilityFocused($errorFocused)
+                .onAppear { errorFocused = true }
+            }
+        }
         .task(id: viewModel.profile) {
             if let saved = await viewModel.saveDraft() { session.rememberDraft(saved) }
         }
@@ -58,10 +81,6 @@ struct OnboardingView: View {
                 VStack(alignment: .leading, spacing: 24) {
                     Text(stepTitle).font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
                     controls
-                    if let error = viewModel.errorMessage {
-                        Text(LocalizedStringKey(error)).foregroundStyle(DesignTokens.textPrimary)
-                            .padding().background(DesignTokens.selection, in: RoundedRectangle(cornerRadius: 18))
-                    }
                 }.padding(22).frame(maxWidth: 600).frame(maxWidth: .infinity)
             }
             Button {
@@ -181,7 +200,7 @@ struct OnboardingView: View {
     private var foodControl: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Allergies").font(.headline)
-            Text("Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans.")
+            Text("Diet and allergy filters use simulated ingredient declarations in this development catalog. Plans are not verified for allergy-safe use; check actual product labels and cross-contact information before cooking.")
                 .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
             ForEach(Allergen.allCases, id: \.self) { allergy in
                 ChoiceRow(title: LocalizedStringKey(allergy.title), isSelected: viewModel.profile.allergies.contains(allergy)) {
@@ -264,7 +283,6 @@ struct OnboardingView: View {
                         }.padding(.vertical, 6)
                     }
                 }
-                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
                 Button("Accept new plan") { Task { await accept() } }.buttonStyle(MealWiseButtonStyle())
                 Button("Edit answers") { viewModel.edit(7) }.buttonStyle(MealWiseButtonStyle(kind: .secondary))
                 if isEditing { Button("Keep current plan") { dismiss() }.frame(minHeight: 44) }

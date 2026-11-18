@@ -45,8 +45,14 @@ struct Ingredient: Codable, Equatable, Sendable, Identifiable {
     let unit: QuantityUnit
     var category: IngredientCategory? = nil
     var storage: StorageKind? = nil
+    // Synthetic ingredient declarations only; never supplier or cross-contact verification.
+    var developmentAllergensReviewed: Bool? = nil
 
-    func isSafe(excluding excluded: Set<Allergen>) -> Bool {
-        excluded.isEmpty || (allergensVerified && allergens.isDisjoint(with: excluded))
+    func hasAllergenInformation(allowDevelopment: Bool = false) -> Bool {
+        allergensVerified || (allowDevelopment && reviewStatus == .developmentApproved && developmentAllergensReviewed == true)
+    }
+
+    func isSafe(excluding excluded: Set<Allergen>, allowDevelopment: Bool = false) -> Bool {
+        excluded.isEmpty || (hasAllergenInformation(allowDevelopment: allowDevelopment) && allergens.isDisjoint(with: excluded))
     }
 }

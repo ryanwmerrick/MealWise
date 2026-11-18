@@ -1,5 +1,5 @@
 {
-  "version": "development-approved-2026-11-14-v3",
+  "version": "development-approved-2026-11-17-v4",
   "reviewStatus": "developmentApproved",
   "currencyCode": "USD",
   "authorship": "Codex development fixture; recipes not cooking-tested",
@@ -26,7 +26,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "apple",
@@ -41,7 +42,8 @@
       },
       "unit": "milligrams",
       "category": "produce",
-      "storage": "fresh"
+      "storage": "fresh",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "banana",
@@ -56,7 +58,8 @@
       },
       "unit": "milligrams",
       "category": "produce",
-      "storage": "fresh"
+      "storage": "fresh",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "cinnamon",
@@ -71,7 +74,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "peanut-butter",
@@ -88,7 +92,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "spinach",
@@ -103,7 +108,8 @@
       },
       "unit": "milligrams",
       "category": "frozen",
-      "storage": "frozen"
+      "storage": "frozen",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "chickpeas",
@@ -118,7 +124,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "openedCan"
+      "storage": "openedCan",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "black-beans",
@@ -133,7 +140,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "openedCan"
+      "storage": "openedCan",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "white-beans",
@@ -148,7 +156,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "openedCan"
+      "storage": "openedCan",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "quick-brown-rice",
@@ -163,7 +172,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "whole-wheat-pasta",
@@ -180,7 +190,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "whole-wheat-couscous",
@@ -197,7 +208,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "corn-tortillas",
@@ -212,7 +224,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "tomatoes",
@@ -227,7 +240,8 @@
       },
       "unit": "milligrams",
       "category": "pantry",
-      "storage": "openedCan"
+      "storage": "openedCan",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "sweet-potato",
@@ -242,7 +256,8 @@
       },
       "unit": "milligrams",
       "category": "produce",
-      "storage": "fresh"
+      "storage": "fresh",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "pepper",
@@ -257,7 +272,8 @@
       },
       "unit": "milligrams",
       "category": "produce",
-      "storage": "fresh"
+      "storage": "fresh",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "onion",
@@ -272,7 +288,8 @@
       },
       "unit": "milligrams",
       "category": "produce",
-      "storage": "fresh"
+      "storage": "fresh",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "oil",
@@ -287,7 +304,8 @@
       },
       "unit": "milliliters",
       "category": "pantry",
-      "storage": "shelfStable"
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
     },
     {
       "id": "cumin",
@@ -302,7 +320,56 @@
       },
       "unit": "milligrams",
       "category": "pantry",
+      "storage": "shelfStable",
+      "developmentAllergensReviewed": true
+    },
+    {
+      "id": "rice-flakes",
+      "name": "Quick-cooking rice flakes",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "pantry",
       "storage": "shelfStable"
+    },
+    {
+      "id": "red-lentils",
+      "name": "Split red lentils",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "pantry",
+      "storage": "shelfStable"
+    },
+    {
+      "id": "mixed-vegetables",
+      "name": "Frozen peas, carrots and green beans",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": true,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "frozen",
+      "storage": "frozen"
     }
   ],
   "offers": [
@@ -547,6 +614,45 @@
       "packageQuantity": 40000,
       "unit": "milligrams",
       "priceMinorUnits": 149,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-rice-flakes",
+      "ingredientID": "rice-flakes",
+      "storeID": "development-grocery",
+      "packageQuantity": 500000,
+      "unit": "milligrams",
+      "priceMinorUnits": 249,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-red-lentils",
+      "ingredientID": "red-lentils",
+      "storeID": "development-grocery",
+      "packageQuantity": 500000,
+      "unit": "milligrams",
+      "priceMinorUnits": 199,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-mixed-vegetables",
+      "ingredientID": "mixed-vegetables",
+      "storeID": "development-grocery",
+      "packageQuantity": 750000,
+      "unit": "milligrams",
+      "priceMinorUnits": 249,
       "currencyCode": "USD",
       "priceDate": "2026-11-13",
       "validThrough": "2026-12-13",
@@ -799,7 +905,8 @@
       },
       "dietaryPreferences": [
         "vegetarian",
-        "vegan"
+        "vegan",
+        "glutenFree"
       ]
     },
     {
@@ -867,7 +974,8 @@
       },
       "dietaryPreferences": [
         "vegetarian",
-        "vegan"
+        "vegan",
+        "glutenFree"
       ]
     },
     {
@@ -930,7 +1038,8 @@
       },
       "dietaryPreferences": [
         "vegetarian",
-        "vegan"
+        "vegan",
+        "glutenFree"
       ]
     },
     {
@@ -1124,7 +1233,8 @@
       },
       "dietaryPreferences": [
         "vegetarian",
-        "vegan"
+        "vegan",
+        "glutenFree"
       ]
     },
     {
@@ -1192,7 +1302,8 @@
       },
       "dietaryPreferences": [
         "vegetarian",
-        "vegan"
+        "vegan",
+        "glutenFree"
       ]
     },
     {
@@ -1328,7 +1439,1387 @@
       },
       "dietaryPreferences": [
         "vegetarian",
-        "vegan"
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "apple-rice-porridge",
+      "title": "Apple cinnamon rice porridge",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "rice-flakes",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "apple",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cinnamon",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Prepare the fruit or vegetables: wash fresh produce, remove cores or peels, and chop into small pieces. Drain and rinse any canned beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Cook the quick-cooking rice flakes in a saucepan with the package-directed amount of tap water. Stir frequently until soft."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the chopped apple and cinnamon. Simmer until the apple softens; add water as needed and serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "banana-rice-porridge",
+      "title": "Banana rice porridge",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "rice-flakes",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "banana",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cinnamon",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Prepare the fruit or vegetables: wash fresh produce, remove cores or peels, and chop into small pieces. Drain and rinse any canned beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Cook the quick-cooking rice flakes in a saucepan with the package-directed amount of tap water. Stir frequently until soft."
+        },
+        {
+          "number": 3,
+          "instruction": "Mash the peeled banana into the cooked flakes, stir in cinnamon and warm through."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "apple-banana-rice",
+      "title": "Apple banana breakfast rice",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "rice-flakes",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "apple",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "banana",
+          "quantity": 80000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Prepare the fruit or vegetables: wash fresh produce, remove cores or peels, and chop into small pieces. Drain and rinse any canned beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Cook the quick-cooking rice flakes in a saucepan with the package-directed amount of tap water. Stir frequently until soft."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the chopped apple and simmer until soft. Top with sliced banana and serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": false,
+        "protein": false,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "spinach-chickpea-rice-porridge",
+      "title": "Savory spinach chickpea porridge",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "rice-flakes",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Prepare the fruit or vegetables: wash fresh produce, remove cores or peels, and chop into small pieces. Drain and rinse any canned beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Cook the quick-cooking rice flakes in a saucepan with the package-directed amount of tap water. Stir frequently until soft."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the frozen spinach, drained chickpeas and oil. Simmer, stirring, until the spinach and beans are steaming hot throughout."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "tomato-white-bean-porridge",
+      "title": "Tomato white bean breakfast porridge",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "rice-flakes",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "white-beans",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Prepare the fruit or vegetables: wash fresh produce, remove cores or peels, and chop into small pieces. Drain and rinse any canned beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Cook the quick-cooking rice flakes in a saucepan with the package-directed amount of tap water. Stir frequently until soft."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the canned tomatoes, drained white beans and cumin. Simmer until steaming hot throughout."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "breakfast-bean-tacos",
+      "title": "Breakfast black bean tacos",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "black-beans",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the beans. Place beans, canned tomatoes and cumin in a saucepan. Simmer for 6\u20138 minutes, stirring, until steaming hot."
+        },
+        {
+          "number": 2,
+          "instruction": "Warm the corn tortillas in a dry skillet, turning until soft."
+        },
+        {
+          "number": 3,
+          "instruction": "Mash some of the beans to thicken the filling, divide between the tortillas and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "breakfast-spinach-beans",
+      "title": "Spinach and white bean breakfast skillet",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "white-beans",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the white beans. Heat the oil in a skillet over medium heat."
+        },
+        {
+          "number": 2,
+          "instruction": "Add frozen spinach, canned tomatoes and beans. Cook for 8\u201310 minutes, stirring and adding a splash of water if needed, until steaming hot throughout."
+        },
+        {
+          "number": 3,
+          "instruction": "Mash a few beans into the sauce and serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "lunch-chickpea-pepper",
+      "title": "Chickpea and pepper skillet",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "lunch-white-bean-vegetables",
+      "title": "White bean vegetable bowl",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "white-beans",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "mixed-vegetables",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "lunch-black-bean-spinach",
+      "title": "Black bean spinach bowl",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "black-beans",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "lunch-mashed-chickpea-tacos",
+      "title": "Mashed chickpea corn tacos",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse chickpeas. Heat in a saucepan with canned tomatoes and cumin for 6\u20138 minutes until steaming hot."
+        },
+        {
+          "number": 2,
+          "instruction": "Mash the chickpeas with a fork, leaving some texture."
+        },
+        {
+          "number": 3,
+          "instruction": "Warm tortillas on both sides in a dry skillet. Fill with the chickpea mixture and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "lunch-lentil-tomato-soup",
+      "title": "Quick red lentil tomato soup",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "red-lentils",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Rinse split red lentils. Bring lentils, canned tomatoes, cumin and 350 ml tap water to a boil in a saucepan."
+        },
+        {
+          "number": 2,
+          "instruction": "Reduce to a steady simmer and cook for 10\u201312 minutes, stirring, until the lentils are soft. Add more water if needed."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in frozen spinach and simmer until steaming hot throughout. Serve once the lentils are fully tender."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "lunch-three-bean-skillet",
+      "title": "Three bean tomato skillet",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "black-beans",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "white-beans",
+          "quantity": 60000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "lunch-savory-rice-flakes",
+      "title": "Savory vegetable rice bowl",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "rice-flakes",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "mixed-vegetables",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "white-beans",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse beans. Simmer the frozen mixed vegetables in a saucepan with 250 ml tap water until tender and steaming hot."
+        },
+        {
+          "number": 2,
+          "instruction": "Stir in quick-cooking rice flakes and cook according to the package, adding more water as needed."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and oil. Heat until steaming hot throughout and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "dinner-white-bean-pepper",
+      "title": "White bean pepper stew",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "white-beans",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "dinner-chickpea-spinach",
+      "title": "Chickpea spinach skillet",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "dinner-black-bean-vegetables",
+      "title": "Black bean vegetable skillet",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "black-beans",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "mixed-vegetables",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "dinner-lentil-spinach",
+      "title": "Red lentil spinach pot",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "red-lentils",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Rinse split red lentils. Bring lentils, canned tomatoes, cumin and 350 ml tap water to a boil."
+        },
+        {
+          "number": 2,
+          "instruction": "Simmer for 10\u201312 minutes, stirring and adding water if needed, until lentils are soft."
+        },
+        {
+          "number": 3,
+          "instruction": "Add frozen spinach and cook until steaming hot throughout. Check that the lentils are fully tender before serving."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "dinner-white-bean-tacos",
+      "title": "White bean pepper tacos",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "white-beans",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Wash and finely dice the pepper. Drain and rinse the white beans."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet. Cook pepper with cumin and a splash of water for 6\u20138 minutes until tender. Add beans and cook until steaming hot; mash a few to thicken."
+        },
+        {
+          "number": 3,
+          "instruction": "Warm the corn tortillas in a dry skillet on both sides. Divide the filling between tortillas and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "dinner-chickpea-rice-flakes",
+      "title": "Chickpea tomato rice bowl",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "rice-flakes",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "chickpeas",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse chickpeas. Heat them with canned tomatoes, cumin and 250 ml tap water in a saucepan until simmering."
+        },
+        {
+          "number": 2,
+          "instruction": "Add quick-cooking rice flakes and cook according to the package, stirring and adding water as needed."
+        },
+        {
+          "number": 3,
+          "instruction": "Continue cooking until flakes are soft and chickpeas are steaming hot throughout. Serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
+      ]
+    },
+    {
+      "id": "dinner-mixed-bean-spinach",
+      "title": "Mixed bean spinach stew",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "black-beans",
+          "quantity": 160000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "white-beans",
+          "quantity": 80000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the canned beans. Wash and finely dice any fresh vegetables."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+        },
+        {
+          "number": 3,
+          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "vegetarian",
+        "vegan",
+        "glutenFree"
       ]
     }
   ],

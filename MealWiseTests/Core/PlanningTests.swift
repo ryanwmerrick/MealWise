@@ -47,6 +47,9 @@ struct PlanningTests {
         var ingredients = try #require(json["ingredients"] as? [[String: Any]])
         for index in ingredients.indices { ingredients[index]["allergensVerified"] = true }
         json["ingredients"] = ingredients
+        var recipes = try #require(json["recipes"] as? [[String: Any]])
+        for index in recipes.indices { recipes[index]["dietaryPreferences"] = ["vegan", "vegetarian"] }
+        json["recipes"] = recipes
         let verified = try JSONDecoder().decode(RecipeCatalog.self, from: JSONSerialization.data(withJSONObject: json))
         var profile = PlanningProfile.fixture
         profile.preferences = [.glutenFree]
@@ -87,8 +90,52 @@ struct PlanningTests {
     @Test func unknownAllergensFilterAllRecipes() async throws {
         var profile = PlanningProfile.fixture
         profile.allergies = [.peanut]
-        let outcome = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: profile, catalog: catalog()))
+        let outcome = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: profile, catalog: unknownAllergenCatalog()))
         guard case .noFeasiblePlan = outcome else { Issue.record("Unknown allergen metadata must be excluded"); return }
+    }
+
+    private func unknownAllergenCatalog() async throws -> RecipeCatalog {
+        let original = try await catalog()
+        var json = try #require(JSONSerialization.jsonObject(with: JSONEncoder().encode(original)) as? [String: Any])
+        var ingredients = try #require(json["ingredients"] as? [[String: Any]])
+        for index in ingredients.indices { ingredients[index].removeValue(forKey: "developmentAllergensReviewed") }
+        json["ingredients"] = ingredients
+        return try JSONDecoder().decode(RecipeCatalog.self, from: JSONSerialization.data(withJSONObject: json))
+    }
+
+    @Test func everyRestrictionCombinationHasQuickMealsForEverySlot() async throws {
+        let catalog = try await catalog()
+        var profile = PlanningProfile.fixture
+        profile.cookingTime = .fifteen
+        // Every subset of the nine allergens and three preferences, including all at once.
+        for allergyMask in 0..<(1 << Allergen.allCases.count) {
+            profile.allergies = Set(Allergen.allCases.enumerated().compactMap { allergyMask & (1 << $0.offset) != 0 ? $0.element : nil })
+            for dietMask in 0..<(1 << DietPreference.allCases.count) {
+                profile.preferences = Set(DietPreference.allCases.enumerated().compactMap { dietMask & (1 << $0.offset) != 0 ? $0.element : nil })
+                for slot in MealSlot.allCases {
+                    let eligible = catalog.recipes.filter { PlanService.isEligible($0, slot: slot, profile: profile, catalog: catalog) }
+                    #expect(eligible.count >= 7)
+                }
+            }
+        }
+    }
+
+    @Test func fullWeekBuildsWithAllRestrictionsAndExcludedMeal() async throws {
+        let catalog = try await catalog()
+        var profile = PlanningProfile.fixture
+        profile.days = (0..<7).map { profile.days[0].addingTimeInterval(Double($0) * 86400) }
+        profile.mealSlots = Set(MealSlot.allCases)
+        profile.cookingTime = .fifteen
+        profile.allergies = Set(Allergen.allCases)
+        profile.preferences = Set(DietPreference.allCases)
+        profile.budgetMinorUnits = 20000
+        let service = PlanService(nodeLimit: 100, clock: { Date(timeIntervalSince1970: 1794528000) })
+        let outcome = try await service.generate(PlanRequest(profile: profile, catalog: catalog, excludedRecipeIDs: ["apple-rice-porridge"]))
+        guard case .feasible(let plan) = outcome else { Issue.record("Expected a complete restricted week"); return }
+        #expect(plan.meals.count == 21)
+        #expect(plan.meals.allSatisfy { $0.recipeID != "apple-rice-porridge" })
+        #expect(plan.totalMinorUnits <= profile.budgetMinorUnits)
+        try PlanValidation.validate(plan)
     }
 
     @Test func boundedSearchIsNotFalseInfeasibility() async throws {

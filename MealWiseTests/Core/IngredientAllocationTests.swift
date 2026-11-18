@@ -20,11 +20,12 @@ struct IngredientAllocationTests {
         #expect(report.reservations(after: dinner).isEmpty)
     }
 
-    private func plan(days: Int = 1) async throws -> WeeklyPlan {
+    private func plan(days: Int = 1, recipeID: String? = nil) async throws -> WeeklyPlan {
         var profile = PlanningProfile.fixture
         profile.days = (0..<days).map { profile.days[0].addingTimeInterval(Double($0) * 86400) }
         let catalog = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
-        let outcome = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: profile, catalog: catalog))
+        let fixed = recipeID.map { [ScheduledMeal(id: UUID(), date: profile.days[0], slot: .dinner, recipeID: $0)] } ?? []
+        let outcome = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: profile, catalog: catalog, fixedMeals: fixed))
         guard case .feasible(let plan) = outcome else { throw PlanningError.invalidPlan }
         return plan
     }
@@ -40,7 +41,7 @@ struct IngredientAllocationTests {
     }
 
     @Test func multiPackageBeansAndStaplesRemainHonest() async throws {
-        let report = try await IngredientAllocationService().allocate(plan: plan())
+        let report = try await IngredientAllocationService().allocate(plan: plan(recipeID: "spinach-bean-pasta"))
         let beans = try #require(report.items.first { $0.id == "white-beans" })
         #expect(beans.purchasedQuantity == 480000)
         #expect(beans.remainingQuantity == 180000)

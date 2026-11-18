@@ -603,6 +603,17 @@
         }
       }
     },
+    "Apple banana breakfast rice": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple banana breakfast rice"
+          }
+        }
+      }
+    },
     "Apple cinnamon oats": {
       "extractionState": "stale",
       "localizations": {
@@ -610,6 +621,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple cinnamon oats"
+          }
+        }
+      }
+    },
+    "Apple cinnamon rice porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple cinnamon rice porridge"
           }
         }
       }
@@ -632,6 +654,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Banana peanut oats"
+          }
+        }
+      }
+    },
+    "Banana rice porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banana rice porridge"
           }
         }
       }
@@ -690,6 +723,17 @@
         }
       }
     },
+    "Black bean spinach bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean spinach bowl"
+          }
+        }
+      }
+    },
     "Black bean sweet potato skillet": {
       "extractionState": "stale",
       "localizations": {
@@ -701,6 +745,17 @@
         }
       }
     },
+    "Black bean vegetable skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean vegetable skillet"
+          }
+        }
+      }
+    },
     "Breakfast": {
       "extractionState": "stale",
       "localizations": {
@@ -708,6 +763,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Breakfast"
+          }
+        }
+      }
+    },
+    "Breakfast black bean tacos": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breakfast black bean tacos"
           }
         }
       }
@@ -857,6 +923,7 @@
       }
     },
     "Check confirmed quantities and storage details. Nothing was carried over; please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -969,6 +1036,17 @@
         }
       }
     },
+    "Chickpea and pepper skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea and pepper skillet"
+          }
+        }
+      }
+    },
     "Chickpea breakfast skillet": {
       "extractionState": "stale",
       "localizations": {
@@ -980,6 +1058,17 @@
         }
       }
     },
+    "Chickpea spinach skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea spinach skillet"
+          }
+        }
+      }
+    },
     "Chickpea tomato rice": {
       "extractionState": "stale",
       "localizations": {
@@ -987,6 +1076,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chickpea tomato rice"
+          }
+        }
+      }
+    },
+    "Chickpea tomato rice bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea tomato rice bowl"
           }
         }
       }
@@ -1134,6 +1234,7 @@
       }
     },
     "Confirmed ingredients left over from a week will appear here.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1400,6 +1501,7 @@
       }
     },
     "Cycle history could not be loaded. Please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1450,6 +1552,7 @@
       }
     },
     "Development estimates include explicitly reviewed receipt observations. Actual receipts remain unchanged; no current store price is guaranteed.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1486,6 +1589,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Development recipes and synthetic prices. Not verified for real shopping or allergy-safe use."
+          }
+        }
+      }
+    },
+    "Diet and allergy filters use simulated ingredient declarations in this development catalog. Plans are not verified for allergy-safe use; check actual product labels and cross-contact information before cooking.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diet and allergy filters use simulated ingredient declarations in this development catalog. Plans are not verified for allergy-safe use; check actual product labels and cross-contact information before cooking."
           }
         }
       }
@@ -1701,6 +1814,7 @@
       }
     },
     "Enter a positive quantity in the displayed unit. The stock could not be saved; please check it and retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1977,6 +2091,7 @@
       }
     },
     "Fresh": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2004,6 +2119,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Frozen chopped spinach"
+          }
+        }
+      }
+    },
+    "Frozen peas, carrots and green beans": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frozen peas, carrots and green beans"
           }
         }
       }
@@ -2485,6 +2611,17 @@
         }
       }
     },
+    "Mashed chickpea corn tacos": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mashed chickpea corn tacos"
+          }
+        }
+      }
+    },
     "Meal": {
       "extractionState": "stale",
       "localizations": {
@@ -2588,6 +2725,17 @@
         }
       }
     },
+    "Mixed bean spinach stew": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mixed bean spinach stew"
+          }
+        }
+      }
+    },
     "Moving a meal can change which ingredients must be saved for later. Freshness is uncertain; check package storage and use-by instructions. No shelf-life guarantee is assumed.": {
       "localizations": {
         "en": {
@@ -2659,6 +2807,7 @@
       }
     },
     "Next-week stock and receipt observations could not be loaded. Please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2946,6 +3095,7 @@
       }
     },
     "Opened can": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -3118,6 +3268,7 @@
       }
     },
     "Pantry stock could not be loaded. Please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -3533,6 +3684,17 @@
         }
       }
     },
+    "Quick red lentil tomato soup": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick red lentil tomato soup"
+          }
+        }
+      }
+    },
     "Quick-cooking brown rice, dry": {
       "extractionState": "stale",
       "localizations": {
@@ -3540,6 +3702,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quick-cooking brown rice, dry"
+          }
+        }
+      }
+    },
+    "Quick-cooking rice flakes": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick-cooking rice flakes"
           }
         }
       }
@@ -3701,6 +3874,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Recorded: %@ for %lld packages"
+          }
+        }
+      }
+    },
+    "Red lentil spinach pot": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red lentil spinach pot"
           }
         }
       }
@@ -4059,6 +4243,17 @@
         }
       }
     },
+    "Savory spinach chickpea porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savory spinach chickpea porridge"
+          }
+        }
+      }
+    },
     "Savory spinach oats": {
       "extractionState": "stale",
       "localizations": {
@@ -4066,6 +4261,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Savory spinach oats"
+          }
+        }
+      }
+    },
+    "Savory vegetable rice bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savory vegetable rice bowl"
           }
         }
       }
@@ -4113,6 +4319,7 @@
       }
     },
     "Shelf-stable": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -4175,6 +4382,7 @@
       }
     },
     "Shopping history could not be loaded. Please retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -4245,6 +4453,17 @@
         }
       }
     },
+    "Spinach and white bean breakfast skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spinach and white bean breakfast skillet"
+          }
+        }
+      }
+    },
     "Spinach chickpea couscous": {
       "extractionState": "stale",
       "localizations": {
@@ -4263,6 +4482,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Spinach white bean pasta"
+          }
+        }
+      }
+    },
+    "Split red lentils": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split red lentils"
           }
         }
       }
@@ -4762,6 +4992,7 @@
       }
     },
     "This cycle could not be opened for wrap-up. Return to your current plan and retry.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -4938,6 +5169,7 @@
       }
     },
     "This stock changed. Close the editor and reopen the current item.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -4948,6 +5180,7 @@
       }
     },
     "This stock could not be removed. Close the editor and reopen the current item.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -4988,6 +5221,17 @@
         }
       }
     },
+    "Three bean tomato skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Three bean tomato skillet"
+          }
+        }
+      }
+    },
     "Timer finished. Check your cooking.": {
       "localizations": {
         "en": {
@@ -5015,6 +5259,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tomato bean pasta"
+          }
+        }
+      }
+    },
+    "Tomato white bean breakfast porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomato white bean breakfast porridge"
           }
         }
       }
@@ -5073,6 +5328,7 @@
     },
     "Unavailable": {},
     "Unavailable ingredient": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -5124,6 +5380,7 @@
       }
     },
     "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -5206,6 +5463,7 @@
       }
     },
     "User-approved development estimate from a recorded receipt line; per-package average rounded up. Original catalog validity is unchanged.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -5357,6 +5615,17 @@
         }
       }
     },
+    "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference."
+          }
+        }
+      }
+    },
     "Week": {
       "localizations": {
         "en": {
@@ -5434,6 +5703,39 @@
           "stringUnit": {
             "state": "translated",
             "value": "Which days should we plan?"
+          }
+        }
+      }
+    },
+    "White bean pepper stew": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White bean pepper stew"
+          }
+        }
+      }
+    },
+    "White bean pepper tacos": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White bean pepper tacos"
+          }
+        }
+      }
+    },
+    "White bean vegetable bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White bean vegetable bowl"
           }
         }
       }
@@ -5564,6 +5866,7 @@
       }
     },
     "Your cycle or stock changed. Close wrap-up and review the latest quantities.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -5628,6 +5931,7 @@
       }
     },
     "Your pantry is empty": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -5644,6 +5948,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Your plan could not be reset. Please retry."
+          }
+        }
+      }
+    },
+    "Your plan needs attention": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your plan needs attention"
           }
         }
       }

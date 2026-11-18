@@ -60,6 +60,20 @@ struct DomainTests {
         let ingredient = Ingredient(id: "rice", name: "Rice", allergens: [], allergensVerified: false, reviewStatus: .developmentApproved, nutrition: .init(vegetable: false, protein: false, wholeGrain: true), unit: .milligrams)
         #expect(!ingredient.isSafe(excluding: [.peanut]))
     }
+    @Test func developmentDeclarationsRequireExplicitDevelopmentScope() {
+        let ingredient = Ingredient(id: "rice", name: "Rice", allergens: [], allergensVerified: false,
+                                    reviewStatus: .developmentApproved,
+                                    nutrition: .init(vegetable: false, protein: false, wholeGrain: true),
+                                    unit: .milligrams, developmentAllergensReviewed: true)
+        #expect(!ingredient.isSafe(excluding: [.peanut]))
+        #expect(ingredient.isSafe(excluding: [.peanut], allowDevelopment: true))
+        let peanut = Ingredient(id: "peanut", name: "Peanut", allergens: [.peanut], allergensVerified: false,
+                                reviewStatus: .developmentApproved,
+                                nutrition: .init(vegetable: false, protein: true, wholeGrain: false),
+                                unit: .milligrams, developmentAllergensReviewed: true)
+        #expect(!peanut.isSafe(excluding: [.peanut], allowDevelopment: true))
+    }
+
 }
 
 extension PlanningProfile {

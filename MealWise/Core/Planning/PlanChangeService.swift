@@ -63,10 +63,12 @@ actor PlanChangeService: PlanChangeServiceProtocol {
     private let planner: any PlanServiceProtocol
     private let preferences: any MealPreferenceRepositoryProtocol
     private let clock: @Sendable () -> Date
+    private let latestCatalog: RecipeCatalog?
 
     init(plans: any PlanRepositoryProtocol, planner: any PlanServiceProtocol,
-         preferences: any MealPreferenceRepositoryProtocol, clock: @escaping @Sendable () -> Date = { .now }) {
+         preferences: any MealPreferenceRepositoryProtocol, clock: @escaping @Sendable () -> Date = { .now }, latestCatalog: RecipeCatalog? = nil) {
         self.plans = plans; self.planner = planner; self.preferences = preferences; self.clock = clock
+        self.latestCatalog = latestCatalog
     }
 
     func preview(_ change: PlanChange, in plan: WeeklyPlan) async throws -> PlanChangePreview {
@@ -134,7 +136,10 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         case .regenerateWeek: profile = plan.profile; fixed = plan.resources?.cookedMeals?.map(\.meal) ?? []; avoid = plan.meals.filter { plan.cookedRecord(for: $0.id) == nil }
         case .swap, .packageOffer, .move: throw PlanChangeError.invalidTarget
         }
-        let outcome = try await planner.generate(PlanRequest(profile: profile, catalog: plan.catalog,
+        let catalog: RecipeCatalog
+        if case .profile = change { catalog = expandedDevelopmentCatalog(for: plan.catalog) }
+        else { catalog = plan.catalog }
+        let outcome = try await planner.generate(PlanRequest(profile: profile, catalog: catalog,
                                                             excludedRecipeIDs: excluded, fixedMeals: fixed, avoidMeals: avoid, resources: plan.resources, offerOverrides: plan.offerOverrides))
         switch outcome {
         case .feasible(let generated):
@@ -151,6 +156,25 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         case .searchLimit: return makePreview(base: plan, proposed: nil, constraint: .searchLimit)
         case .invalidInputs: return makePreview(base: plan, proposed: nil, constraint: .invalidInputs)
         }
+    }
+
+    // Profile edits can use newly bundled meals while retaining saved package prices and IDs.
+    private func expandedDevelopmentCatalog(for saved: RecipeCatalog) -> RecipeCatalog {
+        guard let latestCatalog, latestCatalog.version != saved.version,
+              saved.reviewStatus == .developmentApproved, latestCatalog.reviewStatus == .developmentApproved,
+              saved.currencyCode == latestCatalog.currencyCode, saved.stores == latestCatalog.stores,
+              saved.ingredients.allSatisfy({ old in
+                  latestCatalog.ingredients.first(where: { $0.id == old.id }).map { $0.unit == old.unit } ?? true
+              }) else { return saved }
+        let ingredients = saved.ingredients.map { old in latestCatalog.ingredients.first { $0.id == old.id } ?? old } +
+            latestCatalog.ingredients.filter { new in !saved.ingredients.contains { $0.id == new.id } }
+        let recipes = saved.recipes.map { old in latestCatalog.recipes.first { $0.id == old.id } ?? old } +
+            latestCatalog.recipes.filter { new in !saved.recipes.contains { $0.id == new.id } }
+        let offers = saved.offers + latestCatalog.offers.filter { new in !saved.offers.contains { $0.id == new.id } }
+        return RecipeCatalog(version: latestCatalog.version, reviewStatus: saved.reviewStatus,
+                             currencyCode: saved.currencyCode, authorship: latestCatalog.authorship,
+                             priceProvenance: saved.priceProvenance, stores: saved.stores,
+                             ingredients: ingredients, offers: offers, recipes: recipes)
     }
 
     func accept(_ preview: PlanChangePreview, expectedRevision: UUID) async throws -> WeeklyPlan {

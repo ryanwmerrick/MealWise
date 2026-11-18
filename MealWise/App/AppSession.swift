@@ -23,7 +23,7 @@ struct AppServices: Sendable {
         self.checklist = checklist; self.preferences = preferences
         self.shopping = shopping; self.cooking = cooking; self.timers = timers
         self.pantry = pantry; self.history = history; self.cycles = cycles
-        self.changes = changes ?? PlanChangeService(plans: plans, planner: planner, preferences: preferences)
+        self.changes = changes ?? PlanChangeService(plans: plans, planner: planner, preferences: preferences, latestCatalog: catalog)
     }
 }
 
@@ -44,7 +44,7 @@ actor AppBootstrap: AppBootstrapProtocol {
         }
         let preferences = MealPreferenceRepository(container: container)
         let planner = PlanService()
-        let changes = PlanChangeService(plans: plans, planner: planner, preferences: preferences)
+        let changes = PlanChangeService(plans: plans, planner: planner, preferences: preferences, latestCatalog: catalog)
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
                            planner: planner, checklist: ChecklistRepository(container: container),
                            preferences: preferences, shopping: ShoppingService(plans: plans),
