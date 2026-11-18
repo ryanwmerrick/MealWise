@@ -80,7 +80,10 @@ final class OnboardingViewModel: ObservableObject {
 
     func togglePreference(_ preference: DietPreference) {
         if profile.preferences.contains(preference) { profile.preferences.remove(preference) }
-        else { profile.preferences.insert(preference) }
+        else {
+            profile.preferences.insert(preference)
+            if profile.requiresMeat && !profile.allowsMeat { profile.meatPreference = .meatFree }
+        }
     }
 
     func saveDraft() async -> PlanningProfile? {
@@ -107,6 +110,7 @@ final class OnboardingViewModel: ObservableObject {
                 let change = try await services.changes.preview(.profile(profile), in: basePlan)
                 changePreview = change
                 if change.constraint == .feasible { preview = change.proposedPlan }
+                else if change.constraint == .noFeasiblePlan && profile.requiresMeat { errorMessage = meatPlanError }
                 else { errorMessage = change.constraint.message }
                 return
             }
@@ -116,11 +120,17 @@ final class OnboardingViewModel: ObservableObject {
             switch result {
             case .feasible(let plan): preview = plan
             case .invalidInputs: errorMessage = "Check your budget, household, selected meals and price dates, then try again."
-            case .noFeasiblePlan: errorMessage = "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference."
+            case .noFeasiblePlan:
+                errorMessage = profile.requiresMeat ? meatPlanError :
+                    "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference."
             case .searchLimit: errorMessage = "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
             }
         } catch is CancellationError { return }
         catch { errorMessage = "The plan could not be built. Your previous plan is unchanged. Please retry." }
+    }
+
+    private var meatPlanError: String {
+        "No complete plan with meat fits your choices. Try a higher budget, more cooking time, or a different schedule. You can also change your meat preference."
     }
 
     func acceptPreview() async -> WeeklyPlan? {

@@ -18,8 +18,7 @@ struct ShoppingView: View {
                     LabeledContent("Projected full cycle", value: viewModel.projected?.currency ?? String(localized: "Unavailable"))
                     LabeledContent("Budget", value: trip.budgetMinorUnits.currency)
                     Text("\(trip.lines.filter(\.checked).count) of \(trip.lines.count) items checked for purchase")
-                    DevelopmentNotice()
-                    Text("The projection includes unchecked items. Missing prices use dated estimates; known actuals include only checked items with entered prices.").font(.footnote)
+                    Text("The projection includes unchecked items. Missing prices use sample estimates.").font(.footnote)
                     if let projected = viewModel.projected, projected > trip.budgetMinorUnits {
                         Text("Over budget by \((projected - trip.budgetMinorUnits).currency). Real spending will remain in your history.").foregroundStyle(DesignTokens.action)
                     }

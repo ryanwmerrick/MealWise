@@ -1,10 +1,15 @@
 import Foundation
+import OSLog
 
 actor PlanService: PlanServiceProtocol {
+    private static let logger = Logger(subsystem: "ryanmerrick.MealWise", category: "Planning")
     private let nodeLimit: Int
     private let clock: @Sendable () -> Date
-    init(nodeLimit: Int = 20000, clock: @escaping @Sendable () -> Date = { .now }) {
+    private let menuProposer: (any MenuProposing)?
+
+    init(nodeLimit: Int = 20000, menuProposer: (any MenuProposing)? = nil, clock: @escaping @Sendable () -> Date = { .now }) {
         self.nodeLimit = nodeLimit
+        self.menuProposer = menuProposer
         self.clock = clock
     }
 
@@ -46,16 +51,30 @@ actor PlanService: PlanServiceProtocol {
                 (fixed == nil ? !request.excludedRecipeIDs.contains($0.id) : $0.id == fixed?.recipeID)
             }.sorted {
                 if ($0.id == avoid) != ($1.id == avoid) { return $1.id == avoid }
+                if request.profile.requiresMeat && ($0.containsMeat == true) != ($1.containsMeat == true) {
+                    return $0.containsMeat == true
+                }
                 return $0.id < $1.id
             }
         }
         guard candidates.allSatisfy({ !$0.isEmpty }) else { return .noFeasiblePlan }
-        var search = PlanSearch(request: request, pricedAt: now, slots: slots, candidates: candidates, limit: nodeLimit)
-        try search.visit([])
-        guard let best = search.best else { return search.limitReached ? .searchLimit : .noFeasiblePlan }
+        let lastMeatSlot = candidates.lastIndex { $0.contains { $0.containsMeat == true } }
+        guard !request.profile.requiresMeat || lastMeatSlot != nil else { return .noFeasiblePlan }
+        let proposedMeals = try await proposeMeals(request: request, slots: slots, candidates: candidates, pricedAt: now)
+        let selectedMeals: [ScheduledMeal]
+        if let proposedMeals {
+            selectedMeals = proposedMeals
+        } else {
+            Self.logger.notice("Using the local meal planner")
+            var search = PlanSearch(request: request, pricedAt: now, slots: slots, candidates: candidates, limit: nodeLimit,
+                                    lastRequiredMeatSlot: request.profile.requiresMeat ? lastMeatSlot : nil)
+            try search.visit([])
+            guard let best = search.best else { return search.limitReached ? .searchLimit : .noFeasiblePlan }
+            selectedMeals = best.meals
+        }
         var finalResources = request.resources
         if !input.confirmedStock.isEmpty, var current = finalResources {
-            let forecast = try StockAccounting.forecast(meals: best.meals, profile: request.profile, catalog: request.catalog, resources: current, at: now)
+            let forecast = try StockAccounting.forecast(meals: selectedMeals, profile: request.profile, catalog: request.catalog, resources: current, at: now)
             current.pantryCredits = current.pantryCredits?.compactMap { credit in
                 guard let used = forecast.creditUse[credit.id], used > 0 else { return nil }
                 return PantryCredit(id: credit.id, ingredientID: credit.ingredientID, unit: credit.unit, sourceRevision: credit.sourceRevision,
@@ -63,17 +82,66 @@ actor PlanService: PlanServiceProtocol {
             }
             finalResources = current
         }
-        let finalCart = try CartCalculator.calculate(CartRequest(meals: best.meals, profile: request.profile, catalog: request.catalog,
+        let finalCart = try CartCalculator.calculate(CartRequest(meals: selectedMeals, profile: request.profile, catalog: request.catalog,
                                                                 resources: finalResources, offerOverrides: request.offerOverrides, pricedAt: now))
         let plan = WeeklyPlan(id: UUID(), revision: UUID(), profile: request.profile, catalog: request.catalog,
-                              meals: best.meals, cart: finalCart.items, totalMinorUnits: finalCart.totalMinorUnits, resources: finalResources,
+                              meals: selectedMeals, cart: finalCart.items, totalMinorUnits: finalCart.totalMinorUnits, resources: finalResources,
                               offerOverrides: request.offerOverrides, pricedAt: now)
         try PlanValidation.validate(plan)
         return .feasible(plan)
     }
 
+    private func proposeMeals(request: PlanRequest, slots: [(Date, MealSlot)], candidates: [[Recipe]], pricedAt: Date) async throws -> [ScheduledMeal]? {
+        guard let menuProposer else {
+            Self.logger.notice("Skipping Gemini: no menu proposer configured")
+            return nil
+        }
+        guard candidates.contains(where: { $0.count > 1 }) else {
+            Self.logger.notice("Skipping Gemini: every slot has at most one eligible recipe")
+            return nil
+        }
+        let fixedBySlot = slots.map { date, slot in request.fixedMeals.first { $0.date == date && $0.slot == slot } }
+        let suggestedCandidates = zip(slots, candidates).map { slot, recipes in
+            let replacements = recipes.filter { recipe in
+                !request.avoidMeals.contains { $0.date == slot.0 && $0.slot == slot.1 && $0.recipeID == recipe.id }
+            }
+            return replacements.isEmpty ? recipes : replacements
+        }
+        try request.resources?.validate(catalog: request.catalog)
+
+        let menus: [[String]]
+        do {
+            menus = try await menuProposer.propose(MenuProposalInput(request: request, slots: slots.map { $0.1 }, candidates: suggestedCandidates))
+        } catch {
+            try Task.checkCancellation()
+            if error is CancellationError { throw error }
+            Self.logger.notice("Gemini proposal request failed")
+            return nil
+        }
+        try Task.checkCancellation()
+        for menu in menus.prefix(3) {
+            guard menu.count == slots.count,
+                  zip(menu, suggestedCandidates).allSatisfy({ id, recipes in recipes.contains { $0.id == id } }) else { continue }
+            if request.profile.requiresMeat && !zip(menu, suggestedCandidates).contains(where: { id, recipes in
+                recipes.contains { $0.id == id && $0.containsMeat == true }
+            }) { continue }
+            let meals = slots.indices.map { index in
+                fixedBySlot[index] ?? ScheduledMeal(id: UUID(), date: slots[index].0, slot: slots[index].1, recipeID: menu[index])
+            }
+            let cart = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog,
+                                                                resources: request.resources, offerOverrides: request.offerOverrides, pricedAt: pricedAt))
+            if cart.totalMinorUnits <= request.profile.budgetMinorUnits {
+                Self.logger.notice("Accepted a Gemini menu")
+                return meals
+            }
+        }
+        Self.logger.notice("No Gemini menu passed local validation")
+        return nil
+    }
+
     static func isEligible(_ recipe: Recipe, slot: MealSlot, profile: PlanningProfile, catalog: RecipeCatalog) -> Bool {
         guard recipe.mealSlots.contains(slot), recipe.minutes <= profile.cookingTime.rawValue else { return false }
+        if recipe.containsMeat == true && !profile.allowsMeat { return false }
         if profile.skill == .beginner && recipe.skill != .beginner { return false }
         if profile.skill == .comfortable && recipe.skill == .experienced { return false }
         let ingredients = recipe.ingredients.compactMap { requirement in catalog.ingredients.first { $0.id == requirement.ingredientID } }
@@ -94,12 +162,14 @@ private struct PlanSearch {
     let slots: [(Date, MealSlot)]
     let candidates: [[Recipe]]
     let limit: Int
+    let lastRequiredMeatSlot: Int?
     var nodes = 0
     var limitReached = false
     var best: (meals: [ScheduledMeal], cart: [CartItem], cost: Int64, repeats: Int, unchanged: Int, waste: Decimal)?
 
-    mutating func visit(_ meals: [ScheduledMeal]) throws {
+    mutating func visit(_ meals: [ScheduledMeal], includesMeat: Bool = false) throws {
         try Task.checkCancellation()
+        if let lastRequiredMeatSlot, !includesMeat, meals.count > lastRequiredMeatSlot { return }
         guard nodes < limit else { limitReached = true; return }
         nodes += 1
         let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog, resources: request.resources, offerOverrides: request.offerOverrides, pricedAt: pricedAt))
@@ -125,7 +195,7 @@ private struct PlanSearch {
             guard !limitReached else { break }
             let meal = request.fixedMeals.first { $0.date == slots[index].0 && $0.slot == slots[index].1 } ??
                 ScheduledMeal(id: UUID(), date: slots[index].0, slot: slots[index].1, recipeID: recipe.id)
-            try visit(meals + [meal])
+            try visit(meals + [meal], includesMeat: includesMeat || recipe.containsMeat == true)
         }
     }
 
@@ -141,11 +211,18 @@ private struct PlanSearch {
 }
 
 enum PlanValidation {
+    static func includesRequiredMeat(_ meals: [ScheduledMeal], profile: PlanningProfile, catalog: RecipeCatalog) -> Bool {
+        guard profile.requiresMeat else { return true }
+        let scheduledRecipeIDs = Set(meals.map(\.recipeID))
+        return catalog.recipes.contains { $0.containsMeat == true && scheduledRecipeIDs.contains($0.id) }
+    }
+
     static func validate(_ plan: WeeklyPlan) throws {
         try CatalogValidator.validate(plan.catalog, allowDevelopment: true, now: .now, validatePriceFreshness: false)
         try plan.profile.validate()
         guard plan.meals.count == plan.profile.days.count * plan.profile.mealSlots.count,
-              Set(plan.meals.map(\.id)).count == plan.meals.count else { throw PlanningError.invalidPlan }
+              Set(plan.meals.map(\.id)).count == plan.meals.count,
+              includesRequiredMeat(plan.meals, profile: plan.profile, catalog: plan.catalog) else { throw PlanningError.invalidPlan }
         for record in plan.resources?.cookedMeals ?? [] {
             guard plan.meals.contains(record.meal) else { throw PlanningError.invalidPlan }
         }

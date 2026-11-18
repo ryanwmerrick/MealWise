@@ -1,5 +1,5 @@
 {
-  "version": "development-approved-2026-11-17-v4",
+  "version": "development-approved-2026-11-18-v5",
   "reviewStatus": "developmentApproved",
   "currencyCode": "USD",
   "authorship": "Codex development fixture; recipes not cooking-tested",
@@ -370,6 +370,54 @@
       "unit": "milligrams",
       "category": "frozen",
       "storage": "frozen"
+    },
+    {
+      "id": "ground-turkey",
+      "name": "Plain ground turkey",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "meatAndDairy",
+      "storage": "fresh"
+    },
+    {
+      "id": "ground-beef",
+      "name": "Plain lean ground beef",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "meatAndDairy",
+      "storage": "fresh"
+    },
+    {
+      "id": "chicken-breast-strips",
+      "name": "Unseasoned chicken breast strips",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "meatAndDairy",
+      "storage": "fresh"
     }
   ],
   "offers": [
@@ -653,6 +701,45 @@
       "packageQuantity": 750000,
       "unit": "milligrams",
       "priceMinorUnits": 249,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-ground-turkey",
+      "ingredientID": "ground-turkey",
+      "storeID": "development-grocery",
+      "packageQuantity": 454000,
+      "unit": "milligrams",
+      "priceMinorUnits": 449,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-ground-beef",
+      "ingredientID": "ground-beef",
+      "storeID": "development-grocery",
+      "packageQuantity": 454000,
+      "unit": "milligrams",
+      "priceMinorUnits": 599,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-chicken-breast-strips",
+      "ingredientID": "chicken-breast-strips",
+      "storeID": "development-grocery",
+      "packageQuantity": 454000,
+      "unit": "milligrams",
+      "priceMinorUnits": 549,
       "currencyCode": "USD",
       "priceDate": "2026-11-13",
       "validThrough": "2026-12-13",
@@ -2821,6 +2908,410 @@
         "vegan",
         "glutenFree"
       ]
+    },
+    {
+      "id": "meat-breakfast-turkey-spinach",
+      "title": "Turkey and spinach breakfast skillet",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-turkey",
+          "quantity": 110000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Add the turkey and cumin and break the turkey into small pieces as it cooks."
+        },
+        {
+          "number": 2,
+          "instruction": "Stir in the spinach and tomatoes. Cook until the spinach is steaming hot and the turkey reaches 165 °F (74 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon into a bowl and serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-breakfast-beef-tacos",
+      "title": "Beef and pepper breakfast tacos",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-beef",
+          "quantity": 110000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Dice the pepper. Warm the tortillas according to the package and set them aside."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Cook the pepper, beef and cumin, breaking the beef into small pieces, until the beef reaches 160 °F (71 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon the filling into the tortillas and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-lunch-turkey-wraps",
+      "title": "Turkey and pepper tortilla wraps",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-turkey",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Dice the pepper. Warm the tortillas according to the package and set them aside."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Stir in the turkey, pepper and cumin. Break up the turkey and cook until the pepper softens and the turkey reaches 165 °F (74 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Divide the filling between the tortillas, fold and serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-lunch-beef-rice",
+      "title": "Beef and vegetable brown rice bowl",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 25,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-beef",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "quick-brown-rice",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "mixed-vegetables",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Cook the brown rice with tap water as directed on the package."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Break up the beef and stir in the mixed vegetables and cumin. Cook until the vegetables are steaming hot and the beef reaches 160 °F (71 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon the beef and vegetables over the cooked brown rice."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-dinner-chicken-pepper",
+      "title": "Cumin chicken and pepper tacos",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "chicken-breast-strips",
+          "quantity": 130000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Slice the pepper. Warm the tortillas according to the package and set them aside."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Cook the chicken strips, pepper and cumin, turning the chicken until the thickest pieces reach 165 °F (74 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Use clean utensils to divide the filling between the warm tortillas."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-dinner-beef-bean-tomato",
+      "title": "Beef, black bean and tomato skillet",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-beef",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "black-beans",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the beans. Add the beef and cumin to a skillet over medium-high heat and break the beef into small pieces."
+        },
+        {
+          "number": 2,
+          "instruction": "Cook until the beef reaches 160 °F (71 °C) on a food thermometer, then add the beans and tomatoes."
+        },
+        {
+          "number": 3,
+          "instruction": "Simmer until the beans and tomatoes are piping hot. Spoon into a bowl and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
     }
   ],
   "approval": "User approved development-only policy/catalog in conversation, 2026-11-13. Not launch reviewed."

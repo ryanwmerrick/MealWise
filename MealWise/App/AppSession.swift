@@ -43,7 +43,11 @@ actor AppBootstrap: AppBootstrapProtocol {
             catalog = saved.catalog
         }
         let preferences = MealPreferenceRepository(container: container)
+        #if DEBUG
+        let planner = PlanService(menuProposer: GeminiMenuProposer())
+        #else
         let planner = PlanService()
+        #endif
         let changes = PlanChangeService(plans: plans, planner: planner, preferences: preferences, latestCatalog: catalog)
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
                            planner: planner, checklist: ChecklistRepository(container: container),

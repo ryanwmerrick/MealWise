@@ -199,6 +199,18 @@ struct OnboardingView: View {
 
     private var foodControl: some View {
         VStack(alignment: .leading, spacing: 12) {
+            Text("Would you like meals with meat?").font(.headline)
+            Text("Choose Include meat for at least one meat meal in your plan.").font(.footnote)
+                .foregroundStyle(DesignTokens.textSecondary)
+            ForEach(MeatPreference.allCases, id: \.self) { preference in
+                ChoiceRow(title: LocalizedStringKey(preference.title), isSelected: (viewModel.profile.meatPreference ?? .noPreference) == preference) {
+                    viewModel.profile.meatPreference = preference
+                }
+                .disabled(preference == .includeMeat && !viewModel.profile.preferences.isDisjoint(with: [.vegetarian, .vegan]))
+            }
+            if !viewModel.profile.preferences.isDisjoint(with: [.vegetarian, .vegan]) {
+                Text("Vegetarian and vegan plans exclude meat.").font(.footnote).foregroundStyle(DesignTokens.textSecondary)
+            }
             Text("Allergies").font(.headline)
             Text("Diet and allergy filters use simulated ingredient declarations in this development catalog. Plans are not verified for allergy-safe use; check actual product labels and cross-contact information before cooking.")
                 .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
@@ -225,6 +237,7 @@ struct OnboardingView: View {
             summaryRow("Cooking experience", value: String(localized: String.LocalizationValue(viewModel.profile.skill.title)), step: 4, id: "skill")
             summaryRow("Store", value: String(localized: "Development grocery"), step: 5, id: "store")
             summaryRow("Food needs", value: String(localized: "\(viewModel.profile.allergies.count) allergies, \(viewModel.profile.preferences.count) preferences"), step: 6, id: "food")
+            summaryRow("Meat preference", value: (viewModel.profile.meatPreference ?? .noPreference).title, step: 6, id: "meat")
             DevelopmentNotice()
         }
     }

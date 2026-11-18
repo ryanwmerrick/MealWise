@@ -50,7 +50,6 @@ struct PantryView: View {
                         }.accessibilityIdentifier("pantry.item")
                     }
                     if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)); Button("Reload pantry") { Task { await viewModel.load() } } }
-                    Section { DevelopmentNotice() }
                 }
             }.navigationTitle("Pantry")
                 .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Add pantry item", systemImage: "plus") { adding = true } } }

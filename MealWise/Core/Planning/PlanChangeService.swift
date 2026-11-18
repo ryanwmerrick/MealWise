@@ -116,6 +116,9 @@ actor PlanChangeService: PlanChangeServiceProtocol {
             let meals = plan.meals.map { meal in
                 meal.id == mealID ? ScheduledMeal(id: meal.id, date: meal.date, slot: meal.slot, recipeID: recipeID) : meal
             }
+            guard PlanValidation.includesRequiredMeat(meals, profile: plan.profile, catalog: plan.catalog) else {
+                return makePreview(base: plan, proposed: nil, constraint: .noFeasiblePlan)
+            }
             let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock()))
             let proposed = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
                                       meals: meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock())
@@ -204,7 +207,8 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         let impacts = Set(base.cart.map(\.id) + proposed.cart.map(\.id)).sorted().compactMap { id -> CartImpact? in
             let old = base.cart.first { $0.id == id }
             let new = proposed.cart.first { $0.id == id }
-            guard let ingredient = base.catalog.ingredients.first(where: { $0.id == id }) else { return nil }
+            guard let ingredient = proposed.catalog.ingredients.first(where: { $0.id == id })
+                ?? base.catalog.ingredients.first(where: { $0.id == id }) else { return nil }
             return CartImpact(id: id, name: ingredient.name, oldPackages: old?.packageCount ?? 0, newPackages: new?.packageCount ?? 0,
                               oldCost: old?.costMinorUnits ?? 0, newCost: new?.costMinorUnits ?? 0,
                               oldRequired: old?.requiredQuantity ?? 0, newRequired: new?.requiredQuantity ?? 0, unit: ingredient.unit)

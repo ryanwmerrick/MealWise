@@ -14,7 +14,6 @@ struct TodayView: View {
                 List {
                     Section {
                         Text(context.date, format: .dateTime.weekday().month().day()).font(.headline)
-                        DevelopmentNotice()
                     }
                     if viewModel.plan.closedAt != nil {
                         Text("This cycle is finished. Open Pantry to plan your next week.").font(.headline)
@@ -25,14 +24,17 @@ struct TodayView: View {
                     ForEach(viewModel.plan.closedAt == nil ? viewModel.meals(on: context.date) : []) { meal in
                         Section(LocalizedStringKey(meal.slot.title)) {
                             Button { cooking = TodayMealTarget(id: meal.id) } label: {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text(LocalizedStringKey(viewModel.recipe(for: meal)?.title ?? "Meal")).font(.headline)
-                                    if let recipe = viewModel.recipe(for: meal) {
-                                        Text("\(recipe.minutes) min · \(String(localized: String.LocalizationValue(recipe.skill.title)))").font(.subheadline)
+                                HStack(alignment: .top, spacing: 12) {
+                                    RecipePhoto(recipeID: meal.recipeID, layout: .thumbnail)
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text(LocalizedStringKey(viewModel.recipe(for: meal)?.title ?? "Meal")).font(.headline)
+                                        if let recipe = viewModel.recipe(for: meal) {
+                                            Text("\(recipe.minutes) min · \(String(localized: String.LocalizationValue(recipe.skill.title)))").font(.subheadline)
+                                        }
+                                        if let cost = viewModel.estimatedCost(for: meal) { Text("Estimated ingredients: \(cost)").font(.caption) }
+                                        if viewModel.isCooked(meal) { Text("Cooked") }
+                                        else { Text("Open cooking steps") }
                                     }
-                                    if let cost = viewModel.estimatedCost(for: meal) { Text("Estimated ingredients: \(cost)").font(.caption) }
-                                    if viewModel.isCooked(meal) { Text("Cooked") }
-                                    else { Text("Open cooking steps") }
                                 }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                             }.accessibilityIdentifier("today.meal")
                             if !viewModel.isCooked(meal) {

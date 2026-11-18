@@ -54,7 +54,6 @@ struct NextWeekView: View {
                 }
                 if let message = preparationError { Text(LocalizedStringKey(message)) }
                 if let message = viewModel.errorMessage { Text(LocalizedStringKey(message)); Button("Reload next week") { Task { await viewModel.load() } } }
-                Section { DevelopmentNotice() }
             }.navigationTitle("Plan next week")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Keep current cycle") { dismiss() } } }
                 .task { await viewModel.load() }

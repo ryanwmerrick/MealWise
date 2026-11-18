@@ -19,6 +19,13 @@ struct PlanChangeTests {
         let (plan, plans, preferences, _) = try await setup(override: legacy)
         let service = PlanChangeService(plans: plans, planner: PlanService(clock: { now }),
                                         preferences: preferences, clock: { now }, latestCatalog: latest)
+        var meatProfile = plan.profile
+        meatProfile.meatPreference = .includeMeat
+        let meatPreview = try await service.preview(.profile(meatProfile), in: plan)
+        let meatPlan = try #require(meatPreview.proposedPlan)
+        #expect(meatPreview.constraint == .feasible)
+        #expect(PlanValidation.includesRequiredMeat(meatPlan.meals, profile: meatProfile, catalog: meatPlan.catalog))
+        #expect(meatPreview.impacts.contains { ["ground-turkey", "ground-beef", "chicken-breast-strips"].contains($0.id) })
         var profile = plan.profile
         profile.cookingTime = .fifteen
         profile.allergies = Set(Allergen.allCases)
@@ -26,7 +33,7 @@ struct PlanChangeTests {
         let preview = try await service.preview(.profile(profile), in: plan)
         #expect(preview.constraint == .feasible)
         let proposed = try #require(preview.proposedPlan)
-        #expect(proposed.catalog.recipes.count == 33)
+        #expect(proposed.catalog.recipes.count == 39)
         #expect(proposed.catalog.offers.first?.priceMinorUnits == 321)
         #expect(try await plans.loadActivePlan() == plan)
         let accepted = try await service.accept(preview, expectedRevision: plan.revision)

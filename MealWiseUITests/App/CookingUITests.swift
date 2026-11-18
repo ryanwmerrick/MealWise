@@ -28,6 +28,12 @@ final class CookingUITests: XCTestCase {
         reveal(step, in: app)
         step.tap()
         let capture = XCTAttachment(screenshot: app.screenshot()); capture.name = "Phase 8 cooking steps"; capture.lifetime = .keepAlways; add(capture)
+        let savedIngredients = app.buttons["Save for later meals"]
+        reveal(savedIngredients, in: app)
+        let reservation = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "Reserve ")).firstMatch
+        XCTAssertFalse(reservation.exists)
+        savedIngredients.tap()
+        XCTAssertTrue(reservation.waitForExistence(timeout: 5))
         app.buttons["Close cooking"].tap()
         app.buttons.matching(identifier: "today.meal").firstMatch.tap()
         let resumed = app.buttons.matching(identifier: "cooking.step").firstMatch
