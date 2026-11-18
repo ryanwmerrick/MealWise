@@ -11,10 +11,11 @@ enum CookingStyle: String, Codable, CaseIterable, Sendable {
 enum KitchenEquipment: String, Codable, CaseIterable, Sendable {
     case stove, saucepan, skillet, knife, cuttingBoard = "cutting board"
     case oven, microwave, airFryer = "air fryer", slowCooker = "slow cooker", blender
+    case foodThermometer = "food thermometer"
 
     static let assumedTools: Set<Self> = [.saucepan, .skillet, .knife, .cuttingBoard]
     static let basics: Set<Self> = assumedTools.union([.stove])
-    static var appliances: [Self] { allCases.filter { !assumedTools.contains($0) } }
+    static var selectable: [Self] { allCases.filter { !assumedTools.contains($0) } }
 }
 
 enum GroceryPreference: String, Codable, CaseIterable, Sendable {

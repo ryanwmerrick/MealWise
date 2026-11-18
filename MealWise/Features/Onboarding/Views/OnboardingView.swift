@@ -143,10 +143,10 @@ struct OnboardingView: View {
         case .household: householdControl
         case .schedule: scheduleControl
         case .kitchen:
-            Text("Choose the appliances you can cook with.")
+            Text("Choose the kitchen equipment you can cook with.")
                 .foregroundStyle(DesignTokens.textSecondary)
             choiceGrid {
-                ForEach(KitchenEquipment.appliances, id: \.self) { tool in
+                ForEach(KitchenEquipment.selectable, id: \.self) { tool in
                     SetupChoice(LocalizedStringKey(tool.rawValue.capitalized), selected: preferences.equipment.contains(tool)) {
                         viewModel.togglePreference(tool, in: \.equipment)
                     }
@@ -453,7 +453,7 @@ struct OnboardingView: View {
             summaryRow("Meat preference", value: (viewModel.profile.meatPreference ?? .noPreference).title, step: .diet, id: "meat")
             summaryRow("Food allergies", value: "\(viewModel.wholeAllergyGroups.count + (preferences.detailedAllergies?.count ?? 0)) selected", step: .allergies, id: "allergies")
             summaryRow("Goals", value: "\(preferences.goals.count) selected", step: .goals, id: "goals")
-            summaryRow("Kitchen equipment", value: "\(preferences.equipment.intersection(KitchenEquipment.appliances).count) selected", step: .kitchen, id: "kitchen")
+            summaryRow("Kitchen equipment", value: "\(preferences.equipment.intersection(KitchenEquipment.selectable).count) selected", step: .kitchen, id: "kitchen")
             summaryRow("Cooking styles", value: "\(preferences.styles.count) selected", step: .style, id: "style")
             DevelopmentNotice()
             if viewModel.nextCycle != nil {

@@ -213,7 +213,10 @@ final class OnboardingViewModel: ObservableObject {
     }
 
     private var meatPlanError: String {
-        "No complete plan with meat fits your choices. Try a higher budget, more cooking time, or a different schedule. You can also change your meat preference."
+        if profile.onboarding?.equipment.contains(.foodThermometer) == false {
+            return "The meat recipes require a food thermometer. If you have one, select Food Thermometer under Kitchen equipment, or change your meat preference."
+        }
+        return "No complete plan with meat fits your choices. Try a higher budget, more cooking time, or a different schedule. You can also change your meat preference."
     }
 
     func budgetEstimate(for snapshot: PlanningProfile) async throws -> BudgetEstimate {

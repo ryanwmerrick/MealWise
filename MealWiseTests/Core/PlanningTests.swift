@@ -3,6 +3,28 @@ import Testing
 @testable import MealWise
 
 struct PlanningTests {
+    @Test func meatPlanRespectsThermometerSelection() async throws {
+        let catalog = try await catalog()
+        let date = Date(timeIntervalSince1970: 1794528000)
+        var profile = PlanningProfile.fixture
+        profile.budgetMinorUnits = 50_000
+        profile.cookingTime = .thirty
+        profile.mealSlots = [.breakfast, .dinner]
+        profile.meatPreference = .includeMeat
+        profile.onboarding = OnboardingPreferences(goals: [.saveMoney], equipment: [.stove, .microwave, .airFryer], styles: [.onePan])
+
+        let planner = PlanService(clock: { date })
+        let withoutThermometer = try await planner.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .noFeasiblePlan = withoutThermometer else { Issue.record("Expected meat recipes to require a thermometer"); return }
+
+        #expect(KitchenEquipment.selectable.contains(.foodThermometer))
+        profile.onboarding?.equipment.insert(.foodThermometer)
+        let withThermometer = try await planner.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let plan) = withThermometer else { Issue.record("Expected a plan with the selected thermometer"); return }
+        let meatIDs = Set(catalog.recipes.filter { $0.containsMeat == true }.map(\.id))
+        #expect(plan.meals.contains { meatIDs.contains($0.recipeID) })
+    }
+
     @Test func requestedMeatIsRequiredWithinThePackageBudget() async throws {
         let catalog = try await catalog()
         let date = Date(timeIntervalSince1970: 1794528000)
