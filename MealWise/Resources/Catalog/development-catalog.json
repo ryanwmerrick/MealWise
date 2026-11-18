@@ -370,6 +370,54 @@
       "unit": "milligrams",
       "category": "frozen",
       "storage": "frozen"
+    },
+    {
+      "id": "ground-turkey",
+      "name": "Plain ground turkey",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "meatAndDairy",
+      "storage": "fresh"
+    },
+    {
+      "id": "ground-beef",
+      "name": "Plain lean ground beef",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "meatAndDairy",
+      "storage": "fresh"
+    },
+    {
+      "id": "chicken-breast-strips",
+      "name": "Unseasoned chicken breast strips",
+      "allergens": [],
+      "allergensVerified": false,
+      "developmentAllergensReviewed": true,
+      "reviewStatus": "developmentApproved",
+      "nutrition": {
+        "vegetable": false,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "unit": "milligrams",
+      "category": "meatAndDairy",
+      "storage": "fresh"
     }
   ],
   "offers": [
@@ -658,6 +706,45 @@
       "validThrough": "2026-12-13",
       "provenance": "Synthetic fixture, not a retailer observation",
       "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-ground-turkey",
+      "ingredientID": "ground-turkey",
+      "storeID": "development-grocery",
+      "packageQuantity": 454000,
+      "unit": "milligrams",
+      "priceMinorUnits": 449,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-ground-beef",
+      "ingredientID": "ground-beef",
+      "storeID": "development-grocery",
+      "packageQuantity": 454000,
+      "unit": "milligrams",
+      "priceMinorUnits": 599,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
+    },
+    {
+      "id": "development-chicken-breast-strips",
+      "ingredientID": "chicken-breast-strips",
+      "storeID": "development-grocery",
+      "packageQuantity": 454000,
+      "unit": "milligrams",
+      "priceMinorUnits": 549,
+      "currencyCode": "USD",
+      "priceDate": "2026-11-13",
+      "validThrough": "2026-12-13",
+      "provenance": "Synthetic fixture, not a retailer observation",
+      "reviewStatus": "developmentApproved"
     }
   ],
   "recipes": [
@@ -718,7 +805,11 @@
         "vegetarian",
         "vegan"
       ],
-      "cookingStyles": ["onePan", "classics", "familyFavorites"]
+      "cookingStyles": [
+        "onePan",
+        "classics",
+        "familyFavorites"
+      ]
     },
     {
       "id": "banana-peanut-oats",
@@ -777,7 +868,10 @@
         "vegetarian",
         "vegan"
       ],
-      "cookingStyles": ["onePan", "classics"]
+      "cookingStyles": [
+        "onePan",
+        "classics"
+      ]
     },
     {
       "id": "spinach-oats",
@@ -910,7 +1004,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "chickpea-wrap",
@@ -1107,7 +1203,10 @@
         "vegetarian",
         "vegan"
       ],
-      "cookingStyles": ["classics", "familyFavorites"]
+      "cookingStyles": [
+        "classics",
+        "familyFavorites"
+      ]
     },
     {
       "id": "spinach-couscous",
@@ -1240,7 +1339,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "chickpea-rice",
@@ -1447,7 +1548,11 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan", "classics", "familyFavorites"]
+      "cookingStyles": [
+        "onePan",
+        "classics",
+        "familyFavorites"
+      ]
     },
     {
       "id": "apple-rice-porridge",
@@ -1507,7 +1612,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "banana-rice-porridge",
@@ -1567,7 +1674,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "apple-banana-rice",
@@ -1627,7 +1736,10 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan", "familyFavorites"]
+      "cookingStyles": [
+        "onePan",
+        "familyFavorites"
+      ]
     },
     {
       "id": "spinach-chickpea-rice-porridge",
@@ -1692,7 +1804,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "tomato-white-bean-porridge",
@@ -1757,7 +1871,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "breakfast-bean-tacos",
@@ -1794,7 +1910,7 @@
       "steps": [
         {
           "number": 1,
-          "instruction": "Drain and rinse the beans. Place beans, canned tomatoes and cumin in a saucepan. Simmer for 6\u20138 minutes, stirring, until steaming hot."
+          "instruction": "Drain and rinse the beans. Place beans, canned tomatoes and cumin in a saucepan. Simmer for 6–8 minutes, stirring, until steaming hot."
         },
         {
           "number": 2,
@@ -1862,7 +1978,7 @@
         },
         {
           "number": 2,
-          "instruction": "Add frozen spinach, canned tomatoes and beans. Cook for 8\u201310 minutes, stirring and adding a splash of water if needed, until steaming hot throughout."
+          "instruction": "Add frozen spinach, canned tomatoes and beans. Cook for 8–10 minutes, stirring and adding a splash of water if needed, until steaming hot throughout."
         },
         {
           "number": 3,
@@ -1886,7 +2002,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "lunch-chickpea-pepper",
@@ -1932,11 +2050,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -1956,7 +2074,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "lunch-white-bean-vegetables",
@@ -1997,11 +2117,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2021,7 +2141,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "lunch-black-bean-spinach",
@@ -2067,11 +2189,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2091,7 +2213,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "lunch-mashed-chickpea-tacos",
@@ -2128,7 +2252,7 @@
       "steps": [
         {
           "number": 1,
-          "instruction": "Drain and rinse chickpeas. Heat in a saucepan with canned tomatoes and cumin for 6\u20138 minutes until steaming hot."
+          "instruction": "Drain and rinse chickpeas. Heat in a saucepan with canned tomatoes and cumin for 6–8 minutes until steaming hot."
         },
         {
           "number": 2,
@@ -2196,7 +2320,7 @@
         },
         {
           "number": 2,
-          "instruction": "Reduce to a steady simmer and cook for 10\u201312 minutes, stirring, until the lentils are soft. Add more water if needed."
+          "instruction": "Reduce to a steady simmer and cook for 10–12 minutes, stirring, until the lentils are soft. Add more water if needed."
         },
         {
           "number": 3,
@@ -2220,7 +2344,10 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan", "classics"]
+      "cookingStyles": [
+        "onePan",
+        "classics"
+      ]
     },
     {
       "id": "lunch-three-bean-skillet",
@@ -2271,11 +2398,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2295,7 +2422,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "lunch-savory-rice-flakes",
@@ -2360,7 +2489,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "dinner-white-bean-pepper",
@@ -2406,11 +2537,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2430,7 +2561,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "dinner-chickpea-spinach",
@@ -2476,11 +2609,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2500,7 +2633,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "dinner-black-bean-vegetables",
@@ -2546,11 +2681,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2570,7 +2705,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "dinner-lentil-spinach",
@@ -2611,7 +2748,7 @@
         },
         {
           "number": 2,
-          "instruction": "Simmer for 10\u201312 minutes, stirring and adding water if needed, until lentils are soft."
+          "instruction": "Simmer for 10–12 minutes, stirring and adding water if needed, until lentils are soft."
         },
         {
           "number": 3,
@@ -2635,7 +2772,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "dinner-white-bean-tacos",
@@ -2681,7 +2820,7 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet. Cook pepper with cumin and a splash of water for 6\u20138 minutes until tender. Add beans and cook until steaming hot; mash a few to thicken."
+          "instruction": "Heat oil in a skillet. Cook pepper with cumin and a splash of water for 6–8 minutes until tender. Add beans and cook until steaming hot; mash a few to thicken."
         },
         {
           "number": 3,
@@ -2705,7 +2844,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["familyFavorites"]
+      "cookingStyles": [
+        "familyFavorites"
+      ]
     },
     {
       "id": "dinner-chickpea-rice-flakes",
@@ -2770,7 +2911,9 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
     },
     {
       "id": "dinner-mixed-bean-spinach",
@@ -2821,11 +2964,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2845,7 +2988,413 @@
         "vegan",
         "glutenFree"
       ],
-      "cookingStyles": ["onePan"]
+      "cookingStyles": [
+        "onePan"
+      ]
+    },
+    {
+      "id": "meat-breakfast-turkey-spinach",
+      "title": "Turkey and spinach breakfast skillet",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-turkey",
+          "quantity": 110000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "spinach",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Add the turkey and cumin and break the turkey into small pieces as it cooks."
+        },
+        {
+          "number": 2,
+          "instruction": "Stir in the spinach and tomatoes. Cook until the spinach is steaming hot and the turkey reaches 165 °F (74 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon into a bowl and serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-breakfast-beef-tacos",
+      "title": "Beef and pepper breakfast tacos",
+      "mealSlots": [
+        "breakfast"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-beef",
+          "quantity": 110000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Dice the pepper. Warm the tortillas according to the package and set them aside."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Cook the pepper, beef and cumin, breaking the beef into small pieces, until the beef reaches 160 °F (71 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon the filling into the tortillas and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-lunch-turkey-wraps",
+      "title": "Turkey and pepper tortilla wraps",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-turkey",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Dice the pepper. Warm the tortillas according to the package and set them aside."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Stir in the turkey, pepper and cumin. Break up the turkey and cook until the pepper softens and the turkey reaches 165 °F (74 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Divide the filling between the tortillas, fold and serve warm."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-lunch-beef-rice",
+      "title": "Beef and vegetable brown rice bowl",
+      "mealSlots": [
+        "lunch"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 25,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-beef",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "quick-brown-rice",
+          "quantity": 70000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "mixed-vegetables",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Cook the brown rice with tap water as directed on the package."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Break up the beef and stir in the mixed vegetables and cumin. Cook until the vegetables are steaming hot and the beef reaches 160 °F (71 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Spoon the beef and vegetables over the cooked brown rice."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "saucepan",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": true
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-dinner-chicken-pepper",
+      "title": "Cumin chicken and pepper tacos",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "chicken-breast-strips",
+          "quantity": 130000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "pepper",
+          "quantity": 100000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "corn-tortillas",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "oil",
+          "quantity": 5,
+          "unit": "milliliters"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Slice the pepper. Warm the tortillas according to the package and set them aside."
+        },
+        {
+          "number": 2,
+          "instruction": "Heat the oil in a skillet over medium-high heat. Cook the chicken strips, pepper and cumin, turning the chicken until the thickest pieces reach 165 °F (74 °C) on a food thermometer."
+        },
+        {
+          "number": 3,
+          "instruction": "Use clean utensils to divide the filling between the warm tortillas."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
+    },
+    {
+      "id": "meat-dinner-beef-bean-tomato",
+      "title": "Beef, black bean and tomato skillet",
+      "mealSlots": [
+        "dinner"
+      ],
+      "baseAdultPortions": 1,
+      "minutes": 15,
+      "skill": "beginner",
+      "reviewStatus": "developmentApproved",
+      "ingredients": [
+        {
+          "ingredientID": "ground-beef",
+          "quantity": 120000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "black-beans",
+          "quantity": 90000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "tomatoes",
+          "quantity": 150000,
+          "unit": "milligrams"
+        },
+        {
+          "ingredientID": "cumin",
+          "quantity": 1000,
+          "unit": "milligrams"
+        }
+      ],
+      "steps": [
+        {
+          "number": 1,
+          "instruction": "Drain and rinse the beans. Add the beef and cumin to a skillet over medium-high heat and break the beef into small pieces."
+        },
+        {
+          "number": 2,
+          "instruction": "Cook until the beef reaches 160 °F (71 °C) on a food thermometer, then add the beans and tomatoes."
+        },
+        {
+          "number": 3,
+          "instruction": "Simmer until the beans and tomatoes are piping hot. Spoon into a bowl and serve."
+        }
+      ],
+      "equipment": [
+        "stove",
+        "skillet",
+        "knife",
+        "cutting board",
+        "food thermometer"
+      ],
+      "nutrition": {
+        "vegetable": true,
+        "protein": true,
+        "wholeGrain": false
+      },
+      "dietaryPreferences": [
+        "glutenFree"
+      ],
+      "containsMeat": true
     }
   ],
   "approval": "User approved development-only policy/catalog in conversation, 2026-11-13. Not launch reviewed."

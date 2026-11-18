@@ -19,8 +19,8 @@ struct CookingView: View {
                         cookingCard {
                             Text(LocalizedStringKey(detail.title)).font(.title2.bold())
                             Text("\(detail.minutes) min · \((Decimal(detail.adultHalfPortions) / 2).formatted(.number)) adult-equivalent portions")
+                            RecipePhoto(recipeID: detail.recipeID, layout: .hero)
                             if viewModel.isCooked { Text("This meal is recorded as cooked. Its recipe and portions are preserved.") }
-                            DevelopmentNotice()
                         }
                         cookingCard("Use for this meal") {
                             ForEach(detail.ingredients) { item in
@@ -34,9 +34,6 @@ struct CookingView: View {
                                         label: { Text(LocalizedStringKey(item.name)).foregroundStyle(DesignTokens.textPrimary).accessibilityIdentifier("cooking.ingredient.name") }
                                 }
                             }
-                        }
-                        if !viewModel.notes.isEmpty {
-                            cookingCard("Save for later meals") { ReservationNotes(notes: viewModel.notes) }
                         }
                         cookingCard("Cooking steps") {
                             Text("Your step checks save as you go. Closing cooking does not mark this meal as cooked.").font(.footnote)
@@ -75,6 +72,13 @@ struct CookingView: View {
                                     Text("Record purchased packages in Groceries before confirming completion. Planned packages are not confirmed stock.")
                                 }
                                 Button("Mark as cooked") { confirm = true }.frame(minHeight: 44).disabled(!viewModel.hasStock)
+                            }
+                        }
+                        if !viewModel.notes.isEmpty {
+                            cookingCard {
+                                DisclosureGroup("Save for later meals") {
+                                    ReservationNotes(notes: viewModel.notes)
+                                }
                             }
                         }
                     }

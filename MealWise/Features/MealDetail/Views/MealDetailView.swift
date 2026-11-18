@@ -30,7 +30,7 @@ struct MealDetailView: View {
         List {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
-                    Image("IconPot").padding(16).background(DesignTokens.selection, in: RoundedRectangle(cornerRadius: 18)).accessibilityHidden(true)
+                    RecipePhoto(recipeID: detail.recipeID, layout: .hero)
                     Text(LocalizedStringKey(detail.title)).font(.title.bold()).accessibilityAddTraits(.isHeader)
                     Text("\(detail.minutes) minutes · \(String(localized: String.LocalizationValue(detail.skill.title)))").font(.subheadline)
                     Text("Adults: \(plan.profile.adults) · Children: \(plan.profile.children)")
@@ -38,7 +38,6 @@ struct MealDetailView: View {
                     LabeledContent("Consumed ingredients", value: detail.ingredientCost.formatted(.currency(code: "USD")))
                     LabeledContent("Per adult-equivalent serving", value: (detail.ingredientCost * 2 / Decimal(detail.adultHalfPortions)).formatted(.currency(code: "USD")))
                 }.padding(.vertical, 8)
-                DevelopmentNotice()
             }
             Section("Ingredients for this meal") {
                 ForEach(detail.ingredients) { ingredient in
@@ -57,9 +56,6 @@ struct MealDetailView: View {
                     }.padding(.vertical, 8)
                 }
             }
-            if !viewModel.reservations.isEmpty {
-                Section("Save for later meals") { ReservationNotes(notes: viewModel.reservations) }
-            }
             Section("Simple balance indicators") {
                 nutritionRow("Vegetables", included: detail.nutrition.vegetable)
                 nutritionRow("Protein", included: detail.nutrition.protein)
@@ -75,6 +71,13 @@ struct MealDetailView: View {
                             }
                         }
                         .accessibilityIdentifier("recipe.related")
+                    }
+                }
+            }
+            if !viewModel.reservations.isEmpty {
+                Section {
+                    DisclosureGroup("Save for later meals") {
+                        ReservationNotes(notes: viewModel.reservations)
                     }
                 }
             }

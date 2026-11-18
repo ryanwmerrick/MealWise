@@ -3,6 +3,126 @@ import Testing
 @testable import MealWise
 
 struct PlanningTests {
+    @Test(arguments: PlanningGoal.allCases)
+    func configuredProposerRunsForEveryPlanningGoal(_ goal: PlanningGoal) async throws {
+        let catalog = try await catalog()
+        let date = Date(timeIntervalSince1970: 1794528000)
+        var profile = PlanningProfile.fixture
+        profile.onboarding = OnboardingPreferences(goals: [goal])
+        let recipeID = "dinner-lentil-spinach"
+        let proposer = StubMenuProposer(menus: [[recipeID]], expectedGoal: goal)
+        let service = PlanService(nodeLimit: 0, menuProposer: proposer, clock: { date })
+        let outcome = try await service.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let plan) = outcome else { Issue.record("Expected a Gemini proposal for this planning goal"); return }
+        #expect(plan.meals.map(\.recipeID) == [recipeID])
+
+        let estimate = try await service.generate(PlanRequest(profile: profile, catalog: catalog, allowsMenuProposals: false))
+        guard case .searchLimit = estimate else { Issue.record("Expected the estimate to use the local planner"); return }
+    }
+
+    @Test func meatPlanRespectsThermometerSelection() async throws {
+        let catalog = try await catalog()
+        let date = Date(timeIntervalSince1970: 1794528000)
+        var profile = PlanningProfile.fixture
+        profile.budgetMinorUnits = 50_000
+        profile.cookingTime = .thirty
+        profile.mealSlots = [.breakfast, .dinner]
+        profile.meatPreference = .includeMeat
+        profile.onboarding = OnboardingPreferences(goals: [.saveMoney], equipment: [.stove, .microwave, .airFryer], styles: [.onePan])
+
+        let planner = PlanService(clock: { date })
+        let withoutThermometer = try await planner.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .noFeasiblePlan = withoutThermometer else { Issue.record("Expected meat recipes to require a thermometer"); return }
+
+        #expect(KitchenEquipment.selectable.contains(.foodThermometer))
+        profile.onboarding?.equipment.insert(.foodThermometer)
+        let withThermometer = try await planner.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let plan) = withThermometer else { Issue.record("Expected a plan with the selected thermometer"); return }
+        let meatIDs = Set(catalog.recipes.filter { $0.containsMeat == true }.map(\.id))
+        #expect(plan.meals.contains { meatIDs.contains($0.recipeID) })
+    }
+
+    @Test func requestedMeatIsRequiredWithinThePackageBudget() async throws {
+        let catalog = try await catalog()
+        let date = Date(timeIntervalSince1970: 1794528000)
+        var profile = PlanningProfile.fixture
+        profile.cookingTime = .fifteen
+        profile.meatPreference = .includeMeat
+        let plantOnly = StubMenuProposer(menus: [["dinner-lentil-spinach"]])
+        let planner = PlanService(menuProposer: plantOnly, clock: { date })
+        let outcome = try await planner.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let meatPlan) = outcome else { Issue.record("Expected a budgeted meat meal"); return }
+        let meatRecipe = try #require(catalog.recipes.first { $0.id == meatPlan.meals.first?.recipeID })
+        #expect(meatRecipe.containsMeat == true)
+        #expect(meatPlan.totalMinorUnits <= profile.budgetMinorUnits)
+
+        profile.budgetMinorUnits = meatPlan.totalMinorUnits - 1
+        let belowMeatBudget = try await planner.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .noFeasiblePlan = belowMeatBudget else { Issue.record("A cheaper plant menu must not replace required meat"); return }
+
+        profile.meatPreference = .meatFree
+        let proposesMeat = StubMenuProposer(menus: [[meatRecipe.id]])
+        let meatFreeOutcome = try await PlanService(menuProposer: proposesMeat, clock: { date })
+            .generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let meatFreePlan) = meatFreeOutcome else { Issue.record("Expected a budgeted meat-free meal"); return }
+        #expect(catalog.recipes.first { $0.id == meatFreePlan.meals.first?.recipeID }?.containsMeat != true)
+    }
+
+    @Test func proposedMenusMustUseEligibleRecipesAndFitThePricedCart() async throws {
+        let catalog = try await catalog()
+        let date = Date(timeIntervalSince1970: 1794528000)
+        var profile = PlanningProfile.fixture
+        profile.mealSlots = [.dinner]
+        profile.cookingTime = .flexible
+        profile.allergies = [.wheat]
+        let pricedRecipes = try catalog.recipes.filter {
+            PlanService.isEligible($0, slot: .dinner, profile: profile, catalog: catalog)
+        }.map { recipe in
+            let meal = ScheduledMeal(id: UUID(), date: profile.days[0], slot: .dinner, recipeID: recipe.id)
+            let cart = try CartCalculator.calculate(CartRequest(meals: [meal], profile: profile, catalog: catalog, pricedAt: date))
+            return (id: recipe.id, cost: cart.totalMinorUnits)
+        }.sorted { $0.cost < $1.cost }
+        let cheapest = try #require(pricedRecipes.first)
+        let preferred = try #require(pricedRecipes.first { $0.cost > cheapest.cost })
+        let overBudget = try #require(pricedRecipes.first { $0.cost > preferred.cost })
+        profile.budgetMinorUnits = preferred.cost
+        let proposer = StubMenuProposer(menus: [["spinach-bean-pasta"], [overBudget.id], [preferred.id]], excludedRecipeID: "spinach-bean-pasta")
+        let service = PlanService(menuProposer: proposer, clock: { date })
+        let outcome = try await service.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let plan) = outcome else { Issue.record("Expected valid proposed menu"); return }
+        #expect(plan.meals.map(\.recipeID) == [preferred.id])
+        #expect(plan.totalMinorUnits == profile.budgetMinorUnits)
+
+        let unusable = StubMenuProposer(menus: [["spinach-bean-pasta"], [overBudget.id]], excludedRecipeID: "spinach-bean-pasta")
+        let fallback = try await PlanService(menuProposer: unusable, clock: { date })
+            .generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let localPlan) = fallback else { Issue.record("Expected local fallback"); return }
+        #expect(localPlan.totalMinorUnits == cheapest.cost)
+
+        profile.onboarding = OnboardingPreferences(goals: [.saveMoney])
+        let proposals = StubMenuProposer(menus: [[preferred.id], [cheapest.id]], expectedGoal: .saveMoney)
+        let ranked = try await PlanService(nodeLimit: 0, menuProposer: proposals, clock: { date })
+            .generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let rankedPlan) = ranked else { Issue.record("Expected locally ranked Gemini proposals"); return }
+        #expect(rankedPlan.meals.map(\.recipeID) == [cheapest.id])
+    }
+
+    private struct StubMenuProposer: MenuProposing {
+        let menus: [[String]]
+        var excludedRecipeID: String? = nil
+        var expectedGoal: PlanningGoal? = nil
+
+        func propose(_ input: MenuProposalInput) async throws -> [[String]] {
+            if let excludedRecipeID {
+                #expect(input.slots.first?.allowedRecipeIDs.contains(excludedRecipeID) == false)
+            }
+            if let expectedGoal {
+                #expect(input.goals == [expectedGoal.rawValue])
+            }
+            return menus
+        }
+    }
+
     @Test func equalCostPlansPreferLessUnusedPackageValue() async throws {
         let original = try await catalog()
         var json = try #require(JSONSerialization.jsonObject(with: JSONEncoder().encode(original)) as? [String: Any])

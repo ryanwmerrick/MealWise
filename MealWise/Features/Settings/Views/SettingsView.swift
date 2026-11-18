@@ -23,6 +23,7 @@ struct SettingsView: View {
                         LabeledContent("Store", value: String(localized: "Development grocery"))
                         LabeledContent("Allergies", value: plan.profile.allergies.count.formatted())
                         LabeledContent("Preferences", value: plan.profile.preferences.count.formatted())
+                        LabeledContent("Meat preference", value: (plan.profile.meatPreference ?? .noPreference).title)
                     }
                     Section {
                         Button("Edit plan settings") { editing = true }.frame(minHeight: 44).disabled(plan.closedAt != nil)

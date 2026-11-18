@@ -143,10 +143,10 @@ struct OnboardingView: View {
         case .household: householdControl
         case .schedule: scheduleControl
         case .kitchen:
-            Text("Choose the appliances you can cook with.")
+            Text("Choose the kitchen equipment you can cook with.")
                 .foregroundStyle(DesignTokens.textSecondary)
             choiceGrid {
-                ForEach(KitchenEquipment.appliances, id: \.self) { tool in
+                ForEach(KitchenEquipment.selectable, id: \.self) { tool in
                     SetupChoice(LocalizedStringKey(tool.rawValue.capitalized), selected: preferences.equipment.contains(tool)) {
                         viewModel.togglePreference(tool, in: \.equipment)
                     }
@@ -359,6 +359,18 @@ struct OnboardingView: View {
 
     private var dietControl: some View {
         VStack(alignment: .leading, spacing: 14) {
+            Text("Would you like meals with meat?").font(.headline)
+            Text("Choose Include meat for at least one meat meal in your plan.").font(.footnote)
+                .foregroundStyle(DesignTokens.textSecondary)
+            ForEach(MeatPreference.allCases, id: \.self) { preference in
+                SetupChoice(LocalizedStringKey(preference.title), selected: (viewModel.profile.meatPreference ?? .noPreference) == preference) {
+                    viewModel.profile.meatPreference = preference
+                }
+                .disabled(preference == .includeMeat && !viewModel.profile.preferences.isDisjoint(with: [.vegetarian, .vegan]))
+            }
+            if !viewModel.profile.preferences.isDisjoint(with: [.vegetarian, .vegan]) {
+                Text("Vegetarian and vegan plans exclude meat.").font(.footnote).foregroundStyle(DesignTokens.textSecondary)
+            }
             Text("Used in your plan").font(.headline)
             choiceGrid {
                 ForEach(DietPreference.allCases, id: \.self) { preference in
@@ -438,9 +450,10 @@ struct OnboardingView: View {
             summaryRow("Cooking experience", value: String(localized: String.LocalizationValue(viewModel.profile.skill.title)), step: .skill, id: "skill")
             summaryRow("Store", value: preferences.stores.isEmpty ? String(localized: "Sample grocery prices") : preferences.stores.map(\.label).sorted().joined(separator: ", "), step: .stores, id: "store")
             summaryRow("Dietary preferences", value: "\(viewModel.profile.preferences.count + (preferences.additionalDiets?.count ?? 0) + (preferences.keto ? 1 : 0)) selected", step: .diet, id: "diet")
+            summaryRow("Meat preference", value: (viewModel.profile.meatPreference ?? .noPreference).title, step: .diet, id: "meat")
             summaryRow("Food allergies", value: "\(viewModel.wholeAllergyGroups.count + (preferences.detailedAllergies?.count ?? 0)) selected", step: .allergies, id: "allergies")
             summaryRow("Goals", value: "\(preferences.goals.count) selected", step: .goals, id: "goals")
-            summaryRow("Kitchen equipment", value: "\(preferences.equipment.intersection(KitchenEquipment.appliances).count) selected", step: .kitchen, id: "kitchen")
+            summaryRow("Kitchen equipment", value: "\(preferences.equipment.intersection(KitchenEquipment.selectable).count) selected", step: .kitchen, id: "kitchen")
             summaryRow("Cooking styles", value: "\(preferences.styles.count) selected", step: .style, id: "style")
             DevelopmentNotice()
             if viewModel.nextCycle != nil {

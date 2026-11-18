@@ -150,7 +150,10 @@ final class OnboardingViewModel: ObservableObject {
 
     func togglePreference(_ preference: DietPreference) {
         if profile.preferences.contains(preference) { profile.preferences.remove(preference) }
-        else { profile.preferences.insert(preference) }
+        else {
+            profile.preferences.insert(preference)
+            if profile.requiresMeat && !profile.allowsMeat { profile.meatPreference = .meatFree }
+        }
     }
 
     func saveDraft() async -> PlanningProfile? {
@@ -185,6 +188,7 @@ final class OnboardingViewModel: ObservableObject {
                 let change = try await services.changes.preview(.profile(profile), in: basePlan)
                 changePreview = change
                 if change.constraint == .feasible { preview = change.proposedPlan }
+                else if change.constraint == .noFeasiblePlan && profile.requiresMeat { errorMessage = meatPlanError }
                 else { errorMessage = change.constraint.message }
                 return
             }
@@ -200,7 +204,7 @@ final class OnboardingViewModel: ObservableObject {
             case .invalidInputs: errorMessage = "Check your budget, household, selected meals and price dates, then try again."
             case .noFeasiblePlan:
                 errorMessage = pins.isEmpty
-                    ? "We couldn’t build a complete plan with your current choices. Review your budget, schedule, cooking time or kitchen equipment and try again. Meals must still match every selected allergy and dietary preference."
+                    ? (profile.requiresMeat ? meatPlanError : "We couldn’t build a complete plan with your current choices. Review your budget, schedule, cooking time or kitchen equipment and try again. Meals must still match every selected allergy and dietary preference.")
                     : "Your pinned favorites could not form a complete plan within this budget and food requirements. Review pins in Favorites or adjust your choices."
             case .searchLimit: errorMessage = "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
             }
@@ -208,15 +212,22 @@ final class OnboardingViewModel: ObservableObject {
         catch { errorMessage = "The plan could not be built. Your previous plan is unchanged. Please retry." }
     }
 
+    private var meatPlanError: String {
+        if profile.onboarding?.equipment.contains(.foodThermometer) == false {
+            return "The meat recipes require a food thermometer. If you have one, select Food Thermometer under Kitchen equipment, or change your meat preference."
+        }
+        return "No complete plan with meat fits your choices. Try a higher budget, more cooking time, or a different schedule. You can also change your meat preference."
+    }
+
     func budgetEstimate(for snapshot: PlanningProfile) async throws -> BudgetEstimate {
         if let basePlan {
-            let result = try await services.changes.preview(.profile(snapshot), in: basePlan)
+            let result = try await services.changes.preview(.profile(snapshot, allowsMenuProposals: false), in: basePlan)
             if let plan = result.proposedPlan, result.constraint == .feasible {
                 return .fits(plan.totalMinorUnits, plan.remainingMinorUnits)
             }
             return .message(result.constraint.message)
         }
-        let request = try await planRequest(for: snapshot)
+        let request = try await planRequest(for: snapshot, allowsMenuProposals: false)
         switch try await services.planner.generate(request) {
         case .feasible(let plan): return .fits(plan.totalMinorUnits, plan.remainingMinorUnits)
         case .noFeasiblePlan: return .message("No complete plan fits these choices. Review your budget, schedule or kitchen equipment.")
@@ -230,13 +241,13 @@ final class OnboardingViewModel: ObservableObject {
         case message(String)
     }
 
-    private func planRequest(for snapshot: PlanningProfile) async throws -> PlanRequest {
+    private func planRequest(for snapshot: PlanningProfile, allowsMenuProposals: Bool = true) async throws -> PlanRequest {
         let excluded = try await services.preferences.loadExcludedRecipeIDs()
         let stock = try await services.pantry.loadItems()
         let preferences = try await services.preferences.loadRecipePreferences()
         let pins = try await services.preferences.loadPins()
         return PlanRequest(profile: snapshot, catalog: planningCatalog, excludedRecipeIDs: excluded,
-                           confirmedStock: stock, recipePreferences: preferences, pins: pins)
+                           confirmedStock: stock, recipePreferences: preferences, pins: pins, allowsMenuProposals: allowsMenuProposals)
     }
 
     func acceptPreview() async -> WeeklyPlan? {

@@ -14,16 +14,9 @@ struct WeekView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 16) {
-                    DevelopmentNotice()
                     if viewModel.plan.closedAt != nil { Text("This cycle is finished. Open Pantry to plan the next week; history stays unchanged.").font(.headline) }
                     if viewModel.plan.reviewRequired == true { Text("Stock changed and the cycle needs budget review before additional purchases.").font(.headline) }
-                    HStack {
-                        Text("Ingredients repeat on purpose.").font(.headline)
-                        Spacer()
-                        NavigationLink("Map", value: PlanRoute.ingredientMap(planID: viewModel.plan.id))
-                            .frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("week.map")
-                    }
-                    leftoverForecast
+                    ingredientMapLink
                     ForEach(viewModel.plan.meals) { meal in
                         HStack(spacing: 0) {
                             NavigationLink(value: PlanRoute.meal(planID: viewModel.plan.id, mealID: meal.id)) { mealRow(meal) }
@@ -81,19 +74,23 @@ struct WeekView: View {
         }
     }
 
-    private var leftoverForecast: some View {
+    private var ingredientMapLink: some View {
         NavigationLink(value: PlanRoute.ingredientMap(planID: viewModel.plan.id)) {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Leftover forecast").font(.headline)
-                if let count = viewModel.attentionCount {
-                    Text("Storage-sensitive remainders: \(count)").font(.subheadline)
-                } else {
-                    Text("Forecast unavailable. Open the map to retry.").font(.subheadline)
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Ingredient map").font(.headline)
+                    if let count = viewModel.attentionCount, count > 0 {
+                        Text("\(count) leftovers to check").font(.subheadline).foregroundStyle(DesignTokens.textSecondary)
+                    }
                 }
-                Text("Forecast quantities need confirmation before carryover.").font(.footnote)
-            }.padding(14).frame(maxWidth: .infinity, alignment: .leading)
-                .background(DesignTokens.selection, in: RoundedRectangle(cornerRadius: 18))
-        }.buttonStyle(.plain)
+                Spacer()
+                Image(systemName: "chevron.forward").font(.footnote).foregroundStyle(DesignTokens.action).accessibilityHidden(true)
+            }
+            .frame(minHeight: 44)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("week.map")
     }
 
     private var budgetCard: some View {
@@ -104,7 +101,7 @@ struct WeekView: View {
                     VStack(alignment: .leading) { Text(viewModel.plan.resources == nil ? "Estimated checkout" : "Projected cycle total"); Text("\(viewModel.plan.remainingMinorUnits.currency) left").foregroundStyle(DesignTokens.gold) }
                 }.font(.caption)
                 Text(viewModel.plan.totalMinorUnits.currency).font(.largeTitle.bold())
-                Text("of \(viewModel.plan.profile.budgetMinorUnits.currency)").font(.subheadline)
+                Text("of \(viewModel.plan.profile.budgetMinorUnits.currency) · Sample prices").font(.subheadline)
                 UsageMeter(progress: viewModel.progress, label: "Budget used", value: Text(viewModel.plan.totalMinorUnits.currency))
                     .accessibilityHidden(true)
             }.padding(18).foregroundStyle(.white)
@@ -113,7 +110,7 @@ struct WeekView: View {
         .buttonStyle(.plain)
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Projected cycle total \(viewModel.plan.totalMinorUnits.currency) of \(viewModel.plan.profile.budgetMinorUnits.currency), \(viewModel.plan.remainingMinorUnits.currency) remaining. Budget details."))
+        .accessibilityLabel(Text("Projected cycle total \(viewModel.plan.totalMinorUnits.currency) of \(viewModel.plan.profile.budgetMinorUnits.currency), \(viewModel.plan.remainingMinorUnits.currency) remaining. Sample prices. Budget details."))
         .accessibilityIdentifier("week.budget")
     }
 
@@ -123,7 +120,7 @@ struct WeekView: View {
                 Text(meal.date, format: .dateTime.weekday(.abbreviated)).font(.caption)
                 Text(meal.date, format: .dateTime.day()).font(.title3.bold())
             }.frame(minWidth: 40)
-            Image("IconPot").padding(12).background(DesignTokens.selection, in: RoundedRectangle(cornerRadius: 14)).accessibilityHidden(true)
+            RecipePhoto(recipeID: meal.recipeID, layout: .thumbnail)
             if let recipe = viewModel.recipe(for: meal) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(LocalizedStringKey(recipe.title)).font(.headline)
@@ -143,10 +140,14 @@ struct WeekView: View {
     private var budgetDetail: some View {
         NavigationStack {
             List {
-                Section("Whole-package checkout estimate") {
+                Section {
                     LabeledContent("Weekly budget", value: viewModel.plan.profile.budgetMinorUnits.currency)
                     LabeledContent("Projected cycle total", value: viewModel.plan.totalMinorUnits.currency)
                     LabeledContent("Remaining", value: viewModel.plan.remainingMinorUnits.currency)
+                } header: {
+                    Text("Whole-package checkout estimate")
+                } footer: {
+                    DevelopmentNotice()
                 }
                 if let resources = viewModel.plan.resources {
                     Section("Purchased stock and spending") {
@@ -164,7 +165,6 @@ struct WeekView: View {
                 if session.services != nil {
                     Section { NavigationLink("Adjust budget", value: BudgetRoute.adjust).disabled(viewModel.plan.closedAt != nil) }
                 }
-                Section { DevelopmentNotice() }
             }
             .navigationTitle("Budget details")
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showBudget = false } } }

@@ -70,7 +70,6 @@ struct ChangePreviewScreen: View {
                         .disabled(preview.constraint != .feasible || viewModel.isWorking).frame(minHeight: 44)
                 }
                 Button("Keep current plan") { dismiss() }.frame(minHeight: 44).disabled(viewModel.isWorking)
-                DevelopmentNotice()
             }
             .navigationTitle("Review change")
             .navigationBarTitleDisplayMode(.inline)
@@ -114,7 +113,7 @@ struct BudgetAdjustmentView: View {
                 }
             }
             if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-            Section { Button("Keep current plan") { dismiss() }.frame(minHeight: 44).disabled(viewModel.isWorking); DevelopmentNotice() }
+            Section { Button("Keep current plan") { dismiss() }.frame(minHeight: 44).disabled(viewModel.isWorking) }
         }
         .navigationTitle("Adjust budget")
         .navigationBarTitleDisplayMode(.inline)

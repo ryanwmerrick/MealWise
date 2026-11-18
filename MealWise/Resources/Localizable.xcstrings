@@ -1142,6 +1142,7 @@
         }
       }
     },
+    "Choose Include meat for at least one meat meal in your plan.": {},
     "Choose at least one day and one meal.": {
       "localizations": {
         "en": {
@@ -2884,6 +2885,7 @@
         }
       }
     },
+    "Meat preference": {},
     "Milk": {
       "extractionState": "stale",
       "localizations": {
@@ -5916,6 +5918,7 @@
         }
       }
     },
+    "Vegetarian and vegan plans exclude meat.": {},
     "Warm oil in a skillet and soften onion. Add tomatoes and chickpeas, stirring until hot throughout.": {
       "extractionState": "stale",
       "localizations": {
@@ -6212,6 +6215,7 @@
         }
       }
     },
+    "Would you like meals with meat?": {},
     "Wrap up this cycle": {
       "localizations": {
         "en": {

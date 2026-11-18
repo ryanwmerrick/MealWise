@@ -47,7 +47,12 @@ actor AppBootstrap: AppBootstrapProtocol {
             catalog = saved.catalog
         }
         let preferences = MealPreferenceRepository(plans: plans)
+        #if DEBUG
+        let isUITest = ProcessInfo.processInfo.environment["MEALWISE_UI_TEST_STORE"] != nil
+        let planner = PlanService(menuProposer: isUITest ? nil : GeminiMenuProposer())
+        #else
         let planner = PlanService()
+        #endif
         let changes = PlanChangeService(plans: plans, planner: planner, preferences: preferences, latestCatalog: catalog)
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container), plans: plans,
                            planner: planner, checklist: ChecklistRepository(container: container),

@@ -27,7 +27,14 @@ final class CookingUITests: XCTestCase {
         let step = app.buttons.matching(identifier: "cooking.step").firstMatch
         reveal(step, in: app)
         step.tap()
+        XCTAssertTrue(step.isSelected)
         let capture = XCTAttachment(screenshot: app.screenshot()); capture.name = "Phase 8 cooking steps"; capture.lifetime = .keepAlways; add(capture)
+        let savedIngredients = app.buttons["Save for later meals"]
+        reveal(savedIngredients, in: app)
+        let reservation = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "Reserve ")).firstMatch
+        XCTAssertFalse(reservation.exists)
+        savedIngredients.tap()
+        XCTAssertTrue(reservation.waitForExistence(timeout: 5))
         app.buttons["Close cooking"].tap()
         app.buttons.matching(identifier: "today.meal").firstMatch.tap()
         let resumed = app.buttons.matching(identifier: "cooking.step").firstMatch
@@ -106,11 +113,13 @@ final class CookingUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
     }
     @MainActor private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
+        let bottomOfTapArea = app.frame.maxY - 44
         for _ in 0..<32 {
-            if element.exists && element.isHittable { return }
+            if element.exists && element.isHittable && element.frame.midY < bottomOfTapArea { return }
             app.swipeUp()
         }
         XCTAssertTrue(element.exists)
         XCTAssertTrue(element.isHittable)
+        XCTAssertLessThan(element.frame.midY, bottomOfTapArea)
     }
 }

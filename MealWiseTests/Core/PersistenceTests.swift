@@ -97,8 +97,8 @@ struct PersistenceTests {
 
     @Test func approvedDevelopmentCatalogLoads() async throws {
         let catalog = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
-        #expect(catalog.recipes.count == 33)
-        #expect(catalog.offers.count == 22)
+        #expect(catalog.recipes.count == 39)
+        #expect(catalog.offers.count == 25)
         #expect(catalog.ingredients.allSatisfy { !$0.allergensVerified })
     }
 

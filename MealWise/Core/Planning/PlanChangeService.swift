@@ -4,7 +4,7 @@ enum PlanChange: Sendable {
     case swap(mealID: UUID, recipeID: String)
     case regenerateDay(Date)
     case regenerateWeek
-    case profile(PlanningProfile)
+    case profile(PlanningProfile, allowsMenuProposals: Bool = true)
     case move(mealID: UUID, date: Date)
     case packageOffer(ingredientID: String, offerID: String)
 }
@@ -116,6 +116,9 @@ actor PlanChangeService: PlanChangeServiceProtocol {
             let meals = plan.meals.map { meal in
                 meal.id == mealID ? ScheduledMeal(id: meal.id, date: meal.date, slot: meal.slot, recipeID: recipeID) : meal
             }
+            guard PlanValidation.includesRequiredMeat(meals, profile: plan.profile, catalog: plan.catalog) else {
+                return makePreview(base: plan, proposed: nil, constraint: .noFeasiblePlan)
+            }
             let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: plan.profile, catalog: plan.catalog, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock()))
             let proposed = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
                                       meals: meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: plan.resources, offerOverrides: plan.offerOverrides, pricedAt: clock())
@@ -125,8 +128,10 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         let profile: PlanningProfile
         let fixed: [ScheduledMeal]
         let avoid: [ScheduledMeal]
+        var allowsMenuProposals = true
         switch change {
-        case .profile(let requested):
+        case .profile(let requested, let allowsProposals):
+            allowsMenuProposals = allowsProposals
             let cooked = plan.resources?.cookedMeals?.map(\.meal) ?? []
             guard cooked.allSatisfy({ requested.days.contains($0.date) && requested.mealSlots.contains($0.slot) }) else { throw CookingError.alreadyCooked }
             profile = requested; fixed = cooked; avoid = plan.meals.filter { plan.cookedRecord(for: $0.id) == nil }
@@ -141,7 +146,8 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         else { catalog = plan.catalog }
         let outcome = try await planner.generate(PlanRequest(profile: profile, catalog: catalog,
                                                             excludedRecipeIDs: excluded, fixedMeals: fixed, avoidMeals: avoid, resources: plan.resources, offerOverrides: plan.offerOverrides,
-                                                            recipePreferences: try await preferences.loadRecipePreferences()))
+                                                            recipePreferences: try await preferences.loadRecipePreferences(),
+                                                            allowsMenuProposals: allowsMenuProposals))
         switch outcome {
         case .feasible(let generated):
             let proposed = WeeklyPlan(id: plan.id, revision: generated.revision, profile: generated.profile,
@@ -205,7 +211,8 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         let impacts = Set(base.cart.map(\.id) + proposed.cart.map(\.id)).sorted().compactMap { id -> CartImpact? in
             let old = base.cart.first { $0.id == id }
             let new = proposed.cart.first { $0.id == id }
-            guard let ingredient = base.catalog.ingredients.first(where: { $0.id == id }) else { return nil }
+            guard let ingredient = proposed.catalog.ingredients.first(where: { $0.id == id })
+                ?? base.catalog.ingredients.first(where: { $0.id == id }) else { return nil }
             return CartImpact(id: id, name: ingredient.name, oldPackages: old?.packageCount ?? 0, newPackages: new?.packageCount ?? 0,
                               oldCost: old?.costMinorUnits ?? 0, newCost: new?.costMinorUnits ?? 0,
                               oldRequired: old?.requiredQuantity ?? 0, newRequired: new?.requiredQuantity ?? 0, unit: ingredient.unit)

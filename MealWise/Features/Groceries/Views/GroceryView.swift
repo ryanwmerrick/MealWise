@@ -16,6 +16,7 @@ struct GroceryView: View {
                     LabeledContent(viewModel.plan.closedAt == nil ? "Additional estimated checkout" : "Unpurchased forecast at close", value: (try? CartCalculator.total(viewModel.plan.cart))?.currency ?? String(localized: "Unavailable")).font(.headline)
                     LabeledContent("Budget", value: viewModel.plan.profile.budgetMinorUnits.currency)
                     Text("\(viewModel.checked.count) of \(viewModel.plan.cart.filter { $0.packageCount > 0 }.count) items checked")
+                } footer: {
                     DevelopmentNotice()
                 }
                 if let services = session.services {

@@ -30,6 +30,7 @@ struct MealIngredient: Sendable, Identifiable {
 
 struct MealDetail: Sendable {
     let mealID: UUID
+    let recipeID: String
     let title: String
     let minutes: Int
     let skill: CookingSkill
@@ -58,7 +59,7 @@ enum PlanCostBreakdown {
         let linked = plan.meals.filter { other in
             other.id != mealID && plan.catalog.recipes.first(where: { $0.id == other.recipeID })?.ingredients.contains(where: { ingredientIDs.contains($0.ingredientID) }) == true
         }
-        return MealDetail(mealID: meal.id, title: recipe.title, minutes: recipe.minutes, skill: recipe.skill,
+        return MealDetail(mealID: meal.id, recipeID: recipe.id, title: recipe.title, minutes: recipe.minutes, skill: recipe.skill,
                           adultHalfPortions: plan.portionProfile(for: mealID).adultHalfPortions, ingredients: ingredients,
                           steps: recipe.steps, nutrition: recipe.nutrition, ingredientCost: cost, linkedMeals: linked)
     }
