@@ -35,6 +35,7 @@ struct TodayView: View {
                                     else { Text("Open cooking steps") }
                                 }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                             }.accessibilityIdentifier("today.meal")
+                            if viewModel.isCooked(meal) { MealRatingView(mealID: meal.id, preferences: services.preferences) }
                             if !viewModel.isCooked(meal) {
                                 Button("I didn’t cook this") { skipped = TodayMealTarget(id: meal.id) }.frame(minHeight: 44).accessibilityIdentifier("today.skip")
                             }

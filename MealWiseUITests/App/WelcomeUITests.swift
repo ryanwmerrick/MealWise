@@ -39,17 +39,7 @@ final class WelcomeUITests: XCTestCase {
 extension XCTestCase {
     @MainActor
     func launchFresh(_ app: XCUIApplication) {
+        app.launchEnvironment["MEALWISE_UI_TEST_STORE"] = UUID().uuidString
         app.launch()
-        if app.buttons["week.settings"].waitForExistence(timeout: 3) {
-            app.buttons["week.settings"].tap()
-            for _ in 0..<4 {
-                if app.buttons["Start over"].exists && app.buttons["Start over"].isHittable { break }
-                app.swipeUp()
-            }
-            app.buttons["Start over"].tap()
-            app.buttons["Reset plan"].tap()
-            XCTAssertTrue(app.buttons["Reset plan"].waitForNonExistence(timeout: 5))
-            XCTAssertTrue(app.buttons["welcome.start"].waitForExistence(timeout: 10))
-        }
     }
 }

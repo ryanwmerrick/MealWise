@@ -11,12 +11,14 @@ protocol PlanRepositoryProtocol: Sendable {
     func loadActivePlan() async throws -> WeeklyPlan?
     func saveActivePlan(_ plan: WeeklyPlan) async throws
     func resetActivePlan() async throws
+    func eraseLocalData() async throws
     func commit(_ plan: WeeklyPlan, expectedRevision: UUID) async throws
 }
 
 actor PlanRepository: PlanRepositoryProtocol {
     let container: ModelContainer
-    init(container: ModelContainer) { self.container = container }
+    let clock: @Sendable () -> Date
+    init(container: ModelContainer, clock: @escaping @Sendable () -> Date = { .now }) { self.container = container; self.clock = clock }
 
     func resetActivePlan() async throws {
         let context = ModelContext(container)
@@ -35,13 +37,21 @@ actor PlanRepository: PlanRepositoryProtocol {
                     }
                 }
             }
-            for document in documents where document.key == "activePlan" || document.key == "profile" {
+            for document in documents where document.key == "activePlan" || document.key == "profile" || document.key == "next-plan-pins" {
                 context.delete(document)
             }
             try Task.checkCancellation()
             try context.save()
         } catch is CancellationError { context.rollback(); throw CancellationError() }
         catch { context.rollback(); throw PersistenceError.saveFailed }
+    }
+
+    func eraseLocalData() async throws {
+        let context = ModelContext(container)
+        context.autosaveEnabled = false
+        let documents = try context.fetch(FetchDescriptor<StoredDocument>())
+        for document in documents { context.delete(document) }
+        try savePantryContext(context)
     }
 
     func loadArchivedPlans() throws -> [PlanArchive] {
@@ -55,6 +65,7 @@ actor PlanRepository: PlanRepositoryProtocol {
     }
 
     func loadActivePlan() async throws -> WeeklyPlan? {
+        try reconcileExpiredPantry(at: clock())
         let context = ModelContext(container)
         do {
             let documents = try context.fetch(FetchDescriptor(predicate: #Predicate<StoredDocument> { $0.key == "activePlan" }))
@@ -81,6 +92,7 @@ actor PlanRepository: PlanRepositoryProtocol {
         context.autosaveEnabled = false
         do {
             let documents = try context.fetch(FetchDescriptor<StoredDocument>())
+            if expectedRevision == nil { try consumeRecipePins(for: plan, documents: documents) }
             if let expectedRevision {
                 guard let active = documents.first(where: { $0.key == "activePlan" }) else { throw PlanChangeError.stalePreview }
                 let previous = try JSONDecoder().decode(WeeklyPlan.self, from: active.payload)
@@ -100,7 +112,7 @@ actor PlanRepository: PlanRepositoryProtocol {
             }
             if expectedRevision == nil, plan.resources?.pantryCredits?.isEmpty == false {
                 guard !documents.contains(where: { $0.key == "activePlan" }) else { throw PantryError.activeCycle }
-                try reservePantryCredits(plan, documents: documents, context: context, at: .now)
+                try reservePantryCredits(plan, documents: documents, context: context, at: clock())
             }
             let payloads = [("activePlan", try JSONEncoder().encode(plan)), ("profile", try JSONEncoder().encode(plan.profile))]
             for (key, payload) in payloads {

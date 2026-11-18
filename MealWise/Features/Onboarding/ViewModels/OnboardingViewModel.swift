@@ -15,11 +15,11 @@ final class OnboardingViewModel: ObservableObject {
     @Published private(set) var preview: WeeklyPlan?
     @Published private(set) var errorMessage: String?
     private var returnToSummary = false
-    private let services: AppServices
+    let services: AppServices
     private let today: Date
     private let basePlan: WeeklyPlan?
     let nextCycle: WeeklyPlan?
-    private let planningCatalog: RecipeCatalog
+    let planningCatalog: RecipeCatalog
     private var changePreview: PlanChangePreview?
 
     init(profile: PlanningProfile, services: AppServices, now: Date = .now, basePlan: WeeklyPlan? = nil, nextCycle: WeeklyPlan? = nil, planningCatalog: RecipeCatalog? = nil) {
@@ -112,11 +112,23 @@ final class OnboardingViewModel: ObservableObject {
             }
             let excluded = try await services.preferences.loadExcludedRecipeIDs()
             let stock = try await services.pantry.loadItems()
-            let result = try await services.planner.generate(PlanRequest(profile: profile, catalog: planningCatalog, excludedRecipeIDs: excluded, confirmedStock: stock))
+            let preferences = try await services.preferences.loadRecipePreferences()
+            let pins = try await services.preferences.loadPins()
+            guard pins.allSatisfy({ profile.days.contains($0.date) && profile.mealSlots.contains($0.slot) }) else {
+                errorMessage = "A favorite pin no longer matches your selected dates or meal slots. Review or remove it in Favorites before building."
+                return
+            }
+            let result = try await services.planner.generate(PlanRequest(
+                profile: profile, catalog: planningCatalog, excludedRecipeIDs: excluded, confirmedStock: stock,
+                recipePreferences: preferences, pins: pins
+            ))
             switch result {
             case .feasible(let plan): preview = plan
             case .invalidInputs: errorMessage = "Check your budget, household, selected meals and price dates, then try again."
-            case .noFeasiblePlan: errorMessage = "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference."
+            case .noFeasiblePlan:
+                errorMessage = pins.isEmpty
+                    ? "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference."
+                    : "Your pinned favorites could not form a complete plan within this budget and food requirements. Review pins in Favorites or adjust your choices."
             case .searchLimit: errorMessage = "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
             }
         } catch is CancellationError { return }

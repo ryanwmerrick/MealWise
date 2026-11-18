@@ -41,7 +41,7 @@ final class RemainderSuggestionViewModel: ObservableObject {
         do {
             let excluded = try await services.preferences.loadExcludedRecipeIDs()
             var suggestions: [RemainderSuggestion] = []
-            for meal in plan.meals {
+            for meal in plan.meals where plan.cookedRecord(for: meal.id) == nil {
                 let candidates = plan.catalog.recipes.filter {
                     $0.id != meal.recipeID && !excluded.contains($0.id) && $0.ingredients.contains { $0.ingredientID == ingredientID } &&
                     PlanService.isEligible($0, slot: meal.slot, profile: plan.profile, catalog: plan.catalog)

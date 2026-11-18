@@ -27,9 +27,9 @@ enum LocalStore {
             let schema = Schema(versionedSchema: StoreSchemaV1.self)
             let configuration: ModelConfiguration
             if let url {
-                configuration = ModelConfiguration(schema: schema, url: url)
+                configuration = ModelConfiguration(schema: schema, url: url, cloudKitDatabase: .none)
             } else {
-                configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: inMemory)
+                configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: inMemory, cloudKitDatabase: .none)
             }
             return try ModelContainer(for: schema, configurations: [configuration])
         } catch { throw PersistenceError.openFailed }

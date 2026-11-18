@@ -140,7 +140,8 @@ actor PlanChangeService: PlanChangeServiceProtocol {
         if case .profile = change { catalog = expandedDevelopmentCatalog(for: plan.catalog) }
         else { catalog = plan.catalog }
         let outcome = try await planner.generate(PlanRequest(profile: profile, catalog: catalog,
-                                                            excludedRecipeIDs: excluded, fixedMeals: fixed, avoidMeals: avoid, resources: plan.resources, offerOverrides: plan.offerOverrides))
+                                                            excludedRecipeIDs: excluded, fixedMeals: fixed, avoidMeals: avoid, resources: plan.resources, offerOverrides: plan.offerOverrides,
+                                                            recipePreferences: try await preferences.loadRecipePreferences()))
         switch outcome {
         case .feasible(let generated):
             let proposed = WeeklyPlan(id: plan.id, revision: generated.revision, profile: generated.profile,

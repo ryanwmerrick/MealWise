@@ -43,9 +43,9 @@ struct ShoppingTests {
         let profile = PlanningProfile(budgetMinorUnits: 7000, adults: 2, children: 0,
                                       days: [Date(timeIntervalSince1970: 1794528000)], mealSlots: [.dinner], cookingTime: .thirty,
                                       skill: .beginner, storeID: "development-grocery", allergies: [], preferences: [])
-        guard case .feasible(let plan) = try await PlanService().generate(PlanRequest(profile: profile, catalog: catalog)) else { Issue.record("Fixture failed"); return }
+        guard case .feasible(let plan) = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: profile, catalog: catalog)) else { Issue.record("Fixture failed"); return }
         try await plans.saveActivePlan(plan)
-        let service = ShoppingService(plans: plans)
+        let service = ShoppingService(plans: plans, clock: { Date(timeIntervalSince1970: 1794528000) })
         let trip = try await service.openTrip(planID: plan.id)
         let line = try #require(trip.lines.first)
         _ = try await service.updatePrice(itemID: line.id, actualPrice: Money(minorUnits: 8000), tripID: trip.id)
@@ -67,13 +67,13 @@ struct ShoppingTests {
     @Test func missingReceiptPricesStayUnknownAndCancellationPreservesStock() async throws {
         let container = try await LocalStore.makeContainer(inMemory: true)
         let plans = PlanRepository(container: container)
-        let catalog = try await CatalogService(allowDevelopment: true).loadCatalog()
+        let catalog = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
         let profile = PlanningProfile(budgetMinorUnits: 7000, adults: 2, children: 0,
                                       days: [Date(timeIntervalSince1970: 1794528000)], mealSlots: [.dinner], cookingTime: .thirty,
                                       skill: .beginner, storeID: "development-grocery", allergies: [], preferences: [])
-        guard case .feasible(let plan) = try await PlanService().generate(PlanRequest(profile: profile, catalog: catalog)) else { Issue.record("Fixture failed"); return }
+        guard case .feasible(let plan) = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: profile, catalog: catalog)) else { Issue.record("Fixture failed"); return }
         try await plans.saveActivePlan(plan)
-        let service = ShoppingService(plans: plans)
+        let service = ShoppingService(plans: plans, clock: { Date(timeIntervalSince1970: 1794528000) })
         let trip = try await service.openTrip(planID: plan.id)
         let line = try #require(trip.lines.first)
         _ = try await service.setChecked(itemID: line.id, checked: true, tripID: trip.id)
@@ -87,7 +87,7 @@ struct ShoppingTests {
         #expect(try summary.knownActualMinorUnits == 0)
         #expect(try await plans.loadActivePlan()?.totalMinorUnits == plan.totalMinorUnits)
         let updated = try #require(try await plans.loadActivePlan())
-        let changes = PlanChangeService(plans: plans, planner: PlanService(), preferences: MealPreferenceRepository(container: container))
+        let changes = PlanChangeService(plans: plans, planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), preferences: MealPreferenceRepository(container: container), clock: { Date(timeIntervalSince1970: 1794528000) })
         let stale = try await changes.preview(.swap(mealID: plan.meals[0].id, recipeID: "bean-quesadillas"), in: plan)
         await #expect(throws: PlanChangeError.stalePreview) { try await changes.accept(stale, expectedRevision: plan.revision) }
         #expect(try await plans.loadActivePlan() == updated)
@@ -103,7 +103,7 @@ struct ShoppingTests {
         let planner = PlanService(clock: { Date(timeIntervalSince1970: 1794528000) })
         guard case .feasible(let plan) = try await planner.generate(PlanRequest(profile: profile, catalog: catalog)) else { Issue.record("Fixture failed"); return }
         try await plans.saveActivePlan(plan)
-        let service = ShoppingService(container: container)
+        let service = ShoppingService(container: container, clock: { Date(timeIntervalSince1970: 1794528000) })
         let trip = try await service.openTrip(planID: plan.id)
         let line = try #require(trip.lines.first)
         #expect(try await service.cheaperSubstitutes(itemID: line.id, tripID: trip.id).isEmpty)
@@ -123,7 +123,7 @@ struct ShoppingTests {
         #expect(summary.missingPriceCount == 0)
         #expect(try summary.knownActualMinorUnits == 8000)
         #expect(summary.unpurchasedCount == trip.lines.count - 1)
-        let reopened = ShoppingService(container: container)
+        let reopened = ShoppingService(container: container, clock: { Date(timeIntervalSince1970: 1794528000) })
         #expect(try await reopened.finishTrip(trip.id) == summary)
         let purchased = try #require(try await plans.loadActivePlan())
         #expect(purchased.resources?.purchases.count == 1)

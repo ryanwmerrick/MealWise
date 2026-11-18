@@ -145,7 +145,7 @@ struct PantryTests {
     }
     private func purchasedFixture() async throws -> (PlanRepository, PantryRepository, HistoryRepository, CookingService, WeeklyPlan) {
         let container = try await LocalStore.makeContainer(inMemory: true)
-        let plans = PlanRepository(container: container)
+        let plans = PlanRepository(container: container, clock: { Date(timeIntervalSince1970: 1794528000) })
         let catalog = try await CatalogService(allowDevelopment: true, now: now).loadCatalog()
         var profile = profile(); profile.days.append(now.addingTimeInterval(86400))
         let meals = profile.days.map { ScheduledMeal(id: UUID(), date: $0, slot: .dinner, recipeID: "spinach-bean-pasta") }
