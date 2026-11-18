@@ -3,6 +3,23 @@ import Testing
 @testable import MealWise
 
 struct PlanningTests {
+    @Test(arguments: PlanningGoal.allCases)
+    func configuredProposerRunsForEveryPlanningGoal(_ goal: PlanningGoal) async throws {
+        let catalog = try await catalog()
+        let date = Date(timeIntervalSince1970: 1794528000)
+        var profile = PlanningProfile.fixture
+        profile.onboarding = OnboardingPreferences(goals: [goal])
+        let recipeID = "dinner-lentil-spinach"
+        let proposer = StubMenuProposer(menus: [[recipeID]], expectedGoal: goal)
+        let service = PlanService(nodeLimit: 0, menuProposer: proposer, clock: { date })
+        let outcome = try await service.generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let plan) = outcome else { Issue.record("Expected a Gemini proposal for this planning goal"); return }
+        #expect(plan.meals.map(\.recipeID) == [recipeID])
+
+        let estimate = try await service.generate(PlanRequest(profile: profile, catalog: catalog, allowsMenuProposals: false))
+        guard case .searchLimit = estimate else { Issue.record("Expected the estimate to use the local planner"); return }
+    }
+
     @Test func meatPlanRespectsThermometerSelection() async throws {
         let catalog = try await catalog()
         let date = Date(timeIntervalSince1970: 1794528000)
@@ -81,15 +98,26 @@ struct PlanningTests {
             .generate(PlanRequest(profile: profile, catalog: catalog))
         guard case .feasible(let localPlan) = fallback else { Issue.record("Expected local fallback"); return }
         #expect(localPlan.totalMinorUnits == cheapest.cost)
+
+        profile.onboarding = OnboardingPreferences(goals: [.saveMoney])
+        let proposals = StubMenuProposer(menus: [[preferred.id], [cheapest.id]], expectedGoal: .saveMoney)
+        let ranked = try await PlanService(nodeLimit: 0, menuProposer: proposals, clock: { date })
+            .generate(PlanRequest(profile: profile, catalog: catalog))
+        guard case .feasible(let rankedPlan) = ranked else { Issue.record("Expected locally ranked Gemini proposals"); return }
+        #expect(rankedPlan.meals.map(\.recipeID) == [cheapest.id])
     }
 
     private struct StubMenuProposer: MenuProposing {
         let menus: [[String]]
         var excludedRecipeID: String? = nil
+        var expectedGoal: PlanningGoal? = nil
 
         func propose(_ input: MenuProposalInput) async throws -> [[String]] {
             if let excludedRecipeID {
                 #expect(input.slots.first?.allowedRecipeIDs.contains(excludedRecipeID) == false)
+            }
+            if let expectedGoal {
+                #expect(input.goals == [expectedGoal.rawValue])
             }
             return menus
         }

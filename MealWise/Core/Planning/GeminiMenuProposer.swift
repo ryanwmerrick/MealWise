@@ -17,6 +17,7 @@ struct MenuProposalInput: Encodable, Sendable {
         let baseAdultPortions: Int
         let ingredients: [RecipeRequirement]
         let containsMeat: Bool
+        let preferenceScore: Int
     }
 
     struct Package: Encodable, Sendable {
@@ -31,15 +32,16 @@ struct MenuProposalInput: Encodable, Sendable {
     let adultHalfPortions: Int
     let remainingBudgetMinorUnits: Int64
     let requiresMeat: Bool
+    let goals: [String]
 
-    init(request: PlanRequest, slots: [MealSlot], candidates: [[Recipe]]) {
+    init(request: PlanRequest, slots: [MealSlot], candidates: [[Recipe]], preferenceScores: [String: Int]) {
         self.slots = zip(slots, candidates).map { meal, recipes in
             Slot(meal: meal, allowedRecipeIDs: recipes.map(\.id))
         }
         let candidateIDs = Set(candidates.flatMap { $0.map(\.id) })
         recipes = request.catalog.recipes.filter { candidateIDs.contains($0.id) }.map {
             Candidate(id: $0.id, title: $0.title, baseAdultPortions: $0.baseAdultPortions,
-                      ingredients: $0.ingredients, containsMeat: $0.containsMeat == true)
+                      ingredients: $0.ingredients, containsMeat: $0.containsMeat == true, preferenceScore: preferenceScores[$0.id] ?? 0)
         }
         let ingredientIDs = Set(recipes.flatMap { $0.ingredients.map(\.ingredientID) })
         packages = request.catalog.offers.filter { offer in
@@ -51,6 +53,7 @@ struct MenuProposalInput: Encodable, Sendable {
         adultHalfPortions = request.profile.adultHalfPortions
         remainingBudgetMinorUnits = max(0, request.profile.budgetMinorUnits - (request.resources?.committedMinorUnits ?? 0))
         requiresMeat = request.profile.requiresMeat
+        goals = (request.profile.onboarding?.goals ?? []).map(\.rawValue).sorted()
     }
 }
 
@@ -89,7 +92,8 @@ struct GeminiMenuProposer: MenuProposing {
         let prompt = """
         Propose up to three complete weekly menus in preference order. Each menu is an array with one recipe ID per slot, in the given order. Use only the IDs allowed for each slot.
         Prefer variety in proteins, vegetables, flavors, and cooking styles. If requiresMeat is true, every menu must include at least one recipe marked containsMeat. Include a mix of meat and plant-based meals when both are among the eligible choices. Avoid repeats where practical.
-        Use budget headroom for greater variety when it improves the menu. The budget is a hard cap, and there is no minimum spend. Estimate costs by scaling recipe quantities to the household, combining them across slots, then rounding up to whole packages. Two adult half portions equal one adult portion. Return a lower-cost alternative when possible. Return an empty menus array if you have no suggestions.
+        Favor recipes with higher preferenceScore to reflect the user's recipe ratings and planning preferences. When goals include saveMoney, prioritize lower package costs. When goals include wasteLess, prioritize using more of each purchased package across the menu.
+        The budget is a hard cap, and there is no minimum spend. Estimate costs by scaling recipe quantities to the household, combining them across slots, then rounding up to whole packages. Two adult half portions equal one adult portion. Return a lower-cost alternative when possible. Return an empty menus array if you have no suggestions.
 
         \(menuData)
         """

@@ -30,7 +30,8 @@ actor PlanService: PlanServiceProtocol {
             resources = PlanResources(pantryCredits: credits)
         }
         let request = PlanRequest(profile: input.profile, catalog: input.catalog, excludedRecipeIDs: input.excludedRecipeIDs,
-                                  fixedMeals: input.fixedMeals, avoidMeals: input.avoidMeals, resources: resources, offerOverrides: input.offerOverrides, recipePreferences: input.recipePreferences, pins: input.pins)
+                                  fixedMeals: input.fixedMeals, avoidMeals: input.avoidMeals, resources: resources, offerOverrides: input.offerOverrides,
+                                  recipePreferences: input.recipePreferences, pins: input.pins, allowsMenuProposals: input.allowsMenuProposals)
         try Task.checkCancellation()
         do { try request.profile.validate() } catch { return .invalidInputs }
         do {
@@ -76,17 +77,13 @@ actor PlanService: PlanServiceProtocol {
         guard candidates.allSatisfy({ !$0.isEmpty }) else { return .noFeasiblePlan }
         let lastMeatSlot = candidates.lastIndex { $0.contains { $0.containsMeat == true } }
         guard !request.profile.requiresMeat || lastMeatSlot != nil else { return .noFeasiblePlan }
-        let goals = request.profile.onboarding?.goals ?? []
-        let usesPersonalizedRanking = scores.values.contains { $0 != 0 } || !goals.isDisjoint(with: [.saveMoney, .wasteLess])
-        let proposedMeals = usesPersonalizedRanking ? nil :
-            try await proposeMeals(request: request, slots: slots, candidates: candidates, pricedAt: now)
+        var search = PlanSearch(request: request, pricedAt: now, slots: slots, candidates: candidates, preferenceScores: scores, limit: nodeLimit,
+                                lastRequiredMeatSlot: request.profile.requiresMeat ? lastMeatSlot : nil)
         let selectedMeals: [ScheduledMeal]
-        if let proposedMeals {
+        if let proposedMeals = try await proposeMeals(using: &search) {
             selectedMeals = proposedMeals
         } else {
             Self.logger.notice("Using the local meal planner")
-            var search = PlanSearch(request: request, pricedAt: now, slots: slots, candidates: candidates, preferenceScores: scores, limit: nodeLimit,
-                                    lastRequiredMeatSlot: request.profile.requiresMeat ? lastMeatSlot : nil)
             try search.visit([])
             guard let best = search.best else { return search.limitReached ? .searchLimit : .noFeasiblePlan }
             selectedMeals = best.meals
@@ -110,17 +107,18 @@ actor PlanService: PlanServiceProtocol {
         return .feasible(plan)
     }
 
-    private func proposeMeals(request: PlanRequest, slots: [(Date, MealSlot)], candidates: [[Recipe]], pricedAt: Date) async throws -> [ScheduledMeal]? {
+    private func proposeMeals(using search: inout PlanSearch) async throws -> [ScheduledMeal]? {
+        let request = search.request
+        guard request.allowsMenuProposals else { return nil }
         guard let menuProposer else {
             Self.logger.notice("Skipping Gemini: no menu proposer configured")
             return nil
         }
-        guard candidates.contains(where: { $0.count > 1 }) else {
-            Self.logger.notice("Skipping Gemini: every slot has at most one eligible recipe")
-            return nil
-        }
+        let slots = search.slots
+        let goals = request.profile.onboarding?.goals ?? []
+        let rankProposals = search.preferenceScores.values.contains { $0 != 0 } || !goals.isDisjoint(with: [.saveMoney, .wasteLess])
         let fixedBySlot = slots.map { date, slot in request.fixedMeals.first { $0.date == date && $0.slot == slot } }
-        let suggestedCandidates = zip(slots, candidates).map { slot, recipes in
+        let suggestedCandidates = zip(slots, search.candidates).map { slot, recipes in
             let replacements = recipes.filter { recipe in
                 !request.avoidMeals.contains { $0.date == slot.0 && $0.slot == slot.1 && $0.recipeID == recipe.id }
             }
@@ -130,7 +128,8 @@ actor PlanService: PlanServiceProtocol {
 
         let menus: [[String]]
         do {
-            menus = try await menuProposer.propose(MenuProposalInput(request: request, slots: slots.map { $0.1 }, candidates: suggestedCandidates))
+            menus = try await menuProposer.propose(MenuProposalInput(request: request, slots: slots.map { $0.1 },
+                                                                    candidates: suggestedCandidates, preferenceScores: search.preferenceScores))
         } catch {
             try Task.checkCancellation()
             if error is CancellationError { throw error }
@@ -148,11 +147,17 @@ actor PlanService: PlanServiceProtocol {
                 fixedBySlot[index] ?? ScheduledMeal(id: UUID(), date: slots[index].0, slot: slots[index].1, recipeID: menu[index])
             }
             let cart = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog,
-                                                                resources: request.resources, offerOverrides: request.offerOverrides, pricedAt: pricedAt))
-            if cart.totalMinorUnits <= request.profile.budgetMinorUnits {
+                                                                resources: request.resources, offerOverrides: request.offerOverrides, pricedAt: search.pricedAt))
+            guard cart.totalMinorUnits <= request.profile.budgetMinorUnits else { continue }
+            if !rankProposals {
                 Self.logger.notice("Accepted a Gemini menu")
                 return meals
             }
+            try search.consider(meals, priced: cart)
+        }
+        if let best = search.best {
+            Self.logger.notice("Accepted a Gemini menu after applying planning preferences")
+            return best.meals
         }
         Self.logger.notice("No Gemini menu passed local validation")
         return nil
@@ -197,22 +202,9 @@ private struct PlanSearch {
         guard nodes < limit else { limitReached = true; return }
         nodes += 1
         let priced = try CartCalculator.calculate(CartRequest(meals: meals, profile: request.profile, catalog: request.catalog, resources: request.resources, offerOverrides: request.offerOverrides, pricedAt: pricedAt))
-        let cart = priced.items
-        let cost = priced.totalMinorUnits
-        guard cost <= request.profile.budgetMinorUnits else { return }
+        guard priced.totalMinorUnits <= request.profile.budgetMinorUnits else { return }
         if meals.count == slots.count {
-            let repeats = meals.count - Set(meals.map(\.recipeID)).count
-            let unchanged = meals.filter { meal in
-                request.avoidMeals.contains { $0.date == meal.date && $0.slot == meal.slot && $0.recipeID == meal.recipeID }
-            }.count
-            let preference = meals.reduce(0) { $0 + (preferenceScores[$1.recipeID] ?? 0) }
-            let waste = try unusedPackageValue(cart, meals: meals)
-            let goals = request.profile.onboarding?.goals ?? []
-            let priority = (unchanged, goals.contains(.saveMoney) ? cost : 0, goals.contains(.wasteLess) ? waste : 0)
-            let rank = (repeats, -preference, cost, waste)
-            if best.map({ priority < $0.priority || (priority == $0.priority && rank < $0.rank) }) ?? true {
-                best = (meals, priority, rank)
-            }
+            try consider(meals, priced: priced)
             return
         }
         let index = meals.count
@@ -221,6 +213,22 @@ private struct PlanSearch {
             let meal = request.fixedMeals.first { $0.date == slots[index].0 && $0.slot == slots[index].1 } ??
                 ScheduledMeal(id: UUID(), date: slots[index].0, slot: slots[index].1, recipeID: recipe.id)
             try visit(meals + [meal], includesMeat: includesMeat || recipe.containsMeat == true)
+        }
+    }
+
+    mutating func consider(_ meals: [ScheduledMeal], priced: PricedCart) throws {
+        let repeats = meals.count - Set(meals.map(\.recipeID)).count
+        let unchanged = meals.filter { meal in
+            request.avoidMeals.contains { $0.date == meal.date && $0.slot == meal.slot && $0.recipeID == meal.recipeID }
+        }.count
+        let preference = meals.reduce(0) { $0 + (preferenceScores[$1.recipeID] ?? 0) }
+        let cost = priced.totalMinorUnits
+        let waste = try unusedPackageValue(priced.items, meals: meals)
+        let goals = request.profile.onboarding?.goals ?? []
+        let priority = (unchanged, goals.contains(.saveMoney) ? cost : 0, goals.contains(.wasteLess) ? waste : 0)
+        let rank = (repeats, -preference, cost, waste)
+        if best.map({ priority < $0.priority || (priority == $0.priority && rank < $0.rank) }) ?? true {
+            best = (meals, priority, rank)
         }
     }
 

@@ -221,13 +221,13 @@ final class OnboardingViewModel: ObservableObject {
 
     func budgetEstimate(for snapshot: PlanningProfile) async throws -> BudgetEstimate {
         if let basePlan {
-            let result = try await services.changes.preview(.profile(snapshot), in: basePlan)
+            let result = try await services.changes.preview(.profile(snapshot, allowsMenuProposals: false), in: basePlan)
             if let plan = result.proposedPlan, result.constraint == .feasible {
                 return .fits(plan.totalMinorUnits, plan.remainingMinorUnits)
             }
             return .message(result.constraint.message)
         }
-        let request = try await planRequest(for: snapshot)
+        let request = try await planRequest(for: snapshot, allowsMenuProposals: false)
         switch try await services.planner.generate(request) {
         case .feasible(let plan): return .fits(plan.totalMinorUnits, plan.remainingMinorUnits)
         case .noFeasiblePlan: return .message("No complete plan fits these choices. Review your budget, schedule or kitchen equipment.")
@@ -241,13 +241,13 @@ final class OnboardingViewModel: ObservableObject {
         case message(String)
     }
 
-    private func planRequest(for snapshot: PlanningProfile) async throws -> PlanRequest {
+    private func planRequest(for snapshot: PlanningProfile, allowsMenuProposals: Bool = true) async throws -> PlanRequest {
         let excluded = try await services.preferences.loadExcludedRecipeIDs()
         let stock = try await services.pantry.loadItems()
         let preferences = try await services.preferences.loadRecipePreferences()
         let pins = try await services.preferences.loadPins()
         return PlanRequest(profile: snapshot, catalog: planningCatalog, excludedRecipeIDs: excluded,
-                           confirmedStock: stock, recipePreferences: preferences, pins: pins)
+                           confirmedStock: stock, recipePreferences: preferences, pins: pins, allowsMenuProposals: allowsMenuProposals)
     }
 
     func acceptPreview() async -> WeeklyPlan? {
