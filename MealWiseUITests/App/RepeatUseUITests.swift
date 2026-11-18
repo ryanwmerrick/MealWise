@@ -4,7 +4,7 @@ final class RepeatUseUITests: XCTestCase {
     @MainActor func testLocalFavoritesAndWeeklyNutrition() {
         let app = XCUIApplication(); launchFresh(app)
         app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.buttons["week.settings"].waitForExistence(timeout: 30))
         app.buttons["week.settings"].tap()
@@ -19,7 +19,7 @@ final class RepeatUseUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL", "-AppleInterfaceStyle", "Dark"]
         launchFresh(app); app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.buttons["week.settings"].waitForExistence(timeout: 30)); app.buttons["week.settings"].tap()
         for title in ["Favorites", "Weekly nutrition"] {
@@ -34,19 +34,21 @@ final class RepeatUseUITests: XCTestCase {
         let app = XCUIApplication()
         launchFresh(app)
         app.buttons["welcome.start"].tap()
-        app.buttons["budget.preset.40"].tap()
-        app.buttons["Go back"].tap()
-        let savedData = app.buttons["welcome.savedData"]
-        XCTAssertTrue(savedData.waitForExistence(timeout: 5))
-        savedData.tap()
+        continueSetup(app, count: 10)
+        enterSetupBudget("55", in: app)
+        continueSetup(app, count: 1)
+        app.buttons["setup.build"].tap()
+        XCTAssertTrue(app.buttons["week.settings"].waitForExistence(timeout: 30))
+        app.buttons["week.settings"].tap()
         let erase = app.buttons["Erase all local data"]
         reveal(erase, in: app); erase.tap()
         app.buttons["Erase local data"].tap()
         XCTAssertTrue(erase.waitForNonExistence(timeout: 5))
         app.terminate()
         app.launch()
-        XCTAssertTrue(savedData.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["welcome.start"].waitForExistence(timeout: 5))
         app.buttons["welcome.start"].tap()
+        continueSetup(app, count: 10)
         XCTAssertEqual(app.textFields["setup.budget"].value as? String, "70")
     }
 

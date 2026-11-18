@@ -33,6 +33,7 @@ struct Recipe: Codable, Equatable, Sendable, Identifiable {
     let equipment: [String]
     let nutrition: NutritionFlags
     let dietaryPreferences: Set<DietPreference>
+    var cookingStyles: Set<CookingStyle>? = nil
 }
 
 struct Ingredient: Codable, Equatable, Sendable, Identifiable {

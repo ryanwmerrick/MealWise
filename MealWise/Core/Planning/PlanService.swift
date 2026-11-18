@@ -42,6 +42,11 @@ actor PlanService: PlanServiceProtocol {
                   request.fixedMeals.filter({ $0.date == fixed.date && $0.slot == fixed.slot }).count == 1 else { return .invalidInputs }
         }
         let preferences = Dictionary(uniqueKeysWithValues: request.recipePreferences.map { ($0.recipeID, $0) })
+        let scores = Dictionary(uniqueKeysWithValues: request.catalog.recipes.map { recipe in
+            let saved = preferences[recipe.id]
+            let discovery = request.profile.onboarding?.goals.contains(.findRecipes) == true && saved == nil ? 1 : 0
+            return (recipe.id, (saved?.score ?? 0) + (request.profile.onboarding?.score(recipe) ?? 0) + discovery)
+        })
         let candidates = slots.map { day, slot in
             let fixed = request.fixedMeals.first { $0.date == day && $0.slot == slot }
             let avoid = request.avoidMeals.first { $0.date == day && $0.slot == slot }?.recipeID
@@ -54,14 +59,14 @@ actor PlanService: PlanServiceProtocol {
                     (pin == nil || (recipe.id == pin?.recipeID && !excluded))
             }.sorted { left, right in
                 if (left.id == avoid) != (right.id == avoid) { return right.id == avoid }
-                let leftScore = preferences[left.id]?.score ?? 0
-                let rightScore = preferences[right.id]?.score ?? 0
+                let leftScore = scores[left.id] ?? 0
+                let rightScore = scores[right.id] ?? 0
                 if leftScore != rightScore { return leftScore > rightScore }
                 return left.id < right.id
             }
         }
         guard candidates.allSatisfy({ !$0.isEmpty }) else { return .noFeasiblePlan }
-        var search = PlanSearch(request: request, pricedAt: now, slots: slots, candidates: candidates, preferenceScores: preferences.mapValues(\.score), limit: nodeLimit)
+        var search = PlanSearch(request: request, pricedAt: now, slots: slots, candidates: candidates, preferenceScores: scores, limit: nodeLimit)
         try search.visit([])
         guard let best = search.best else { return search.limitReached ? .searchLimit : .noFeasiblePlan }
         var finalResources = request.resources
@@ -85,6 +90,10 @@ actor PlanService: PlanServiceProtocol {
 
     static func isEligible(_ recipe: Recipe, slot: MealSlot, profile: PlanningProfile, catalog: RecipeCatalog) -> Bool {
         guard recipe.mealSlots.contains(slot), recipe.minutes <= profile.cookingTime.rawValue else { return false }
+        if let equipment = profile.onboarding?.equipment {
+            let available = Set(equipment.union(KitchenEquipment.assumedTools).map(\.rawValue))
+            guard Set(recipe.equipment).isSubset(of: available) else { return false }
+        }
         if profile.skill == .beginner && recipe.skill != .beginner { return false }
         if profile.skill == .comfortable && recipe.skill == .experienced { return false }
         let ingredients = recipe.ingredients.compactMap { requirement in catalog.ingredients.first { $0.id == requirement.ingredientID } }
@@ -108,7 +117,7 @@ private struct PlanSearch {
     let limit: Int
     var nodes = 0
     var limitReached = false
-    var best: (meals: [ScheduledMeal], rank: (Int, Int, Int, Int64, Decimal))?
+    var best: (meals: [ScheduledMeal], priority: (Int, Int64, Decimal), rank: (Int, Int, Int64, Decimal))?
 
     mutating func visit(_ meals: [ScheduledMeal]) throws {
         try Task.checkCancellation()
@@ -125,10 +134,11 @@ private struct PlanSearch {
             }.count
             let preference = meals.reduce(0) { $0 + (preferenceScores[$1.recipeID] ?? 0) }
             let waste = try unusedPackageValue(cart, meals: meals)
-            // Keep regeneration and weekly variety ahead of optional recipe preferences.
-            let rank = (unchanged, repeats, -preference, cost, waste)
-            if best.map({ rank < $0.rank }) ?? true {
-                best = (meals, rank)
+            let goals = request.profile.onboarding?.goals ?? []
+            let priority = (unchanged, goals.contains(.saveMoney) ? cost : 0, goals.contains(.wasteLess) ? waste : 0)
+            let rank = (repeats, -preference, cost, waste)
+            if best.map({ priority < $0.priority || (priority == $0.priority && rank < $0.rank) }) ?? true {
+                best = (meals, priority, rank)
             }
             return
         }

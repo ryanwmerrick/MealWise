@@ -6,7 +6,7 @@ final class GroceryRecipeUITests: XCTestCase {
         let app = XCUIApplication()
         launchFresh(app)
         app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
         var opened: Set<String> = []

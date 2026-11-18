@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State private var showingSavedData = false
+    @State private var showingSignIn = false
     @ScaledMetric(relativeTo: .largeTitle) private var headlineSize = 40
 
     var body: some View {
@@ -17,7 +17,11 @@ struct WelcomeView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) { actions }
         .background(DesignTokens.welcomeSurface)
         .toolbar(.hidden, for: .navigationBar)
-        .sheet(isPresented: $showingSavedData) { SettingsView() }
+        .alert("Sign in", isPresented: $showingSignIn) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Sign-in isn’t available yet.")
+        }
     }
 
     private var brandmark: some View {
@@ -48,18 +52,15 @@ struct WelcomeView: View {
         VStack(spacing: 12) {
             NavigationLink(value: AppRoute.setup) {
                 HStack {
-                    Text("Plan my week")
+                    Text("Get Started")
                     Image("IconArrow").accessibilityHidden(true)
                 }
             }
             .buttonStyle(MealWiseButtonStyle())
             .accessibilityIdentifier("welcome.start")
-            Button("Saved data") { showingSavedData = true }
-                .frame(minHeight: 44).accessibilityIdentifier("welcome.savedData")
-            Text("No account. No payment. Just a plan.")
-                .font(.footnote)
-                .foregroundStyle(DesignTokens.textSecondary)
-                .multilineTextAlignment(.center)
+            Button("Sign in") { showingSignIn = true }
+                .frame(minHeight: 44)
+                .accessibilityIdentifier("welcome.signIn")
         }
         .padding(.horizontal, DesignTokens.inset)
         .padding(.vertical, 16)
