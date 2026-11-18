@@ -31,6 +31,8 @@ struct PlanningProfile: Codable, Equatable, Sendable {
     var preferences: Set<DietPreference>
     var meatPreference: MeatPreference? = nil
 
+    var onboarding: OnboardingPreferences? = nil
+
     var adultHalfPortions: Int { adults * 2 + children }
     var allowsMeat: Bool { meatPreference != .meatFree && preferences.isDisjoint(with: [.vegetarian, .vegan]) }
     var requiresMeat: Bool { meatPreference == .includeMeat }

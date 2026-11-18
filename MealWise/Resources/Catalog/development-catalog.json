@@ -804,6 +804,11 @@
       "dietaryPreferences": [
         "vegetarian",
         "vegan"
+      ],
+      "cookingStyles": [
+        "onePan",
+        "classics",
+        "familyFavorites"
       ]
     },
     {
@@ -862,6 +867,10 @@
       "dietaryPreferences": [
         "vegetarian",
         "vegan"
+      ],
+      "cookingStyles": [
+        "onePan",
+        "classics"
       ]
     },
     {
@@ -994,6 +1003,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -1190,6 +1202,10 @@
       "dietaryPreferences": [
         "vegetarian",
         "vegan"
+      ],
+      "cookingStyles": [
+        "classics",
+        "familyFavorites"
       ]
     },
     {
@@ -1322,6 +1338,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -1528,6 +1547,11 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan",
+        "classics",
+        "familyFavorites"
       ]
     },
     {
@@ -1587,6 +1611,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -1646,6 +1673,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -1705,6 +1735,10 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan",
+        "familyFavorites"
       ]
     },
     {
@@ -1769,6 +1803,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -1833,6 +1870,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -1870,7 +1910,7 @@
       "steps": [
         {
           "number": 1,
-          "instruction": "Drain and rinse the beans. Place beans, canned tomatoes and cumin in a saucepan. Simmer for 6\u20138 minutes, stirring, until steaming hot."
+          "instruction": "Drain and rinse the beans. Place beans, canned tomatoes and cumin in a saucepan. Simmer for 6–8 minutes, stirring, until steaming hot."
         },
         {
           "number": 2,
@@ -1938,7 +1978,7 @@
         },
         {
           "number": 2,
-          "instruction": "Add frozen spinach, canned tomatoes and beans. Cook for 8\u201310 minutes, stirring and adding a splash of water if needed, until steaming hot throughout."
+          "instruction": "Add frozen spinach, canned tomatoes and beans. Cook for 8–10 minutes, stirring and adding a splash of water if needed, until steaming hot throughout."
         },
         {
           "number": 3,
@@ -1961,6 +2001,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2007,11 +2050,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2030,6 +2073,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2071,11 +2117,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2094,6 +2140,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2140,11 +2189,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2163,6 +2212,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2200,7 +2252,7 @@
       "steps": [
         {
           "number": 1,
-          "instruction": "Drain and rinse chickpeas. Heat in a saucepan with canned tomatoes and cumin for 6\u20138 minutes until steaming hot."
+          "instruction": "Drain and rinse chickpeas. Heat in a saucepan with canned tomatoes and cumin for 6–8 minutes until steaming hot."
         },
         {
           "number": 2,
@@ -2268,7 +2320,7 @@
         },
         {
           "number": 2,
-          "instruction": "Reduce to a steady simmer and cook for 10\u201312 minutes, stirring, until the lentils are soft. Add more water if needed."
+          "instruction": "Reduce to a steady simmer and cook for 10–12 minutes, stirring, until the lentils are soft. Add more water if needed."
         },
         {
           "number": 3,
@@ -2291,6 +2343,10 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan",
+        "classics"
       ]
     },
     {
@@ -2342,11 +2398,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2365,6 +2421,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2429,6 +2488,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2475,11 +2537,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2498,6 +2560,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2544,11 +2609,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2567,6 +2632,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2613,11 +2681,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2636,6 +2704,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2677,7 +2748,7 @@
         },
         {
           "number": 2,
-          "instruction": "Simmer for 10\u201312 minutes, stirring and adding water if needed, until lentils are soft."
+          "instruction": "Simmer for 10–12 minutes, stirring and adding water if needed, until lentils are soft."
         },
         {
           "number": 3,
@@ -2700,6 +2771,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2746,7 +2820,7 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet. Cook pepper with cumin and a splash of water for 6\u20138 minutes until tender. Add beans and cook until steaming hot; mash a few to thicken."
+          "instruction": "Heat oil in a skillet. Cook pepper with cumin and a splash of water for 6–8 minutes until tender. Add beans and cook until steaming hot; mash a few to thicken."
         },
         {
           "number": 3,
@@ -2769,6 +2843,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "familyFavorites"
       ]
     },
     {
@@ -2833,6 +2910,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {
@@ -2884,11 +2964,11 @@
         },
         {
           "number": 2,
-          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6\u20138 minutes, stirring, until tender and any frozen vegetables are steaming hot."
+          "instruction": "Heat oil in a skillet over medium heat. Add the vegetables and seasoning with a splash of water. Cover and cook for 6–8 minutes, stirring, until tender and any frozen vegetables are steaming hot."
         },
         {
           "number": 3,
-          "instruction": "Stir in the beans and cook for another 3\u20134 minutes until steaming hot throughout. Add water if needed and serve."
+          "instruction": "Stir in the beans and cook for another 3–4 minutes until steaming hot throughout. Add water if needed and serve."
         }
       ],
       "equipment": [
@@ -2907,6 +2987,9 @@
         "vegetarian",
         "vegan",
         "glutenFree"
+      ],
+      "cookingStyles": [
+        "onePan"
       ]
     },
     {

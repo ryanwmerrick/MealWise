@@ -5,6 +5,8 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var editing = false
     @State private var confirmingReset = false
+    @State private var confirmingErasure = false
+    @State private var isErasing = false
     @State private var error: String?
 
     var body: some View {
@@ -25,17 +27,29 @@ struct SettingsView: View {
                     }
                     Section {
                         Button("Edit plan settings") { editing = true }.frame(minHeight: 44).disabled(plan.closedAt != nil)
-                        NavigationLink("Excluded recipes", value: SettingsRoute.excluded)
+                        NavigationLink("Weekly nutrition", value: SettingsRoute.nutrition)
                         Text("Changing your answers creates a new plan preview. Your saved plan changes only after you accept.").font(.footnote)
                     }
-                    Section {
-                        Button("Start over", role: .destructive) { confirmingReset = true }.frame(minHeight: 44)
+                }
+                if session.services != nil {
+                    Section("Saved preferences") {
+                        NavigationLink("Favorites", value: SettingsRoute.favorites)
+                        NavigationLink("Excluded recipes", value: SettingsRoute.excluded)
+                        NavigationLink("Cycle history", value: SettingsRoute.history)
+                    }
+                    Section("Local data") {
+                        if session.plan != nil {
+                            Button("Start over", role: .destructive) { confirmingReset = true }.frame(minHeight: 44)
+                            Text("Start over removes the active plan and setup answers. Pantry, favorites and recorded history remain saved.").font(.footnote)
+                        }
+                        Button("Erase all local data", role: .destructive) { confirmingErasure = true }.frame(minHeight: 44)
+                        Text("Clear plans, setup, pantry, preferences and history from this installation.").font(.footnote)
                     }
                 }
                 if let error { Text(LocalizedStringKey(error)) }
-            }
-            .navigationTitle("Plan settings")
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+            }.disabled(isErasing)
+            .navigationTitle(session.plan == nil ? "Saved data" : "Plan settings")
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() }.disabled(isErasing) } }
             .confirmationDialog("Remove your current plan and setup answers?", isPresented: $confirmingReset, titleVisibility: .visible) {
                 Button("Reset plan", role: .destructive) {
                     Task {
@@ -45,18 +59,36 @@ struct SettingsView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             }
+            .confirmationDialog("Erase all local MealWise records?", isPresented: $confirmingErasure, titleVisibility: .visible) {
+                Button("Erase local data", role: .destructive) { Task { await eraseLocalData() } }
+            } message: { Text("This permanently removes saved plans, pantry, favorites, ratings and history from MealWise.") }
             .fullScreenCover(isPresented: $editing) {
                 if let plan = session.plan, let services = session.services {
                     NavigationStack { OnboardingView(profile: plan.profile, services: services, isEditing: true, basePlan: plan) }
                 }
             }
-            .navigationDestination(for: SettingsRoute.self) { _ in
-                if let services = session.services { ExcludedRecipesView(catalog: services.catalog, preferences: services.preferences) }
+            .navigationDestination(for: SettingsRoute.self) { route in
+                if let services = session.services {
+                    switch route {
+                    case .excluded: ExcludedRecipesView(catalog: services.catalog, preferences: services.preferences)
+                    case .favorites: FavoritesView(catalog: services.catalog, preferences: services.preferences)
+                    case .nutrition: if let plan = session.plan { WeeklyNutritionView(plan: plan) }
+                    case .history: CycleHistoryView(services: services)
+                    }
+                }
             }
         }
+    }
+    private func eraseLocalData() async {
+        guard !isErasing else { return }
+        isErasing = true; defer { isErasing = false }
+        let hadActivePlan = session.plan != nil
+        do {
+            try await session.eraseLocalData()
+            if !hadActivePlan { dismiss() }
+        } catch { self.error = "Local records could not be erased. Please retry." }
     }
 }
 
 #Preview { SettingsView().environment(AppSession()) }
-
-private enum SettingsRoute: Hashable { case excluded }
+private enum SettingsRoute: Hashable { case excluded, favorites, nutrition, history }

@@ -9,11 +9,14 @@ struct PlanRequest: Sendable {
     let resources: PlanResources?
     let offerOverrides: [String: String]?
     let confirmedStock: [PantryItem]
+    let recipePreferences: [RecipePreference]
+    let pins: [RecipePin]
 
     init(profile: PlanningProfile, catalog: RecipeCatalog, excludedRecipeIDs: Set<String> = [],
-         fixedMeals: [ScheduledMeal] = [], avoidMeals: [ScheduledMeal] = [], resources: PlanResources? = nil, offerOverrides: [String: String]? = nil, confirmedStock: [PantryItem] = []) {
+         fixedMeals: [ScheduledMeal] = [], avoidMeals: [ScheduledMeal] = [], resources: PlanResources? = nil, offerOverrides: [String: String]? = nil, confirmedStock: [PantryItem] = [], recipePreferences: [RecipePreference] = [], pins: [RecipePin] = []) {
         self.profile = profile; self.catalog = catalog; self.excludedRecipeIDs = excludedRecipeIDs
         self.fixedMeals = fixedMeals; self.avoidMeals = avoidMeals; self.resources = resources; self.offerOverrides = offerOverrides; self.confirmedStock = confirmedStock
+        self.recipePreferences = recipePreferences; self.pins = pins
     }
 }
 

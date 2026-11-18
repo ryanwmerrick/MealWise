@@ -34,6 +34,7 @@ struct Recipe: Codable, Equatable, Sendable, Identifiable {
     let nutrition: NutritionFlags
     let dietaryPreferences: Set<DietPreference>
     var containsMeat: Bool? = nil
+    var cookingStyles: Set<CookingStyle>? = nil
 }
 
 struct Ingredient: Codable, Equatable, Sendable, Identifiable {

@@ -32,8 +32,12 @@ protocol AppBootstrapProtocol: Sendable {
 }
 
 actor AppBootstrap: AppBootstrapProtocol {
+    private let storeURL: URL?
+
+    init(storeURL: URL? = nil) { self.storeURL = storeURL }
+
     func open() async throws -> AppServices {
-        let container = try await LocalStore.makeContainer()
+        let container = try await LocalStore.makeContainer(url: storeURL)
         let plans = PlanRepository(container: container)
         let saved = try await plans.loadActivePlan()
         let catalog: RecipeCatalog
@@ -42,7 +46,7 @@ actor AppBootstrap: AppBootstrapProtocol {
             guard let saved else { throw CatalogError.expiredPrices }
             catalog = saved.catalog
         }
-        let preferences = MealPreferenceRepository(container: container)
+        let preferences = MealPreferenceRepository(plans: plans)
         #if DEBUG
         let planner = PlanService(menuProposer: GeminiMenuProposer())
         #else
@@ -64,6 +68,7 @@ final class AppSession {
     private(set) var draft: PlanningProfile?
     private(set) var isLoading = true
     private(set) var errorMessage: String?
+    private var planGeneration = 0
     private let bootstrap: any AppBootstrapProtocol
 
     init(bootstrap: any AppBootstrapProtocol = AppBootstrap()) { self.bootstrap = bootstrap }
@@ -92,6 +97,7 @@ final class AppSession {
     }
 
     func accept(_ plan: WeeklyPlan) {
+        planGeneration += 1
         self.plan = plan
         draft = plan.profile
     }
@@ -100,17 +106,34 @@ final class AppSession {
 
     func refreshPlan() async {
         guard let services else { return }
+        planGeneration += 1
+        let generation = planGeneration
         do {
             let updated = try await services.plans.loadActivePlan()
+            guard !Task.isCancelled, planGeneration == generation else { return }
             if updated?.revision != plan?.revision { plan = updated; draft = updated?.profile }
             errorMessage = nil
         } catch is CancellationError { return }
-        catch { errorMessage = "Your latest plan could not be loaded. Please retry." }
+        catch {
+            guard !Task.isCancelled, planGeneration == generation else { return }
+            errorMessage = "Your latest plan could not be loaded. Please retry."
+        }
+    }
+
+    func eraseLocalData() async throws {
+        guard let services else { throw PersistenceError.openFailed }
+        try await services.plans.eraseLocalData()
+        clearPlan()
     }
 
     func reset() async throws {
         guard let services else { throw PersistenceError.openFailed }
         try await services.plans.resetActivePlan()
+        clearPlan()
+    }
+
+    private func clearPlan() {
+        planGeneration += 1
         plan = nil
         draft = nil
     }

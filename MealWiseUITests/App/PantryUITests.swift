@@ -28,6 +28,9 @@ final class PantryUITests: XCTestCase {
         reveal(app.buttons["Mark as cooked"], in: app)
         app.buttons["Mark as cooked"].tap(); app.buttons["Confirm cooked"].tap()
         XCTAssertTrue(app.buttons["Close cooking"].waitForNonExistence(timeout: 10))
+        let rating = app.buttons["rating.liked"]
+        reveal(rating, in: app); rating.tap()
+        XCTAssertTrue(app.staticTexts["rating.saved"].waitForExistence(timeout: 5))
         app.tabBars.buttons["Pantry"].tap(); app.buttons["Wrap up this cycle"].tap()
         let available = app.switches.matching(identifier: "wrap.available").firstMatch
         reveal(available, in: app)
@@ -40,12 +43,29 @@ final class PantryUITests: XCTestCase {
         app.terminate(); app.launch(); app.tabBars.buttons["Pantry"].tap()
         XCTAssertTrue(app.buttons["Plan next week"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons.matching(identifier: "pantry.item").firstMatch.exists)
-        app.buttons["Plan next week"].tap(); app.buttons["Review next-week setup"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        app.buttons["Plan next week"].tap()
+        app.buttons["Favorites and next-plan pins"].tap()
+        let pin = app.buttons["Pin into next plan"]
+        XCTAssertTrue(pin.waitForExistence(timeout: 5))
+        let pinnedTitle = app.staticTexts["favorite.recipe"].label
+        pin.tap()
+        let savePin = app.buttons["Save next-plan pin"]
+        reveal(savePin, in: app); savePin.tap()
+        XCTAssertTrue(savePin.waitForNonExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Remove pin"].exists)
+        app.navigationBars["Favorites"].buttons["Done"].tap()
+        reveal(app.buttons["Review next-week setup"], in: app); app.buttons["Review next-week setup"].tap()
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.buttons["Accept new plan"].waitForExistence(timeout: 30))
         app.buttons["Review stock used"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "next.stock.credit").firstMatch.waitForExistence(timeout: 5))
+        let reviewMeals = app.buttons["Review dates and meals"]
+        reveal(reviewMeals, in: app); reviewMeals.tap()
+        let nextMeal = app.staticTexts.matching(identifier: "setup.preview.recipe").firstMatch
+        XCTAssertTrue(nextMeal.waitForExistence(timeout: 5))
+        XCTAssertEqual(nextMeal.label, pinnedTitle)
+        reviewMeals.tap()
         let capture = XCTAttachment(screenshot: app.screenshot()); capture.name = "Phase 9 next-week stock comparison"; capture.lifetime = .keepAlways; add(capture)
         reveal(app.buttons["Accept new plan"], in: app); app.buttons["Accept new plan"].tap()
         XCTAssertTrue(app.buttons["Accept new plan"].waitForNonExistence(timeout: 10))
@@ -62,7 +82,7 @@ final class PantryUITests: XCTestCase {
 
     @MainActor private func buildPlan(_ app: XCUIApplication) {
         launchFresh(app); app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
     }

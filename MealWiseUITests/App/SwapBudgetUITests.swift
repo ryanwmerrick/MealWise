@@ -6,7 +6,7 @@ final class SwapBudgetUITests: XCTestCase {
         let app = XCUIApplication()
         launchFresh(app)
         app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
         let original = app.buttons.matching(identifier: "week.meal").firstMatch.label
@@ -23,15 +23,20 @@ final class SwapBudgetUITests: XCTestCase {
         app.buttons["Adjust budget"].tap()
         app.buttons["adjust.preset.40"].tap()
         app.buttons["Preview budget"].tap()
-        reveal(app.buttons["Keep current plan"], in: app)
-        app.buttons["Keep current plan"].tap()
-        app.buttons["Done"].tap()
+        XCTAssertTrue(app.staticTexts["Before and after"].waitForExistence(timeout: 30))
+        let keepPlan = app.buttons["Keep current plan"]
+        reveal(keepPlan, in: app)
+        keepPlan.tap()
+        let done = app.navigationBars["Budget details"].buttons["Done"]
+        XCTAssertTrue(done.waitForExistence(timeout: 10))
+        done.tap()
         XCTAssertEqual(app.buttons["week.budget"].label, budgetBefore)
         app.buttons["week.budget"].tap()
         reveal(app.buttons["Adjust budget"], in: app)
         app.buttons["Adjust budget"].tap()
         app.buttons["adjust.preset.55"].tap()
         app.buttons["Preview budget"].tap()
+        XCTAssertTrue(app.staticTexts["Before and after"].waitForExistence(timeout: 30))
         reveal(app.buttons["Accept change"], in: app)
         app.buttons["Accept change"].tap()
         XCTAssertTrue(app.buttons["Accept change"].waitForNonExistence(timeout: 5))
@@ -43,7 +48,7 @@ final class SwapBudgetUITests: XCTestCase {
         let app = XCUIApplication()
         launchFresh(app)
         app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
         app.buttons["week.map"].tap()
@@ -68,7 +73,7 @@ final class SwapBudgetUITests: XCTestCase {
 
     @MainActor
     private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
-        for _ in 0..<6 {
+        for _ in 0..<20 {
             if element.exists && element.isHittable { return }
             app.swipeUp()
         }

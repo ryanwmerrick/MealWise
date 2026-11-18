@@ -13,9 +13,10 @@ protocol ShoppingServiceProtocol: Sendable {
 
 actor ShoppingService: ShoppingServiceProtocol {
     private let plans: PlanRepository
-    init(plans: PlanRepository) { self.plans = plans }
-    init(container: ModelContainer) { plans = PlanRepository(container: container) }
-    func openTrip(planID: UUID) async throws -> ShoppingTrip { try await plans.openShoppingTrip(planID: planID) }
+    private let clock: @Sendable () -> Date
+    init(plans: PlanRepository, clock: @escaping @Sendable () -> Date = { .now }) { self.plans = plans; self.clock = clock }
+    init(container: ModelContainer, clock: @escaping @Sendable () -> Date = { .now }) { plans = PlanRepository(container: container); self.clock = clock }
+    func openTrip(planID: UUID) async throws -> ShoppingTrip { try await plans.openShoppingTrip(planID: planID, at: clock()) }
     func updatePrice(itemID: UUID, actualPrice: Money, tripID: UUID) async throws -> ShoppingTrip {
         try await plans.editShoppingTrip(tripID) { trip in
             guard let index = trip.lines.firstIndex(where: { $0.id == itemID }) else { throw ShoppingError.invalidItem }
@@ -28,16 +29,16 @@ actor ShoppingService: ShoppingServiceProtocol {
             trip.lines[index].checked = checked
         }
     }
-    func finishTrip(_ tripID: UUID) async throws -> ShoppingSummary { try await plans.finishShoppingTrip(tripID) }
+    func finishTrip(_ tripID: UUID) async throws -> ShoppingSummary { try await plans.finishShoppingTrip(tripID, at: clock()) }
     func history(planID: UUID) async throws -> [ShoppingSummary] { try await plans.shoppingHistory(planID: planID) }
     func cheaperSubstitutes(itemID: UUID, tripID: UUID) async throws -> [ShoppingSubstitutionPreview] {
         guard let plan = try await plans.loadActivePlan() else { throw ShoppingError.staleTrip }
-        let trip = try await plans.openShoppingTrip(planID: plan.id)
+        let trip = try await plans.openShoppingTrip(planID: plan.id, at: clock())
         guard trip.id == tripID, let line = trip.lines.first(where: { $0.id == itemID }) else { throw ShoppingError.staleTrip }
         var options: [ShoppingSubstitutionPreview] = []
         for offer in plan.catalog.offers where offer.ingredientID == line.ingredientID && offer.storeID == trip.storeID && offer.id != line.offerID {
             try Task.checkCancellation()
-            let preview = try await plans.previewShoppingOffer(plan: plan, ingredientID: line.ingredientID, offerID: offer.id)
+            let preview = try await plans.previewShoppingOffer(plan: plan, ingredientID: line.ingredientID, offerID: offer.id, at: clock())
             guard preview.constraint == .feasible, let proposed = preview.proposedPlan,
                   let item = proposed.cart.first(where: { $0.id == line.ingredientID }),
                   item.costMinorUnits < (line.actualMinorUnits ?? line.estimatedMinorUnits) else { continue }
@@ -49,14 +50,15 @@ actor ShoppingService: ShoppingServiceProtocol {
         return options.sorted { $0.projectedMinorUnits < $1.projectedMinorUnits }
     }
     func acceptSubstitute(_ option: ShoppingSubstitutionPreview) async throws -> ShoppingTrip {
-        try await plans.acceptShoppingSubstitute(option)
+        try await plans.acceptShoppingSubstitute(option, at: clock())
     }
 
 }
 
 extension PlanRepository {
     // These operations run on the same actor as plan CAS, with no suspension inside each transaction.
-    func openShoppingTrip(planID: UUID) throws -> ShoppingTrip {
+    func openShoppingTrip(planID: UUID, at now: Date) throws -> ShoppingTrip {
+        try reconcileExpiredPantry(at: now)
         let context = ModelContext(container); context.autosaveEnabled = false
         let documents = try context.fetch(FetchDescriptor<StoredDocument>())
         let plan = try shoppingPlan(documents, id: planID)
@@ -100,7 +102,7 @@ extension PlanRepository {
         return trip
     }
 
-    func finishShoppingTrip(_ id: UUID) throws -> ShoppingSummary {
+    func finishShoppingTrip(_ id: UUID, at now: Date) throws -> ShoppingSummary {
         let context = ModelContext(container); context.autosaveEnabled = false
         let documents = try context.fetch(FetchDescriptor<StoredDocument>())
         let historyKey = "shopping-history-" + id.uuidString
@@ -119,11 +121,11 @@ extension PlanRepository {
                                                      quantity: quantity.partialValue, packageCount: line.packageCount,
                                                      actualMinorUnits: line.actualMinorUnits, estimatedMinorUnits: line.estimatedMinorUnits))
         }
-        let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: .now))
+        let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: now))
         let updated = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
-                                 meals: plan.meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: .now)
+                                 meals: plan.meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: now)
         try PlanValidation.validate(updated) // Real overspend is retained, rather than rejected or hidden.
-        var trip = original; trip.finishedAt = .now
+        var trip = original; trip.finishedAt = now
         let summary = ShoppingSummary(trip: trip)
         try store(updated, key: "activePlan", documents: documents, context: context)
         try store(summary, key: historyKey, documents: documents, context: context)
@@ -177,12 +179,12 @@ struct ShoppingSubstitutionPreview: Sendable, Identifiable {
 }
 
 extension PlanRepository {
-    func previewShoppingOffer(plan: WeeklyPlan, ingredientID: String, offerID: String) async throws -> PlanChangePreview {
-        let service = PlanChangeService(plans: self, planner: PlanService(), preferences: MealPreferenceRepository(container: container))
+    func previewShoppingOffer(plan: WeeklyPlan, ingredientID: String, offerID: String, at now: Date) async throws -> PlanChangePreview {
+        let service = PlanChangeService(plans: self, planner: PlanService(clock: { now }), preferences: MealPreferenceRepository(plans: self), clock: { now })
         return try await service.preview(.packageOffer(ingredientID: ingredientID, offerID: offerID), in: plan)
     }
 
-    func acceptShoppingSubstitute(_ option: ShoppingSubstitutionPreview) throws -> ShoppingTrip {
+    func acceptShoppingSubstitute(_ option: ShoppingSubstitutionPreview, at now: Date) throws -> ShoppingTrip {
         let context = ModelContext(container); context.autosaveEnabled = false
         let documents = try context.fetch(FetchDescriptor<StoredDocument>())
         let (document, trip) = try draft(option.trip.id, documents: documents)
@@ -197,7 +199,7 @@ extension PlanRepository {
               let item = proposed.cart.first(where: { $0.id == trip.lines[index].ingredientID }),
               item.offerID == option.offer.id, option.offer.ingredientID == item.id,
               option.offer.storeID == trip.storeID else { throw ShoppingError.invalidItem }
-        try CatalogValidator.validate(proposed.catalog, allowDevelopment: true, now: .now)
+        try CatalogValidator.validate(proposed.catalog, allowDevelopment: true, now: now)
         try PlanValidation.validate(proposed)
         var revised = trip
         let old = trip.lines[index]

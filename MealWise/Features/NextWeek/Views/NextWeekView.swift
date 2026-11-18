@@ -4,6 +4,7 @@ struct NextWeekView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: NextWeekViewModel
     @State private var path: [NextWeekSetupDestination] = []
+    @State private var showingFavorites = false
     @State private var preparationError: String?
     init(plan: WeeklyPlan, services: AppServices) { _viewModel = StateObject(wrappedValue: NextWeekViewModel(plan: plan, services: services)) }
     var body: some View {
@@ -16,6 +17,7 @@ struct NextWeekView: View {
                         Text("\(first.formatted(date: .abbreviated, time: .omitted)) – \(last.formatted(date: .abbreviated, time: .omitted))")
                     }
                 }
+                Section { Button("Favorites and next-plan pins") { showingFavorites = true }.frame(minHeight: 44) }
                 Section("Confirmed pantry stock") {
                     if !viewModel.isLoading && viewModel.stock.isEmpty { Text("No pantry stock is available. The new plan will price all needed packages.") }
                     ForEach(viewModel.stock) { item in
@@ -57,6 +59,12 @@ struct NextWeekView: View {
             }.navigationTitle("Plan next week")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Keep current cycle") { dismiss() } } }
                 .task { await viewModel.load() }
+                .sheet(isPresented: $showingFavorites) {
+                    NavigationStack {
+                        FavoritesView(catalog: viewModel.services.catalog, preferences: viewModel.services.preferences, profile: viewModel.profile)
+                            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showingFavorites = false } } }
+                    }
+                }
                 .navigationDestination(for: NextWeekSetupDestination.self) { destination in
                     OnboardingView(profile: viewModel.profile, services: viewModel.services, isEditing: true,
                                    nextCycle: viewModel.closedPlan, planningCatalog: destination.catalog)

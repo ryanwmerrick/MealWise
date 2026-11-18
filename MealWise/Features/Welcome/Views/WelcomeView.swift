@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @State private var showingSignIn = false
     @ScaledMetric(relativeTo: .largeTitle) private var headlineSize = 40
 
     var body: some View {
@@ -16,6 +17,11 @@ struct WelcomeView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) { actions }
         .background(DesignTokens.welcomeSurface)
         .toolbar(.hidden, for: .navigationBar)
+        .alert("Sign in", isPresented: $showingSignIn) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Sign-in isn’t available yet.")
+        }
     }
 
     private var brandmark: some View {
@@ -46,16 +52,15 @@ struct WelcomeView: View {
         VStack(spacing: 12) {
             NavigationLink(value: AppRoute.setup) {
                 HStack {
-                    Text("Plan my week")
+                    Text("Get Started")
                     Image("IconArrow").accessibilityHidden(true)
                 }
             }
             .buttonStyle(MealWiseButtonStyle())
             .accessibilityIdentifier("welcome.start")
-            Text("No account. No payment. Just a plan.")
-                .font(.footnote)
-                .foregroundStyle(DesignTokens.textSecondary)
-                .multilineTextAlignment(.center)
+            Button("Sign in") { showingSignIn = true }
+                .frame(minHeight: 44)
+                .accessibilityIdentifier("welcome.signIn")
         }
         .padding(.horizontal, DesignTokens.inset)
         .padding(.vertical, 16)
@@ -65,6 +70,6 @@ struct WelcomeView: View {
     }
 }
 
-#Preview("Light") { NavigationStack { WelcomeView() } }
-#Preview("Dark") { NavigationStack { WelcomeView() }.preferredColorScheme(.dark) }
-#Preview("Accessibility") { NavigationStack { WelcomeView() }.dynamicTypeSize(.accessibility5) }
+#Preview("Light") { NavigationStack { WelcomeView() }.environment(AppSession()) }
+#Preview("Dark") { NavigationStack { WelcomeView() }.environment(AppSession()).preferredColorScheme(.dark) }
+#Preview("Accessibility") { NavigationStack { WelcomeView() }.environment(AppSession()).dynamicTypeSize(.accessibility5) }

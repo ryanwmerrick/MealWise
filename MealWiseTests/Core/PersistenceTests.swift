@@ -5,6 +5,29 @@ import Synchronization
 @testable import MealWise
 
 struct PersistenceTests {
+    @MainActor @Test func previousDocumentSchemaPreservesPlanAndExclusions() async throws {
+        let folder = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        defer { _ = try? FileManager.default.removeItem(at: folder) }
+        let url = folder.appending(path: "legacy.store")
+        let catalog = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
+        guard case .feasible(let plan) = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: .fixture, catalog: catalog)) else { throw PlanningError.invalidPlan }
+        var json = try #require(JSONSerialization.jsonObject(with: JSONEncoder().encode(plan)) as? [String: Any])
+        for key in ["closedAt", "pricedAt", "reviewRequired", "resources", "offerOverrides"] { json.removeValue(forKey: key) }
+        let first = try await LocalStore.makeContainer(url: url)
+        let context = ModelContext(first)
+        context.insert(StoredDocument(key: "activePlan", payload: try JSONSerialization.data(withJSONObject: json)))
+        context.insert(StoredDocument(key: "excludedRecipes", payload: try JSONEncoder().encode(Set(["bean-quesadillas"]))))
+        try context.save()
+        let reopened = try await LocalStore.makeContainer(url: url)
+        let plans = PlanRepository(container: reopened)
+        #expect(try await plans.loadActivePlan()?.meals == plan.meals)
+        let preferences = MealPreferenceRepository(plans: plans)
+        #expect(try await preferences.loadExcludedRecipeIDs() == ["bean-quesadillas"])
+        try await preferences.setExcluded(recipeID: "bean-quesadillas", excluded: false)
+        #expect(try await preferences.loadExcludedRecipeIDs().isEmpty)
+    }
+
     @Test func catalogRevalidatesClockOnEveryLoad() async throws {
         let clock = Mutex(Date(timeIntervalSince1970: 1794528000))
         let service = CatalogService(allowDevelopment: true, clock: { clock.withLock { $0 } })
