@@ -6,7 +6,7 @@ final class SwapBudgetUITests: XCTestCase {
         let app = XCUIApplication()
         launchFresh(app)
         app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
         let original = app.buttons.matching(identifier: "week.meal").firstMatch.label
@@ -48,7 +48,7 @@ final class SwapBudgetUITests: XCTestCase {
         let app = XCUIApplication()
         launchFresh(app)
         app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
         app.buttons["week.map"].tap()

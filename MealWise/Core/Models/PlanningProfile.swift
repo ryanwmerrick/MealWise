@@ -19,6 +19,8 @@ struct PlanningProfile: Codable, Equatable, Sendable {
     var allergies: Set<Allergen>
     var preferences: Set<DietPreference>
 
+    var onboarding: OnboardingPreferences? = nil
+
     var adultHalfPortions: Int { adults * 2 + children }
 
     func validate(calendar: Calendar = .current) throws {

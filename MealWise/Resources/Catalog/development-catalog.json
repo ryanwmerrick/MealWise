@@ -1,5 +1,5 @@
 {
-  "version": "development-approved-2026-11-17-v4",
+  "version": "development-approved-2026-11-18-v5",
   "reviewStatus": "developmentApproved",
   "currencyCode": "USD",
   "authorship": "Codex development fixture; recipes not cooking-tested",
@@ -717,7 +717,8 @@
       "dietaryPreferences": [
         "vegetarian",
         "vegan"
-      ]
+      ],
+      "cookingStyles": ["onePan", "classics", "familyFavorites"]
     },
     {
       "id": "banana-peanut-oats",
@@ -775,7 +776,8 @@
       "dietaryPreferences": [
         "vegetarian",
         "vegan"
-      ]
+      ],
+      "cookingStyles": ["onePan", "classics"]
     },
     {
       "id": "spinach-oats",
@@ -907,7 +909,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "chickpea-wrap",
@@ -1103,7 +1106,8 @@
       "dietaryPreferences": [
         "vegetarian",
         "vegan"
-      ]
+      ],
+      "cookingStyles": ["classics", "familyFavorites"]
     },
     {
       "id": "spinach-couscous",
@@ -1235,7 +1239,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "chickpea-rice",
@@ -1441,7 +1446,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan", "classics", "familyFavorites"]
     },
     {
       "id": "apple-rice-porridge",
@@ -1500,7 +1506,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "banana-rice-porridge",
@@ -1559,7 +1566,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "apple-banana-rice",
@@ -1618,7 +1626,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan", "familyFavorites"]
     },
     {
       "id": "spinach-chickpea-rice-porridge",
@@ -1682,7 +1691,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "tomato-white-bean-porridge",
@@ -1746,7 +1756,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "breakfast-bean-tacos",
@@ -1874,7 +1885,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "lunch-chickpea-pepper",
@@ -1943,7 +1955,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "lunch-white-bean-vegetables",
@@ -2007,7 +2020,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "lunch-black-bean-spinach",
@@ -2076,7 +2090,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "lunch-mashed-chickpea-tacos",
@@ -2204,7 +2219,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan", "classics"]
     },
     {
       "id": "lunch-three-bean-skillet",
@@ -2278,7 +2294,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "lunch-savory-rice-flakes",
@@ -2342,7 +2359,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "dinner-white-bean-pepper",
@@ -2411,7 +2429,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "dinner-chickpea-spinach",
@@ -2480,7 +2499,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "dinner-black-bean-vegetables",
@@ -2549,7 +2569,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "dinner-lentil-spinach",
@@ -2613,7 +2634,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "dinner-white-bean-tacos",
@@ -2682,7 +2704,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["familyFavorites"]
     },
     {
       "id": "dinner-chickpea-rice-flakes",
@@ -2746,7 +2769,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     },
     {
       "id": "dinner-mixed-bean-spinach",
@@ -2820,7 +2844,8 @@
         "vegetarian",
         "vegan",
         "glutenFree"
-      ]
+      ],
+      "cookingStyles": ["onePan"]
     }
   ],
   "approval": "User approved development-only policy/catalog in conversation, 2026-11-13. Not launch reviewed."

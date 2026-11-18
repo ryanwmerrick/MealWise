@@ -55,7 +55,7 @@ final class PantryUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Remove pin"].exists)
         app.navigationBars["Favorites"].buttons["Done"].tap()
         reveal(app.buttons["Review next-week setup"], in: app); app.buttons["Review next-week setup"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.buttons["Accept new plan"].waitForExistence(timeout: 30))
         app.buttons["Review stock used"].tap()
@@ -82,7 +82,7 @@ final class PantryUITests: XCTestCase {
 
     @MainActor private func buildPlan(_ app: XCUIApplication) {
         launchFresh(app); app.buttons["welcome.start"].tap()
-        for _ in 0..<7 { app.buttons["setup.continue"].tap() }
+        continueSetup(app, count: 11)
         app.buttons["setup.build"].tap()
         XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 30))
     }

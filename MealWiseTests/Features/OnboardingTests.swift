@@ -45,17 +45,61 @@ struct OnboardingTests {
     @Test func dateChoicesDoNotDuplicateSelectedLocalDays() async throws {
         let profile = PlanningProfile.fixture
         let model = OnboardingViewModel(profile: profile, services: try await services(), now: profile.days[0])
-        let localDays = model.selectableDates.map { Calendar.autoupdatingCurrent.startOfDay(for: $0) }
+        let localDays = model.upcomingDates.map { Calendar.autoupdatingCurrent.startOfDay(for: $0) }
         #expect(Set(localDays).count == localDays.count)
     }
 
-    @Test func previouslySelectedDatesRemainEditable() async throws {
+    @Test func recurringDaysUseMondayFirstAndMoveOlderDraftsForward() async throws {
         let profile = PlanningProfile.fixture
-        let model = OnboardingViewModel(profile: profile, services: try await services(), now: profile.days[0].addingTimeInterval(10 * 86400))
-        #expect(model.selectableDates.contains(profile.days[0]))
-        model.toggleDay(profile.days[0])
-        model.toggleDay(try #require(model.selectableDates.first))
-        #expect(model.canContinue)
+        let calendar = Calendar.current
+        let savedDate = profile.days[0]
+        let now = try #require(calendar.date(byAdding: .day, value: 10, to: savedDate))
+        let model = OnboardingViewModel(profile: profile, services: try await services(), now: now)
+
+        #expect(model.upcomingDates.map { calendar.component(.weekday, from: $0) } == [2, 3, 4, 5, 6, 7, 1])
+        let weekday = calendar.component(.weekday, from: savedDate)
+        let nextOccurrence = try #require(model.upcomingDates.first { calendar.component(.weekday, from: $0) == weekday })
+        #expect(model.isDaySelected(nextOccurrence))
+        model.edit(.schedule)
+        model.advance()
+        #expect(model.profile.days == [nextOccurrence])
+    }
+
+    @Test func restoringAnExistingWeekdayRetainsItsExactPlanDate() async throws {
+        let dependencies = try await services()
+        var profile = PlanningProfile.fixture
+        let savedDate = Calendar.current.startOfDay(for: profile.days[0]).addingTimeInterval(3600)
+        profile.days = [savedDate]
+        guard case .feasible(let plan) = try await dependencies.planner.generate(PlanRequest(profile: profile, catalog: dependencies.catalog)) else {
+            throw PlanningError.invalidPlan
+        }
+        let model = OnboardingViewModel(profile: profile, services: dependencies, basePlan: plan)
+        let weekday = try #require(model.upcomingDates.first(where: model.isDaySelected))
+        model.toggleDay(weekday)
+        let available = try #require(model.upcomingDates.first { Calendar.current.isDate($0, inSameDayAs: savedDate) })
+        model.toggleDay(available)
+        #expect(model.profile.days == [savedDate])
+    }
+
+    @Test func detailedAllergiesKeepTheWholeGroupExcludedUntilLastSelectionIsRemoved() async throws {
+        let model = OnboardingViewModel(profile: .fixture, services: try await services())
+        model.toggleDetailedAllergy(.shrimp)
+        model.toggleDetailedAllergy(.crab)
+        #expect(model.profile.allergies == [.shellfish])
+        #expect(model.profile.onboarding?.detailedAllergies == [.shrimp, .crab])
+        model.toggleDetailedAllergy(.shrimp)
+        #expect(model.profile.allergies == [.shellfish])
+        model.toggleDetailedAllergy(.crab)
+        #expect(model.profile.allergies.isEmpty)
+    }
+
+    @Test func planPresentationHonorsMinimumDuration() async throws {
+        let model = OnboardingViewModel(profile: .fixture, services: try await services())
+        let clock = ContinuousClock()
+        let start = clock.now
+        await model.build(minimumDisplay: .milliseconds(300))
+        #expect(start.duration(to: clock.now) >= .milliseconds(300))
+        #expect(model.preview != nil)
     }
 
     @Test func backPreservesAnswersAndSummaryEditReturnsToSummary() async throws {
@@ -64,8 +108,8 @@ struct OnboardingTests {
         model.budgetText = "55"
         model.advance(); model.back()
         #expect(model.profile.budgetMinorUnits == 5500)
-        model.edit(0); model.advance()
-        #expect(model.step == 7)
+        model.edit(.budget); model.advance()
+        #expect(model.step == .summary)
     }
 
     @Test func failedSaveKeepsPreviewForRetry() async throws {
