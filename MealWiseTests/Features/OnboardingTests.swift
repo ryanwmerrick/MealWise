@@ -86,11 +86,44 @@ struct OnboardingTests {
         #expect(model.preview == nil)
     }
 
+    @Test func infeasibleFavoritePinHasAnExplicitExplanation() async throws {
+        let services = try await services()
+        var profile = PlanningProfile.fixture; profile.budgetMinorUnits = 100
+        try await services.preferences.setFavorite(recipeID: "spinach-bean-pasta", favorite: true)
+        try await services.preferences.savePin(RecipePin(recipeID: "spinach-bean-pasta", date: profile.days[0], slot: .dinner))
+        let model = OnboardingViewModel(profile: profile, services: services)
+        await model.build()
+        #expect(model.preview == nil)
+        #expect(model.errorMessage?.contains("pinned favorites") == true)
+    }
+
+    @Test(arguments: [false, true])
+    func lateRefreshCannotUndoResetOrAcceptedPlan(acceptNew: Bool) async throws {
+        let repository = HeldRefreshRepository()
+        let dependencies = try await services(plans: repository)
+        let session = AppSession(bootstrap: FixedBootstrap(services: dependencies))
+        await session.load()
+        guard case .feasible(let original) = try await dependencies.planner.generate(PlanRequest(profile: .fixture, catalog: dependencies.catalog)) else { throw PlanningError.invalidPlan }
+        try await repository.saveActivePlan(original); session.accept(original)
+        await repository.holdNextRead()
+        let refresh = Task { await session.refreshPlan() }
+        await repository.waitUntilHeld()
+        let expected: WeeklyPlan?
+        if acceptNew {
+            let updated = WeeklyPlan(id: original.id, revision: UUID(), profile: original.profile, catalog: original.catalog,
+                meals: original.meals, cart: original.cart, totalMinorUnits: original.totalMinorUnits, pricedAt: original.pricedAt)
+            try await repository.saveActivePlan(updated); session.accept(updated); expected = updated
+        } else { try await session.reset(); expected = nil }
+        await repository.releaseRead()
+        await refresh.value
+        #expect(session.plan == expected)
+    }
+
     private func services(plans: (any PlanRepositoryProtocol)? = nil) async throws -> AppServices {
         let container = try await LocalStore.makeContainer(inMemory: true)
         let catalog = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
         let localPlans = PlanRepository(container: container)
-        let changes = PlanChangeService(plans: localPlans, planner: PlanService(), preferences: MealPreferenceRepository(container: container))
+        let changes = PlanChangeService(plans: localPlans, planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), preferences: MealPreferenceRepository(container: container), clock: { Date(timeIntervalSince1970: 1794528000) })
         return AppServices(catalog: catalog, profiles: ProfileRepository(container: container),
                            plans: plans ?? localPlans, planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), checklist: ChecklistRepository(container: container), preferences: MealPreferenceRepository(container: container), shopping: ShoppingService(plans: localPlans), cooking: CookingService(plans: localPlans, changes: changes), timers: TimerService(plans: localPlans), pantry: PantryRepository(plans: localPlans, catalog: catalog), history: HistoryRepository(plans: localPlans), cycles: NextCycleService(plans: localPlans))
     }
@@ -100,6 +133,7 @@ private actor FailingPlanRepository: PlanRepositoryProtocol {
     func loadActivePlan() async throws -> WeeklyPlan? { nil }
     func saveActivePlan(_ plan: WeeklyPlan) async throws { throw PersistenceError.saveFailed }
     func resetActivePlan() async throws { throw PersistenceError.saveFailed }
+    func eraseLocalData() async throws { throw PersistenceError.saveFailed }
     func commit(_ plan: WeeklyPlan, expectedRevision: UUID) async throws { throw PersistenceError.saveFailed }
 }
 
@@ -116,5 +150,26 @@ private actor RefreshFailureRepository: PlanRepositoryProtocol {
     }
     func saveActivePlan(_ plan: WeeklyPlan) async throws {}
     func resetActivePlan() async throws {}
+    func eraseLocalData() async throws {}
     func commit(_ plan: WeeklyPlan, expectedRevision: UUID) async throws {}
+}
+
+private actor HeldRefreshRepository: PlanRepositoryProtocol {
+    private var plan: WeeklyPlan?
+    private var hold = false
+    private var heldPlan: WeeklyPlan?
+    private var continuation: CheckedContinuation<WeeklyPlan?, Never>?
+    private var observer: CheckedContinuation<Void, Never>?
+    func holdNextRead() { hold = true }
+    func waitUntilHeld() async { if continuation == nil { await withCheckedContinuation { observer = $0 } } }
+    func releaseRead() { continuation?.resume(returning: heldPlan); continuation = nil }
+    func loadActivePlan() async throws -> WeeklyPlan? {
+        guard hold else { return plan }
+        hold = false; heldPlan = plan
+        return await withCheckedContinuation { continuation = $0; observer?.resume(); observer = nil }
+    }
+    func saveActivePlan(_ plan: WeeklyPlan) async throws { self.plan = plan }
+    func resetActivePlan() async throws { plan = nil }
+    func eraseLocalData() async throws { plan = nil }
+    func commit(_ plan: WeeklyPlan, expectedRevision: UUID) async throws { self.plan = plan }
 }

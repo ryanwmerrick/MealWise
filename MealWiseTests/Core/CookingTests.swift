@@ -102,21 +102,21 @@ struct CookingTests {
     private func fixture(purchase: Bool = true) async throws -> (WeeklyPlan, PlanRepository, CookingService, PlanChangeService) {
         let container = try await LocalStore.makeContainer(inMemory: true)
         let plans = PlanRepository(container: container)
-        let catalog = try await CatalogService(allowDevelopment: true).loadCatalog()
+        let catalog = try await CatalogService(allowDevelopment: true, now: Date(timeIntervalSince1970: 1794528000)).loadCatalog()
         let date = Date(timeIntervalSince1970: 1794528000)
         let profile = PlanningProfile(budgetMinorUnits: 7000, adults: 2, children: 0,
                                       days: [date, date.addingTimeInterval(86400)], mealSlots: [.dinner], cookingTime: .thirty,
                                       skill: .beginner, storeID: "development-grocery", allergies: [], preferences: [])
-        guard case .feasible(let original) = try await PlanService().generate(PlanRequest(profile: profile, catalog: catalog)) else { throw PlanningError.invalidPlan }
+        guard case .feasible(let original) = try await PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }).generate(PlanRequest(profile: profile, catalog: catalog)) else { throw PlanningError.invalidPlan }
         try await plans.saveActivePlan(original)
         if purchase {
-            let shopping = ShoppingService(plans: plans)
+            let shopping = ShoppingService(plans: plans, clock: { Date(timeIntervalSince1970: 1794528000) })
             let trip = try await shopping.openTrip(planID: original.id)
             for line in trip.lines { _ = try await shopping.setChecked(itemID: line.id, checked: true, tripID: trip.id) }
             _ = try await shopping.finishTrip(trip.id)
         }
         let plan = try #require(try await plans.loadActivePlan())
-        let changes = PlanChangeService(plans: plans, planner: PlanService(), preferences: MealPreferenceRepository(container: container))
-        return (plan, plans, CookingService(plans: plans, changes: changes), changes)
+        let changes = PlanChangeService(plans: plans, planner: PlanService(clock: { Date(timeIntervalSince1970: 1794528000) }), preferences: MealPreferenceRepository(container: container), clock: { Date(timeIntervalSince1970: 1794528000) })
+        return (plan, plans, CookingService(plans: plans, changes: changes, clock: { Date(timeIntervalSince1970: 1794528000) }), changes)
     }
 }

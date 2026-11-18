@@ -6,11 +6,11 @@ MealWise is a free, budget-first iOS meal planner for lower-income households, S
 
 **Goal:** Deliver the complete MVP1–MVP4 weekly cycle: Set Budget → Plan → Reuse → Shop → Cook → Wrap Up → Carry Over.
 
-**Architecture:** Native SwiftUI with feature-based MVVM, protocol-injected services, SwiftData persistence, and a deterministic, package-aware local planner. One committed plan is the source for meals, cart, budget, and ingredient allocations. Optional account synchronization arrives only after the local cycle works.
+**Architecture:** Native SwiftUI with feature-based MVVM, protocol-injected services, SwiftData persistence, and a deterministic, package-aware local planner. One committed plan is the source for meals, cart, budget, and ingredient allocations. Account and synchronization work is deferred.
 
-**Tech stack:** Swift 6 with strict concurrency, SwiftUI, SwiftData, Swift Testing, XCTest UI tests, and Keychain for credentials. Use URLSession only when an approved remote service is introduced.
+**Tech stack:** Swift 6 with strict concurrency, SwiftUI, SwiftData, Swift Testing, and XCTest UI tests.
 
-**Sources:** Read `CLAUDE.md` and `project_description.md` in full. Design source: [MealWise UI in Figma Make](https://www.figma.com/make/BJT2UHwHtxyVbn1ryrLWA4/MealWise-UI?t=wbZ3ZrEfQZNb617W-0), accessed through Figma MCP on November 11, 2026. Layout, visuals, and screen structure follow Figma; behavior and business rules follow the description.
+**Sources:** Read `CLAUDE.md` and `MealWise_project_description.md` in full. Design source: [MealWise UI in Figma Make](https://www.figma.com/make/BJT2UHwHtxyVbn1ryrLWA4/MealWise-UI?t=wbZ3ZrEfQZNb617W-0), accessed through Figma MCP on November 11, 2026. Layout, visuals, and screen structure follow Figma; behavior and business rules follow the description.
 
 **Execution:** This document authorizes no implementation. When implementation is requested, use Superpowers executing-plans phase by phase. Each phase consumes only completed dependencies and ends with a runnable app and passing checks. Do not build future-phase functionality early.
 
@@ -87,7 +87,7 @@ The fixed 390×844 phone, simulated status bar, home indicator, outer gradient, 
 | Shopping completion summary, actual spending, cheaper substitutes | Done only exits shopping; all price edits show turkey and fixed feedback. Phase 7 supplies real transactions and missing states. |
 | Cook completion, timers, skipped-meal rescheduling | Final action only closes; timer and skip controls inert. Phase 8 supplies behavior and missing presentations. |
 | Wrap-Up, leftover confirmation, next-week setup, pantry add/edit/remove | Mostly absent; Phase 9 requires designs. |
-| Ratings, Favorites/pinning, weekly nutrition, optional account/sync | Absent; Phase 10 requires designs and account decisions. |
+| Ratings, Favorites/pinning and weekly nutrition | Local Phase 10 scope. |
 | PLUS overview, comparison, SNAP eligibility, tips, advanced AI | Absent and explicitly future scope in the description; excluded from these MVP1–MVP4 phases. |
 
 ### Design-specific additions and conflicts
@@ -109,7 +109,7 @@ The fixed 390×844 phone, simulated status bar, home indicator, outer gradient, 
 6. **After shopping:** Decide how budget/profile edits, swaps, and pantry updates interact with purchased stock and cooked meals. Proposed rule: preserve history and purchased quantities; preview changes only to remaining meals. Resolve before Phase 6; exercise actual-price interactions again in Phase 7.
 7. **Over-budget reveal:** The description permits viewing over-budget swaps but promises a hard cap. Proposed behavior: reveal for comparison with a warning; confirmation remains unavailable until an explicit budget change produces a feasible plan. Confirm before Phase 6.
 8. **Carryover and safety:** Define storage/expiry metadata, how users confirm remaining quantities, and how missed meals affect stock. Avoid presenting an inferred spoilage forecast as a guarantee of safety. Resolve before Phases 5/8/9.
-9. **Accounts:** Choose provider/backend, account lifecycle, guest-data merge, conflict behavior, offline queue, deletion and retention before Phase 10. CloudKit is a possible Apple-only option but does not itself settle the requested in-app account experience. No provider is silently selected.
+9. **Accounts:** Provider selection and account lifecycle decisions are deferred until after the local demo.
 10. **Platform/toolchain:** User request settles iOS. `CLAUDE.md` specifies iOS 27.0+ and Swift 6; verify the installed SDK/simulator supports that deployment target before Phase 1. Do not silently lower it.
 11. **Future commerce:** PLUS price, monetization, SNAP verification/privacy, and tips remain deferred product decisions. Free core planning and no mandatory account/payment remain requirements.
 
@@ -303,27 +303,32 @@ The description already recommends curated recipes and estimated regional prices
 
 **Verification:** Test duplicate carryover, partly consumed packages, removed/expired stock, user quantity corrections, pantry reservation rollback and zero savings when remaining stock still requires the same package count. UI test the complete two-week loop, including relaunch between wrap-up and planning. Manually reconcile stock and checkout cost. Run full build/tests.
 
-## Phase 10 — Preferences, nutrition, optional sync and release readiness (MVP4 complete)
+## Phase 10 — Local demo completion
 
-**Goal:** Finish the description's repeat-use features and verify a real distributable app.
+Finish the local meal-planning cycle and repeat-use features so manual UI work can start from a working app. Welcome opens setup directly. Demo recipes and synthetic prices come from the bundled development catalog. SwiftData keeps demo plans and progress on this installation for relaunch and carryover.
 
-**Scope / files:** `Features/Favorites/`, `Features/Ratings/`, `Features/Nutrition/`, `Features/Account/`; `Core/Services/{AccountService,SyncService}.swift`; extend preference/history repositories; provider-specific configuration only after selection; accessibility/privacy resources and integration/UI tests.
+Supabase, CloudKit, account screens, real or simulated signup and sign-in, verification and recovery, credentials, cross-device sync, and signed production distribution are deferred.
 
-**Figma references:** Existing meal rows, settings sheet, pantry and save-note components form the established vocabulary. **Gate:** rating, favorites/pinning, nutrition, account and sync-state screen designs are missing. Provider, entitlements, account lifecycle and merge policy must be settled before dependent implementation.
+### 10A — Ratings, favorites and next-week pins
 
-**Interfaces:** `MealPreferenceRepositoryProtocol.rate(mealID: UUID, rating: MealRating) async throws`; favorites and exclusions share stable recipe IDs. Favorite pins enter `PlanRequest` as explicit constraints. `SyncServiceProtocol.synchronize() async throws -> SyncResult` consumes committed local records; provider-specific account operations follow the approved account contract.
+- Offer optional thumbs up/down on cooked meals. Store ratings and favorites locally and keep cooked history immutable.
+- Use ratings as a soft preference for new plans. Respect dietary and allergy rules, exclusions, and the budget cap.
+- Let users pin a favorite to a selected date and meal slot for the next plan. Explain infeasible pins and keep them editable. Consume fulfilled pins with the accepted plan in one transaction.
 
-- [ ] Test rating preference, favorite pin feasibility and vegetable/protein/whole-grain summary denominators; implement the reviewed feature screens.
-- [ ] Add optional sign-in and synchronization for pantry, favorites and history; guests retain the complete local app. Store credentials in Keychain where applicable.
-- [ ] Implement tested conflict/guest-merge, offline retry, sign-out and account deletion behavior; validate remote input and preserve local data on failures.
-- [ ] Run the complete MVP1–MVP4 acceptance suite, privacy review, localization/accessibility pass, migration checks, on-device performance checks and archive validation.
+### 10B — Weekly nutrition
 
-**Definition of Done:** Ratings affect future preferences without weakening hard constraints; pinned favorites produce a feasible plan or a clear explanation. Nutrition uses simple balance indicators. Two devices can recover the same supported account data, and offline/guest use remains complete. The app archives with correct signing, privacy declarations and no placeholder feature actions. Missing designs/services prevent this phase being called complete.
+- Show vegetable, protein and whole-grain counts by scheduled meal slot using catalog flags. Each repeated meal counts separately. Cooked meals use their frozen recipe flags.
+- Use the existing native SwiftUI components and navigation for Phase 10 controls. Manual UI redesign follows this phase.
 
-**Verification:** Test a favorite that makes the cap impossible, exclusion versus pin conflict, correct nutrition counts across multiple meal slots, interrupted guest merge, duplicate upload, conflicting pantry edits, expired credentials, offline/reconnect, deletion and migration from previous schemas. Use a mocked transport/service for automated sync failures and two physical devices or separate test accounts for end-to-end sync. Run full build/tests and `xcodebuild -project MealWise.xcodeproj -scheme MealWise -destination 'generic/platform=iOS' archive` with configured signing; expect `ARCHIVE SUCCEEDED`. Manually complete setup → swap → shop → cook → wrap-up → next week without signing in or paying. Publishing is a separate user-authorized action.
+### 10C — Local walkthrough and verification
+
+- Keep saved preferences and history accessible from Welcome after Start over. Offer confirmed local data erasure for a clean demo.
+- Verify the full local cycle through cooking, rating, pantry carryover, favorite pinning, next week and history after relaunch. Verify existing saved plans and exclusions still load.
+- Run the simulator suite, check Phase 10 screens in dark mode and accessibility text sizes, review local data handling and localization, and validate Release packaging and the recovered app icon assets without signing.
+- Record the results and document the account-free walkthrough. Real retailer prices, reviewed launch recipes, device performance and signed distribution remain release follow-up.
 
 ## Scope boundaries and coverage
 
-Phases 1–4 deliver MVP1; Phases 5–6 deliver MVP2; Phases 7–8 deliver shopping/cooking, with Wrap-Up completed in Phase 9; Phases 9–10 deliver MVP4. Every description MVP1–MVP4 feature has an owning phase, including optional accounts. Future PLUS, retailer comparison, advanced AI, SNAP eligibility and tips remain explicitly deferred as the description specifies; their screens and business decisions require a separate approved scope. Camera scanning, calorie/macro tracking, recipe import and household sharing are not part of this plan.
+Phases 1–4 deliver MVP1, Phases 5–6 deliver MVP2, and Phases 7–9 deliver shopping, cooking, wrap-up and pantry carryover. Phase 10 completes the local MVP4 features. Accounts and synchronization from the product description are deferred. Future PLUS, retailer comparison, advanced AI, SNAP eligibility and tips remain deferred. Camera scanning, calorie/macro tracking, recipe import and household sharing are outside this plan.
 
-This is a planning artifact only. No app project, source implementation, dependency installation, account provisioning, or build verification was performed while preparing it.
+See [implementation progress](docs/implementation-progress.md) for delivered work and verification.

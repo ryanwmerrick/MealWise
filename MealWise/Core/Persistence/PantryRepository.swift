@@ -142,6 +142,7 @@ extension PlanRepository {
               plan.totalMinorUnits <= plan.profile.budgetMinorUnits else { throw PantryError.invalidConfirmation }
         try CatalogValidator.validate(plan.catalog, allowDevelopment: true, now: now)
         try PlanValidation.validate(plan)
+        try consumeRecipePins(for: plan, documents: documents)
         try reservePantryCredits(plan, documents: documents, context: context, at: now)
         try putPantryDocument(plan, key: "activePlan", documents: documents, context: context)
         try putPantryDocument(plan.profile, key: "profile", documents: documents, context: context)

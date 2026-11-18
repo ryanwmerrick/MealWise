@@ -41,9 +41,17 @@ final class CookingUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Close cooking"].waitForNonExistence(timeout: 10))
         let cooked = app.buttons.matching(identifier: "today.meal").matching(NSPredicate(format: "label CONTAINS %@", "Cooked")).firstMatch
         XCTAssertTrue(cooked.waitForExistence(timeout: 10))
+        let liked = app.buttons["rating.liked"]
+        reveal(liked, in: app); liked.tap()
+        XCTAssertTrue(app.staticTexts["rating.saved"].waitForExistence(timeout: 5))
+        app.buttons["rating.disliked"].tap()
+        XCTAssertTrue(app.buttons["rating.disliked"].isSelected)
+        XCTAssertFalse(app.buttons["rating.liked"].isSelected)
+        app.buttons["rating.liked"].tap()
         app.terminate(); app.launch()
         app.tabBars.buttons["Today"].tap()
         XCTAssertTrue(cooked.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["rating.liked"].isSelected)
     }
 
     @MainActor

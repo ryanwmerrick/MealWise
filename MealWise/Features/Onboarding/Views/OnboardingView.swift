@@ -5,6 +5,7 @@ struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: OnboardingViewModel
     @State private var buildRequest: UUID?
+    @State private var showingFavorites = false
     @FocusState private var budgetFocused: Bool
     @AccessibilityFocusState private var errorFocused: Bool
     @ScaledMetric(relativeTo: .body) private var presetWidth = 72
@@ -23,6 +24,12 @@ struct OnboardingView: View {
         }
         .background(DesignTokens.surface)
         .navigationBarBackButtonHidden()
+        .sheet(isPresented: $showingFavorites) {
+            NavigationStack {
+                FavoritesView(catalog: viewModel.planningCatalog, preferences: viewModel.services.preferences, profile: viewModel.profile)
+                    .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showingFavorites = false } } }
+            }
+        }
         .safeAreaInset(edge: .top, spacing: 0) {
             if let error = viewModel.errorMessage {
                 HStack(alignment: .top, spacing: 12) {
@@ -226,6 +233,10 @@ struct OnboardingView: View {
             summaryRow("Store", value: String(localized: "Development grocery"), step: 5, id: "store")
             summaryRow("Food needs", value: String(localized: "\(viewModel.profile.allergies.count) allergies, \(viewModel.profile.preferences.count) preferences"), step: 6, id: "food")
             DevelopmentNotice()
+            if viewModel.nextCycle != nil {
+                Button("Favorites and next-plan pins") { showingFavorites = true }
+                    .frame(minHeight: 44)
+            }
         }
     }
 
@@ -280,6 +291,7 @@ struct OnboardingView: View {
                         VStack(alignment: .leading) {
                             Text(meal.date, format: .dateTime.weekday().month().day())
                             Text(LocalizedStringKey(preview.catalog.recipes.first { $0.id == meal.recipeID }?.title ?? "Meal"))
+                                .accessibilityIdentifier("setup.preview.recipe")
                         }.padding(.vertical, 6)
                     }
                 }

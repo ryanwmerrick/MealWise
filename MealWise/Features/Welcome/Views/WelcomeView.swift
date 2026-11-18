@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @State private var showingSavedData = false
     @ScaledMetric(relativeTo: .largeTitle) private var headlineSize = 40
 
     var body: some View {
@@ -16,6 +17,7 @@ struct WelcomeView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) { actions }
         .background(DesignTokens.welcomeSurface)
         .toolbar(.hidden, for: .navigationBar)
+        .sheet(isPresented: $showingSavedData) { SettingsView() }
     }
 
     private var brandmark: some View {
@@ -52,6 +54,8 @@ struct WelcomeView: View {
             }
             .buttonStyle(MealWiseButtonStyle())
             .accessibilityIdentifier("welcome.start")
+            Button("Saved data") { showingSavedData = true }
+                .frame(minHeight: 44).accessibilityIdentifier("welcome.savedData")
             Text("No account. No payment. Just a plan.")
                 .font(.footnote)
                 .foregroundStyle(DesignTokens.textSecondary)
@@ -65,6 +69,6 @@ struct WelcomeView: View {
     }
 }
 
-#Preview("Light") { NavigationStack { WelcomeView() } }
-#Preview("Dark") { NavigationStack { WelcomeView() }.preferredColorScheme(.dark) }
-#Preview("Accessibility") { NavigationStack { WelcomeView() }.dynamicTypeSize(.accessibility5) }
+#Preview("Light") { NavigationStack { WelcomeView() }.environment(AppSession()) }
+#Preview("Dark") { NavigationStack { WelcomeView() }.environment(AppSession()).preferredColorScheme(.dark) }
+#Preview("Accessibility") { NavigationStack { WelcomeView() }.environment(AppSession()).dynamicTypeSize(.accessibility5) }

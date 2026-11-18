@@ -316,6 +316,26 @@
         }
       }
     },
+    "A favorite pin no longer matches your selected dates or meal slots. Review or remove it in Favorites before building.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A favorite pin no longer matches your selected dates or meal slots. Review or remove it in Favorites before building."
+          }
+        }
+      }
+    },
+    "A recipe could not be read. Your plan remains saved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A recipe could not be read. Your plan remains saved."
+          }
+        }
+      }
+    },
     "A separate weekly cycle": {
       "localizations": {
         "en": {
@@ -1142,6 +1162,16 @@
         }
       }
     },
+    "Clear plans, setup, pantry, preferences and history from this installation.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear plans, setup, pantry, preferences and history from this installation."
+          }
+        }
+      }
+    },
     "Clear timer": {
       "localizations": {
         "en": {
@@ -1385,6 +1415,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cooking"
+          }
+        }
+      }
+    },
+    "Cooking date": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooking date"
           }
         }
       }
@@ -1711,6 +1751,26 @@
         }
       }
     },
+    "Each pin selects a recipe for one date and meal slot. Review these pins if you change your next week’s schedule.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each pin selects a recipe for one date and meal slot. Review these pins if you change your next week’s schedule."
+          }
+        }
+      }
+    },
+    "Each scheduled meal slot counts once, including repeat recipes. Cooked meals retain their original recipe indicators.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each scheduled meal slot counts once, including repeat recipes. Cooked meals retain their original recipe indicators."
+          }
+        }
+      }
+    },
     "Earlier purchases": {
       "localizations": {
         "en": {
@@ -1840,6 +1900,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Entered actual line total"
+          }
+        }
+      }
+    },
+    "Erase all local MealWise records?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erase all local MealWise records?"
+          }
+        }
+      }
+    },
+    "Erase all local data": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erase all local data"
+          }
+        }
+      }
+    },
+    "Erase local data": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erase local data"
           }
         }
       }
@@ -1974,6 +2064,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Experienced"
+          }
+        }
+      }
+    },
+    "Favorites": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorites"
+          }
+        }
+      }
+    },
+    "Favorites and next-plan pins": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorites and next-plan pins"
           }
         }
       }
@@ -2560,6 +2670,16 @@
         }
       }
     },
+    "Loading favorites": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading favorites"
+          }
+        }
+      }
+    },
     "Loading next-week choices": {
       "localizations": {
         "en": {
@@ -2576,6 +2696,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Loading pantry stock"
+          }
+        }
+      }
+    },
+    "Local data": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local data"
+          }
+        }
+      }
+    },
+    "Local records could not be erased. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local records could not be erased. Please retry."
           }
         }
       }
@@ -2633,6 +2773,26 @@
         }
       }
     },
+    "Meal balance": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meal balance"
+          }
+        }
+      }
+    },
+    "Meal slot": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meal slot"
+          }
+        }
+      }
+    },
     "Meal unavailable": {
       "localizations": {
         "en": {
@@ -2679,6 +2839,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Meals to include"
+          }
+        }
+      }
+    },
+    "Meals with protein: %lld of %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals with protein: %lld of %lld"
+          }
+        }
+      }
+    },
+    "Meals with vegetables: %lld of %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals with vegetables: %lld of %lld"
+          }
+        }
+      }
+    },
+    "Meals with whole grains: %lld of %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals with whole grains: %lld of %lld"
           }
         }
       }
@@ -2900,6 +3090,16 @@
         }
       }
     },
+    "No favorites yet. Rate a cooked meal in Today to save what you liked.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No favorites yet. Rate a cooked meal in Today to save what you liked."
+          }
+        }
+      }
+    },
     "No groceries yet": {
       "extractionState": "stale",
       "localizations": {
@@ -2948,6 +3148,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No pantry stock is available. The new plan will price all needed packages."
+          }
+        }
+      }
+    },
+    "No pending pins": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No pending pins"
           }
         }
       }
@@ -3311,6 +3521,16 @@
         }
       }
     },
+    "Pending next-plan pins": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending next-plan pins"
+          }
+        }
+      }
+    },
     "Per adult-equivalent serving": {
       "localizations": {
         "en": {
@@ -3327,6 +3547,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Per planned day"
+          }
+        }
+      }
+    },
+    "Pin favorite": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pin favorite"
+          }
+        }
+      }
+    },
+    "Pin into next plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pin into next plan"
           }
         }
       }
@@ -3391,6 +3631,16 @@
         }
       }
     },
+    "Planned meals: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned meals: %lld"
+          }
+        }
+      }
+    },
     "Planned package use": {
       "localizations": {
         "en": {
@@ -3417,6 +3667,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Planned use: %@ → %@"
+          }
+        }
+      }
+    },
+    "Prefer other meals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer other meals"
           }
         }
       }
@@ -3717,6 +3977,16 @@
         }
       }
     },
+    "Rating saved": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rating saved"
+          }
+        }
+      }
+    },
     "Re-optimizing your week": {
       "localizations": {
         "en": {
@@ -3929,6 +4199,16 @@
         }
       }
     },
+    "Reload favorites": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload favorites"
+          }
+        }
+      }
+    },
     "Reload next week": {
       "localizations": {
         "en": {
@@ -3986,6 +4266,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reminder: %lld minutes"
+          }
+        }
+      }
+    },
+    "Remove favorite": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove favorite"
+          }
+        }
+      }
+    },
+    "Remove pin": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove pin"
           }
         }
       }
@@ -4203,6 +4503,16 @@
         }
       }
     },
+    "Save next-plan pin": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save next-plan pin"
+          }
+        }
+      }
+    },
     "Save pantry item": {
       "localizations": {
         "en": {
@@ -4219,6 +4529,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Save price"
+          }
+        }
+      }
+    },
+    "Saved data": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved data"
           }
         }
       }
@@ -4540,6 +4860,16 @@
         }
       }
     },
+    "Start over removes the active plan and setup answers. Pantry, favorites and recorded history remain saved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start over removes the active plan and setup answers. Pantry, favorites and recorded history remain saved."
+          }
+        }
+      }
+    },
     "Start reminder timer": {
       "localizations": {
         "en": {
@@ -4664,6 +4994,16 @@
         }
       }
     },
+    "Summary unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summary unavailable"
+          }
+        }
+      }
+    },
     "Swap meal": {
       "localizations": {
         "en": {
@@ -4764,6 +5104,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The estimate includes whole packages and required staples. Tax, deposits and fees are excluded."
+          }
+        }
+      }
+    },
+    "The full plan must still fit your budget and food requirements. This saves a request; it does not change your current plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The full plan must still fit your budget and food requirements. This saves a request; it does not change your current plan."
           }
         }
       }
@@ -4937,6 +5287,16 @@
         }
       }
     },
+    "These counts show which meals include each food group. They use sample recipe data.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These counts show which meals include each food group. They use sample recipe data."
+          }
+        }
+      }
+    },
     "These swaps use more of the selected ingredient without adding another package of it. All proposed carts fit the budget.": {
       "localizations": {
         "en": {
@@ -5042,6 +5402,26 @@
         }
       }
     },
+    "This favorite could not be pinned. Review the selected date and meal slot.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This favorite could not be pinned. Review the selected date and meal slot."
+          }
+        }
+      }
+    },
+    "This favorite could not be updated. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This favorite could not be updated. Please retry."
+          }
+        }
+      }
+    },
     "This forecast assumed all planned meals would be cooked. It is separate from recorded stock and your confirmed quantities.": {
       "localizations": {
         "en": {
@@ -5122,6 +5502,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "This package preview is out of date or could not be saved. Reopen it from your current trip."
+          }
+        }
+      }
+    },
+    "This permanently removes saved plans, pantry, favorites, ratings and history from MealWise.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This permanently removes saved plans, pantry, favorites, ratings and history from MealWise."
+          }
+        }
+      }
+    },
+    "This pin could not be removed. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This pin could not be removed. Please retry."
           }
         }
       }
@@ -5666,6 +6066,16 @@
         }
       }
     },
+    "Weekly nutrition": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly nutrition"
+          }
+        }
+      }
+    },
     "What can you spend this week?": {
       "localizations": {
         "en": {
@@ -5792,6 +6202,16 @@
         }
       }
     },
+    "Would you cook this again?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Would you cook this again?"
+          }
+        }
+      }
+    },
     "Wrap up this cycle": {
       "localizations": {
         "en": {
@@ -5819,6 +6239,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Yellow onion"
+          }
+        }
+      }
+    },
+    "Yes, save to Favorites": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes, save to Favorites"
           }
         }
       }
@@ -5876,6 +6306,16 @@
         }
       }
     },
+    "Your favorites could not be loaded. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your favorites could not be loaded. Please retry."
+          }
+        }
+      }
+    },
     "Your grocery list could not be loaded. Please retry.": {
       "extractionState": "stale",
       "localizations": {
@@ -5909,6 +6349,16 @@
         }
       }
     },
+    "Your meal rating could not be loaded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your meal rating could not be loaded."
+          }
+        }
+      }
+    },
     "Your meals will appear here after setup.": {
       "extractionState": "stale",
       "localizations": {
@@ -5937,6 +6387,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Your pantry is empty"
+          }
+        }
+      }
+    },
+    "Your pinned favorites could not form a complete plan within this budget and food requirements. Review pins in Favorites or adjust your choices.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your pinned favorites could not form a complete plan within this budget and food requirements. Review pins in Favorites or adjust your choices."
           }
         }
       }
@@ -5984,6 +6444,16 @@
         }
       }
     },
+    "Your rating could not be saved. The cooked meal remains recorded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your rating could not be saved. The cooked meal remains recorded."
+          }
+        }
+      }
+    },
     "Your saved information could not be opened. Please retry. Your data has not been reset.": {
       "extractionState": "stale",
       "localizations": {
@@ -6001,6 +6471,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Your saved plan has no meals on this local date. Open Week to review its dates."
+          }
+        }
+      }
+    },
+    "Your saved recipes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your saved recipes"
           }
         }
       }
