@@ -1,9 +1,6 @@
 .DS_Store
-xcuserdata/
-*.xcuserstate
 DerivedData/
 build/
-xcuserdata/
 *.xcuserstate
-DerivedData/
-build/
+xcuserdata/
+.superpowers/

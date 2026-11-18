@@ -1,0 +1,52 @@
+# MealWise implementation progress
+
+Branch: `develop/phase-by-phase`. Follow `implementation.md` in order; each completed phase gets its own tested commit and push.
+
+## Phase 1 — Native foundation
+
+- Swift 6 / complete strict concurrency, iOS 27 minimum, shared scheme, Swift Testing and XCTest UI targets.
+- Welcome receipt/produce composition follows Make's `Welcome` and CSS. Used outline icons preserve source SVG geometry as template vector assets. The unrelated PNG resources are not imported.
+- Native safe areas, navigation and four-tab empty shell. No generated plan or connected service is implied.
+- English string catalog and privacy manifest; Dynamic Type, decorative accessibility hiding, minimum control targets, no custom motion.
+- User authorized implementation-designed dark colors and missing states. Dark palette: background `#111C17`, welcome `#14241C`, cards `#20372C`, primary text `#F0F5EF`, secondary text `#B8C9BD`, actions `#8CD5AC`, button text `#10271C`. Decorative receipt retains its paper/ink palette.
+- Empty states use native `ContentUnavailableView`, descriptive text and no nonfunctional action. Future screens will use the same established cards, typography and native navigation.
+
+Complete. Build, full test suite, accessibility audit and small-screen large-text test pass; light and dark simulator captures were inspected against a rendered local conversion of the original Make Welcome source. See [verification](phase-1-verification.md). Make's screenshot/session MCP tools are unsupported. Native typography/safe areas intentionally replace the reference device frame, status bar and home indicator.
+
+## Phase 2 — Data and persistence
+
+User requested a development catalog for review; it must not be represented as reviewed launch content or real retailer prices.
+
+Complete for the explicitly approved development-only catalog and policy. See [catalog review](catalog-review/README.md) and [Phase 2 verification](phase-2-verification.md). Full build/test passes: 22 Swift Testing tests (including parameterized cases) and three UI tests. Launch recipe/price/allergen review remains required before real-world release.
+
+## Phase 3 — setup and a saved weekly plan
+
+Complete. All eight setup steps, persisted drafts, bounded deterministic generation, pinned Week budget, budget detail, settings preview/accept and confirmed reset are implemented. Full build/test passes: 37 Swift Testing tests and five UI tests, including keyboard validation, same-session draft reentry, setup/edit/build/relaunch and accessibility. See [verification](phase-3-verification.md).
+
+## Phase 4 — groceries and recipe details
+
+Complete. Every planned meal opens its own scaled recipe; groceries reconcile to the committed package cart, and checks persist across relaunch. Full build/test passes: 42 Swift Testing tests and six UI tests. The nested budget-progress accessibility regression found during integration was fixed and its test now opens Budget Details after scrolling. Recipe/grocery screenshots and a household quantity walkthrough were inspected. See [verification](phase-4-verification.md).
+
+## Phase 5 — allocations and leftover forecasts
+
+Complete. Purchased quantities reconcile with dated meal allocations and remainders, Map/Ingredient/Recipe navigation uses one typed route, and recipe notes reserve later-meal amounts. Full build/test passes: 47 unit tests and seven UI tests. Map screenshot and package arithmetic were inspected. See [verification](phase-5-verification.md). An unsourced keyboard/reentry frame warning remains recorded for release investigation; the flow's focused regression passes.
+
+## Phase 6 — safe changes
+
+Complete. Full build/test passes with 59 unit and eight UI tests, plus the focused remainder-navigation UI check; its cart preview was visually inspected. Swaps, day/week regeneration, exclusions, remainder suggestions and budget previews share complete-cart validation and atomic revision checks. See [verification](phase-6-verification.md).
+
+## Phase 7 — shopping and actual spending
+
+Complete. Full build/test passes with 65 unit and ten UI tests. Shopping, partial receipts, real overspend, purchased-stock credits and safe package previews are implemented; the relaunch summary was visually inspected. See [verification](phase-7-verification.md).
+
+## Phase 8 — Today and cooking
+
+Complete. Full build/test passes with 70 unit and 13 UI tests. Today, full-screen cooking, persisted steps/deadlines, confirmed consumption, frozen cooked portions and rescheduling previews are implemented. Reset archives preserve history, and weekly averages respect per-meal portions. See [verification](phase-8-verification.md) for accessibility evidence and recorded limitations.
+
+## Phase 9 — wrap-up and pantry
+
+Complete. Full build/test passes with 78 unit and 15 UI tests. Local cycle, confirmed inventory, reservation updates, next-week setup, receipt-estimate review and same-meal savings are implemented. The strengthened two-week test verifies checked carryover, stock use after relaunch and historical receipts. See [verification](phase-9-verification.md).
+
+## Approved later-phase decisions
+
+User approved [remaining-cycle rules](remaining-cycle-policy.md) for Phases 5–9 and selected CloudKit with the user's iCloud account for Phase 10. Developer/iCloud configuration and device verification are still required for actual sync/release readiness.

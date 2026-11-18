@@ -1,0 +1,6081 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "$5.70 left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$5.70 left"
+          }
+        }
+      }
+    },
+    "$64.30": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$64.30"
+          }
+        }
+      }
+    },
+    "%@ adult-equivalent portions": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ adult-equivalent portions"
+          }
+        }
+      }
+    },
+    "%@ g": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ g"
+          }
+        }
+      }
+    },
+    "%@ items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ items"
+          }
+        }
+      }
+    },
+    "%@ left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ left"
+          }
+        }
+      }
+    },
+    "%@ mL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mL"
+          }
+        }
+      }
+    },
+    "%@ per adult-equivalent serving": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ per adult-equivalent serving"
+          }
+        }
+      }
+    },
+    "%@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@"
+          }
+        }
+      }
+    },
+    "%@ – %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ – %@"
+          }
+        }
+      }
+    },
+    "%lld adults, %lld children": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld adults, %lld children"
+          }
+        }
+      }
+    },
+    "%lld allergies, %lld preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld allergies, %lld preferences"
+          }
+        }
+      }
+    },
+    "%lld days, %lld meals per day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days, %lld meals per day"
+          }
+        }
+      }
+    },
+    "%lld min %lld sec remaining": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min %lld sec remaining"
+          }
+        }
+      }
+    },
+    "%lld min · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld min · %2$@"
+          }
+        }
+      }
+    },
+    "%lld min · %@ adult-equivalent portions": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min · %@ adult-equivalent portions"
+          }
+        }
+      }
+    },
+    "%lld min · %@ ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min · %@ ingredients"
+          }
+        }
+      }
+    },
+    "%lld minutes · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutes · %@"
+          }
+        }
+      }
+    },
+    "%lld of %lld items checked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of %lld items checked"
+          }
+        }
+      }
+    },
+    "%lld of %lld items checked for purchase": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of %lld items checked for purchase"
+          }
+        }
+      }
+    },
+    "%lld of 8": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of 8"
+          }
+        }
+      }
+    },
+    "%lld packages purchased": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld packages purchased"
+          }
+        }
+      }
+    },
+    "%lld packages · %@ each": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld packages · %@ each"
+          }
+        }
+      }
+    },
+    "%lld packages × %@": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld packages × %@"
+          }
+        }
+      }
+    },
+    "%lld purchased · %lld missing prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld purchased · %lld missing prices"
+          }
+        }
+      }
+    },
+    "%lld shared ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld shared ingredients"
+          }
+        }
+      }
+    },
+    "%lld storage-sensitive remainders to review": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld storage-sensitive remainders to review"
+          }
+        }
+      }
+    },
+    "%lld × %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@"
+          }
+        }
+      }
+    },
+    "15 minutes or less": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "15 minutes or less"
+          }
+        }
+      }
+    },
+    "5 dinners": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 dinners"
+          }
+        }
+      }
+    },
+    "A child portion is half an adult portion. Checkout averages allocate packages, including leftovers; meal ingredient costs show only what is consumed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A child portion is half an adult portion. Checkout averages allocate packages, including leftovers; meal ingredient costs show only what is consumed."
+          }
+        }
+      }
+    },
+    "A separate weekly cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A separate weekly cycle"
+          }
+        }
+      }
+    },
+    "About 30 minutes": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About 30 minutes"
+          }
+        }
+      }
+    },
+    "Accept change": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accept change"
+          }
+        }
+      }
+    },
+    "Accept new plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accept new plan"
+          }
+        }
+      }
+    },
+    "Accepting replaces your current planned week. Your new estimate stays within the selected budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accepting replaces your current planned week. Your new estimate stays within the selected budget."
+          }
+        }
+      }
+    },
+    "Accepting starts a separate cycle. Completed history is preserved, and confirmed stock is reserved once.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accepting starts a separate cycle. Completed history is preserved, and confirmed stock is reserved once."
+          }
+        }
+      }
+    },
+    "Actual line total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual line total"
+          }
+        }
+      }
+    },
+    "Actual price": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual price"
+          }
+        }
+      }
+    },
+    "Actual price not entered": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual price not entered"
+          }
+        }
+      }
+    },
+    "Actual price unknown": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual price unknown"
+          }
+        }
+      }
+    },
+    "Add beans and cumin, stir until hot throughout, and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add beans and cumin, stir until hot throughout, and serve."
+          }
+        }
+      }
+    },
+    "Add oats and the package-directed amount of tap water to a saucepan. Cook according to the oat package.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add oats and the package-directed amount of tap water to a saucepan. Cook according to the oat package."
+          }
+        }
+      }
+    },
+    "Add pantry item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add pantry item"
+          }
+        }
+      }
+    },
+    "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
+          }
+        }
+      }
+    },
+    "Additional estimated checkout": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Additional estimated checkout"
+          }
+        }
+      }
+    },
+    "Adjust budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjust budget"
+          }
+        }
+      }
+    },
+    "Adult-equivalent portions: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adult-equivalent portions: %@"
+          }
+        }
+      }
+    },
+    "Adults, age 13+: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adults, age 13+: %lld"
+          }
+        }
+      }
+    },
+    "Adults: %lld · Children: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adults: %lld · Children: %lld"
+          }
+        }
+      }
+    },
+    "Adults: %lld; children: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adults: %lld; children: %lld"
+          }
+        }
+      }
+    },
+    "All": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        }
+      }
+    },
+    "Allergies": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allergies"
+          }
+        }
+      }
+    },
+    "Allocated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allocated"
+          }
+        }
+      }
+    },
+    "Allocated checkout averages": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allocated checkout averages"
+          }
+        }
+      }
+    },
+    "Allow again": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow again"
+          }
+        }
+      }
+    },
+    "Almost all": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almost all"
+          }
+        }
+      }
+    },
+    "Any needs or preferences?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any needs or preferences?"
+          }
+        }
+      }
+    },
+    "Apple": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple"
+          }
+        }
+      }
+    },
+    "Apple banana breakfast rice": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple banana breakfast rice"
+          }
+        }
+      }
+    },
+    "Apple cinnamon oats": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple cinnamon oats"
+          }
+        }
+      }
+    },
+    "Apple cinnamon rice porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple cinnamon rice porridge"
+          }
+        }
+      }
+    },
+    "Banana": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banana"
+          }
+        }
+      }
+    },
+    "Banana peanut oats": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banana peanut oats"
+          }
+        }
+      }
+    },
+    "Banana rice porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banana rice porridge"
+          }
+        }
+      }
+    },
+    "Bean pepper quesadillas": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bean pepper quesadillas"
+          }
+        }
+      }
+    },
+    "Before and after": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before and after"
+          }
+        }
+      }
+    },
+    "Beginner": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        }
+      }
+    },
+    "Bell pepper": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bell pepper"
+          }
+        }
+      }
+    },
+    "Black bean rice bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean rice bowl"
+          }
+        }
+      }
+    },
+    "Black bean spinach bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean spinach bowl"
+          }
+        }
+      }
+    },
+    "Black bean sweet potato skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean sweet potato skillet"
+          }
+        }
+      }
+    },
+    "Black bean vegetable skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black bean vegetable skillet"
+          }
+        }
+      }
+    },
+    "Breakfast": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breakfast"
+          }
+        }
+      }
+    },
+    "Breakfast black bean tacos": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breakfast black bean tacos"
+          }
+        }
+      }
+    },
+    "Budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget"
+          }
+        }
+      }
+    },
+    "Budget details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget details"
+          }
+        }
+      }
+    },
+    "Budget used": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget used"
+          }
+        }
+      }
+    },
+    "Build my plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build my plan"
+          }
+        }
+      }
+    },
+    "Building your week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Building your week"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Canned black beans, drained": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned black beans, drained"
+          }
+        }
+      }
+    },
+    "Canned chickpeas, drained": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned chickpeas, drained"
+          }
+        }
+      }
+    },
+    "Canned diced tomatoes with juice": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned diced tomatoes with juice"
+          }
+        }
+      }
+    },
+    "Canned white beans, drained": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canned white beans, drained"
+          }
+        }
+      }
+    },
+    "Cart and ingredient impact": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cart and ingredient impact"
+          }
+        }
+      }
+    },
+    "Changes recalculate remaining meal requirements. Cooked history stays unchanged; a shortage can require more purchases and budget review.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes recalculate remaining meal requirements. Cooked history stays unchanged; a shortage can require more purchases and budget review."
+          }
+        }
+      }
+    },
+    "Changing your answers creates a new plan preview. Your saved plan changes only after you accept.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changing your answers creates a new plan preview. Your saved plan changes only after you accept."
+          }
+        }
+      }
+    },
+    "Cheaper packages": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cheaper packages"
+          }
+        }
+      }
+    },
+    "Check confirmed quantities and storage details. Nothing was carried over; please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check confirmed quantities and storage details. Nothing was carried over; please retry."
+          }
+        }
+      }
+    },
+    "Check the items you purchased before finishing this trip.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check the items you purchased before finishing this trip."
+          }
+        }
+      }
+    },
+    "Check the package storage instructions. At wrap-up, confirm what remains before carrying it into the next plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check the package storage instructions. At wrap-up, confirm what remains before carrying it into the next plan."
+          }
+        }
+      }
+    },
+    "Check the selected settings and price dates, then try again.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check the selected settings and price dates, then try again."
+          }
+        }
+      }
+    },
+    "Check your budget, household, selected meals and price dates, then try again.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check your budget, household, selected meals and price dates, then try again."
+          }
+        }
+      }
+    },
+    "Checking package allocations": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking package allocations"
+          }
+        }
+      }
+    },
+    "Checking package alternatives": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking package alternatives"
+          }
+        }
+      }
+    },
+    "Checking remainder swaps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking remainder swaps"
+          }
+        }
+      }
+    },
+    "Checking shared ingredients and whole-package costs.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking shared ingredients and whole-package costs."
+          }
+        }
+      }
+    },
+    "Checking the complete cart": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking the complete cart"
+          }
+        }
+      }
+    },
+    "Checkout: %@ → %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checkout: %@ → %@"
+          }
+        }
+      }
+    },
+    "Chickpea and pepper skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea and pepper skillet"
+          }
+        }
+      }
+    },
+    "Chickpea breakfast skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea breakfast skillet"
+          }
+        }
+      }
+    },
+    "Chickpea spinach skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea spinach skillet"
+          }
+        }
+      }
+    },
+    "Chickpea tomato rice": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea tomato rice"
+          }
+        }
+      }
+    },
+    "Chickpea tomato rice bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea tomato rice bowl"
+          }
+        }
+      }
+    },
+    "Chickpea tortilla wraps": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chickpea tortilla wraps"
+          }
+        }
+      }
+    },
+    "Children use half an adult portion for planning. Meals for children under two are outside this planner. Maximum household: 12 people.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Children use half an adult portion for planning. Meals for children under two are outside this planner. Maximum household: 12 people."
+          }
+        }
+      }
+    },
+    "Children, age 2–12: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Children, age 2–12: %lld"
+          }
+        }
+      }
+    },
+    "Choose at least one day and one meal.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose at least one day and one meal."
+          }
+        }
+      }
+    },
+    "Choose your grocery store": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your grocery store"
+          }
+        }
+      }
+    },
+    "Clear timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear timer"
+          }
+        }
+      }
+    },
+    "Close cooking": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close cooking"
+          }
+        }
+      }
+    },
+    "Comfortable": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comfortable"
+          }
+        }
+      }
+    },
+    "Compare packages of the same ingredient. Required food quantities and allergy requirements stay unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compare packages of the same ingredient. Required food quantities and allergy requirements stay unchanged."
+          }
+        }
+      }
+    },
+    "Confirm actual remaining stock before carrying it over. Forecast leftovers are not pantry inventory.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm actual remaining stock before carrying it over. Forecast leftovers are not pantry inventory."
+          }
+        }
+      }
+    },
+    "Confirm carryover": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm carryover"
+          }
+        }
+      }
+    },
+    "Confirm cooked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm cooked"
+          }
+        }
+      }
+    },
+    "Confirm swap": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm swap"
+          }
+        }
+      }
+    },
+    "Confirmed carryover": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmed carryover"
+          }
+        }
+      }
+    },
+    "Confirmed ingredients left over from a week will appear here.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmed ingredients left over from a week will appear here."
+          }
+        }
+      }
+    },
+    "Confirmed pantry stock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmed pantry stock"
+          }
+        }
+      }
+    },
+    "Confirmed quantity": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmed quantity"
+          }
+        }
+      }
+    },
+    "Consumed ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consumed ingredients"
+          }
+        }
+      }
+    },
+    "Consumed when cooked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consumed when cooked"
+          }
+        }
+      }
+    },
+    "Continue": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "Cook pasta in tap water according to its package and drain. Drain white beans.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook pasta in tap water according to its package and drain. Drain white beans."
+          }
+        }
+      }
+    },
+    "Cook pasta in tap water according to its package; drain.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook pasta in tap water according to its package; drain."
+          }
+        }
+      }
+    },
+    "Cook quick-cooking brown rice according to its package using tap water.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook quick-cooking brown rice according to its package using tap water."
+          }
+        }
+      }
+    },
+    "Cook quick-cooking brown rice with tap water according to its package. Drain chickpeas; peel and dice onion.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook quick-cooking brown rice with tap water according to its package. Drain chickpeas; peel and dice onion."
+          }
+        }
+      }
+    },
+    "Cook the oats with the package-directed amount of tap water.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cook the oats with the package-directed amount of tap water."
+          }
+        }
+      }
+    },
+    "Cooked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooked"
+          }
+        }
+      }
+    },
+    "Cooked meals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooked meals"
+          }
+        }
+      }
+    },
+    "Cooked meals: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooked meals: %lld"
+          }
+        }
+      }
+    },
+    "Cooking": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooking"
+          }
+        }
+      }
+    },
+    "Cooking experience": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooking experience"
+          }
+        }
+      }
+    },
+    "Cooking steps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooking steps"
+          }
+        }
+      }
+    },
+    "Cooking time": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooking time"
+          }
+        }
+      }
+    },
+    "Corn tortillas": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corn tortillas"
+          }
+        }
+      }
+    },
+    "Could not open MealWise": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not open MealWise"
+          }
+        }
+      }
+    },
+    "Count what you have": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count what you have"
+          }
+        }
+      }
+    },
+    "Current choices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current choices"
+          }
+        }
+      }
+    },
+    "Current estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current estimate"
+          }
+        }
+      }
+    },
+    "Current projection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current projection"
+          }
+        }
+      }
+    },
+    "Cycle budget at finish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle budget at finish"
+          }
+        }
+      }
+    },
+    "Cycle history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle history"
+          }
+        }
+      }
+    },
+    "Cycle history could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle history could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Cycle summary": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle summary"
+          }
+        }
+      }
+    },
+    "Cycle totals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle totals"
+          }
+        }
+      }
+    },
+    "Dated estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dated estimate"
+          }
+        }
+      }
+    },
+    "Days": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days"
+          }
+        }
+      }
+    },
+    "Development estimates include explicitly reviewed receipt observations. Actual receipts remain unchanged; no current store price is guaranteed.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development estimates include explicitly reviewed receipt observations. Actual receipts remain unchanged; no current store price is guaranteed."
+          }
+        }
+      }
+    },
+    "Development grocery": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development grocery"
+          }
+        }
+      }
+    },
+    "Development prices have expired. An updated catalog is needed to make a new estimate.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development prices have expired. An updated catalog is needed to make a new estimate."
+          }
+        }
+      }
+    },
+    "Development recipes and synthetic prices. Not verified for real shopping or allergy-safe use.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development recipes and synthetic prices. Not verified for real shopping or allergy-safe use."
+          }
+        }
+      }
+    },
+    "Diet and allergy filters use simulated ingredient declarations in this development catalog. Plans are not verified for allergy-safe use; check actual product labels and cross-contact information before cooking.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diet and allergy filters use simulated ingredient declarations in this development catalog. Plans are not verified for allergy-safe use; check actual product labels and cross-contact information before cooking."
+          }
+        }
+      }
+    },
+    "Dinner": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dinner"
+          }
+        }
+      }
+    },
+    "Does everything look right?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Does everything look right?"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "Drain and mash beans. Wash pepper and remove stem and seeds. Dice pepper and peeled onion.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain and mash beans. Wash pepper and remove stem and seeds. Dice pepper and peeled onion."
+          }
+        }
+      }
+    },
+    "Drain beans. Combine beans, tomatoes and cumin in a saucepan and simmer, stirring, until hot throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain beans. Combine beans, tomatoes and cumin in a saucepan and simmer, stirring, until hot throughout."
+          }
+        }
+      }
+    },
+    "Drain beans. Warm oil, tomatoes and beans in a saucepan and simmer until hot throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain beans. Warm oil, tomatoes and beans in a saucepan and simmer until hot throughout."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Cook oats with the package-directed amount of tap water.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Cook oats with the package-directed amount of tap water."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Peel and chop onion.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Peel and chop onion."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Warm oil in a skillet, add spinach and chickpeas, and cook according to the spinach package until hot throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Warm oil in a skillet, add spinach and chickpeas, and cook according to the spinach package until hot throughout."
+          }
+        }
+      }
+    },
+    "Drain chickpeas. Wash pepper, remove stem and seeds, and dice.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drain chickpeas. Wash pepper, remove stem and seeds, and dice."
+          }
+        }
+      }
+    },
+    "Earlier purchases": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier purchases"
+          }
+        }
+      }
+    },
+    "Earlier purchases, with estimates for missing prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier purchases, with estimates for missing prices"
+          }
+        }
+      }
+    },
+    "Edit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "Edit %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit %@"
+          }
+        }
+      }
+    },
+    "Edit actual price": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit actual price"
+          }
+        }
+      }
+    },
+    "Edit answers": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit answers"
+          }
+        }
+      }
+    },
+    "Edit plan settings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit plan settings"
+          }
+        }
+      }
+    },
+    "Eggs": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eggs"
+          }
+        }
+      }
+    },
+    "Enter a nonnegative dollar amount with up to two decimal places.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a nonnegative dollar amount with up to two decimal places."
+          }
+        }
+      }
+    },
+    "Enter a positive dollar amount with at most two decimal places.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a positive dollar amount with at most two decimal places."
+          }
+        }
+      }
+    },
+    "Enter a positive quantity in the displayed unit. The stock could not be saved; please check it and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a positive quantity in the displayed unit. The stock could not be saved; please check it and retry."
+          }
+        }
+      }
+    },
+    "Enter the total for all %lld packages of this item, in USD.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter the total for all %lld packages of this item, in USD."
+          }
+        }
+      }
+    },
+    "Entered actual line total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entered actual line total"
+          }
+        }
+      }
+    },
+    "Estimated %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated %@"
+          }
+        }
+      }
+    },
+    "Estimated checkout": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated checkout"
+          }
+        }
+      }
+    },
+    "Estimated checkout %@ of %@, %@ remaining. Budget details.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated checkout %@ of %@, %@ remaining. Budget details."
+          }
+        }
+      }
+    },
+    "Estimated ingredients: %@": {},
+    "Estimated line total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated line total"
+          }
+        }
+      }
+    },
+    "Estimated package savings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated package savings"
+          }
+        }
+      }
+    },
+    "Estimated package savings from pantry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated package savings from pantry"
+          }
+        }
+      }
+    },
+    "Estimated total": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated total"
+          }
+        }
+      }
+    },
+    "Exclude this recipe from future plans": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude this recipe from future plans"
+          }
+        }
+      }
+    },
+    "Excluded from new planning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluded from new planning"
+          }
+        }
+      }
+    },
+    "Excluded recipes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluded recipes"
+          }
+        }
+      }
+    },
+    "Expected remaining": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected remaining"
+          }
+        }
+      }
+    },
+    "Expected remaining: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected remaining: %@"
+          }
+        }
+      }
+    },
+    "Experienced": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Experienced"
+          }
+        }
+      }
+    },
+    "Find a meal using this remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find a meal using this remainder"
+          }
+        }
+      }
+    },
+    "Find cheaper package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find cheaper package"
+          }
+        }
+      }
+    },
+    "Finish cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish cycle"
+          }
+        }
+      }
+    },
+    "Finish this cycle?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish this cycle?"
+          }
+        }
+      }
+    },
+    "Finish trip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish trip"
+          }
+        }
+      }
+    },
+    "Finish with only these purchased items?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish with only these purchased items?"
+          }
+        }
+      }
+    },
+    "Fish": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fish"
+          }
+        }
+      }
+    },
+    "Flexible": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flexible"
+          }
+        }
+      }
+    },
+    "Food needs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Food needs"
+          }
+        }
+      }
+    },
+    "Forecast quantities need confirmation before carryover.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forecast quantities need confirmation before carryover."
+          }
+        }
+      }
+    },
+    "Forecast unavailable. Open the map to retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forecast unavailable. Open the map to retry."
+          }
+        }
+      }
+    },
+    "Fresh": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fresh"
+          }
+        }
+      }
+    },
+    "Frozen": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frozen"
+          }
+        }
+      }
+    },
+    "Frozen chopped spinach": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frozen chopped spinach"
+          }
+        }
+      }
+    },
+    "Frozen peas, carrots and green beans": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frozen peas, carrots and green beans"
+          }
+        }
+      }
+    },
+    "Fully allocated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fully allocated"
+          }
+        }
+      }
+    },
+    "Future estimate: %@ per package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Future estimate: %@ per package"
+          }
+        }
+      }
+    },
+    "Gluten-free": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gluten-free"
+          }
+        }
+      }
+    },
+    "Go back": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go back"
+          }
+        }
+      }
+    },
+    "Groceries": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Groceries"
+          }
+        }
+      }
+    },
+    "Grocery list": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grocery list"
+          }
+        }
+      }
+    },
+    "Ground cinnamon": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ground cinnamon"
+          }
+        }
+      }
+    },
+    "Ground cumin": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ground cumin"
+          }
+        }
+      }
+    },
+    "Household": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household"
+          }
+        }
+      }
+    },
+    "Household: %lld adults, %lld children": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household: %lld adults, %lld children"
+          }
+        }
+      }
+    },
+    "How comfortable are you cooking?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How comfortable are you cooking?"
+          }
+        }
+      }
+    },
+    "How much time do you have?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How much time do you have?"
+          }
+        }
+      }
+    },
+    "I didn’t cook this": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I didn’t cook this"
+          }
+        }
+      }
+    },
+    "I have a label/use-by date": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I have a label/use-by date"
+          }
+        }
+      }
+    },
+    "I have checked that this stock is available": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I have checked that this stock is available"
+          }
+        }
+      }
+    },
+    "I have checked this stock for carryover": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I have checked this stock for carryover"
+          }
+        }
+      }
+    },
+    "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout."
+          }
+        }
+      }
+    },
+    "Included": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Included"
+          }
+        }
+      }
+    },
+    "Ingredient": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient"
+          }
+        }
+      }
+    },
+    "Ingredient details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient details"
+          }
+        }
+      }
+    },
+    "Ingredient map": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient map"
+          }
+        }
+      }
+    },
+    "Ingredient map unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient map unavailable"
+          }
+        }
+      }
+    },
+    "Ingredient unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient unavailable"
+          }
+        }
+      }
+    },
+    "Ingredient usage could not be loaded. Return to your week or retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient usage could not be loaded. Return to your week or retry."
+          }
+        }
+      }
+    },
+    "Ingredients for this meal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients for this meal"
+          }
+        }
+      }
+    },
+    "Ingredients repeat on purpose.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients repeat on purpose."
+          }
+        }
+      }
+    },
+    "Ingredients reused": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients reused"
+          }
+        }
+      }
+    },
+    "Ingredients reused: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredients reused: %lld"
+          }
+        }
+      }
+    },
+    "Items missing actual prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Items missing actual prices"
+          }
+        }
+      }
+    },
+    "Keep cooking dates": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep cooking dates"
+          }
+        }
+      }
+    },
+    "Keep current cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep current cycle"
+          }
+        }
+      }
+    },
+    "Keep current package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep current package"
+          }
+        }
+      }
+    },
+    "Keep current plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep current plan"
+          }
+        }
+      }
+    },
+    "Known actual spending": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Known actual spending"
+          }
+        }
+      }
+    },
+    "Known actual this trip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Known actual this trip"
+          }
+        }
+      }
+    },
+    "Label date unknown": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label date unknown"
+          }
+        }
+      }
+    },
+    "Label date unknown; availability needs your confirmation.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label date unknown; availability needs your confirmation."
+          }
+        }
+      }
+    },
+    "Label/use-by date": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label/use-by date"
+          }
+        }
+      }
+    },
+    "Label/use-by: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label/use-by: %@"
+          }
+        }
+      }
+    },
+    "Later meals using this ingredient: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later meals using this ingredient: %lld"
+          }
+        }
+      }
+    },
+    "Leftover forecast": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leftover forecast"
+          }
+        }
+      }
+    },
+    "Loading cycle history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading cycle history"
+          }
+        }
+      }
+    },
+    "Loading next-week choices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading next-week choices"
+          }
+        }
+      }
+    },
+    "Loading pantry stock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading pantry stock"
+          }
+        }
+      }
+    },
+    "Lunch": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lunch"
+          }
+        }
+      }
+    },
+    "Map": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Map"
+          }
+        }
+      }
+    },
+    "Mark as cooked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark as cooked"
+          }
+        }
+      }
+    },
+    "Mashed chickpea corn tacos": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mashed chickpea corn tacos"
+          }
+        }
+      }
+    },
+    "Meal": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meal"
+          }
+        }
+      }
+    },
+    "Meal unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meal unavailable"
+          }
+        }
+      }
+    },
+    "Meals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals"
+          }
+        }
+      }
+    },
+    "Meals each day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals each day"
+          }
+        }
+      }
+    },
+    "Meals not recorded as cooked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals not recorded as cooked"
+          }
+        }
+      }
+    },
+    "Meals to include": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals to include"
+          }
+        }
+      }
+    },
+    "Meat & dairy": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meat & dairy"
+          }
+        }
+      }
+    },
+    "Milk": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milk"
+          }
+        }
+      }
+    },
+    "Missing actual prices remain unknown. Tax, deposits and fees are excluded unless you include them in your entered line totals.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing actual prices remain unknown. Tax, deposits and fees are excluded unless you include them in your entered line totals."
+          }
+        }
+      }
+    },
+    "Missing receipt prices remain unknown. Uncooked meals did not consume stock; this history is preserved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing receipt prices remain unknown. Uncooked meals did not consume stock; this history is preserved."
+          }
+        }
+      }
+    },
+    "Mixed bean spinach stew": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mixed bean spinach stew"
+          }
+        }
+      }
+    },
+    "Moving a meal can change which ingredients must be saved for later. Freshness is uncertain; check package storage and use-by instructions. No shelf-life guarantee is assumed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moving a meal can change which ingredients must be saved for later. Freshness is uncertain; check package storage and use-by instructions. No shelf-life guarantee is assumed."
+          }
+        }
+      }
+    },
+    "Needs attention": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs attention"
+          }
+        }
+      }
+    },
+    "New budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New budget"
+          }
+        }
+      }
+    },
+    "New checkout: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New checkout: %@"
+          }
+        }
+      }
+    },
+    "New estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New estimate"
+          }
+        }
+      }
+    },
+    "New projection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New projection"
+          }
+        }
+      }
+    },
+    "New spending cap": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New spending cap"
+          }
+        }
+      }
+    },
+    "Next-week stock and receipt observations could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next-week stock and receipt observations could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "No account. No payment. Just a plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No account. No payment. Just a plan."
+          }
+        }
+      }
+    },
+    "No additional packages are needed for this plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No additional packages are needed for this plan."
+          }
+        }
+      }
+    },
+    "No catalog-backed cheaper package fits this complete cart. Keep your current choice or review your budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No catalog-backed cheaper package fits this complete cart. Keep your current choice or review your budget."
+          }
+        }
+      }
+    },
+    "No complete plan fits these choices. Try fewer meals, more time or a higher budget. Allergy requirements will never be relaxed; this development catalog has no supplier-verified allergens.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No complete plan fits these choices. Try fewer meals, more time or a higher budget. Allergy requirements will never be relaxed; this development catalog has no supplier-verified allergens."
+          }
+        }
+      }
+    },
+    "No complete plan fits these choices. Try fewer meals, more time or a higher budget; hard food requirements will never be relaxed.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No complete plan fits these choices. Try fewer meals, more time or a higher budget; hard food requirements will never be relaxed."
+          }
+        }
+      }
+    },
+    "No completed or reset cycles are recorded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No completed or reset cycles are recorded."
+          }
+        }
+      }
+    },
+    "No confirmed stock is in your pantry. Add an item or confirm leftovers at wrap-up.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No confirmed stock is in your pantry. Add an item or confirm leftovers at wrap-up."
+          }
+        }
+      }
+    },
+    "No different combination was found with these choices. Your current plan is unchanged.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No different combination was found with these choices. Your current plan is unchanged."
+          }
+        }
+      }
+    },
+    "No groceries yet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No groceries yet"
+          }
+        }
+      }
+    },
+    "No ingredients are consumed by opening or cancelling this preview. Choose another uncooked meal in the same slot to exchange cooking dates.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No ingredients are consumed by opening or cancelling this preview. Choose another uncooked meal in the same slot to exchange cooking dates."
+          }
+        }
+      }
+    },
+    "No meal scheduled": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No meal scheduled"
+          }
+        }
+      }
+    },
+    "No meal scheduled today": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No meal scheduled today"
+          }
+        }
+      }
+    },
+    "No pantry stock is available. The new plan will price all needed packages.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No pantry stock is available. The new plan will price all needed packages."
+          }
+        }
+      }
+    },
+    "No recipes are excluded from future plans.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recipes are excluded from future plans."
+          }
+        }
+      }
+    },
+    "No recorded stock remains. You can finish without adding anything to Pantry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recorded stock remains. You can finish without adding anything to Pantry."
+          }
+        }
+      }
+    },
+    "No stock was confirmed for carryover.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No stock was confirmed for carryover."
+          }
+        }
+      }
+    },
+    "No suitable replacements are available with the current catalog and constraints.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No suitable replacements are available with the current catalog and constraints."
+          }
+        }
+      }
+    },
+    "No suitable swap was found. Keep the current plan and review the remainder at wrap-up.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No suitable swap was found. Keep the current plan and review the remainder at wrap-up."
+          }
+        }
+      }
+    },
+    "No trips have been finished for this plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No trips have been finished for this plan."
+          }
+        }
+      }
+    },
+    "No weekly plan yet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No weekly plan yet"
+          }
+        }
+      }
+    },
+    "None": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "Not indicated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not indicated"
+          }
+        }
+      }
+    },
+    "Not recorded as cooked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not recorded as cooked"
+          }
+        }
+      }
+    },
+    "Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown."
+          }
+        }
+      }
+    },
+    "Only checked sources enter Pantry. The cycle closes, remaining meal allocations end, and purchases and cooked history are preserved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only checked sources enter Pantry. The cycle closes, remaining meal allocations end, and purchases and cooked history are preserved."
+          }
+        }
+      }
+    },
+    "Only confirmed stock without a known expired label date is considered. Unknown dates remain uncertain. Quantities are reserved atomically after you accept; a preview reserves nothing.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only confirmed stock without a known expired label date is considered. Unknown dates remain uncertain. Quantities are reserved atomically after you accept; a preview reserves nothing."
+          }
+        }
+      }
+    },
+    "Open cooking steps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open cooking steps"
+          }
+        }
+      }
+    },
+    "Opened can": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opened can"
+          }
+        }
+      }
+    },
+    "Opening MealWise": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening MealWise"
+          }
+        }
+      }
+    },
+    "Opening ingredient": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening ingredient"
+          }
+        }
+      }
+    },
+    "Opening recipe": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening recipe"
+          }
+        }
+      }
+    },
+    "Optional reminder timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional reminder timer"
+          }
+        }
+      }
+    },
+    "Optionally approve estimates based on recorded receipts. Package averages round up to a cent. Actual receipts and the original catalog validity window stay unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optionally approve estimates based on recorded receipts. Package averages round up to a cent. Actual receipts and the original catalog validity window stay unchanged."
+          }
+        }
+      }
+    },
+    "Original leftover forecast": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Original leftover forecast"
+          }
+        }
+      }
+    },
+    "Other": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        }
+      }
+    },
+    "Other meals using these ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other meals using these ingredients"
+          }
+        }
+      }
+    },
+    "Over budget by %@. Real spending will remain in your history.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over budget by %@. Real spending will remain in your history."
+          }
+        }
+      }
+    },
+    "Over budget — comparison only": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over budget — comparison only"
+          }
+        }
+      }
+    },
+    "Package alternatives could not be checked. Your current trip is unchanged.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package alternatives could not be checked. Your current trip is unchanged."
+          }
+        }
+      }
+    },
+    "Package checkout": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package checkout"
+          }
+        }
+      }
+    },
+    "Package: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package: %@"
+          }
+        }
+      }
+    },
+    "Packages: %lld → %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packages: %lld → %lld"
+          }
+        }
+      }
+    },
+    "Pantry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry"
+          }
+        }
+      }
+    },
+    "Pantry item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry item"
+          }
+        }
+      }
+    },
+    "Pantry stock could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry stock could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Peanut butter": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peanut butter"
+          }
+        }
+      }
+    },
+    "Peanuts": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peanuts"
+          }
+        }
+      }
+    },
+    "Peel and slice the banana.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peel and slice the banana."
+          }
+        }
+      }
+    },
+    "Per adult-equivalent serving": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per adult-equivalent serving"
+          }
+        }
+      }
+    },
+    "Per planned day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per planned day"
+          }
+        }
+      }
+    },
+    "Plan actions": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan actions"
+          }
+        }
+      }
+    },
+    "Plan my week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan my week"
+          }
+        }
+      }
+    },
+    "Plan next week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan next week"
+          }
+        }
+      }
+    },
+    "Plan settings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan settings"
+          }
+        }
+      }
+    },
+    "Planned budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned budget"
+          }
+        }
+      }
+    },
+    "Planned meals using this item: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned meals using this item: %lld"
+          }
+        }
+      }
+    },
+    "Planned package use": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned package use"
+          }
+        }
+      }
+    },
+    "Planned use": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned use"
+          }
+        }
+      }
+    },
+    "Planned use: %@ → %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned use: %@ → %@"
+          }
+        }
+      }
+    },
+    "Preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferences"
+          }
+        }
+      }
+    },
+    "Prepare couscous with tap water according to its package.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare couscous with tap water according to its package."
+          }
+        }
+      }
+    },
+    "Preview budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview budget"
+          }
+        }
+      }
+    },
+    "Previously reserved pantry stock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previously reserved pantry stock"
+          }
+        }
+      }
+    },
+    "Price date: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Price date: %@"
+          }
+        }
+      }
+    },
+    "Price information": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Price information"
+          }
+        }
+      }
+    },
+    "Prices have expired. Updated estimates are needed before changing this plan.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prices have expired. Updated estimates are needed before changing this plan."
+          }
+        }
+      }
+    },
+    "Pricing replacements": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pricing replacements"
+          }
+        }
+      }
+    },
+    "Produce": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produce"
+          }
+        }
+      }
+    },
+    "Projected cycle at finish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle at finish"
+          }
+        }
+      }
+    },
+    "Projected cycle total": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle total"
+          }
+        }
+      }
+    },
+    "Projected cycle total %@ of %@, %@ remaining. Budget details.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle total %@ of %@, %@ remaining. Budget details."
+          }
+        }
+      }
+    },
+    "Projected cycle: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected cycle: %@"
+          }
+        }
+      }
+    },
+    "Projected full cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected full cycle"
+          }
+        }
+      }
+    },
+    "Projected totals include earlier purchases and remaining whole-package checkout. Unknown receipt prices use the original estimate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected totals include earlier purchases and remaining whole-package checkout. Unknown receipt prices use the original estimate."
+          }
+        }
+      }
+    },
+    "Protein": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        }
+      }
+    },
+    "Purchase lines missing actual prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchase lines missing actual prices"
+          }
+        }
+      }
+    },
+    "Purchased": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased"
+          }
+        }
+      }
+    },
+    "Purchased items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased items"
+          }
+        }
+      }
+    },
+    "Purchased items missing actual prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased items missing actual prices"
+          }
+        }
+      }
+    },
+    "Purchased quantities are credited below. Only additional packages remain to buy.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased quantities are credited below. Only additional packages remain to buy."
+          }
+        }
+      }
+    },
+    "Purchased stock and spending": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased stock and spending"
+          }
+        }
+      }
+    },
+    "Purchased this cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased this cycle"
+          }
+        }
+      }
+    },
+    "Purchased: %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchased: %@ · %@"
+          }
+        }
+      }
+    },
+    "Quantity": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quantity"
+          }
+        }
+      }
+    },
+    "Quantity unit: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quantity unit: %@"
+          }
+        }
+      }
+    },
+    "Quick red lentil tomato soup": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick red lentil tomato soup"
+          }
+        }
+      }
+    },
+    "Quick-cooking brown rice, dry": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick-cooking brown rice, dry"
+          }
+        }
+      }
+    },
+    "Quick-cooking rice flakes": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick-cooking rice flakes"
+          }
+        }
+      }
+    },
+    "Re-optimizing your week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Re-optimizing your week"
+          }
+        }
+      }
+    },
+    "Receipt estimates for review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receipt estimates for review"
+          }
+        }
+      }
+    },
+    "Receipt observations are retained with this package, quantity and store for review in later plans. Tax, deposits and fees are excluded unless entered.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receipt observations are retained with this package, quantity and store for review in later plans. Tax, deposits and fees are excluded unless entered."
+          }
+        }
+      }
+    },
+    "Recipe": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe"
+          }
+        }
+      }
+    },
+    "Recipe preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe preferences"
+          }
+        }
+      }
+    },
+    "Recipe preferences could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe preferences could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Recipe steps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recipe steps"
+          }
+        }
+      }
+    },
+    "Record purchased items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record purchased items"
+          }
+        }
+      }
+    },
+    "Record purchased packages in Groceries before confirming completion. Planned packages are not confirmed stock.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record purchased packages in Groceries before confirming completion. Planned packages are not confirmed stock."
+          }
+        }
+      }
+    },
+    "Record this meal as cooked?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record this meal as cooked?"
+          }
+        }
+      }
+    },
+    "Recorded actual": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded actual"
+          }
+        }
+      }
+    },
+    "Recorded cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded cycle"
+          }
+        }
+      }
+    },
+    "Recorded purchases": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded purchases"
+          }
+        }
+      }
+    },
+    "Recorded stock remaining: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded stock remaining: %@"
+          }
+        }
+      }
+    },
+    "Recorded: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded: %@"
+          }
+        }
+      }
+    },
+    "Recorded: %@ for %lld packages": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded: %@ for %lld packages"
+          }
+        }
+      }
+    },
+    "Red lentil spinach pot": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red lentil spinach pot"
+          }
+        }
+      }
+    },
+    "Regenerate %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenerate %@"
+          }
+        }
+      }
+    },
+    "Regenerate this day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenerate this day"
+          }
+        }
+      }
+    },
+    "Regenerate week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenerate week"
+          }
+        }
+      }
+    },
+    "Reload cooking": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload cooking"
+          }
+        }
+      }
+    },
+    "Reload next week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload next week"
+          }
+        }
+      }
+    },
+    "Reload pantry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload pantry"
+          }
+        }
+      }
+    },
+    "Reload trip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload trip"
+          }
+        }
+      }
+    },
+    "Remainder suggestions could not be loaded. Your current plan is unchanged.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remainder suggestions could not be loaded. Your current plan is unchanged."
+          }
+        }
+      }
+    },
+    "Remaining": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remaining"
+          }
+        }
+      }
+    },
+    "Reminder: %lld minutes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminder: %lld minutes"
+          }
+        }
+      }
+    },
+    "Remove stock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove stock"
+          }
+        }
+      }
+    },
+    "Remove this stock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove this stock"
+          }
+        }
+      }
+    },
+    "Remove this stock and update remaining purchases?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove this stock and update remaining purchases?"
+          }
+        }
+      }
+    },
+    "Remove your current plan and setup answers?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove your current plan and setup answers?"
+          }
+        }
+      }
+    },
+    "Replacement meals could not be loaded. Your current plan is unchanged.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replacement meals could not be loaded. Your current plan is unchanged."
+          }
+        }
+      }
+    },
+    "Reschedule without consuming ingredients": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reschedule without consuming ingredients"
+          }
+        }
+      }
+    },
+    "Reserve %@ for %lld later meals.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reserve %@ for %lld later meals."
+          }
+        }
+      }
+    },
+    "Reserve %@ for the remaining planned meals.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reserve %@ for the remaining planned meals."
+          }
+        }
+      }
+    },
+    "Reset plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset plan"
+          }
+        }
+      }
+    },
+    "Reset plan archive": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset plan archive"
+          }
+        }
+      }
+    },
+    "Retry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry"
+          }
+        }
+      }
+    },
+    "Return to your current ingredient map.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return to your current ingredient map."
+          }
+        }
+      }
+    },
+    "Review change": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review change"
+          }
+        }
+      }
+    },
+    "Review cooking dates": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review cooking dates"
+          }
+        }
+      }
+    },
+    "Review dates and meals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review dates and meals"
+          }
+        }
+      }
+    },
+    "Review next-week setup": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review next-week setup"
+          }
+        }
+      }
+    },
+    "Review stock used": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review stock used"
+          }
+        }
+      }
+    },
+    "Review your new plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review your new plan"
+          }
+        }
+      }
+    },
+    "Rolled oats": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rolled oats"
+          }
+        }
+      }
+    },
+    "Same meals, with and without confirmed pantry stock. Whole-package purchases determine savings; this is not a receipt refund.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Same meals, with and without confirmed pantry stock. Whole-package purchases determine savings; this is not a receipt refund."
+          }
+        }
+      }
+    },
+    "Save for later meals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save for later meals"
+          }
+        }
+      }
+    },
+    "Save pantry item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save pantry item"
+          }
+        }
+      }
+    },
+    "Save price": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save price"
+          }
+        }
+      }
+    },
+    "Saving cooking progress": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saving cooking progress"
+          }
+        }
+      }
+    },
+    "Saving shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saving shopping"
+          }
+        }
+      }
+    },
+    "Savory spinach chickpea porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savory spinach chickpea porridge"
+          }
+        }
+      }
+    },
+    "Savory spinach oats": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savory spinach oats"
+          }
+        }
+      }
+    },
+    "Savory vegetable rice bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savory vegetable rice bowl"
+          }
+        }
+      }
+    },
+    "Schedule": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule"
+          }
+        }
+      }
+    },
+    "Serve the tomato chickpeas over the rice.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve the tomato chickpeas over the rice."
+          }
+        }
+      }
+    },
+    "Sesame": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesame"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Shelf-stable": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shelf-stable"
+          }
+        }
+      }
+    },
+    "Shelf-stable carryover": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shelf-stable carryover"
+          }
+        }
+      }
+    },
+    "Shellfish": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shellfish"
+          }
+        }
+      }
+    },
+    "Shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping"
+          }
+        }
+      }
+    },
+    "Shopping could not be opened. Return to the current grocery list and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping could not be opened. Return to the current grocery list and retry."
+          }
+        }
+      }
+    },
+    "Shopping history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping history"
+          }
+        }
+      }
+    },
+    "Shopping history could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping history could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Shopping receipts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping receipts"
+          }
+        }
+      }
+    },
+    "Show over-budget comparisons": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show over-budget comparisons"
+          }
+        }
+      }
+    },
+    "Show proposed schedule": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show proposed schedule"
+          }
+        }
+      }
+    },
+    "Simple balance indicators": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simple balance indicators"
+          }
+        }
+      }
+    },
+    "Some stock is reserved for a plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some stock is reserved for a plan."
+          }
+        }
+      }
+    },
+    "Soy": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soy"
+          }
+        }
+      }
+    },
+    "Spinach and white bean breakfast skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spinach and white bean breakfast skillet"
+          }
+        }
+      }
+    },
+    "Spinach chickpea couscous": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spinach chickpea couscous"
+          }
+        }
+      }
+    },
+    "Spinach white bean pasta": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spinach white bean pasta"
+          }
+        }
+      }
+    },
+    "Split red lentils": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split red lentils"
+          }
+        }
+      }
+    },
+    "Spoon the bean mixture over the rice and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spoon the bean mixture over the rice and serve."
+          }
+        }
+      }
+    },
+    "Spoon the spinach and chickpeas over the oats and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spoon the spinach and chickpeas over the oats and serve."
+          }
+        }
+      }
+    },
+    "Spread filling on tortillas, fold in half and warm each side in the skillet until lightly crisp; serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spread filling on tortillas, fold in half and warm each side in the skillet until lightly crisp; serve."
+          }
+        }
+      }
+    },
+    "Start over": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start over"
+          }
+        }
+      }
+    },
+    "Start reminder timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start reminder timer"
+          }
+        }
+      }
+    },
+    "Start shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start shopping"
+          }
+        }
+      }
+    },
+    "Step %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step %lld"
+          }
+        }
+      }
+    },
+    "Stir in cooked pasta, warm through, and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir in cooked pasta, warm through, and serve."
+          }
+        }
+      }
+    },
+    "Stir in the apple and cinnamon; cook until the apple is softened and the oats are ready. Serve warm.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir in the apple and cinnamon; cook until the apple is softened and the oats are ready. Serve warm."
+          }
+        }
+      }
+    },
+    "Stir into the couscous and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir into the couscous and serve."
+          }
+        }
+      }
+    },
+    "Stir peanut butter into the cooked oats, top with banana, and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stir peanut butter into the cooked oats, top with banana, and serve."
+          }
+        }
+      }
+    },
+    "Stock changed and the cycle needs budget review before additional purchases.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stock changed and the cycle needs budget review before additional purchases."
+          }
+        }
+      }
+    },
+    "Storage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage"
+          }
+        }
+      }
+    },
+    "Storage-sensitive remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage-sensitive remainder"
+          }
+        }
+      }
+    },
+    "Storage-sensitive remainders: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage-sensitive remainders: %lld"
+          }
+        }
+      }
+    },
+    "Store": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Store"
+          }
+        }
+      }
+    },
+    "Swap meal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swap meal"
+          }
+        }
+      }
+    },
+    "Sweet potato": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sweet potato"
+          }
+        }
+      }
+    },
+    "Synthetic development prices, not observed retailer prices": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synthetic development prices, not observed retailer prices"
+          }
+        }
+      }
+    },
+    "Synthetic package prices for development. No retailer location or availability is implied.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synthetic package prices for development. No retailer location or availability is implied."
+          }
+        }
+      }
+    },
+    "THIS WEEK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "THIS WEEK"
+          }
+        }
+      }
+    },
+    "Tax, deposits and fees are excluded. Checking an item is a shopping reminder, not a recorded purchase.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tax, deposits and fees are excluded. Checking an item is a shopping reminder, not a recorded purchase."
+          }
+        }
+      }
+    },
+    "Tell us your grocery budget. We’ll build a healthy week that fits it—and uses what you buy.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tell us your grocery budget. We’ll build a healthy week that fits it—and uses what you buy."
+          }
+        }
+      }
+    },
+    "The bounded search did not find a complete plan. Try fewer meals or a higher budget.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The bounded search did not find a complete plan. Try fewer meals or a higher budget."
+          }
+        }
+      }
+    },
+    "The change could not be saved. Your current plan is unchanged. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The change could not be saved. Your current plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "The estimate includes whole packages and required staples. Tax, deposits and fees are excluded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The estimate includes whole packages and required staples. Tax, deposits and fees are excluded."
+          }
+        }
+      }
+    },
+    "The meal's quantities will be recorded as consumed once. Purchased and cooked history will be preserved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The meal's quantities will be recorded as consumed once. Purchased and cooked history will be preserved."
+          }
+        }
+      }
+    },
+    "The plan could not be built. Your previous plan is unchanged. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The plan could not be built. Your previous plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "The plan could not be saved. Your previous plan is unchanged. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The plan could not be saved. Your previous plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "The price could not be saved. Reopen the current trip and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The price could not be saved. Reopen the current trip and retry."
+          }
+        }
+      }
+    },
+    "The projected cycle exceeds its budget. Purchases and actual overspend remain recorded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The projected cycle exceeds its budget. Purchases and actual overspend remain recorded."
+          }
+        }
+      }
+    },
+    "The projection includes unchecked items. Missing prices use dated estimates; known actuals include only checked items with entered prices.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The projection includes unchecked items. Missing prices use dated estimates; known actuals include only checked items with entered prices."
+          }
+        }
+      }
+    },
+    "The recipe preference could not be saved. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The recipe preference could not be saved. Please retry."
+          }
+        }
+      }
+    },
+    "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The search reached its limit before finding a complete plan. Try fewer meals or a higher budget."
+          }
+        }
+      }
+    },
+    "The shopping projection above includes other entered receipt prices. This replacement resets only this item's check and actual price; confirm the replacement package before purchasing.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shopping projection above includes other entered receipt prices. This replacement resets only this item's check and actual price; confirm the replacement package before purchasing."
+          }
+        }
+      }
+    },
+    "The swap could not be saved. Your current plan is unchanged. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The swap could not be saved. Your current plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "The timer change could not be saved. Reopen this meal and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The timer change could not be saved. Reopen this meal and retry."
+          }
+        }
+      }
+    },
+    "The timer could not be saved. Reopen this meal and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The timer could not be saved. Reopen this meal and retry."
+          }
+        }
+      }
+    },
+    "There are not enough recorded purchased ingredients. Record your shopping purchases first.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There are not enough recorded purchased ingredients. Record your shopping purchases first."
+          }
+        }
+      }
+    },
+    "There is no other uncooked meal in this slot to exchange dates with. Your current plan is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There is no other uncooked meal in this slot to exchange dates with. Your current plan is unchanged."
+          }
+        }
+      }
+    },
+    "These amounts belong to other planned recipes. Follow package storage instructions when saving ingredients.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These amounts belong to other planned recipes. Follow package storage instructions when saving ingredients."
+          }
+        }
+      }
+    },
+    "These are the amounts to use for this meal. Your grocery list rounds the combined week up to whole packages.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These are the amounts to use for this meal. Your grocery list rounds the combined week up to whole packages."
+          }
+        }
+      }
+    },
+    "These swaps use more of the selected ingredient without adding another package of it. All proposed carts fit the budget.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These swaps use more of the selected ingredient without adding another package of it. All proposed carts fit the budget."
+          }
+        }
+      }
+    },
+    "This change could not be previewed. Your current plan is unchanged. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This change could not be previewed. Your current plan is unchanged. Please retry."
+          }
+        }
+      }
+    },
+    "This change fits your budget.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This change fits your budget."
+          }
+        }
+      }
+    },
+    "This comparison is over budget and cannot be accepted. Adjust your budget explicitly or choose another option.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This comparison is over budget and cannot be accepted. Adjust your budget explicitly or choose another option."
+          }
+        }
+      }
+    },
+    "This cooking session could not be opened. Return to your current plan and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cooking session could not be opened. Return to your current plan and retry."
+          }
+        }
+      }
+    },
+    "This cycle could not be opened for wrap-up. Return to your current plan and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cycle could not be opened for wrap-up. Return to your current plan and retry."
+          }
+        }
+      }
+    },
+    "This cycle is finished. Its purchases and cooked meals remain in history.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cycle is finished. Its purchases and cooked meals remain in history."
+          }
+        }
+      }
+    },
+    "This cycle is finished. Its unpurchased forecast is historical; plan a new week in Pantry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cycle is finished. Its unpurchased forecast is historical; plan a new week in Pantry."
+          }
+        }
+      }
+    },
+    "This cycle is finished. Open Pantry to plan the next week; history stays unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cycle is finished. Open Pantry to plan the next week; history stays unchanged."
+          }
+        }
+      }
+    },
+    "This cycle is finished. Open Pantry to plan your next week.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cycle is finished. Open Pantry to plan your next week."
+          }
+        }
+      }
+    },
+    "This forecast assumed all planned meals would be cooked. It is separate from recorded stock and your confirmed quantities.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This forecast assumed all planned meals would be cooked. It is separate from recorded stock and your confirmed quantities."
+          }
+        }
+      }
+    },
+    "This is an incomplete receipt. Missing prices remain estimates in cycle projections.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is an incomplete receipt. Missing prices remain estimates in cycle projections."
+          }
+        }
+      }
+    },
+    "This is planned usage, not confirmed inventory. Storage and freshness are uncertain; check package handling instructions before keeping or reusing food.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is planned usage, not confirmed inventory. Storage and freshness are uncertain; check package handling instructions before keeping or reusing food."
+          }
+        }
+      }
+    },
+    "This meal changed or completion could not be saved. Reopen it from your current plan before confirming.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This meal changed or completion could not be saved. Reopen it from your current plan before confirming."
+          }
+        }
+      }
+    },
+    "This meal could not be opened. Return to your current week or retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This meal could not be opened. Return to your current week or retry."
+          }
+        }
+      }
+    },
+    "This meal is no longer in your current plan.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This meal is no longer in your current plan."
+          }
+        }
+      }
+    },
+    "This meal is recorded as cooked. Its recipe and portions are preserved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This meal is recorded as cooked. Its recipe and portions are preserved."
+          }
+        }
+      }
+    },
+    "This package preview is out of date or could not be saved. Reopen it from your current trip.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This package preview is out of date or could not be saved. Reopen it from your current trip."
+          }
+        }
+      }
+    },
+    "This preview is out of date. Reopen it from your current week.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This preview is out of date. Reopen it from your current week."
+          }
+        }
+      }
+    },
+    "This recipe is excluded from future choices. Your current plan changes only after you accept a preview.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This recipe is excluded from future choices. Your current plan changes only after you accept a preview."
+          }
+        }
+      }
+    },
+    "This records your receipt observation for this package and store. It does not rewrite the catalog estimate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This records your receipt observation for this package and store. It does not rewrite the catalog estimate."
+          }
+        }
+      }
+    },
+    "This remainder needs a storage check. Consider using it in another meal, following the package guidance; no shelf-life duration is assumed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This remainder needs a storage check. Consider using it in another meal, following the package guidance; no shelf-life duration is assumed."
+          }
+        }
+      }
+    },
+    "This stock changed. Close the editor and reopen the current item.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This stock changed. Close the editor and reopen the current item."
+          }
+        }
+      }
+    },
+    "This stock could not be removed. Close the editor and reopen the current item.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This stock could not be removed. Close the editor and reopen the current item."
+          }
+        }
+      }
+    },
+    "This trip could not be finished. Reopen it from the current grocery list; your edits are saved.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This trip could not be finished. Reopen it from the current grocery list; your edits are saved."
+          }
+        }
+      }
+    },
+    "This user-set reminder saves its deadline and resumes after backgrounding. Follow the recipe and package guidance; a timer does not establish food safety.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This user-set reminder saves its deadline and resumes after backgrounding. Follow the recipe and package guidance; a timer does not establish food safety."
+          }
+        }
+      }
+    },
+    "This was a partial trip. Unpurchased requirements remain on your grocery list.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This was a partial trip. Unpurchased requirements remain on your grocery list."
+          }
+        }
+      }
+    },
+    "Three bean tomato skillet": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Three bean tomato skillet"
+          }
+        }
+      }
+    },
+    "Timer finished. Check your cooking.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer finished. Check your cooking."
+          }
+        }
+      }
+    },
+    "Today": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
+    "Tomato bean pasta": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomato bean pasta"
+          }
+        }
+      }
+    },
+    "Tomato white bean breakfast porridge": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomato white bean breakfast porridge"
+          }
+        }
+      }
+    },
+    "Toss the pasta with the sauce and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toss the pasta with the sauce and serve."
+          }
+        }
+      }
+    },
+    "Tree nuts": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tree nuts"
+          }
+        }
+      }
+    },
+    "Trip spending": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trip spending"
+          }
+        }
+      }
+    },
+    "Trip summary": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trip summary"
+          }
+        }
+      }
+    },
+    "Unallocated: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unallocated: %@"
+          }
+        }
+      }
+    },
+    "Unavailable": {},
+    "Unavailable ingredient": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unavailable ingredient"
+          }
+        }
+      }
+    },
+    "Unavailable recipe": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unavailable recipe"
+          }
+        }
+      }
+    },
+    "Unconfirmed or expired stock stays out of planning. Check the package's actual storage instructions; unknown dates do not imply a safety guarantee.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unconfirmed or expired stock stays out of planning. Check the package's actual storage instructions; unknown dates do not imply a safety guarantee."
+          }
+        }
+      }
+    },
+    "Uncooked meals have not consumed ingredients. Count actual stock and confirm only what you have checked.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uncooked meals have not consumed ingredients. Count actual stock and confirm only what you have checked."
+          }
+        }
+      }
+    },
+    "Unknown storage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown storage"
+          }
+        }
+      }
+    },
+    "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown supplier allergen information is excluded. This development catalog cannot currently produce allergy-safe plans."
+          }
+        }
+      }
+    },
+    "Unpurchased forecast at close": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unpurchased forecast at close"
+          }
+        }
+      }
+    },
+    "Unpurchased items": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unpurchased items"
+          }
+        }
+      }
+    },
+    "Up to 45 minutes": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up to 45 minutes"
+          }
+        }
+      }
+    },
+    "Use a remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use a remainder"
+          }
+        }
+      }
+    },
+    "Use for this meal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use for this meal"
+          }
+        }
+      }
+    },
+    "Use this package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use this package"
+          }
+        }
+      }
+    },
+    "Used across %lld planned meals": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Used across %lld planned meals"
+          }
+        }
+      }
+    },
+    "User-approved development estimate from a recorded receipt line; per-package average rounded up. Original catalog validity is unchanged.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "User-approved development estimate from a recorded receipt line; per-package average rounded up. Original catalog validity is unchanged."
+          }
+        }
+      }
+    },
+    "Vegan": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegan"
+          }
+        }
+      }
+    },
+    "Vegetable oil": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetable oil"
+          }
+        }
+      }
+    },
+    "Vegetables": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetables"
+          }
+        }
+      }
+    },
+    "Vegetarian": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetarian"
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet and soften onion. Add tomatoes and chickpeas, stirring until hot throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet and soften onion. Add tomatoes and chickpeas, stirring until hot throughout."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet over medium heat. Add onion and cook, stirring, until softened.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet over medium heat. Add onion and cook, stirring, until softened."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Add onion and sweet potato with a splash of tap water, cover and cook, stirring regularly and adding water as needed, until the potato is tender.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Add onion and sweet potato with a splash of tap water, cover and cook, stirring regularly and adding water as needed, until the potato is tender."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Add spinach and beans and cook according to the spinach package until hot throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Add spinach and beans and cook according to the spinach package until hot throughout."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Cook pepper and onion until tender; stir in beans and cumin and heat throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Cook pepper and onion until tender; stir in beans and cumin and heat throughout."
+          }
+        }
+      }
+    },
+    "Warm oil in a skillet. Cook pepper until softened, then add chickpeas and cumin and heat throughout.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm oil in a skillet. Cook pepper until softened, then add chickpeas and cumin and heat throughout."
+          }
+        }
+      }
+    },
+    "Warm tortillas according to their package. Divide filling among them and serve.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm tortillas according to their package. Divide filling among them and serve."
+          }
+        }
+      }
+    },
+    "Wash and chop the apple, removing the core.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wash and chop the apple, removing the core."
+          }
+        }
+      }
+    },
+    "Wash and cut sweet potato into small, even cubes. Peel and chop onion; drain beans.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wash and cut sweet potato into small, even cubes. Peel and chop onion; drain beans."
+          }
+        }
+      }
+    },
+    "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We couldn’t build a complete plan with your current choices. Edit your budget, schedule or cooking time and try again. Meals must still match every selected allergy and dietary preference."
+          }
+        }
+      }
+    },
+    "Week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week"
+          }
+        }
+      }
+    },
+    "Weekly budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly budget"
+          }
+        }
+      }
+    },
+    "Weekly budget in dollars": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly budget in dollars"
+          }
+        }
+      }
+    },
+    "Weekly cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly cycle"
+          }
+        }
+      }
+    },
+    "What can you spend this week?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What can you spend this week?"
+          }
+        }
+      }
+    },
+    "What to do with the remainder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What to do with the remainder"
+          }
+        }
+      }
+    },
+    "Wheat": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wheat"
+          }
+        }
+      }
+    },
+    "Which days should we plan?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Which days should we plan?"
+          }
+        }
+      }
+    },
+    "White bean pepper stew": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White bean pepper stew"
+          }
+        }
+      }
+    },
+    "White bean pepper tacos": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White bean pepper tacos"
+          }
+        }
+      }
+    },
+    "White bean vegetable bowl": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White bean vegetable bowl"
+          }
+        }
+      }
+    },
+    "Who are you cooking for?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who are you cooking for?"
+          }
+        }
+      }
+    },
+    "Whole grains": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole grains"
+          }
+        }
+      }
+    },
+    "Whole-package checkout estimate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole-package checkout estimate"
+          }
+        }
+      }
+    },
+    "Whole-wheat couscous, dry": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole-wheat couscous, dry"
+          }
+        }
+      }
+    },
+    "Whole-wheat pasta, dry": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole-wheat pasta, dry"
+          }
+        }
+      }
+    },
+    "Wrap up this cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap up this cycle"
+          }
+        }
+      }
+    },
+    "Wrap up your cycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap up your cycle"
+          }
+        }
+      }
+    },
+    "Yellow onion": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yellow onion"
+          }
+        }
+      }
+    },
+    "Your answers could not be saved. Please retry before leaving setup.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your answers could not be saved. Please retry before leaving setup."
+          }
+        }
+      }
+    },
+    "Your budget: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your budget: %@"
+          }
+        }
+      }
+    },
+    "Your checklist change could not be saved. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your checklist change could not be saved. Please retry."
+          }
+        }
+      }
+    },
+    "Your completed cycle stays in history. Review the next dates and choices in setup before accepting a new plan.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your completed cycle stays in history. Review the next dates and choices in setup before accepting a new plan."
+          }
+        }
+      }
+    },
+    "Your cycle or stock changed. Close wrap-up and review the latest quantities.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cycle or stock changed. Close wrap-up and review the latest quantities."
+          }
+        }
+      }
+    },
+    "Your grocery list could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your grocery list could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Your grocery list will come from your weekly plan.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your grocery list will come from your weekly plan."
+          }
+        }
+      }
+    },
+    "Your latest plan could not be loaded. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your latest plan could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Your meals will appear here after setup.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your meals will appear here after setup."
+          }
+        }
+      }
+    },
+    "Your money sets\nthe menu.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your money sets\nthe menu."
+          }
+        }
+      }
+    },
+    "Your pantry is empty": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your pantry is empty"
+          }
+        }
+      }
+    },
+    "Your plan could not be reset. Please retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your plan could not be reset. Please retry."
+          }
+        }
+      }
+    },
+    "Your plan needs attention": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your plan needs attention"
+          }
+        }
+      }
+    },
+    "Your planned meals will guide you through the day.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your planned meals will guide you through the day."
+          }
+        }
+      }
+    },
+    "Your purchase check could not be saved. Reopen the current trip and retry.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your purchase check could not be saved. Reopen the current trip and retry."
+          }
+        }
+      }
+    },
+    "Your saved information could not be opened. Please retry. Your data has not been reset.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your saved information could not be opened. Please retry. Your data has not been reset."
+          }
+        }
+      }
+    },
+    "Your saved plan has no meals on this local date. Open Week to review its dates.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your saved plan has no meals on this local date. Open Week to review its dates."
+          }
+        }
+      }
+    },
+    "Your step checks save as you go. Closing cooking does not mark this meal as cooked.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your step checks save as you go. Closing cooking does not mark this meal as cooked."
+          }
+        }
+      }
+    },
+    "Your step could not be saved. Close and reopen the current meal before continuing.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your step could not be saved. Close and reopen the current meal before continuing."
+          }
+        }
+      }
+    },
+    "Your week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your week"
+          }
+        }
+      }
+    },
+    "count": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "count"
+          }
+        }
+      }
+    },
+    "mealwise": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mealwise"
+          }
+        }
+      }
+    },
+    "of %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of %@"
+          }
+        }
+      }
+    },
+    "of your $70 budget": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of your $70 budget"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

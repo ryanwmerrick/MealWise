@@ -1,0 +1,19 @@
+# Phase 7 — shopping and actual spending
+
+Shopping checks and entered receipt prices are separate from grocery reminders. Prices are USD totals for all packages in the selected line. The live projection includes every unchecked item; an entered correction remains in the forecast even if that item is unchecked. Known actual-to-date includes only checked items with an entered receipt amount. Unknown prices remain explicitly unknown and use dated estimates only in projections.
+
+Finishing records checked purchases in an immutable trip summary and credits their whole quantities against remaining shopping requirements. Actual spending remains in the cycle projection, including overspend. Unknown purchase prices retain their original estimate with a missing-price count. Duplicate finish returns the same summary, without duplicating stock or spending. Plan, purchased resources, trip history, draft removal and grocery reminders commit together on the same repository actor as revision-checked plan changes.
+
+Remaining-meal changes preserve purchased resources and use additional package costs plus historical spending. A trip based on an older plan revision cannot finish silently. Reopening transfers only checks/prices whose ingredient, offer and package count still match. After a partial finish, entered prices on matching unpurchased lines transfer from the latest summary into the next trip.
+
+Cheaper package choices are catalog-backed offers of the same ingredient, store and normalized unit. Phase 6 computes a complete-cart preview; shopping then includes other entered receipt amounts before offering acceptance. Both the plan revision and exact receipt snapshot are rechecked transactionally. A replacement resets only its line's purchase check/actual price. No alternative is invented for the current single-offer-per-ingredient development catalog. A synthetic alternate-offer test exercises the available-choice path, preserving meals and required food quantities.
+
+Receipt observations remain attached to item/offer/package count/store/date in saved summaries, available to the next-cycle review in Phase 9. Entering an actual price never rewrites historical catalog estimates or fabricates a retailer price guarantee.
+
+Arithmetic check: 6,430 cents minus an 896-cent estimate plus 1,016 cents actual gives 6,550 cents projected and 450 cents remaining under a 7,000-cent cap. Tests also cover negative/malformed amounts, unchecked corrections, real overspend, partial trips, unknown prices, cancellation, duplicate finish, reopen, stock credits, stale plan previews, no valid substitute and stale receipt substitution.
+
+Review found an ineffective Retry after a refresh failure and loss of an unpurchased price observation after a partial finish. Both regressions failed in `/private/tmp/mealwise-phase7-review-red.xcresult`; fixes pass in `/private/tmp/mealwise-phase7-review-green.xcresult`. Missing-price/cancellation and unchanged food constraints are covered. Cooking consumption and pantry confirmation belong to Phases 8–9.
+
+Full build/test `/private/tmp/mealwise-phase7-full.xcresult`: Passed, 75 tests (65 unit + ten UI), zero failures. Final localized-resource build exits zero. Existing unsourced frame warnings remain in the two previously recorded transitions; shopping's focused UI result has no runtime warnings.
+
+The exported dark-mode summary was inspected: one checked black-bean line records $99.99, 12 items remain unpurchased, missing actual prices count is zero, cycle budget is $70.00, and projected cycle is $122.75. Partial-purchase and over-budget statements remain visible. The UI flow verifies the same actual amount in history after relaunch. Native labels combine their values for accessibility; assertions target the semantic summary amount rather than assuming a standalone dollar-value node.
