@@ -133,6 +133,16 @@
         }
       }
     },
+    "%lld items left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld items left"
+          }
+        }
+      }
+    },
     "%lld min %lld sec remaining": {
       "localizations": {
         "en": {
@@ -393,6 +403,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Accepting starts a separate cycle. Completed history is preserved, and confirmed stock is reserved once."
+          }
+        }
+      }
+    },
+    "Actual": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual"
           }
         }
       }
@@ -1163,6 +1183,16 @@
         }
       }
     },
+    "Choose store": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose store"
+          }
+        }
+      }
+    },
     "Choose your grocery store": {
       "localizations": {
         "en": {
@@ -1179,6 +1209,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clear plans, setup, pantry, preferences and history from this installation."
+          }
+        }
+      }
+    },
+    "Clear store selection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear store selection"
           }
         }
       }
@@ -1872,6 +1912,16 @@
         }
       }
     },
+    "Edit price": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit price"
+          }
+        }
+      }
+    },
     "Eggs": {
       "extractionState": "stale",
       "localizations": {
@@ -1879,6 +1929,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Eggs"
+          }
+        }
+      }
+    },
+    "Elapsed time": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elapsed time"
           }
         }
       }
@@ -1996,6 +2056,16 @@
         }
       }
     },
+    "Estimated Cost": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated Cost"
+          }
+        }
+      }
+    },
     "Estimated ingredients: %@": {},
     "Estimated line total": {
       "localizations": {
@@ -2034,6 +2104,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Estimated total"
+          }
+        }
+      }
+    },
+    "Estimated weekly cost %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated weekly cost %@"
           }
         }
       }
@@ -2927,6 +3007,16 @@
         }
       }
     },
+    "Minimize shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimize shopping"
+          }
+        }
+      }
+    },
     "Missing actual prices remain unknown. Tax, deposits and fees are excluded unless you include them in your entered line totals.": {
       "localizations": {
         "en": {
@@ -3152,6 +3242,16 @@
         }
       }
     },
+    "No groceries left to buy for this week.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No groceries left to buy for this week."
+          }
+        }
+      }
+    },
     "No groceries yet": {
       "extractionState": "stale",
       "localizations": {
@@ -3326,6 +3426,16 @@
         }
       }
     },
+    "Only checked items are recorded as purchased. Unchecked items stay on your grocery list.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only checked items are recorded as purchased. Unchecked items stay on your grocery list."
+          }
+        }
+      }
+    },
     "Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown.": {
       "localizations": {
         "en": {
@@ -3407,6 +3517,16 @@
         }
       }
     },
+    "Opening shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening shopping"
+          }
+        }
+      }
+    },
     "Optional reminder timer": {
       "localizations": {
         "en": {
@@ -3454,6 +3574,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Other meals using these ingredients"
+          }
+        }
+      }
+    },
+    "Over budget by %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over budget by %@"
           }
         }
       }
@@ -4464,6 +4594,16 @@
         }
       }
     },
+    "Resume Shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume Shopping"
+          }
+        }
+      }
+    },
     "Retry": {
       "localizations": {
         "en": {
@@ -4962,6 +5102,16 @@
         }
       }
     },
+    "Start Shopping": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Shopping"
+          }
+        }
+      }
+    },
     "Step %lld": {
       "localizations": {
         "en": {
@@ -5086,6 +5236,16 @@
         }
       }
     },
+    "Swap package": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swap package"
+          }
+        }
+      }
+    },
     "Sweet potato": {
       "extractionState": "stale",
       "localizations": {
@@ -5114,6 +5274,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Synthetic package prices for development. No retailer location or availability is implied."
+          }
+        }
+      }
+    },
+    "The store could not be saved. Reopen the current trip and retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The store could not be saved. Reopen the current trip and retry."
           }
         }
       }
@@ -5941,6 +6111,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "User-approved development estimate from a recorded receipt line; per-package average rounded up. Original catalog validity is unchanged."
+          }
+        }
+      }
+    },
+    "Uses actual prices when entered and sample prices for the rest.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uses actual prices when entered and sample prices for the rest."
           }
         }
       }

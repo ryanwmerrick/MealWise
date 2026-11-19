@@ -22,6 +22,8 @@ struct ShoppingTrip: Codable, Equatable, Sendable, Identifiable {
     let priorSpendingMinorUnits: Int64
     var lines: [ShoppingLine]
     var finishedAt: Date?
+    var startedAt: Date? = nil
+    var selectedStore: GroceryPreference? = nil
 
     var projectedMinorUnits: Int64 { get throws {
         try lines.reduce(priorSpendingMinorUnits) { try checkedSum($0, $1.actualMinorUnits ?? $1.estimatedMinorUnits) }
@@ -30,6 +32,11 @@ struct ShoppingTrip: Codable, Equatable, Sendable, Identifiable {
         try lines.filter(\.checked).reduce(0) { try checkedSum($0, $1.actualMinorUnits ?? 0) }
     } }
     var remainingMinorUnits: Int64 { get throws { budgetMinorUnits - (try projectedMinorUnits) } }
+}
+
+struct ShoppingCartSnapshot: Sendable {
+    let trip: ShoppingTrip
+    let isActive: Bool
 }
 
 struct ShoppingSummary: Codable, Equatable, Sendable, Identifiable {

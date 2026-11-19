@@ -1,104 +1,125 @@
 import SwiftUI
 
 struct GroceryView: View {
-    @StateObject private var viewModel: GroceryViewModel
     @Environment(AppSession.self) private var session
+    @Environment(\.scenePhase) private var scenePhase
+    @StateObject private var viewModel: GroceryViewModel
+    @State private var path: [Route] = []
     @State private var reload = 0
 
-    init(plan: WeeklyPlan, checklist: any ChecklistRepositoryProtocol) {
-        _viewModel = StateObject(wrappedValue: GroceryViewModel(plan: plan, checklist: checklist))
+    let plan: WeeklyPlan
+    let shopping: any ShoppingServiceProtocol
+
+    init(plan: WeeklyPlan, shopping: any ShoppingServiceProtocol) {
+        self.plan = plan
+        self.shopping = shopping
+        _viewModel = StateObject(wrappedValue: GroceryViewModel(planID: plan.id, shopping: shopping))
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section {
                     MealWiseOverview(icon: "basket") {
-                        Text(viewModel.plan.closedAt == nil ? LocalizedStringKey("Additional estimated checkout") : "Unpurchased forecast at close")
-                            .font(.subheadline)
-                        Text((try? CartCalculator.total(viewModel.plan.cart))?.currency ?? String(localized: "Unavailable"))
-                            .font(.largeTitle.bold())
-                        Text("Weekly budget \(viewModel.plan.profile.budgetMinorUnits.currency)")
-                            .font(.subheadline)
-                        Text("\(viewModel.checked.count) of \(viewModel.plan.cart.filter { $0.packageCount > 0 }.count) items checked")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(DesignTokens.gold)
+                        Text("Estimated Cost").font(.subheadline)
+                        Text(viewModel.estimatedCost(for: plan).currency)
+                            .font(.largeTitle.bold().monospacedDigit())
+                            .accessibilityIdentifier("grocery.estimatedCost")
+                        Text("Weekly budget \(plan.profile.budgetMinorUnits.currency)").font(.subheadline)
                     }
                 } footer: {
-                    DevelopmentNotice()
+                    Text("Uses actual prices when entered and sample prices for the rest.")
+                        .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
                 }
-                if let services = session.services {
-                    Section {
-                        if viewModel.plan.closedAt == nil {
-                            NavigationLink {
-                                ShoppingView(planID: viewModel.plan.id, service: services.shopping)
-                            } label: {
-                                Text("Start shopping").font(.headline).foregroundStyle(DesignTokens.action)
-                            }
-                        } else { Text("This cycle is finished. Its unpurchased forecast is historical; plan a new week in Pantry.") }
-                        NavigationLink("Shopping history") { ShoppingHistoryView(planID: viewModel.plan.id, service: services.shopping) }
-                    }.mealWiseListRows()
+                if plan.closedAt != nil {
+                    Text("This cycle is finished. Open Pantry to plan your next week.").mealWiseListRows()
+                } else {
+                    groceryList
                 }
-                if let resources = viewModel.plan.resources {
-                    Section("Earlier purchases") {
-                        LabeledContent("Known actual spending", value: resources.knownActualMinorUnits.currency)
-                        LabeledContent("Items missing actual prices", value: resources.missingPriceCount.formatted())
-                        Text("Purchased quantities are credited below. Only additional packages remain to buy.")
-                    }.mealWiseListRows()
-                }
-                if let error = viewModel.errorMessage {
-                    Section {
-                        Text(LocalizedStringKey(error))
-                        Button("Retry") { reload += 1 }.frame(minHeight: 44)
-                    }.mealWiseListRows()
-                }
-                ForEach(viewModel.plan.closedAt == nil ? viewModel.sections : []) { section in
-                    Section(LocalizedStringKey(section.category.title)) {
-                        ForEach(section.rows) { row in groceryRow(row) }
-                    }.mealWiseListRows()
-                }
-                Section("Price information") {
-                    Text(LocalizedStringKey(viewModel.plan.catalog.priceProvenance))
-                    Text("Tax, deposits and fees are excluded. Checking an item is a shopping reminder, not a recorded purchase.")
-                        .font(.footnote)
-                }.mealWiseListRows()
             }
+            .listSectionSpacing(12)
             .contentMargins(.top, 8, for: .scrollContent)
             .mealWiseListStyle()
-            .navigationTitle("Grocery list")
-            .task(id: reload) { await session.refreshPlan(); await viewModel.load() }
+            .navigationTitle("Groceries")
+            .toolbar {
+                if plan.closedAt == nil && plan.cart.contains(where: { $0.packageCount > 0 }) {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button { path.append(.shopping) } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: "play.fill")
+                                    .accessibilityHidden(true)
+                                Text(shoppingActionTitle)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
+                            }
+                            .font(.subheadline.weight(.semibold))
+                        }
+                        .accessibilityLabel(Text(shoppingActionTitle))
+                        .accessibilityIdentifier("grocery.start")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Shopping history", systemImage: "clock.arrow.circlepath") { path.append(.history) }
+                        .labelStyle(.iconOnly)
+                        .accessibilityIdentifier("grocery.history")
+                }
+            }
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .shopping:
+                    ShoppingView(planID: plan.id, service: shopping) { receipt in
+                        path = [.receipt(receipt)]
+                    }
+                case .history:
+                    ShoppingHistoryView(planID: plan.id, service: shopping)
+                case .receipt(let receipt):
+                    ShoppingSummaryView(summary: receipt)
+                }
+            }
+            .task(id: Refresh(revision: plan.revision, isVisible: path.isEmpty && scenePhase == .active, attempt: reload)) {
+                guard path.isEmpty, scenePhase == .active else { return }
+                await session.refreshPlan()
+                guard plan.closedAt == nil, !Task.isCancelled else { return }
+                await viewModel.load()
+            }
         }
     }
 
-    private func groceryRow(_ row: GroceryRow) -> some View {
-        Button { Task { await viewModel.toggle(row.id) } } label: {
-            HStack(alignment: .top, spacing: 12) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(viewModel.checked.contains(row.id) ? DesignTokens.brand : .clear)
-                    RoundedRectangle(cornerRadius: 6).stroke(DesignTokens.action)
-                    if viewModel.checked.contains(row.id) { Image("IconCheck").foregroundStyle(DesignTokens.buttonText) }
-                }
-                .frame(width: 24, height: 24)
-                .padding(.vertical, 10)
-                .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(LocalizedStringKey(row.title)).font(.headline)
-                    Text("\(row.packages) × \(row.packageSize)").font(.subheadline).foregroundStyle(DesignTokens.textSecondary)
-                    Text("Estimated \(row.cost)").font(.subheadline.weight(.semibold))
-                    Text("Price date: \(row.priceDate)").font(.caption).foregroundStyle(DesignTokens.textSecondary)
-                }
-                Spacer(minLength: 0)
-            }
-            .padding(.vertical, 6)
-            .foregroundStyle(DesignTokens.textPrimary)
-            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-            .contentShape(Rectangle())
+    private var shoppingActionTitle: LocalizedStringKey {
+        viewModel.hasActiveTrip(for: plan) ? "Resume Shopping" : "Start Shopping"
+    }
+
+    @ViewBuilder
+    private var groceryList: some View {
+        if let error = viewModel.errorMessage {
+            Section {
+                Text(LocalizedStringKey(error))
+                Button("Retry") { reload += 1 }.frame(minHeight: 44)
+            }.mealWiseListRows()
         }
-        .buttonStyle(.plain)
-        .disabled(viewModel.isSaving)
-        .accessibilityAddTraits(viewModel.checked.contains(row.id) ? .isSelected : [])
-        .accessibilityIdentifier("grocery.check")
+
+        let sections = viewModel.sections(for: plan)
+        if sections.isEmpty {
+            Text("No groceries left to buy for this week.").mealWiseListRows()
+        }
+        ForEach(sections) { section in
+            Section(LocalizedStringKey(section.category.title)) {
+                ForEach(section.rows) { row in
+                    GroceryItemLabel(name: row.title, packages: row.packages, packageSize: row.packageSize, costMinorUnits: row.costMinorUnits)
+                        .accessibilityElement(children: .combine)
+                }
+            }.mealWiseListRows()
+        }
+    }
+
+    private enum Route: Hashable {
+        case shopping, history, receipt(ShoppingSummary)
+    }
+
+    private struct Refresh: Hashable {
+        let revision: UUID
+        let isVisible: Bool
+        let attempt: Int
     }
 }
 

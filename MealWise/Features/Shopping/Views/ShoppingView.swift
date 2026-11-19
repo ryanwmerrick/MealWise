@@ -2,55 +2,32 @@ import SwiftUI
 
 struct ShoppingView: View {
     @Environment(AppSession.self) private var session
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: ShoppingViewModel
     @State private var priceLine: ShoppingLine?
     @State private var substituteLine: ShoppingLine?
     @State private var showFinish = false
-    @State private var summary: ShoppingSummary?
-    init(planID: UUID, service: any ShoppingServiceProtocol) {
+
+    let onFinish: (ShoppingSummary) -> Void
+
+    init(planID: UUID, service: any ShoppingServiceProtocol, onFinish: @escaping (ShoppingSummary) -> Void) {
         _viewModel = StateObject(wrappedValue: ShoppingViewModel(planID: planID, service: service))
+        self.onFinish = onFinish
     }
+
     var body: some View {
         List {
             if let trip = viewModel.trip {
-                Section("Trip spending") {
-                    LabeledContent("Known actual this trip", value: viewModel.actual?.currency ?? String(localized: "Unavailable"))
-                        .font(.headline)
-                    LabeledContent("Projected full cycle", value: viewModel.projected?.currency ?? String(localized: "Unavailable"))
-                    LabeledContent("Budget", value: trip.budgetMinorUnits.currency)
-                    Text("\(trip.lines.filter(\.checked).count) of \(trip.lines.count) items checked for purchase")
-                    Text("The projection includes unchecked items. Missing prices use sample estimates.").font(.footnote)
-                    if let projected = viewModel.projected, projected > trip.budgetMinorUnits {
-                        Text("Over budget by \((projected - trip.budgetMinorUnits).currency). Real spending will remain in your history.").foregroundStyle(DesignTokens.action)
-                    }
-                    if trip.priorSpendingMinorUnits > 0 {
-                        LabeledContent("Earlier purchases, with estimates for missing prices", value: trip.priorSpendingMinorUnits.currency)
-                    }
-                }.mealWiseListRows()
-                if trip.lines.isEmpty { Text("No additional packages are needed for this plan.").mealWiseListRows() }
-                ForEach(trip.lines) { line in
-                    Section {
-                        Button { Task { await viewModel.toggle(line) } } label: {
-                            Label { Text(LocalizedStringKey(line.name)) } icon: { Image(systemName: line.checked ? "checkmark.square.fill" : "square") }
-                                .font(.headline)
-                                .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                        }.accessibilityAddTraits(line.checked ? .isSelected : []).accessibilityIdentifier("shopping.check")
-                        Text("\(line.packageCount) packages · \(QuantityFormatting.display(amount: line.packageQuantity, unit: line.unit)) each")
-                            .font(.subheadline).foregroundStyle(DesignTokens.textSecondary)
-                        LabeledContent("Estimated line total", value: line.estimatedMinorUnits.currency)
-                        if let actual = line.actualMinorUnits { LabeledContent("Entered actual line total", value: actual.currency) }
-                        else { Text("Actual price not entered") }
-                        Button("Edit actual price") { priceLine = line }.frame(minHeight: 44).accessibilityIdentifier("shopping.price")
-                        Button("Find cheaper package") { substituteLine = line }.frame(minHeight: 44)
-                    }.mealWiseListRows()
+                if trip.lines.isEmpty {
+                    Text("No additional packages are needed for this plan.").mealWiseListRows()
                 }
                 Section {
-                    Button("Finish trip") { showFinish = true }.disabled(!trip.lines.contains(where: \.checked))
-                        .buttonStyle(MealWiseButtonStyle())
-                    Text("Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown.").font(.footnote)
+                    ForEach(trip.lines, content: shoppingRow)
                 }.mealWiseListRows()
             }
-            if viewModel.isWorking { ProgressView("Saving shopping").mealWiseListRows() }
+            if viewModel.isWorking && viewModel.trip == nil {
+                ProgressView("Opening shopping").mealWiseListRows()
+            }
             if let error = viewModel.errorMessage {
                 Section {
                     Text(LocalizedStringKey(error))
@@ -58,23 +35,156 @@ struct ShoppingView: View {
                 }.mealWiseListRows()
             }
         }
+        .contentMargins(.top, 8, for: .scrollContent)
         .mealWiseListStyle()
         .navigationTitle("Shopping")
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Minimize shopping", systemImage: "chevron.down") { dismiss() }
+                    .labelStyle(.iconOnly)
+                    .disabled(viewModel.isWorking)
+            }
+        }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if let trip = viewModel.trip { shoppingHeader(trip) }
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if let trip = viewModel.trip {
+                Button("Finish trip") { showFinish = true }
+                    .buttonStyle(MealWiseButtonStyle())
+                    .disabled(viewModel.isWorking || !trip.lines.contains(where: \.checked))
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 8)
+                    .background(DesignTokens.surface)
+            }
+        }
         .task { await viewModel.load() }
-        .disabled(viewModel.isWorking)
         .sheet(item: $priceLine) { line in ShoppingPriceView(line: line, viewModel: viewModel) }
         .sheet(item: $substituteLine) { line in ShoppingSubstituteView(line: line, viewModel: viewModel) }
         .confirmationDialog("Finish with only these purchased items?", isPresented: $showFinish, titleVisibility: .visible) {
             Button("Record purchased items") {
                 Task {
                     if let result = await viewModel.finish() {
-                        // Keep this screen stable while showing the receipt; returning refreshes the root plan.
-                        summary = result
+                        onFinish(result)
+                        await session.refreshPlan()
                     }
                 }
             }
-        } message: { Text("Missing actual prices remain unknown. Tax, deposits and fees are excluded unless you include them in your entered line totals.") }
-        .navigationDestination(item: $summary) { result in ShoppingSummaryView(summary: result) }
+        } message: {
+            Text("Only checked items are recorded as purchased. Unchecked items stay on your grocery list.")
+        }
+    }
+
+    private func shoppingHeader(_ trip: ShoppingTrip) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            storeMenu(selection: trip.selectedStore)
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 8) { tripMetrics(trip) }
+                    .fixedSize(horizontal: true, vertical: false)
+                VStack(alignment: .leading, spacing: 6) { tripMetrics(trip) }
+            }
+            if let projected = viewModel.projected, projected > trip.budgetMinorUnits {
+                Text("Over budget by \((projected - trip.budgetMinorUnits).currency)")
+                    .font(.caption).foregroundStyle(DesignTokens.textSecondary)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
+        .background(DesignTokens.surface)
+    }
+
+    @ViewBuilder
+    private func tripMetrics(_ trip: ShoppingTrip) -> some View {
+        metric("checklist") {
+            Text("\(viewModel.itemsLeft) items left")
+                .accessibilityIdentifier("shopping.itemsLeft")
+        }
+        if let startedAt = trip.startedAt {
+            metric("timer") {
+                Text(startedAt, style: .timer).monospacedDigit()
+                    .accessibilityLabel("Elapsed time")
+                    .accessibilityValue(Text(startedAt, style: .timer))
+                    .accessibilityIdentifier("shopping.elapsed")
+            }
+        }
+        if let projected = viewModel.projected {
+            metric("dollarsign.circle") {
+                Text(projected.currency).monospacedDigit()
+                    .accessibilityLabel(Text("Estimated weekly cost \(projected.currency)"))
+            }
+        }
+    }
+
+    private func metric(_ symbol: String, @ViewBuilder content: () -> some View) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: symbol)
+                .foregroundStyle(DesignTokens.action)
+                .accessibilityHidden(true)
+            content()
+        }
+        .font(.subheadline.weight(.semibold))
+        .foregroundStyle(DesignTokens.textPrimary)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(DesignTokens.card, in: Capsule())
+    }
+
+    private func storeMenu(selection: GroceryPreference?) -> some View {
+        Menu {
+            if selection != nil {
+                Button("Clear store selection") { Task { await viewModel.selectStore(nil) } }
+            }
+            ForEach(GroceryPreference.allCases, id: \.self) { store in
+                Button { Task { await viewModel.selectStore(store) } } label: {
+                    if selection == store {
+                        Label(LocalizedStringKey(store.label), systemImage: "checkmark")
+                    } else {
+                        Text(LocalizedStringKey(store.label))
+                    }
+                }
+            }
+        } label: {
+            Label(selection.map { LocalizedStringKey($0.label) } ?? "Choose store", systemImage: "storefront")
+                .font(.subheadline.weight(.semibold))
+                .frame(minHeight: 44)
+        }
+        .accessibilityIdentifier("shopping.store")
+        .disabled(viewModel.isWorking)
+    }
+
+    private func shoppingRow(_ line: ShoppingLine) -> some View {
+        HStack(spacing: 4) {
+            Button { Task { await viewModel.toggle(line) } } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: line.checked ? "checkmark.square.fill" : "square")
+                        .font(.title3)
+                        .foregroundStyle(DesignTokens.action)
+                        .accessibilityHidden(true)
+                    GroceryItemLabel(name: line.name, packages: line.packageCount,
+                                     packageSize: QuantityFormatting.display(amount: line.packageQuantity, unit: line.unit),
+                                     costMinorUnits: line.actualMinorUnits ?? line.estimatedMinorUnits,
+                                     showsActualPrice: line.actualMinorUnits != nil)
+                }
+                .frame(minHeight: 44)
+                .contentShape(Rectangle())
+            }
+            .accessibilityAddTraits(line.checked ? .isSelected : [])
+            .accessibilityIdentifier("shopping.check")
+            Menu {
+                Button("Edit price", systemImage: "tag") { priceLine = line }
+                    .accessibilityIdentifier("shopping.price")
+                Button("Swap package", systemImage: "arrow.left.arrow.right") { substituteLine = line }
+            } label: {
+                Image(systemName: "pencil")
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel(Text("Edit \(String(localized: String.LocalizationValue(line.name)))"))
+            .accessibilityIdentifier("shopping.edit")
+        }
+        .buttonStyle(.borderless)
+        .disabled(viewModel.isWorking)
     }
 }
 
@@ -82,7 +192,14 @@ private struct ShoppingPriceView: View {
     @Environment(\.dismiss) private var dismiss
     let line: ShoppingLine
     @ObservedObject var viewModel: ShoppingViewModel
-    @State private var text = ""
+    @State private var text: String
+
+    init(line: ShoppingLine, viewModel: ShoppingViewModel) {
+        self.line = line
+        self.viewModel = viewModel
+        _text = State(initialValue: line.actualMinorUnits.map { (Decimal($0) / 100).description } ?? "")
+    }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -115,6 +232,9 @@ struct ShoppingSummaryView: View {
     var body: some View {
         List {
             Section("Recorded purchases") {
+                if let store = summary.trip.selectedStore {
+                    LabeledContent("Store") { Text(LocalizedStringKey(store.label)) }
+                }
                 LabeledContent("Known actual spending", value: (try? summary.knownActualMinorUnits)?.currency ?? String(localized: "Unavailable")).accessibilityIdentifier("shopping.summary.actual")
                 LabeledContent("Purchased items", value: summary.purchasedCount.formatted())
                 LabeledContent("Purchased items missing actual prices", value: summary.missingPriceCount.formatted())
@@ -159,6 +279,7 @@ struct ShoppingHistoryView: View {
                 NavigationLink { ShoppingSummaryView(summary: summary) } label: {
                     VStack(alignment: .leading) {
                         if let date = summary.trip.finishedAt { Text(date, format: .dateTime.month().day().hour().minute()).font(.headline) }
+                        if let store = summary.trip.selectedStore { Text(LocalizedStringKey(store.label)).font(.subheadline) }
                         Text("\(summary.purchasedCount) purchased · \(summary.missingPriceCount) missing prices")
                             .font(.subheadline).foregroundStyle(DesignTokens.textSecondary)
                     }.padding(.vertical, 8)
@@ -191,7 +312,6 @@ private struct ShoppingSubstituteView: View {
                             Text(LocalizedStringKey(line.name)).font(.headline)
                             Text("Package: \(QuantityFormatting.display(amount: option.offer.packageQuantity, unit: option.offer.unit))")
                             Text("Projected cycle: \(option.projectedMinorUnits.currency)")
-                            Text("Price date: \(option.offer.priceDate)").font(.caption)
                         }.padding(.vertical, 8)
                     }.mealWiseListRows()
                 }

@@ -2,7 +2,9 @@ import Foundation
 import SwiftData
 
 protocol ShoppingServiceProtocol: Sendable {
+    func cart(planID: UUID) async throws -> ShoppingCartSnapshot
     func openTrip(planID: UUID) async throws -> ShoppingTrip
+    func selectStore(_ store: GroceryPreference?, tripID: UUID) async throws -> ShoppingTrip
     func updatePrice(itemID: UUID, actualPrice: Money, tripID: UUID) async throws -> ShoppingTrip
     func setChecked(itemID: UUID, checked: Bool, tripID: UUID) async throws -> ShoppingTrip
     func finishTrip(_ tripID: UUID) async throws -> ShoppingSummary
@@ -16,7 +18,11 @@ actor ShoppingService: ShoppingServiceProtocol {
     private let clock: @Sendable () -> Date
     init(plans: PlanRepository, clock: @escaping @Sendable () -> Date = { .now }) { self.plans = plans; self.clock = clock }
     init(container: ModelContainer, clock: @escaping @Sendable () -> Date = { .now }) { plans = PlanRepository(container: container); self.clock = clock }
+    func cart(planID: UUID) async throws -> ShoppingCartSnapshot { try await plans.shoppingCart(planID: planID) }
     func openTrip(planID: UUID) async throws -> ShoppingTrip { try await plans.openShoppingTrip(planID: planID, at: clock()) }
+    func selectStore(_ store: GroceryPreference?, tripID: UUID) async throws -> ShoppingTrip {
+        try await plans.editShoppingTrip(tripID) { $0.selectedStore = store }
+    }
     func updatePrice(itemID: UUID, actualPrice: Money, tripID: UUID) async throws -> ShoppingTrip {
         try await plans.editShoppingTrip(tripID) { trip in
             guard let index = trip.lines.firstIndex(where: { $0.id == itemID }) else { throw ShoppingError.invalidItem }
@@ -57,35 +63,53 @@ actor ShoppingService: ShoppingServiceProtocol {
 
 extension PlanRepository {
     // These operations run on the same actor as plan CAS, with no suspension inside each transaction.
+    func shoppingCart(planID: UUID) throws -> ShoppingCartSnapshot {
+        let context = ModelContext(container)
+        let documents = try context.fetch(FetchDescriptor<StoredDocument>())
+        let plan = try shoppingPlan(documents, id: planID)
+        let previous = try shoppingDraft(planID: planID, documents: documents)
+        let trip = try shoppingCart(for: plan, previous: previous, documents: documents)
+        return ShoppingCartSnapshot(trip: trip, isActive: previous != nil)
+    }
+
     func openShoppingTrip(planID: UUID, at now: Date) throws -> ShoppingTrip {
         try reconcileExpiredPantry(at: now)
         let context = ModelContext(container); context.autosaveEnabled = false
         let documents = try context.fetch(FetchDescriptor<StoredDocument>())
         let plan = try shoppingPlan(documents, id: planID)
-        let key = "shopping-draft-" + planID.uuidString
-        let document = documents.first { $0.key == key }
-        let old = try document.map { try JSONDecoder().decode(ShoppingTrip.self, from: $0.payload) }
-        if let old, old.planRevision == plan.revision { return old }
+        let previous = try shoppingDraft(planID: planID, documents: documents)
+        if let previous, previous.planRevision == plan.revision, previous.startedAt != nil { return previous }
+        var trip = try shoppingCart(for: plan, previous: previous, documents: documents)
+        trip.startedAt = trip.startedAt ?? now
+        try store(trip, key: "shopping-draft-" + planID.uuidString, documents: documents, context: context)
+        try Task.checkCancellation(); try context.save()
+        return trip
+    }
+
+    private func shoppingDraft(planID: UUID, documents: [StoredDocument]) throws -> ShoppingTrip? {
+        try documents.first { $0.key == "shopping-draft-" + planID.uuidString }
+            .map { try JSONDecoder().decode(ShoppingTrip.self, from: $0.payload) }
+    }
+
+    private func shoppingCart(for plan: WeeklyPlan, previous: ShoppingTrip?, documents: [StoredDocument]) throws -> ShoppingTrip {
+        if let previous, previous.planRevision == plan.revision { return previous }
         let latest = try documents.filter { $0.key.hasPrefix("shopping-history-") }
             .map { try JSONDecoder().decode(ShoppingSummary.self, from: $0.payload) }
-            .filter { $0.trip.planID == planID }
+            .filter { $0.trip.planID == plan.id }
             .sorted { ($0.trip.finishedAt ?? .distantPast) > ($1.trip.finishedAt ?? .distantPast) }.first
         let lines = try plan.cart.filter { $0.packageCount > 0 }.map { item in
             guard let ingredient = plan.catalog.ingredients.first(where: { $0.id == item.id }),
                   let offer = plan.catalog.offers.first(where: { $0.id == item.offerID }) else { throw PlanningError.invalidPlan }
             let matches: (ShoppingLine) -> Bool = { $0.ingredientID == item.id && $0.offerID == item.offerID && $0.packageCount == item.packageCount }
-            let previous = old?.lines.first(where: matches) ?? latest?.trip.lines.first { !$0.checked && matches($0) }
-            return ShoppingLine(id: previous?.id ?? UUID(), ingredientID: item.id, offerID: item.offerID,
+            let priorLine = previous?.lines.first(where: matches) ?? latest?.trip.lines.first { !$0.checked && matches($0) }
+            return ShoppingLine(id: priorLine?.id ?? UUID(), ingredientID: item.id, offerID: item.offerID,
                                 name: ingredient.name, packageCount: item.packageCount, packageQuantity: offer.packageQuantity,
                                 unit: offer.unit, estimatedMinorUnits: item.costMinorUnits,
-                                actualMinorUnits: previous?.actualMinorUnits, checked: previous?.checked ?? false)
+                                actualMinorUnits: priorLine?.actualMinorUnits, checked: priorLine?.checked ?? false)
         }
-        let trip = ShoppingTrip(id: UUID(), planID: plan.id, planRevision: plan.revision, storeID: plan.profile.storeID,
-                                budgetMinorUnits: plan.profile.budgetMinorUnits, priorSpendingMinorUnits: plan.resources?.committedMinorUnits ?? 0,
-                                lines: lines, finishedAt: nil)
-        try store(trip, key: key, documents: documents, context: context)
-        try Task.checkCancellation(); try context.save()
-        return trip
+        return ShoppingTrip(id: UUID(), planID: plan.id, planRevision: plan.revision, storeID: plan.profile.storeID,
+                            budgetMinorUnits: plan.profile.budgetMinorUnits, priorSpendingMinorUnits: plan.resources?.committedMinorUnits ?? 0,
+                            lines: lines, finishedAt: nil, startedAt: previous?.startedAt, selectedStore: previous?.selectedStore)
     }
 
     func editShoppingTrip(_ id: UUID, edit: @Sendable (inout ShoppingTrip) throws -> Void) throws -> ShoppingTrip {
@@ -211,7 +235,7 @@ extension PlanRepository {
               item.costMinorUnits < (old.actualMinorUnits ?? old.estimatedMinorUnits) else { throw PlanChangeError.infeasible }
         revised = ShoppingTrip(id: revised.id, planID: revised.planID, planRevision: proposed.revision, storeID: revised.storeID,
                                budgetMinorUnits: revised.budgetMinorUnits, priorSpendingMinorUnits: revised.priorSpendingMinorUnits,
-                               lines: revised.lines, finishedAt: nil)
+                               lines: revised.lines, finishedAt: nil, startedAt: revised.startedAt, selectedStore: revised.selectedStore)
         document.payload = try JSONEncoder().encode(revised)
         try store(proposed, key: "activePlan", documents: documents, context: context)
         try Task.checkCancellation(); try context.save()

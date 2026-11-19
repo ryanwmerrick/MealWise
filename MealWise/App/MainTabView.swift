@@ -11,7 +11,7 @@ struct MainTabView: View {
             }
             Tab("Groceries", image: "IconBasket", value: 1) {
                 if let plan = session.plan, let services = session.services {
-                    GroceryView(plan: plan, checklist: services.checklist).id(plan.revision)
+                    GroceryView(plan: plan, shopping: services.shopping).id(plan.id)
                 }
             }
             Tab("Today", image: "IconPot", value: 2) {

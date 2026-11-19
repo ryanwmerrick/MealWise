@@ -12,16 +12,17 @@ final class PantryUITests: XCTestCase {
     @MainActor
     func testTwoWeekLoopSurvivesRelaunch() {
         let app = XCUIApplication(); buildPlan(app)
-        app.tabBars.buttons["Groceries"].tap(); app.buttons["Start shopping"].tap()
+        app.tabBars.buttons["Groceries"].tap(); app.buttons["grocery.start"].tap()
         XCTAssertTrue(app.buttons.matching(identifier: "shopping.check").firstMatch.waitForExistence(timeout: 10))
         var visited = Set<String>()
         for _ in 0..<30 {
             for button in app.buttons.matching(identifier: "shopping.check").allElementsBoundByIndex where button.isHittable && !visited.contains(button.label) {
                 visited.insert(button.label); button.tap()
             }
-            if app.buttons["Finish trip"].exists && app.buttons["Finish trip"].isHittable { break }
+            if app.staticTexts["shopping.itemsLeft"].label == "0 items left" { break }
             app.swipeUp()
         }
+        XCTAssertEqual(app.staticTexts["shopping.itemsLeft"].label, "0 items left")
         app.buttons["Finish trip"].tap(); app.buttons["Record purchased items"].tap()
         XCTAssertTrue(app.staticTexts["Trip summary"].waitForExistence(timeout: 10))
         app.tabBars.buttons["Today"].tap(); app.buttons.matching(identifier: "today.meal").firstMatch.tap()

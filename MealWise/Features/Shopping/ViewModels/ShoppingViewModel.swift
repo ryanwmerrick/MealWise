@@ -12,18 +12,29 @@ final class ShoppingViewModel: ObservableObject {
     private let service: any ShoppingServiceProtocol
     init(planID: UUID, service: any ShoppingServiceProtocol) { self.planID = planID; self.service = service }
     func load() async {
+        guard !isWorking else { return }
         isWorking = true; defer { isWorking = false }
         do {
             let trip = try await service.openTrip(planID: planID)
-            let history = try await service.history(planID: planID)
             try Task.checkCancellation()
-            self.trip = trip; summaries = history; errorMessage = nil
+            self.trip = trip; errorMessage = nil
         } catch is CancellationError { return }
         catch { errorMessage = "Shopping could not be opened. Return to the current grocery list and retry." }
     }
     func loadHistory() async {
         do { summaries = try await service.history(planID: planID); errorMessage = nil }
         catch { errorMessage = "Shopping history could not be loaded. Please retry." }
+    }
+    func selectStore(_ store: GroceryPreference?) async {
+        guard let trip, !isWorking else { return }
+        isWorking = true
+        defer { isWorking = false }
+        do {
+            self.trip = try await service.selectStore(store, tripID: trip.id)
+            errorMessage = nil
+        } catch {
+            errorMessage = "The store could not be saved. Reopen the current trip and retry."
+        }
     }
     func toggle(_ line: ShoppingLine) async {
         guard let trip, !isWorking else { return }
@@ -62,5 +73,5 @@ final class ShoppingViewModel: ObservableObject {
         catch { errorMessage = "This package preview is out of date or could not be saved. Reopen it from your current trip."; return false }
     }
     var projected: Int64? { try? trip?.projectedMinorUnits }
-    var actual: Int64? { try? trip?.actualToDateMinorUnits }
+    var itemsLeft: Int { trip?.lines.count(where: { !$0.checked }) ?? 0 }
 }
