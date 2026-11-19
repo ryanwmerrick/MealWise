@@ -32,7 +32,7 @@ struct ChangePreviewCard: View {
                     }
                 }
             }
-        }
+        }.mealWiseListRows()
         if preview.proposedPlan != nil {
             Section("Cart and ingredient impact") {
                 ForEach(preview.impacts.filter { $0.oldPackages != $0.newPackages || $0.oldRequired != $0.newRequired || $0.oldCost != $0.newCost }) { impact in
@@ -43,7 +43,7 @@ struct ChangePreviewCard: View {
                         Text("Planned use: \(QuantityFormatting.display(amount: impact.oldRequired, unit: impact.unit)) → \(QuantityFormatting.display(amount: impact.newRequired, unit: impact.unit))").font(.footnote)
                     }.padding(.vertical, 5)
                 }
-            }
+            }.mealWiseListRows()
         }
     }
 }
@@ -62,17 +62,18 @@ struct ChangePreviewScreen: View {
     var body: some View {
         NavigationStack {
             List {
-                if viewModel.isWorking { ProgressView("Checking the complete cart") }
+                if viewModel.isWorking { ProgressView("Checking the complete cart").mealWiseListRows() }
                 if let preview = viewModel.preview { ChangePreviewCard(preview: preview) }
-                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
+                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
                 if let preview = viewModel.preview {
                     Button("Accept change") { Task { if let plan = await viewModel.accept() { session.accept(plan) } } }
-                        .disabled(preview.constraint != .feasible || viewModel.isWorking).frame(minHeight: 44)
+                        .buttonStyle(MealWiseButtonStyle())
+                        .disabled(preview.constraint != .feasible || viewModel.isWorking).mealWiseListRows()
                 }
-                Button("Keep current plan") { dismiss() }.frame(minHeight: 44).disabled(viewModel.isWorking)
+                Button("Keep current plan") { dismiss() }.frame(minHeight: 44).disabled(viewModel.isWorking).mealWiseListRows()
             }
+            .mealWiseListStyle()
             .navigationTitle("Review change")
-            .navigationBarTitleDisplayMode(.inline)
             .task { await viewModel.prepare(change) }
             .interactiveDismissDisabled(viewModel.isWorking)
         }
@@ -103,20 +104,20 @@ struct BudgetAdjustmentView: View {
                 }
                 Button("Preview budget") { focused = false; Task { await viewModel.prepareBudget() } }
                     .disabled(viewModel.isWorking).frame(minHeight: 44)
-            }
-            if viewModel.isWorking { ProgressView("Re-optimizing your week") }
+            }.mealWiseListRows()
+            if viewModel.isWorking { ProgressView("Re-optimizing your week").mealWiseListRows() }
             if let preview = viewModel.preview {
                 ChangePreviewCard(preview: preview)
                 Section {
                     Button("Accept change") { Task { if let plan = await viewModel.accept() { session.accept(plan) } } }
-                        .disabled(preview.constraint != .feasible || viewModel.isWorking).frame(minHeight: 44)
-                }
+                        .buttonStyle(MealWiseButtonStyle()).disabled(preview.constraint != .feasible || viewModel.isWorking)
+                }.mealWiseListRows()
             }
-            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-            Section { Button("Keep current plan") { dismiss() }.frame(minHeight: 44).disabled(viewModel.isWorking) }
+            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+            Section { Button("Keep current plan") { dismiss() }.frame(minHeight: 44).disabled(viewModel.isWorking) }.mealWiseListRows()
         }
+        .mealWiseListStyle()
         .navigationTitle("Adjust budget")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("Done") { focused = false } } }
         .interactiveDismissDisabled(viewModel.isWorking)
     }

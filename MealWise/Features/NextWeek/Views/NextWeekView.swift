@@ -10,14 +10,14 @@ struct NextWeekView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                if viewModel.isLoading { ProgressView("Loading next-week choices") }
+                if viewModel.isLoading { ProgressView("Loading next-week choices").mealWiseListRows() }
                 Section("A separate weekly cycle") {
                     Text("Your completed cycle stays in history. Review the next dates and choices in setup before accepting a new plan.")
                     if let first = viewModel.profile.days.min(), let last = viewModel.profile.days.max() {
                         Text("\(first.formatted(date: .abbreviated, time: .omitted)) – \(last.formatted(date: .abbreviated, time: .omitted))")
                     }
-                }
-                Section { Button("Favorites and next-plan pins") { showingFavorites = true }.frame(minHeight: 44) }
+                }.mealWiseListRows()
+                Section { Button("Favorites and next-plan pins") { showingFavorites = true }.frame(minHeight: 44) }.mealWiseListRows()
                 Section("Confirmed pantry stock") {
                     if !viewModel.isLoading && viewModel.stock.isEmpty { Text("No pantry stock is available. The new plan will price all needed packages.") }
                     ForEach(viewModel.stock) { item in
@@ -28,7 +28,7 @@ struct NextWeekView: View {
                         }
                     }
                     Text("Only confirmed stock without a known expired label date is considered. Unknown dates remain uncertain. Quantities are reserved atomically after you accept; a preview reserves nothing.").font(.footnote)
-                }
+                }.mealWiseListRows()
                 if !viewModel.observations.isEmpty {
                     Section("Receipt estimates for review") {
                         Text("Optionally approve estimates based on recorded receipts. Package averages round up to a cent. Actual receipts and the original catalog validity window stay unchanged.").font(.footnote)
@@ -46,17 +46,23 @@ struct NextWeekView: View {
                                 }
                             }
                         }
-                    }
+                    }.mealWiseListRows()
                 }
                 Section {
                     Button("Review next-week setup") {
                         do { let catalog = try viewModel.reviewedCatalog(); preparationError = nil; path.append(NextWeekSetupDestination(id: UUID(), catalog: catalog)) }
                         catch { preparationError = "These price observations could not be used. Clear the selections or update the development catalog." }
-                    }.frame(minHeight: 44).disabled(viewModel.isLoading || viewModel.errorMessage != nil)
+                    }.buttonStyle(MealWiseButtonStyle()).disabled(viewModel.isLoading || viewModel.errorMessage != nil)
+                }.mealWiseListRows()
+                if let message = preparationError { Text(LocalizedStringKey(message)).mealWiseListRows() }
+                if let message = viewModel.errorMessage {
+                    Section {
+                        Text(LocalizedStringKey(message))
+                        Button("Reload next week") { Task { await viewModel.load() } }
+                    }.mealWiseListRows()
                 }
-                if let message = preparationError { Text(LocalizedStringKey(message)) }
-                if let message = viewModel.errorMessage { Text(LocalizedStringKey(message)); Button("Reload next week") { Task { await viewModel.load() } } }
-            }.navigationTitle("Plan next week")
+            }.mealWiseListStyle()
+                .navigationTitle("Plan next week")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Keep current cycle") { dismiss() } } }
                 .task { await viewModel.load() }
                 .sheet(isPresented: $showingFavorites) {

@@ -13,10 +13,13 @@ struct SwapView: View {
         NavigationStack {
             List {
                 if let target = viewModel.target {
-                    Section { Text(target.date, format: .dateTime.weekday().month().day()); Text(LocalizedStringKey(target.slot.title)) }
+                    Section {
+                        Text(target.date, format: .dateTime.weekday().month().day()).font(.headline)
+                        Text(LocalizedStringKey(target.slot.title))
+                    }.mealWiseListRows()
                 }
-                Toggle("Show over-budget comparisons", isOn: $viewModel.showOverBudget)
-                if viewModel.isWorking { ProgressView("Pricing replacements") }
+                Toggle("Show over-budget comparisons", isOn: $viewModel.showOverBudget).mealWiseListRows()
+                if viewModel.isWorking { ProgressView("Pricing replacements").mealWiseListRows() }
                 ForEach(viewModel.visibleOptions) { option in
                     Button { viewModel.selectedID = option.id } label: {
                         VStack(alignment: .leading, spacing: 6) {
@@ -29,19 +32,21 @@ struct SwapView: View {
                     .buttonStyle(.plain)
                     .accessibilityAddTraits(viewModel.selectedID == option.id ? .isSelected : [])
                     .accessibilityIdentifier("swap.option")
+                    .mealWiseListRows()
                 }
                 if !viewModel.isWorking && viewModel.visibleOptions.isEmpty {
                     Text("No suitable replacements are available with the current catalog and constraints.")
+                        .mealWiseListRows()
                 }
                 if let selected = viewModel.selected { ChangePreviewCard(preview: selected.preview) }
-                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-                if let notice = viewModel.notice { Text(LocalizedStringKey(notice)) }
+                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+                if let notice = viewModel.notice { Text(LocalizedStringKey(notice)).mealWiseListRows() }
                 Section("Recipe preferences") {
                     Button("Exclude this recipe from future plans") { Task { await viewModel.excludeCurrent() } }.frame(minHeight: 44)
-                }
+                }.mealWiseListRows()
             }
+            .mealWiseListStyle()
             .navigationTitle("Swap meal")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() }.disabled(viewModel.isWorking) } }
             .interactiveDismissDisabled(viewModel.isWorking)
             .safeAreaInset(edge: .bottom) {

@@ -437,6 +437,16 @@
         }
       }
     },
+    "Add an item or confirm leftovers at wrap-up.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add an item or confirm leftovers at wrap-up."
+          }
+        }
+      }
+    },
     "Add beans and cumin, stir until hot throughout, and serve.": {
       "extractionState": "stale",
       "localizations": {
@@ -1531,6 +1541,16 @@
         }
       }
     },
+    "Cycle complete": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle complete"
+          }
+        }
+      }
+    },
     "Cycle history": {
       "localizations": {
         "en": {
@@ -1548,6 +1568,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cycle history could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Cycle in progress": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle in progress"
           }
         }
       }
@@ -3071,12 +3101,32 @@
         }
       }
     },
+    "No confirmed stock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No confirmed stock"
+          }
+        }
+      }
+    },
     "No confirmed stock is in your pantry. Add an item or confirm leftovers at wrap-up.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "No confirmed stock is in your pantry. Add an item or confirm leftovers at wrap-up."
+          }
+        }
+      }
+    },
+    "No cycle history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No cycle history"
           }
         }
       }
@@ -3180,6 +3230,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No recorded stock remains. You can finish without adding anything to Pantry."
+          }
+        }
+      }
+    },
+    "No shopping trips": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No shopping trips"
           }
         }
       }
@@ -3475,6 +3535,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pantry item"
+          }
+        }
+      }
+    },
+    "Pantry stock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry stock"
           }
         }
       }
@@ -6045,6 +6115,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Weekly budget"
+          }
+        }
+      }
+    },
+    "Weekly budget %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly budget %@"
           }
         }
       }

@@ -14,7 +14,7 @@ struct IngredientDetailView: View {
                 LabeledContent("Package checkout", value: item.priceMinorUnits.currency)
                 Text(item.status.title).foregroundStyle(DesignTokens.action)
                 ForecastNotice()
-            }
+            }.mealWiseListRows()
             Section("Planned use") {
                 ForEach(item.allocations) { allocation in
                     NavigationLink(value: PlanRoute.meal(planID: planID, mealID: allocation.mealID)) {
@@ -27,7 +27,7 @@ struct IngredientDetailView: View {
                     }
                     .accessibilityIdentifier("allocation.meal")
                 }
-            }
+            }.mealWiseListRows()
             if item.remainingQuantity > 0 {
                 Section("What to do with the remainder") {
                     NavigationLink("Find a meal using this remainder", value: PlanRoute.remainderSuggestions(planID: planID, ingredientID: item.id))
@@ -36,11 +36,11 @@ struct IngredientDetailView: View {
                     } else {
                         Text("This remainder needs a storage check. Consider using it in another meal, following the package guidance; no shelf-life duration is assumed.")
                     }
-                }
+                }.mealWiseListRows()
             }
         }
+        .scrollContentBackground(.hidden)
         .navigationTitle("Ingredient details")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar(.hidden, for: .tabBar)
     }
 }
@@ -65,6 +65,8 @@ struct IngredientDetailScreen: View {
                 ContentUnavailableView("Ingredient unavailable", systemImage: "exclamationmark.triangle",
                                        description: Text("Return to your current ingredient map."))
             } else { ProgressView("Opening ingredient") }
-        }.task { await viewModel.load() }
+        }
+        .mealWiseScreenStyle()
+        .task { await viewModel.load() }
     }
 }

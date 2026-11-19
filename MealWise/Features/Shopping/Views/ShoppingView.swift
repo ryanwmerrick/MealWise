@@ -15,6 +15,7 @@ struct ShoppingView: View {
             if let trip = viewModel.trip {
                 Section("Trip spending") {
                     LabeledContent("Known actual this trip", value: viewModel.actual?.currency ?? String(localized: "Unavailable"))
+                        .font(.headline)
                     LabeledContent("Projected full cycle", value: viewModel.projected?.currency ?? String(localized: "Unavailable"))
                     LabeledContent("Budget", value: trip.budgetMinorUnits.currency)
                     Text("\(trip.lines.filter(\.checked).count) of \(trip.lines.count) items checked for purchase")
@@ -25,33 +26,40 @@ struct ShoppingView: View {
                     if trip.priorSpendingMinorUnits > 0 {
                         LabeledContent("Earlier purchases, with estimates for missing prices", value: trip.priorSpendingMinorUnits.currency)
                     }
-                }
-                if trip.lines.isEmpty { Text("No additional packages are needed for this plan.") }
+                }.mealWiseListRows()
+                if trip.lines.isEmpty { Text("No additional packages are needed for this plan.").mealWiseListRows() }
                 ForEach(trip.lines) { line in
                     Section {
                         Button { Task { await viewModel.toggle(line) } } label: {
                             Label { Text(LocalizedStringKey(line.name)) } icon: { Image(systemName: line.checked ? "checkmark.square.fill" : "square") }
+                                .font(.headline)
                                 .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                         }.accessibilityAddTraits(line.checked ? .isSelected : []).accessibilityIdentifier("shopping.check")
                         Text("\(line.packageCount) packages · \(QuantityFormatting.display(amount: line.packageQuantity, unit: line.unit)) each")
+                            .font(.subheadline).foregroundStyle(DesignTokens.textSecondary)
                         LabeledContent("Estimated line total", value: line.estimatedMinorUnits.currency)
                         if let actual = line.actualMinorUnits { LabeledContent("Entered actual line total", value: actual.currency) }
                         else { Text("Actual price not entered") }
                         Button("Edit actual price") { priceLine = line }.frame(minHeight: 44).accessibilityIdentifier("shopping.price")
                         Button("Find cheaper package") { substituteLine = line }.frame(minHeight: 44)
-                    }
+                    }.mealWiseListRows()
                 }
                 Section {
                     Button("Finish trip") { showFinish = true }.disabled(!trip.lines.contains(where: \.checked))
-                        .frame(minHeight: 44)
+                        .buttonStyle(MealWiseButtonStyle())
                     Text("Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown.").font(.footnote)
-                }
+                }.mealWiseListRows()
             }
-            if viewModel.isWorking { ProgressView("Saving shopping") }
-            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)); Button("Reload trip") { Task { await viewModel.load() } } }
+            if viewModel.isWorking { ProgressView("Saving shopping").mealWiseListRows() }
+            if let error = viewModel.errorMessage {
+                Section {
+                    Text(LocalizedStringKey(error))
+                    Button("Reload trip") { Task { await viewModel.load() } }
+                }.mealWiseListRows()
+            }
         }
+        .mealWiseListStyle()
         .navigationTitle("Shopping")
-        .navigationBarTitleDisplayMode(.inline)
         .task { await viewModel.load() }
         .disabled(viewModel.isWorking)
         .sheet(item: $priceLine) { line in ShoppingPriceView(line: line, viewModel: viewModel) }
@@ -83,11 +91,15 @@ private struct ShoppingPriceView: View {
                     Text("Enter the total for all \(line.packageCount) packages of this item, in USD.")
                     TextField("Actual line total", text: $text).keyboardType(.decimalPad).accessibilityIdentifier("shopping.actual")
                     if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-                }
-                Button("Save price") { Task { if await viewModel.price(text, lineID: line.id) { dismiss() } } }
-                    .disabled(viewModel.isWorking).frame(minHeight: 44)
-                Text("This records your receipt observation for this package and store. It does not rewrite the catalog estimate.")
-            }.navigationTitle("Actual price")
+                }.mealWiseListRows()
+                Section {
+                    Button("Save price") { Task { if await viewModel.price(text, lineID: line.id) { dismiss() } } }
+                        .buttonStyle(MealWiseButtonStyle()).disabled(viewModel.isWorking)
+                } footer: {
+                    Text("This records your receipt observation for this package and store. It does not rewrite the catalog estimate.")
+                }.mealWiseListRows()
+            }.mealWiseListStyle()
+                .navigationTitle("Actual price")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() }.disabled(viewModel.isWorking) } }
         }.interactiveDismissDisabled(viewModel.isWorking)
     }
@@ -117,17 +129,18 @@ struct ShoppingSummaryView: View {
                     Text("The projected cycle exceeds its budget. Purchases and actual overspend remain recorded.")
                 }
                 if let date = summary.trip.finishedAt { Text(date, format: .dateTime.month().day().year().hour().minute()) }
-            }
+            }.mealWiseListRows()
             ForEach(summary.trip.lines.filter(\.checked)) { line in
                 Section(LocalizedStringKey(line.name)) {
                     Text("\(line.packageCount) packages purchased")
                     LabeledContent("Dated estimate", value: line.estimatedMinorUnits.currency)
                     if let actual = line.actualMinorUnits { LabeledContent("Recorded actual", value: actual.currency) }
                     else { Text("Actual price unknown") }
-                }
+                }.mealWiseListRows()
             }
-            Section { Text("Receipt observations are retained with this package, quantity and store for review in later plans. Tax, deposits and fees are excluded unless entered.") }
-        }.navigationTitle("Trip summary").navigationBarTitleDisplayMode(.inline)
+            Text("Receipt observations are retained with this package, quantity and store for review in later plans. Tax, deposits and fees are excluded unless entered.")
+                .mealWiseListRows()
+        }.mealWiseListStyle().navigationTitle("Trip summary")
     }
 }
 
@@ -138,17 +151,21 @@ struct ShoppingHistoryView: View {
     }
     var body: some View {
         List {
-            if viewModel.summaries.isEmpty { Text("No trips have been finished for this plan.") }
+            if viewModel.summaries.isEmpty {
+                ContentUnavailableView("No shopping trips", systemImage: "basket", description: Text("No trips have been finished for this plan."))
+                    .mealWiseListRows()
+            }
             ForEach(viewModel.summaries) { summary in
                 NavigationLink { ShoppingSummaryView(summary: summary) } label: {
                     VStack(alignment: .leading) {
-                        if let date = summary.trip.finishedAt { Text(date, format: .dateTime.month().day().hour().minute()) }
+                        if let date = summary.trip.finishedAt { Text(date, format: .dateTime.month().day().hour().minute()).font(.headline) }
                         Text("\(summary.purchasedCount) purchased · \(summary.missingPriceCount) missing prices")
+                            .font(.subheadline).foregroundStyle(DesignTokens.textSecondary)
                     }.padding(.vertical, 8)
-                }.accessibilityIdentifier("shopping.history")
+                }.accessibilityIdentifier("shopping.history").mealWiseListRows()
             }
-            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-        }.navigationTitle("Shopping history").task { await viewModel.loadHistory() }
+            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+        }.mealWiseListStyle().navigationTitle("Shopping history").task { await viewModel.loadHistory() }
     }
 }
 
@@ -162,10 +179,11 @@ private struct ShoppingSubstituteView: View {
     var body: some View {
         NavigationStack {
             List {
-                Text("Compare packages of the same ingredient. Required food quantities and allergy requirements stay unchanged.")
-                if viewModel.isWorking { ProgressView("Checking package alternatives") }
+                Text("Compare packages of the same ingredient. Required food quantities and allergy requirements stay unchanged.").mealWiseListRows()
+                if viewModel.isWorking { ProgressView("Checking package alternatives").mealWiseListRows() }
                 if !viewModel.isWorking && viewModel.substitutes.isEmpty {
                     Text("No catalog-backed cheaper package fits this complete cart. Keep your current choice or review your budget.")
+                        .mealWiseListRows()
                 }
                 ForEach(viewModel.substitutes) { option in
                     Button { selected = option } label: {
@@ -175,16 +193,19 @@ private struct ShoppingSubstituteView: View {
                             Text("Projected cycle: \(option.projectedMinorUnits.currency)")
                             Text("Price date: \(option.offer.priceDate)").font(.caption)
                         }.padding(.vertical, 8)
-                    }
+                    }.mealWiseListRows()
                 }
                 if let selected {
                     ChangePreviewCard(preview: selected.preview)
-                    Text("The shopping projection above includes other entered receipt prices. This replacement resets only this item's check and actual price; confirm the replacement package before purchasing.")
-                    Button("Use this package") { Task { if await viewModel.acceptSubstitute(selected) { dismiss() } } }
-                        .disabled(viewModel.isWorking).frame(minHeight: 44)
+                    Section {
+                        Text("The shopping projection above includes other entered receipt prices. This replacement resets only this item's check and actual price; confirm the replacement package before purchasing.")
+                        Button("Use this package") { Task { if await viewModel.acceptSubstitute(selected) { dismiss() } } }
+                            .buttonStyle(MealWiseButtonStyle()).disabled(viewModel.isWorking)
+                    }.mealWiseListRows()
                 }
-                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-            }.navigationTitle("Cheaper packages")
+                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+            }.mealWiseListStyle()
+                .navigationTitle("Cheaper packages")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Keep current package") { dismiss() }.disabled(viewModel.isWorking) } }
                 .task { await viewModel.findSubstitutes(lineID: line.id) }
         }.interactiveDismissDisabled(viewModel.isWorking)

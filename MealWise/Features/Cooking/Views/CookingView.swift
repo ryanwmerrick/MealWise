@@ -41,7 +41,8 @@ struct CookingView: View {
                                 Button { Task { await viewModel.toggleStep(step.number) } } label: {
                                     VStack(alignment: .leading, spacing: 12) {
                                         HStack(alignment: .firstTextBaseline, spacing: 12) {
-                                            Image(systemName: viewModel.progress?.completedSteps.contains(step.number) == true ? "checkmark.circle.fill" : "circle").accessibilityHidden(true)
+                                            Image(systemName: viewModel.progress?.completedSteps.contains(step.number) == true ? "checkmark.circle.fill" : "circle")
+                                                .foregroundStyle(DesignTokens.action).accessibilityHidden(true)
                                             Text("Step \(step.number)").font(.headline)
                                         }
                                         Text(LocalizedStringKey(step.instruction)).fixedSize(horizontal: false, vertical: true)
@@ -71,7 +72,8 @@ struct CookingView: View {
                                 if !viewModel.hasStock {
                                     Text("Record purchased packages in Groceries before confirming completion. Planned packages are not confirmed stock.")
                                 }
-                                Button("Mark as cooked") { confirm = true }.frame(minHeight: 44).disabled(!viewModel.hasStock)
+                                Button("Mark as cooked") { confirm = true }
+                                    .buttonStyle(MealWiseButtonStyle()).disabled(!viewModel.hasStock)
                             }
                         }
                         if !viewModel.notes.isEmpty {
@@ -113,7 +115,7 @@ struct CookingView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .background(DesignTokens.card, in: RoundedRectangle(cornerRadius: 18))
+        .background(DesignTokens.card, in: RoundedRectangle(cornerRadius: DesignTokens.cardRadius))
     }
 }
 

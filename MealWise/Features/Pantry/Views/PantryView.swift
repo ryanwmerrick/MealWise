@@ -17,44 +17,75 @@ struct PantryView: View {
         NavigationStack {
             TimelineView(.periodic(from: .now, by: 60)) { context in
                 List {
-                    Section("Weekly cycle") {
+                    Section {
+                        MealWiseOverview(icon: "archivebox") {
+                            Text("Weekly cycle").font(.subheadline)
+                            Text(plan.closedAt == nil ? LocalizedStringKey("Cycle in progress") : "Cycle complete")
+                                .font(.title.bold())
+                            if plan.closedAt != nil {
+                                Text("This cycle is finished. Its purchases and cooked meals remain in history.").font(.subheadline)
+                            } else {
+                                Text("Confirm actual remaining stock before carrying it over. Forecast leftovers are not pantry inventory.").font(.subheadline)
+                            }
+                        }
+                    }
+                    Section {
                         if plan.closedAt != nil {
-                            Text("This cycle is finished. Its purchases and cooked meals remain in history.")
-                            Button("Plan next week") { nextWeek = true }.frame(minHeight: 44)
+                            Button("Plan next week") { nextWeek = true }.font(.headline).frame(minHeight: 44)
                         } else {
-                            Button("Wrap up this cycle") { wrapping = true }.frame(minHeight: 44)
-                            Text("Confirm actual remaining stock before carrying it over. Forecast leftovers are not pantry inventory.").font(.footnote)
+                            Button("Wrap up this cycle") { wrapping = true }.font(.headline).frame(minHeight: 44)
                         }
                         NavigationLink("Cycle history", value: PantryRoute.history)
-                    }
+                    }.mealWiseListRows()
                     if let savings = try? PantrySavings.estimate(plan: plan), savings > 0 {
                         Section("Estimated package savings") {
-                            Text(savings.currency).font(.title2.bold())
-                            Text("Same meals, with and without confirmed pantry stock. Whole-package purchases determine savings; this is not a receipt refund.").font(.footnote)
+                            Text(savings.currency).font(.title2.bold()).foregroundStyle(DesignTokens.action)
+                            Text("Same meals, with and without confirmed pantry stock. Whole-package purchases determine savings; this is not a receipt refund.")
+                                .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
+                        }.mealWiseListRows()
+                    }
+                    Section("Pantry stock") {
+                        if viewModel.isLoading { ProgressView("Loading pantry stock") }
+                        if !viewModel.isLoading && viewModel.items.isEmpty {
+                            ContentUnavailableView("No confirmed stock", systemImage: "tray", description: Text("Add an item or confirm leftovers at wrap-up."))
                         }
+                        ForEach(viewModel.items) { item in
+                            Button { editing = item } label: {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text(LocalizedStringKey(services.catalog.ingredients.first { $0.id == item.ingredientID }?.name ?? "Unavailable ingredient"))
+                                        .font(.headline)
+                                    Text("Unallocated: \(QuantityFormatting.display(amount: item.availableQuantity, unit: item.unit))")
+                                        .font(.subheadline.weight(.semibold)).foregroundStyle(DesignTokens.action)
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("Recorded: \(QuantityFormatting.display(amount: item.quantity, unit: item.unit))")
+                                        if item.reservations.values.contains(where: { $0 > 0 }) { Text("Some stock is reserved for a plan.") }
+                                        Text(LocalizedStringKey(item.storage?.title ?? "Unknown storage"))
+                                        if let expiry = item.expiry { Text("Label/use-by: \(expiry.formatted(date: .abbreviated, time: .omitted))") }
+                                        else { Text("Label date unknown; availability needs your confirmation.") }
+                                    }.font(.subheadline).foregroundStyle(DesignTokens.textSecondary)
+                                    if !item.availabilityConfirmed || item.expiry.map({ $0 < context.date }) == true {
+                                        Text("Excluded from new planning").font(.caption.weight(.semibold))
+                                    }
+                                }
+                                .foregroundStyle(DesignTokens.textPrimary)
+                                .padding(.vertical, 8)
+                            }.accessibilityIdentifier("pantry.item")
+                        }
+                    }.mealWiseListRows()
+                    if let error = viewModel.errorMessage {
+                        Section {
+                            Text(LocalizedStringKey(error))
+                            Button("Reload pantry") { Task { await viewModel.load() } }
+                        }.mealWiseListRows()
                     }
-                    if viewModel.isLoading { ProgressView("Loading pantry stock") }
-                    if !viewModel.isLoading && viewModel.items.isEmpty { Section { Text("No confirmed stock is in your pantry. Add an item or confirm leftovers at wrap-up.") } }
-                    ForEach(viewModel.items) { item in
-                        Button { editing = item } label: {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(LocalizedStringKey(services.catalog.ingredients.first { $0.id == item.ingredientID }?.name ?? "Unavailable ingredient")).font(.headline)
-                                Text("Recorded: \(QuantityFormatting.display(amount: item.quantity, unit: item.unit))")
-                                Text("Unallocated: \(QuantityFormatting.display(amount: item.availableQuantity, unit: item.unit))")
-                                if item.reservations.values.contains(where: { $0 > 0 }) { Text("Some stock is reserved for a plan.").font(.caption) }
-                                Text(LocalizedStringKey(item.storage?.title ?? "Unknown storage"))
-                                if let expiry = item.expiry { Text("Label/use-by: \(expiry.formatted(date: .abbreviated, time: .omitted))") }
-                                else { Text("Label date unknown; availability needs your confirmation.") }
-                                if !item.availabilityConfirmed || item.expiry.map({ $0 < context.date }) == true { Text("Excluded from new planning").font(.caption) }
-                            }.foregroundStyle(DesignTokens.textPrimary).padding(.vertical, 8)
-                        }.accessibilityIdentifier("pantry.item")
-                    }
-                    if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)); Button("Reload pantry") { Task { await viewModel.load() } } }
                 }
-            }.navigationTitle("Pantry")
-                .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Add pantry item", systemImage: "plus") { adding = true } } }
-                .navigationDestination(for: PantryRoute.self) { _ in CycleHistoryView(services: services) }
-                .task { await viewModel.load() }
+                .contentMargins(.top, 8, for: .scrollContent)
+                .mealWiseListStyle()
+            }
+            .navigationTitle("Pantry")
+            .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Add pantry item", systemImage: "plus") { adding = true } } }
+            .navigationDestination(for: PantryRoute.self) { _ in CycleHistoryView(services: services) }
+            .task { await viewModel.load() }
         }
         .sheet(isPresented: $adding, onDismiss: { Task { await viewModel.load() } }) { PantryEditorView(item: nil, services: services) }
         .sheet(item: $editing, onDismiss: { Task { await viewModel.load() } }) { item in PantryEditorView(item: item, services: services) }
@@ -85,14 +116,16 @@ struct PantryEditorView: View {
                     StorageFields(storage: $viewModel.storage, hasExpiry: $viewModel.hasExpiry, expiry: $viewModel.expiry)
                     Toggle("I have checked that this stock is available", isOn: $viewModel.available)
                     Text("Unconfirmed or expired stock stays out of planning. Check the package's actual storage instructions; unknown dates do not imply a safety guarantee.").font(.footnote)
-                }
+                }.mealWiseListRows()
                 Section {
-                    Button("Save pantry item") { Task { if await viewModel.save() { await finish() } } }.frame(minHeight: 44)
+                    Button("Save pantry item") { Task { if await viewModel.save() { await finish() } } }
+                        .buttonStyle(MealWiseButtonStyle())
                     if viewModel.original != nil { Button("Remove this stock", role: .destructive) { confirmRemove = true }.frame(minHeight: 44) }
                     Text("Changes recalculate remaining meal requirements. Cooked history stays unchanged; a shortage can require more purchases and budget review.").font(.footnote)
-                }
-                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-            }.disabled(viewModel.isWorking)
+                }.mealWiseListRows()
+                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+            }.mealWiseListStyle()
+                .disabled(viewModel.isWorking)
                 .navigationTitle("Pantry item")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() }.disabled(viewModel.isWorking) } }
                 .confirmationDialog("Remove this stock and update remaining purchases?", isPresented: $confirmRemove, titleVisibility: .visible) {

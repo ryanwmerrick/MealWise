@@ -24,19 +24,19 @@ struct SettingsView: View {
                         LabeledContent("Allergies", value: plan.profile.allergies.count.formatted())
                         LabeledContent("Preferences", value: plan.profile.preferences.count.formatted())
                         LabeledContent("Meat preference", value: (plan.profile.meatPreference ?? .noPreference).title)
-                    }
+                    }.mealWiseListRows()
                     Section {
                         Button("Edit plan settings") { editing = true }.frame(minHeight: 44).disabled(plan.closedAt != nil)
                         NavigationLink("Weekly nutrition", value: SettingsRoute.nutrition)
                         Text("Changing your answers creates a new plan preview. Your saved plan changes only after you accept.").font(.footnote)
-                    }
+                    }.mealWiseListRows()
                 }
                 if session.services != nil {
                     Section("Saved preferences") {
                         NavigationLink("Favorites", value: SettingsRoute.favorites)
                         NavigationLink("Excluded recipes", value: SettingsRoute.excluded)
                         NavigationLink("Cycle history", value: SettingsRoute.history)
-                    }
+                    }.mealWiseListRows()
                     Section("Local data") {
                         if session.plan != nil {
                             Button("Start over", role: .destructive) { confirmingReset = true }.frame(minHeight: 44)
@@ -44,10 +44,11 @@ struct SettingsView: View {
                         }
                         Button("Erase all local data", role: .destructive) { confirmingErasure = true }.frame(minHeight: 44)
                         Text("Clear plans, setup, pantry, preferences and history from this installation.").font(.footnote)
-                    }
+                    }.mealWiseListRows()
                 }
-                if let error { Text(LocalizedStringKey(error)) }
-            }.disabled(isErasing)
+                if let error { Text(LocalizedStringKey(error)).mealWiseListRows() }
+            }.mealWiseListStyle()
+            .disabled(isErasing)
             .navigationTitle(session.plan == nil ? "Saved data" : "Plan settings")
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() }.disabled(isErasing) } }
             .confirmationDialog("Remove your current plan and setup answers?", isPresented: $confirmingReset, titleVisibility: .visible) {
