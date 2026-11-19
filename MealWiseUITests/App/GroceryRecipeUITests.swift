@@ -41,5 +41,21 @@ final class GroceryRecipeUITests: XCTestCase {
         capture.name = "Phase 4 groceries"
         capture.lifetime = .keepAlways
         add(capture)
+
+        XCTAssertTrue(app.staticTexts["Your List"].exists)
+        XCTAssertFalse(app.staticTexts["Uses actual prices when entered and sample prices for the rest."].exists)
+        app.buttons["grocery.add"].tap()
+        app.textFields["Ingredient"].tap()
+        app.textFields["Ingredient"].typeText("Fresh basil")
+        app.textFields["Quantity (optional)"].tap()
+        app.textFields["Quantity (optional)"].typeText("1 bunch")
+        app.buttons["Add"].tap()
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Fresh basil")).firstMatch.waitForExistence(timeout: 5))
+        app.terminate()
+        app.launch()
+        app.tabBars.buttons["Groceries"].tap()
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Fresh basil")).firstMatch.waitForExistence(timeout: 5))
+        app.buttons["grocery.start"].tap()
+        XCTAssertTrue(app.buttons.matching(identifier: "shopping.manualCheck").matching(NSPredicate(format: "label CONTAINS %@", "Fresh basil")).firstMatch.waitForExistence(timeout: 5))
     }
 }

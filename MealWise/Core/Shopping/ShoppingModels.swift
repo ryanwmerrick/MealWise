@@ -13,6 +13,13 @@ struct ShoppingLine: Codable, Equatable, Sendable, Identifiable {
     var checked: Bool
 }
 
+struct ManualGroceryItem: Codable, Equatable, Sendable, Identifiable {
+    let id: UUID
+    let name: String
+    let quantity: String
+    var checked = false
+}
+
 struct ShoppingTrip: Codable, Equatable, Sendable, Identifiable {
     let id: UUID
     let planID: UUID
@@ -24,6 +31,11 @@ struct ShoppingTrip: Codable, Equatable, Sendable, Identifiable {
     var finishedAt: Date?
     var startedAt: Date? = nil
     var selectedStore: GroceryPreference? = nil
+    var manualItems: [ManualGroceryItem]? = nil
+
+    var addedItems: [ManualGroceryItem] { manualItems ?? [] }
+    var hasCheckedItems: Bool { lines.contains(where: \.checked) || addedItems.contains(where: \.checked) }
+    var itemsLeft: Int { lines.count(where: { !$0.checked }) + addedItems.count(where: { !$0.checked }) }
 
     var projectedMinorUnits: Int64 { get throws {
         try lines.reduce(priorSpendingMinorUnits) { try checkedSum($0, $1.actualMinorUnits ?? $1.estimatedMinorUnits) }
@@ -42,9 +54,9 @@ struct ShoppingCartSnapshot: Sendable {
 struct ShoppingSummary: Codable, Equatable, Sendable, Identifiable {
     let trip: ShoppingTrip
     var id: UUID { trip.id }
-    var purchasedCount: Int { trip.lines.filter(\.checked).count }
-    var missingPriceCount: Int { trip.lines.filter { $0.checked && $0.actualMinorUnits == nil }.count }
-    var unpurchasedCount: Int { trip.lines.filter { !$0.checked }.count }
+    var purchasedCount: Int { trip.lines.count(where: \.checked) + trip.addedItems.count(where: \.checked) }
+    var missingPriceCount: Int { trip.lines.count(where: { $0.checked && $0.actualMinorUnits == nil }) + trip.addedItems.count(where: \.checked) }
+    var unpurchasedCount: Int { trip.itemsLeft }
     var knownActualMinorUnits: Int64 { get throws { try trip.actualToDateMinorUnits } }
 }
 

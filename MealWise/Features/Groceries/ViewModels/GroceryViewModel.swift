@@ -45,6 +45,22 @@ final class GroceryViewModel: ObservableObject {
         snapshot(for: plan)?.isActive == true
     }
 
+    func manualItems(for plan: WeeklyPlan) -> [ManualGroceryItem] {
+        snapshot(for: plan)?.trip.addedItems ?? []
+    }
+
+    func addManualItem(name: String, quantity: String) async throws {
+        pricing = try await shopping.addManualItem(name: name, quantity: quantity, planID: planID)
+    }
+
+    func removeManualItem(_ id: UUID) async {
+        do {
+            pricing = try await shopping.removeManualItem(id, planID: planID)
+        } catch {
+            errorMessage = "The item could not be removed. Please try again."
+        }
+    }
+
     func estimatedCost(for plan: WeeklyPlan) -> Int64 {
         (try? snapshot(for: plan)?.trip.projectedMinorUnits) ?? plan.totalMinorUnits
     }

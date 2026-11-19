@@ -3,6 +3,50 @@ import Testing
 @testable import MealWise
 
 struct ShoppingTests {
+    @Test func manuallyAddedGroceriesPersistAndOnlyCheckedItemsLeaveTheList() async throws {
+        let now = Date(timeIntervalSince1970: 1794528000)
+        let container = try await LocalStore.makeContainer(inMemory: true)
+        let plans = PlanRepository(container: container, clock: { now })
+        let catalog = try await CatalogService(allowDevelopment: true, now: now).loadCatalog()
+        let result = try await PlanService(clock: { now }).generate(PlanRequest(profile: .fixture, catalog: catalog))
+        guard case .feasible(let plan) = result else {
+            Issue.record("Fixture failed")
+            return
+        }
+        try await plans.saveActivePlan(plan)
+        let service = ShoppingService(plans: plans, clock: { now })
+        let first = try await service.addManualItem(name: " Basil ", quantity: " 1 bunch ", planID: plan.id)
+        let basil = try #require(first.trip.addedItems.first)
+        #expect(basil.name == "Basil")
+        #expect(basil.quantity == "1 bunch")
+        #expect(!first.isActive)
+        #expect(try first.trip.projectedMinorUnits == plan.totalMinorUnits)
+
+        let trip = try await service.openTrip(planID: plan.id)
+        _ = try await service.addManualItem(name: "Lemons", quantity: "", planID: plan.id)
+        _ = try await service.setChecked(itemID: basil.id, checked: true, tripID: trip.id)
+        let resumed = try await ShoppingService(container: container, clock: { now }).openTrip(planID: plan.id)
+        #expect(resumed.addedItems.map(\.checked) == [true, false])
+        let summary = try await service.finishTrip(resumed.id)
+        #expect(summary.purchasedCount == 1)
+        #expect(try await plans.loadActivePlan() == plan)
+        let pending = try await service.cart(planID: plan.id)
+        #expect(pending.trip.addedItems.map(\.name) == ["Lemons"])
+        let lemon = try #require(pending.trip.addedItems.first)
+        #expect(try await service.removeManualItem(lemon.id, planID: plan.id).trip.addedItems.isEmpty)
+
+        let catalogTrip = try await service.openTrip(planID: plan.id)
+        for line in catalogTrip.lines {
+            _ = try await service.setChecked(itemID: line.id, checked: true, tripID: catalogTrip.id)
+        }
+        _ = try await service.finishTrip(catalogTrip.id)
+        let added = try await service.addManualItem(name: "Pears", quantity: "", planID: plan.id)
+        let pears = try #require(added.trip.addedItems.first)
+        _ = try await service.openTrip(planID: plan.id)
+        #expect(try await !service.removeManualItem(pears.id, planID: plan.id).isActive)
+        #expect(try await !service.cart(planID: plan.id).isActive)
+    }
+
     @Test func malformedAndNegativePricesAreRejected() {
         for text in ["-1", "1.001", "NaN", "1e3", "", "$3"] {
             #expect(throws: (any Error).self) { try Money.parse(text) }

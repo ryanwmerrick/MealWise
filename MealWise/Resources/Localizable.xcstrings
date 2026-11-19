@@ -457,6 +457,16 @@
         }
       }
     },
+    "Add": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
     "Add an item or confirm leftovers at wrap-up.": {
       "localizations": {
         "en": {
@@ -474,6 +484,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add beans and cumin, stir until hot throughout, and serve."
+          }
+        }
+      }
+    },
+    "Add Grocery Item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Grocery Item"
+          }
+        }
+      }
+    },
+    "Add grocery item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add grocery item"
           }
         }
       }
@@ -506,6 +536,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
+          }
+        }
+      }
+    },
+    "Added by you": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Added by you"
           }
         }
       }
@@ -4136,6 +4176,16 @@
         }
       }
     },
+    "Quantity (optional)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quantity (optional)"
+          }
+        }
+      }
+    },
     "Quantity unit: %@": {
       "localizations": {
         "en": {
@@ -4468,6 +4518,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reminder: %lld minutes"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
           }
         }
       }
@@ -4964,6 +5024,16 @@
         }
       }
     },
+    "Some purchases have no recorded price.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some purchases have no recorded price."
+          }
+        }
+      }
+    },
     "Some stock is reserved for a plan.": {
       "localizations": {
         "en": {
@@ -5274,6 +5344,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Synthetic package prices for development. No retailer location or availability is implied."
+          }
+        }
+      }
+    },
+    "The item could not be added. Please try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The item could not be added. Please try again."
+          }
+        }
+      }
+    },
+    "The item could not be removed. Please try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The item could not be removed. Please try again."
           }
         }
       }
@@ -6609,6 +6699,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Your latest plan could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Your List": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your List"
           }
         }
       }

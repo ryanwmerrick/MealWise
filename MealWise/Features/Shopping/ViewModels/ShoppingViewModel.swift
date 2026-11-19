@@ -36,10 +36,10 @@ final class ShoppingViewModel: ObservableObject {
             errorMessage = "The store could not be saved. Reopen the current trip and retry."
         }
     }
-    func toggle(_ line: ShoppingLine) async {
+    func toggle(itemID: UUID, wasChecked: Bool) async {
         guard let trip, !isWorking else { return }
         isWorking = true; defer { isWorking = false }
-        do { self.trip = try await service.setChecked(itemID: line.id, checked: !line.checked, tripID: trip.id); errorMessage = nil }
+        do { self.trip = try await service.setChecked(itemID: itemID, checked: !wasChecked, tripID: trip.id); errorMessage = nil }
         catch { errorMessage = "Your purchase check could not be saved. Reopen the current trip and retry." }
     }
     func price(_ text: String, lineID: UUID) async -> Bool {
@@ -73,5 +73,4 @@ final class ShoppingViewModel: ObservableObject {
         catch { errorMessage = "This package preview is out of date or could not be saved. Reopen it from your current trip."; return false }
     }
     var projected: Int64? { try? trip?.projectedMinorUnits }
-    var itemsLeft: Int { trip?.lines.count(where: { !$0.checked }) ?? 0 }
 }

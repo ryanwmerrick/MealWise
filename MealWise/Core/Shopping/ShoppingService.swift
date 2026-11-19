@@ -3,6 +3,8 @@ import SwiftData
 
 protocol ShoppingServiceProtocol: Sendable {
     func cart(planID: UUID) async throws -> ShoppingCartSnapshot
+    func addManualItem(name: String, quantity: String, planID: UUID) async throws -> ShoppingCartSnapshot
+    func removeManualItem(_ id: UUID, planID: UUID) async throws -> ShoppingCartSnapshot
     func openTrip(planID: UUID) async throws -> ShoppingTrip
     func selectStore(_ store: GroceryPreference?, tripID: UUID) async throws -> ShoppingTrip
     func updatePrice(itemID: UUID, actualPrice: Money, tripID: UUID) async throws -> ShoppingTrip
@@ -19,6 +21,15 @@ actor ShoppingService: ShoppingServiceProtocol {
     init(plans: PlanRepository, clock: @escaping @Sendable () -> Date = { .now }) { self.plans = plans; self.clock = clock }
     init(container: ModelContainer, clock: @escaping @Sendable () -> Date = { .now }) { plans = PlanRepository(container: container); self.clock = clock }
     func cart(planID: UUID) async throws -> ShoppingCartSnapshot { try await plans.shoppingCart(planID: planID) }
+    func addManualItem(name: String, quantity: String, planID: UUID) async throws -> ShoppingCartSnapshot {
+        let name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else { throw ShoppingError.invalidItem }
+        let item = ManualGroceryItem(id: UUID(), name: name, quantity: quantity.trimmingCharacters(in: .whitespacesAndNewlines))
+        return try await plans.editManualGroceries(planID: planID) { $0.append(item) }
+    }
+    func removeManualItem(_ id: UUID, planID: UUID) async throws -> ShoppingCartSnapshot {
+        try await plans.editManualGroceries(planID: planID) { $0.removeAll { $0.id == id } }
+    }
     func openTrip(planID: UUID) async throws -> ShoppingTrip { try await plans.openShoppingTrip(planID: planID, at: clock()) }
     func selectStore(_ store: GroceryPreference?, tripID: UUID) async throws -> ShoppingTrip {
         try await plans.editShoppingTrip(tripID) { $0.selectedStore = store }
@@ -31,8 +42,13 @@ actor ShoppingService: ShoppingServiceProtocol {
     }
     func setChecked(itemID: UUID, checked: Bool, tripID: UUID) async throws -> ShoppingTrip {
         try await plans.editShoppingTrip(tripID) { trip in
-            guard let index = trip.lines.firstIndex(where: { $0.id == itemID }) else { throw ShoppingError.invalidItem }
-            trip.lines[index].checked = checked
+            if let index = trip.lines.firstIndex(where: { $0.id == itemID }) {
+                trip.lines[index].checked = checked
+            } else if let index = trip.addedItems.firstIndex(where: { $0.id == itemID }) {
+                trip.manualItems?[index].checked = checked
+            } else {
+                throw ShoppingError.invalidItem
+            }
         }
     }
     func finishTrip(_ tripID: UUID) async throws -> ShoppingSummary { try await plans.finishShoppingTrip(tripID, at: clock()) }
@@ -91,6 +107,37 @@ extension PlanRepository {
             .map { try JSONDecoder().decode(ShoppingTrip.self, from: $0.payload) }
     }
 
+    func editManualGroceries(planID: UUID, edit: @Sendable (inout [ManualGroceryItem]) -> Void) throws -> ShoppingCartSnapshot {
+        let context = ModelContext(container)
+        context.autosaveEnabled = false
+        let documents = try context.fetch(FetchDescriptor<StoredDocument>())
+        let plan = try shoppingPlan(documents, id: planID)
+        let previous = try shoppingDraft(planID: planID, documents: documents)
+        var trip = try shoppingCart(for: plan, previous: previous, documents: documents)
+        var pending = trip.addedItems
+        edit(&pending)
+        trip.manualItems = pending
+        let savedItems = pending.map { ManualGroceryItem(id: $0.id, name: $0.name, quantity: $0.quantity) }
+        try store(savedItems, key: manualGroceryKey(planID), documents: documents, context: context)
+        var isActive = previous != nil
+        if var draft = previous, let document = documents.first(where: { $0.key == "shopping-draft-" + planID.uuidString }) {
+            if pending.isEmpty && trip.lines.isEmpty {
+                context.delete(document)
+                isActive = false
+            } else {
+                draft.manualItems = pending
+                document.payload = try JSONEncoder().encode(draft)
+            }
+        }
+        try Task.checkCancellation()
+        try context.save()
+        return ShoppingCartSnapshot(trip: trip, isActive: isActive)
+    }
+
+    private func manualGroceryKey(_ planID: UUID) -> String {
+        "manual-groceries-" + planID.uuidString
+    }
+
     private func shoppingCart(for plan: WeeklyPlan, previous: ShoppingTrip?, documents: [StoredDocument]) throws -> ShoppingTrip {
         if let previous, previous.planRevision == plan.revision { return previous }
         let latest = try documents.filter { $0.key.hasPrefix("shopping-history-") }
@@ -107,9 +154,12 @@ extension PlanRepository {
                                 unit: offer.unit, estimatedMinorUnits: item.costMinorUnits,
                                 actualMinorUnits: priorLine?.actualMinorUnits, checked: priorLine?.checked ?? false)
         }
+        let manualItems = try previous?.manualItems ?? documents.first { $0.key == manualGroceryKey(plan.id) }
+            .map { try JSONDecoder().decode([ManualGroceryItem].self, from: $0.payload) }
         return ShoppingTrip(id: UUID(), planID: plan.id, planRevision: plan.revision, storeID: plan.profile.storeID,
                             budgetMinorUnits: plan.profile.budgetMinorUnits, priorSpendingMinorUnits: plan.resources?.committedMinorUnits ?? 0,
-                            lines: lines, finishedAt: nil, startedAt: previous?.startedAt, selectedStore: previous?.selectedStore)
+                            lines: lines, finishedAt: nil, startedAt: previous?.startedAt, selectedStore: previous?.selectedStore,
+                            manualItems: manualItems)
     }
 
     func editShoppingTrip(_ id: UUID, edit: @Sendable (inout ShoppingTrip) throws -> Void) throws -> ShoppingTrip {
@@ -136,28 +186,35 @@ extension PlanRepository {
         let (document, original) = try draft(id, documents: documents)
         let plan = try shoppingPlan(documents, id: original.planID)
         guard plan.revision == original.planRevision else { throw ShoppingError.staleTrip }
-        guard original.lines.contains(where: \.checked) else { throw ShoppingError.noPurchases }
-        var resources = plan.resources ?? PlanResources()
-        for line in original.lines where line.checked {
-            let quantity = line.packageCount.multipliedReportingOverflow(by: line.packageQuantity)
-            guard !quantity.overflow else { throw PlanningError.overflow }
-            resources.purchases.append(PurchasedStock(tripID: id, ingredientID: line.ingredientID, offerID: line.offerID,
-                                                     quantity: quantity.partialValue, packageCount: line.packageCount,
-                                                     actualMinorUnits: line.actualMinorUnits, estimatedMinorUnits: line.estimatedMinorUnits))
+        guard original.hasCheckedItems else { throw ShoppingError.noPurchases }
+        let purchases = original.lines.filter(\.checked)
+        if !purchases.isEmpty {
+            var resources = plan.resources ?? PlanResources()
+            for line in purchases {
+                let quantity = line.packageCount.multipliedReportingOverflow(by: line.packageQuantity)
+                guard !quantity.overflow else { throw PlanningError.overflow }
+                resources.purchases.append(PurchasedStock(tripID: id, ingredientID: line.ingredientID, offerID: line.offerID,
+                                                         quantity: quantity.partialValue, packageCount: line.packageCount,
+                                                         actualMinorUnits: line.actualMinorUnits, estimatedMinorUnits: line.estimatedMinorUnits))
+            }
+            let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: now))
+            let updated = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
+                                     meals: plan.meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: now)
+            try PlanValidation.validate(updated) // Real overspend is retained, rather than rejected or hidden.
+            try store(updated, key: "activePlan", documents: documents, context: context)
         }
-        let priced = try CartCalculator.calculate(CartRequest(meals: plan.meals, profile: plan.profile, catalog: plan.catalog, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: now))
-        let updated = WeeklyPlan(id: plan.id, revision: UUID(), profile: plan.profile, catalog: plan.catalog,
-                                 meals: plan.meals, cart: priced.items, totalMinorUnits: priced.totalMinorUnits, resources: resources, offerOverrides: plan.offerOverrides, pricedAt: now)
-        try PlanValidation.validate(updated) // Real overspend is retained, rather than rejected or hidden.
         var trip = original; trip.finishedAt = now
         let summary = ShoppingSummary(trip: trip)
-        try store(updated, key: "activePlan", documents: documents, context: context)
         try store(summary, key: historyKey, documents: documents, context: context)
+        if original.manualItems != nil {
+            let pending = original.addedItems.filter { !$0.checked }
+            try store(pending, key: manualGroceryKey(plan.id), documents: documents, context: context)
+        }
         context.delete(document)
         let checklistKey = "checklist-" + plan.id.uuidString
         if let checklist = documents.first(where: { $0.key == checklistKey }) {
             var checked = try JSONDecoder().decode(Set<String>.self, from: checklist.payload)
-            checked.subtract(original.lines.filter(\.checked).map(\.ingredientID))
+            checked.subtract(purchases.map(\.ingredientID))
             checklist.payload = try JSONEncoder().encode(checked)
         }
         try Task.checkCancellation(); try context.save()
@@ -235,7 +292,8 @@ extension PlanRepository {
               item.costMinorUnits < (old.actualMinorUnits ?? old.estimatedMinorUnits) else { throw PlanChangeError.infeasible }
         revised = ShoppingTrip(id: revised.id, planID: revised.planID, planRevision: proposed.revision, storeID: revised.storeID,
                                budgetMinorUnits: revised.budgetMinorUnits, priorSpendingMinorUnits: revised.priorSpendingMinorUnits,
-                               lines: revised.lines, finishedAt: nil, startedAt: revised.startedAt, selectedStore: revised.selectedStore)
+                               lines: revised.lines, finishedAt: nil, startedAt: revised.startedAt, selectedStore: revised.selectedStore,
+                               manualItems: revised.manualItems)
         document.payload = try JSONEncoder().encode(revised)
         try store(proposed, key: "activePlan", documents: documents, context: context)
         try Task.checkCancellation(); try context.save()

@@ -18,8 +18,19 @@ struct ShoppingView: View {
     var body: some View {
         List {
             if let trip = viewModel.trip {
-                if trip.lines.isEmpty {
+                if trip.lines.isEmpty && trip.addedItems.isEmpty {
                     Text("No additional packages are needed for this plan.").mealWiseListRows()
+                }
+                if !trip.addedItems.isEmpty {
+                    Section("Added by you") {
+                        ForEach(trip.addedItems) { item in
+                            purchaseCheck(itemID: item.id, checked: item.checked) {
+                                ManualGroceryItemLabel(item: item)
+                            }
+                            .disabled(viewModel.isWorking)
+                            .accessibilityIdentifier("shopping.manualCheck")
+                        }
+                    }.mealWiseListRows()
                 }
                 Section {
                     ForEach(trip.lines, content: shoppingRow)
@@ -53,7 +64,7 @@ struct ShoppingView: View {
             if let trip = viewModel.trip {
                 Button("Finish trip") { showFinish = true }
                     .buttonStyle(MealWiseButtonStyle())
-                    .disabled(viewModel.isWorking || !trip.lines.contains(where: \.checked))
+                    .disabled(viewModel.isWorking || !trip.hasCheckedItems)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 8)
                     .background(DesignTokens.surface)
@@ -98,7 +109,7 @@ struct ShoppingView: View {
     @ViewBuilder
     private func tripMetrics(_ trip: ShoppingTrip) -> some View {
         metric("checklist") {
-            Text("\(viewModel.itemsLeft) items left")
+            Text("\(trip.itemsLeft) items left")
                 .accessibilityIdentifier("shopping.itemsLeft")
         }
         if let startedAt = trip.startedAt {
@@ -156,21 +167,12 @@ struct ShoppingView: View {
 
     private func shoppingRow(_ line: ShoppingLine) -> some View {
         HStack(spacing: 4) {
-            Button { Task { await viewModel.toggle(line) } } label: {
-                HStack(spacing: 10) {
-                    Image(systemName: line.checked ? "checkmark.square.fill" : "square")
-                        .font(.title3)
-                        .foregroundStyle(DesignTokens.action)
-                        .accessibilityHidden(true)
-                    GroceryItemLabel(name: line.name, packages: line.packageCount,
-                                     packageSize: QuantityFormatting.display(amount: line.packageQuantity, unit: line.unit),
-                                     costMinorUnits: line.actualMinorUnits ?? line.estimatedMinorUnits,
-                                     showsActualPrice: line.actualMinorUnits != nil)
-                }
-                .frame(minHeight: 44)
-                .contentShape(Rectangle())
+            purchaseCheck(itemID: line.id, checked: line.checked) {
+                GroceryItemLabel(name: line.name, packages: line.packageCount,
+                                 packageSize: QuantityFormatting.display(amount: line.packageQuantity, unit: line.unit),
+                                 costMinorUnits: line.actualMinorUnits ?? line.estimatedMinorUnits,
+                                 showsActualPrice: line.actualMinorUnits != nil)
             }
-            .accessibilityAddTraits(line.checked ? .isSelected : [])
             .accessibilityIdentifier("shopping.check")
             Menu {
                 Button("Edit price", systemImage: "tag") { priceLine = line }
@@ -185,6 +187,22 @@ struct ShoppingView: View {
         }
         .buttonStyle(.borderless)
         .disabled(viewModel.isWorking)
+    }
+
+    private func purchaseCheck<Content: View>(itemID: UUID, checked: Bool, @ViewBuilder content: () -> Content) -> some View {
+        Button { Task { await viewModel.toggle(itemID: itemID, wasChecked: checked) } } label: {
+            HStack(spacing: 10) {
+                Image(systemName: checked ? "checkmark.square.fill" : "square")
+                    .font(.title3)
+                    .foregroundStyle(DesignTokens.action)
+                    .accessibilityHidden(true)
+                content()
+            }
+            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.borderless)
+        .accessibilityAddTraits(checked ? .isSelected : [])
     }
 }
 
@@ -243,7 +261,7 @@ struct ShoppingSummaryView: View {
                 if let projected = try? summary.trip.projectedMinorUnits {
                     LabeledContent("Projected cycle at finish", value: projected.currency)
                 }
-                if summary.missingPriceCount > 0 { Text("This is an incomplete receipt. Missing prices remain estimates in cycle projections.") }
+                if summary.missingPriceCount > 0 { Text("Some purchases have no recorded price.") }
                 if summary.unpurchasedCount > 0 { Text("This was a partial trip. Unpurchased requirements remain on your grocery list.") }
                 if let projected = try? summary.trip.projectedMinorUnits, projected > summary.trip.budgetMinorUnits {
                     Text("The projected cycle exceeds its budget. Purchases and actual overspend remain recorded.")
@@ -256,6 +274,12 @@ struct ShoppingSummaryView: View {
                     LabeledContent("Dated estimate", value: line.estimatedMinorUnits.currency)
                     if let actual = line.actualMinorUnits { LabeledContent("Recorded actual", value: actual.currency) }
                     else { Text("Actual price unknown") }
+                }.mealWiseListRows()
+            }
+            let addedPurchases = summary.trip.addedItems.filter(\.checked)
+            if !addedPurchases.isEmpty {
+                Section("Added by you") {
+                    ForEach(addedPurchases) { ManualGroceryItemLabel(item: $0) }
                 }.mealWiseListRows()
             }
             Text("Receipt observations are retained with this package, quantity and store for review in later plans. Tax, deposits and fees are excluded unless entered.")

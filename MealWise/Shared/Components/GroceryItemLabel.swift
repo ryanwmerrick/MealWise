@@ -34,6 +34,21 @@ struct GroceryItemLabel: View {
     }
 }
 
+struct ManualGroceryItemLabel: View {
+    let item: ManualGroceryItem
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(item.name).font(.subheadline.weight(.semibold))
+            if !item.quantity.isEmpty {
+                Text(item.quantity).font(.caption).foregroundStyle(DesignTokens.textSecondary)
+            }
+        }
+        .foregroundStyle(DesignTokens.textPrimary)
+        .padding(.vertical, 3)
+    }
+}
+
 #Preview {
     GroceryItemLabel(name: "Bell pepper", packages: 1, packageSize: "500 g", costMinorUnits: 199)
         .padding()
