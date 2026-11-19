@@ -36,8 +36,10 @@ struct GroceryView: View {
                     groceryList
                 }
             }
-            .listSectionSpacing(12)
-            .contentMargins(.top, 8, for: .scrollContent)
+            .listSectionSpacing(4)
+            .environment(\.defaultMinListHeaderHeight, 20)
+            .environment(\.defaultMinListRowHeight, 40)
+            .contentMargins(.top, 4, for: .scrollContent)
             .mealWiseListStyle()
             .navigationTitle("Groceries")
             .toolbar {
@@ -125,6 +127,7 @@ struct GroceryView: View {
             Section("Added by you") {
                 ForEach(manualItems) { item in
                     ManualGroceryItemLabel(item: item)
+                        .listRowInsets(.vertical, 3)
                         .swipeActions {
                             Button("Remove", role: .destructive) {
                                 Task { await viewModel.removeManualItem(item.id) }
@@ -141,6 +144,7 @@ struct GroceryView: View {
             Section(LocalizedStringKey(section.category.title)) {
                 ForEach(section.rows) { row in
                     GroceryItemLabel(name: row.title, packages: row.packages, packageSize: row.packageSize, costMinorUnits: row.costMinorUnits)
+                        .listRowInsets(.vertical, 3)
                         .accessibilityElement(children: .combine)
                 }
             }.mealWiseListRows()
