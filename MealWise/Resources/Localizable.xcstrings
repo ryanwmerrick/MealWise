@@ -123,6 +123,16 @@
         }
       }
     },
+    "%lld days ago": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days ago"
+          }
+        }
+      }
+    },
     "%lld days, %lld meals per day": {
       "localizations": {
         "en": {
@@ -367,6 +377,16 @@
         }
       }
     },
+    "About this week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About this week"
+          }
+        }
+      }
+    },
     "Accept change": {
       "localizations": {
         "en": {
@@ -403,6 +423,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Accepting starts a separate cycle. Completed history is preserved, and confirmed stock is reserved once."
+          }
+        }
+      }
+    },
+    "Acquired %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acquired %@"
           }
         }
       }
@@ -484,6 +514,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add beans and cumin, stir until hot throughout, and serve."
+          }
+        }
+      }
+    },
+    "Add food you have at home or finish a shopping trip.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add food you have at home or finish a shopping trip."
           }
         }
       }
@@ -621,6 +661,16 @@
         }
       }
     },
+    "All items reviewed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All items reviewed"
+          }
+        }
+      }
+    },
     "Allergies": {
       "localizations": {
         "en": {
@@ -668,6 +718,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Almost all"
+          }
+        }
+      }
+    },
+    "Amount left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amount left"
+          }
+        }
+      }
+    },
+    "Amount unknown": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amount unknown"
+          }
+        }
+      }
+    },
+    "Amount used": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amount used"
           }
         }
       }
@@ -1273,6 +1353,16 @@
         }
       }
     },
+    "Close": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
     "Close cooking": {
       "localizations": {
         "en": {
@@ -1561,12 +1651,32 @@
         }
       }
     },
+    "Could not finish this week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not finish this week"
+          }
+        }
+      }
+    },
     "Could not open MealWise": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Could not open MealWise"
+          }
+        }
+      }
+    },
+    "Count": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count"
           }
         }
       }
@@ -1678,6 +1788,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cycle totals"
+          }
+        }
+      }
+    },
+    "Date acquired": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date acquired"
+          }
+        }
+      }
+    },
+    "Date unknown": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date unknown"
           }
         }
       }
@@ -1938,6 +2068,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Edit answers"
+          }
+        }
+      }
+    },
+    "Edit details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit details"
           }
         }
       }
@@ -2279,6 +2419,26 @@
         }
       }
     },
+    "Finish this week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish this week"
+          }
+        }
+      }
+    },
+    "Finish this week and plan next week?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish this week and plan next week?"
+          }
+        }
+      }
+    },
     "Finish trip": {
       "localizations": {
         "en": {
@@ -2295,6 +2455,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Finish with only these purchased items?"
+          }
+        }
+      }
+    },
+    "Finished and reset plans appear here.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished and reset plans appear here."
           }
         }
       }
@@ -2317,6 +2487,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Flexible"
+          }
+        }
+      }
+    },
+    "Food kept for later": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Food kept for later"
           }
         }
       }
@@ -2432,6 +2612,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Go back"
+          }
+        }
+      }
+    },
+    "Got it today": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Got it today"
+          }
+        }
+      }
+    },
+    "Got it yesterday": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Got it yesterday"
+          }
+        }
+      }
+    },
+    "Grams": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grams"
           }
         }
       }
@@ -2559,6 +2769,16 @@
         }
       }
     },
+    "I know when I got this": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I know when I got this"
+          }
+        }
+      }
+    },
     "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout.": {
       "extractionState": "stale",
       "localizations": {
@@ -2620,6 +2840,16 @@
         }
       }
     },
+    "Ingredient name": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingredient name"
+          }
+        }
+      }
+    },
     "Ingredient unavailable": {
       "localizations": {
         "en": {
@@ -2677,6 +2907,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ingredients reused: %lld"
+          }
+        }
+      }
+    },
+    "Item %lld of %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Item %lld of %lld"
           }
         }
       }
@@ -2847,6 +3087,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Loading pantry stock"
+          }
+        }
+      }
+    },
+    "Loading week history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading week history"
           }
         }
       }
@@ -3047,6 +3297,16 @@
         }
       }
     },
+    "Milliliters": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milliliters"
+          }
+        }
+      }
+    },
     "Minimize shopping": {
       "localizations": {
         "en": {
@@ -3154,6 +3414,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "New spending cap"
+          }
+        }
+      }
+    },
+    "Next week’s dates": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next week’s dates"
           }
         }
       }
@@ -3344,12 +3614,32 @@
         }
       }
     },
+    "No past weeks": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No past weeks"
+          }
+        }
+      }
+    },
     "No pending pins": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "No pending pins"
+          }
+        }
+      }
+    },
+    "No purchases were added to Pantry at the end of this week.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No purchases were added to Pantry at the end of this week."
           }
         }
       }
@@ -3608,12 +3898,32 @@
         }
       }
     },
+    "Other ingredient": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other ingredient"
+          }
+        }
+      }
+    },
     "Other meals using these ingredients": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Other meals using these ingredients"
+          }
+        }
+      }
+    },
+    "Out of it": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Out of it"
           }
         }
       }
@@ -3709,6 +4019,16 @@
         }
       }
     },
+    "Pantry options": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry options"
+          }
+        }
+      }
+    },
     "Pantry stock": {
       "localizations": {
         "en": {
@@ -3726,6 +4046,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pantry stock could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Pantry unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry unavailable"
           }
         }
       }
@@ -4186,6 +4516,16 @@
         }
       }
     },
+    "Quantity unit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quantity unit"
+          }
+        }
+      }
+    },
     "Quantity unit: %@": {
       "localizations": {
         "en": {
@@ -4411,6 +4751,16 @@
         }
       }
     },
+    "Refresh your Pantry and try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh your Pantry and try again."
+          }
+        }
+      }
+    },
     "Regenerate %@": {
       "localizations": {
         "en": {
@@ -4542,6 +4892,16 @@
         }
       }
     },
+    "Remove item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove item"
+          }
+        }
+      }
+    },
     "Remove pin": {
       "localizations": {
         "en": {
@@ -4558,6 +4918,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Remove stock"
+          }
+        }
+      }
+    },
+    "Remove this item from Pantry?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove this item from Pantry?"
           }
         }
       }
@@ -4724,6 +5094,16 @@
         }
       }
     },
+    "Review Pantry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review Pantry"
+          }
+        }
+      }
+    },
     "Review stock used": {
       "localizations": {
         "en": {
@@ -4801,6 +5181,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Save price"
+          }
+        }
+      }
+    },
+    "Save Review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save Review"
+          }
+        }
+      }
+    },
+    "Save your review to update Pantry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save your review to update Pantry."
           }
         }
       }
@@ -4896,6 +5296,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sesame"
+          }
+        }
+      }
+    },
+    "Set the amount in Edit details before recording use.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set the amount in Edit details before recording use."
           }
         }
       }
@@ -5192,6 +5602,16 @@
         }
       }
     },
+    "Still have it": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Still have it"
+          }
+        }
+      }
+    },
     "Stir in cooked pasta, warm through, and serve.": {
       "extractionState": "stale",
       "localizations": {
@@ -5327,6 +5747,16 @@
         }
       }
     },
+    "Swipe right to keep it or left if you’re out.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swipe right to keep it or left if you’re out."
+          }
+        }
+      }
+    },
     "Synthetic development prices, not observed retailer prices": {
       "extractionState": "stale",
       "localizations": {
@@ -5374,6 +5804,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The store could not be saved. Reopen the current trip and retry."
+          }
+        }
+      }
+    },
+    "This item could not be updated. Reopen it and try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This item could not be updated. Reopen it and try again."
           }
         }
       }
@@ -6081,6 +6521,16 @@
         }
       }
     },
+    "Unconfirmed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unconfirmed"
+          }
+        }
+      }
+    },
     "Unconfirmed or expired stock stays out of planning. Check the package's actual storage instructions; unknown dates do not imply a safety guarantee.": {
       "localizations": {
         "en": {
@@ -6097,6 +6547,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uncooked meals have not consumed ingredients. Count actual stock and confirm only what you have checked."
+          }
+        }
+      }
+    },
+    "Undo last choice": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo last choice"
+          }
+        }
+      }
+    },
+    "Unit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unit"
           }
         }
       }
@@ -6173,12 +6643,32 @@
         }
       }
     },
+    "Use some": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use some"
+          }
+        }
+      }
+    },
     "Use this package": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Use this package"
+          }
+        }
+      }
+    },
+    "Use-by %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use-by %@"
           }
         }
       }
@@ -6375,6 +6865,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Week"
+          }
+        }
+      }
+    },
+    "Week history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week history"
+          }
+        }
+      }
+    },
+    "Week history could not be loaded. Please retry.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week history could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Week summary": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week summary"
           }
         }
       }
@@ -6744,6 +7264,16 @@
         }
       }
     },
+    "Your pantry changed. Close this review and open it again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your pantry changed. Close this review and open it again."
+          }
+        }
+      }
+    },
     "Your pantry is empty": {
       "extractionState": "stale",
       "localizations": {
@@ -6797,6 +7327,16 @@
         }
       }
     },
+    "Your previous plan stays in Week History.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your previous plan stays in Week History."
+          }
+        }
+      }
+    },
     "Your purchase check could not be saved. Reopen the current trip and retry.": {
       "extractionState": "stale",
       "localizations": {
@@ -6814,6 +7354,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Your rating could not be saved. The cooked meal remains recorded."
+          }
+        }
+      }
+    },
+    "Your remaining food stays in Pantry. This week’s plan and receipts move to history.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your remaining food stays in Pantry. This week’s plan and receipts move to history."
           }
         }
       }

@@ -74,6 +74,7 @@ struct PlanResources: Codable, Equatable, Sendable {
     var purchases: [PurchasedStock] = []
     var cookedMeals: [CookedMealRecord]? = nil
     var pantryCredits: [PantryCredit]? = nil
+    var usedOutsidePlan: [String: Int64]? = nil
     var committedMinorUnits: Int64 { purchases.reduce(0) { $0 + ($1.actualMinorUnits ?? $1.estimatedMinorUnits) } }
     var knownActualMinorUnits: Int64 { purchases.reduce(0) { $0 + ($1.actualMinorUnits ?? 0) } }
     var missingPriceCount: Int { purchases.filter { $0.actualMinorUnits == nil }.count }

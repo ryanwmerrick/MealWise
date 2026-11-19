@@ -8,9 +8,9 @@ struct CycleHistoryView: View {
     }
     var body: some View {
         List {
-            if viewModel.isLoading { ProgressView("Loading cycle history").mealWiseListRows() }
+            if viewModel.isLoading { ProgressView("Loading week history").mealWiseListRows() }
             if !viewModel.isLoading && viewModel.cycles.isEmpty && viewModel.archives.isEmpty {
-                ContentUnavailableView("No cycle history", systemImage: "clock", description: Text("No completed or reset cycles are recorded."))
+                ContentUnavailableView("No past weeks", systemImage: "clock", description: Text("Finished and reset plans appear here."))
                     .mealWiseListRows()
             }
             ForEach(viewModel.cycles) { cycle in
@@ -33,7 +33,7 @@ struct CycleHistoryView: View {
                     Button("Retry") { Task { await viewModel.load() } }
                 }.mealWiseListRows()
             }
-        }.mealWiseListStyle().navigationTitle("Cycle history").task { await viewModel.load() }
+        }.mealWiseListStyle().navigationTitle("Week history").task { await viewModel.load() }
     }
 }
 
@@ -44,7 +44,7 @@ struct CycleSummaryView: View {
     let services: AppServices
     var body: some View {
         List {
-            Section("Recorded cycle") {
+            Section("About this week") {
                 Text(completedAt, format: .dateTime.month().day().year())
                 LabeledContent("Planned budget", value: plan.profile.budgetMinorUnits.currency)
                 LabeledContent("Known actual spending", value: (plan.resources?.knownActualMinorUnits ?? 0).currency)
@@ -55,8 +55,8 @@ struct CycleSummaryView: View {
                 NavigationLink("Shopping receipts") { ShoppingHistoryView(planID: plan.id, service: services.shopping) }
             }.mealWiseListRows()
             if let confirmation {
-                Section("Confirmed carryover") {
-                    if confirmation.items.isEmpty { Text("No stock was confirmed for carryover.") }
+                Section("Food kept for later") {
+                    if confirmation.items.isEmpty { Text("No purchases were added to Pantry at the end of this week.") }
                     ForEach(confirmation.items, id: \.sourceID) { line in
                         if let source = try? StockAccounting.sources(plan: plan).first(where: { $0.id == line.sourceID }) {
                             VStack(alignment: .leading, spacing: 6) {
@@ -78,6 +78,6 @@ struct CycleSummaryView: View {
                     }.padding(.vertical, 6)
                 }
             }.mealWiseListRows()
-        }.mealWiseListStyle().navigationTitle("Cycle summary")
+        }.mealWiseListStyle().navigationTitle("Week summary")
     }
 }

@@ -10,12 +10,47 @@ struct PantryItem: Codable, Equatable, Sendable, Identifiable {
     var availabilityConfirmed: Bool
     var revision: UUID
     var reservations: [String: Int64] = [:]
+    var acquiredAt: Date? = nil
+    var customName: String? = nil
+    var unknownQuantity: String? = nil
     var availableQuantity: Int64 { quantity - reservations.values.reduce(0, +) }
     func validate(catalog: RecipeCatalog) throws {
-        guard quantity >= 0, let ingredient = catalog.ingredients.first(where: { $0.id == ingredientID }), ingredient.unit == unit else { throw PantryError.invalidQuantity }
+        if let customName {
+            guard !customName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  quantity >= 0, (unknownQuantity == nil || quantity == 0), unit == unit.canonicalUnit, reservations.isEmpty,
+                  !catalog.ingredients.contains(where: { $0.id == ingredientID }) else { throw PantryError.invalidQuantity }
+            return
+        }
+        guard unknownQuantity == nil, quantity >= 0,
+              let ingredient = catalog.ingredients.first(where: { $0.id == ingredientID }),
+              ingredient.unit == unit else { throw PantryError.invalidQuantity }
         let reserved = try reservations.values.reduce(Int64(0), checkedSum)
         guard reserved <= quantity else { throw PantryError.invalidQuantity }
     }
+}
+
+struct PantryInventoryItem: Identifiable, Sendable {
+    enum ID: Hashable, Sendable {
+        case saved(UUID)
+        case purchased(String)
+    }
+
+    let id: ID
+    let name: String
+    let quantity: Int64
+    let unit: QuantityUnit
+    let acquiredAt: Date?
+    let revision: UUID
+    let availabilityConfirmed: Bool
+    let shelfDate: Date?
+    var savedItem: PantryItem? = nil
+}
+
+struct PantryInventoryEdit: Sendable {
+    let item: PantryInventoryItem
+    let quantity: Int64
+    var confirmAvailability = false
+    var remove = false
 }
 
 struct PantryCredit: Codable, Equatable, Sendable, Identifiable {

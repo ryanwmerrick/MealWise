@@ -18,7 +18,7 @@ struct MainTabView: View {
                 if let plan = session.plan, let services = session.services { TodayView(plan: plan, services: services).id(plan.revision) }
             }
             Tab("Pantry", image: "IconPantry", value: 3) {
-                if let plan = session.plan, let services = session.services { PantryView(plan: plan, services: services).id(plan.revision) }
+                if let plan = session.plan, let services = session.services { PantryView(plan: plan, services: services).id(plan.id) }
             }
         }
         .onChange(of: selectedTab) { Task { await session.refreshPlan() } }

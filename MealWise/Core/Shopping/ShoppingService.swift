@@ -206,6 +206,15 @@ extension PlanRepository {
         var trip = original; trip.finishedAt = now
         let summary = ShoppingSummary(trip: trip)
         try store(summary, key: historyKey, documents: documents, context: context)
+        for line in original.addedItems where line.checked {
+            let quantity = PantryQuantityInput.fromGroceryText(line.quantity)
+            let item = PantryItem(id: line.id, ingredientID: "custom-" + line.id.uuidString,
+                                  quantity: quantity?.amount ?? 0, unit: quantity?.unit ?? .count, storage: nil, expiry: nil,
+                                  availabilityConfirmed: true, revision: UUID(), acquiredAt: now, customName: line.name,
+                                  unknownQuantity: quantity == nil ? line.quantity : nil)
+            try item.validate(catalog: plan.catalog)
+            try putPantryDocument(item, key: pantryKey(item.id), documents: documents, context: context)
+        }
         if original.manualItems != nil {
             let pending = original.addedItems.filter { !$0.checked }
             try store(pending, key: manualGroceryKey(plan.id), documents: documents, context: context)

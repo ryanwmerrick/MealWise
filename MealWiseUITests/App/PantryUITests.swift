@@ -2,11 +2,41 @@ import XCTest
 
 final class PantryUITests: XCTestCase {
     @MainActor
-    func testPantryOffersWrapUpAndInventoryEditor() {
+    func testCustomPantryItemUseAndOptionalReview() {
         let app = XCUIApplication(); buildPlan(app)
         app.tabBars.buttons["Pantry"].tap()
-        XCTAssertTrue(app.buttons["Wrap up this cycle"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["Add pantry item"].exists)
+        XCTAssertTrue(app.staticTexts["Your pantry is empty"].waitForExistence(timeout: 5))
+        app.buttons["Add pantry item"].tap()
+        app.buttons["pantry.ingredient"].tap()
+        app.buttons["Other ingredient"].tap()
+        let name = app.textFields["pantry.customName"]
+        name.tap()
+        name.typeText("Homemade rolls")
+        let quantity = app.textFields["pantry.quantity"]
+        quantity.tap()
+        quantity.typeText("4")
+        reveal(app.buttons["Save pantry item"], in: app)
+        app.buttons["Save pantry item"].tap()
+        let item = app.buttons.matching(identifier: "pantry.item").firstMatch
+        XCTAssertTrue(item.waitForExistence(timeout: 5))
+        XCTAssertTrue(item.label.contains("4 items left"))
+        item.tap()
+        app.textFields["Amount used"].tap()
+        app.textFields["Amount used"].typeText("1")
+        app.buttons["Use some"].tap()
+        XCTAssertTrue(app.navigationBars["Pantry"].waitForExistence(timeout: 5))
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "3 items left"), object: item)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
+        app.buttons["pantry.review"].tap()
+        app.buttons["Out of it"].tap()
+        app.buttons["Undo last choice"].tap()
+        app.buttons["Still have it"].tap()
+        app.buttons["Save Review"].tap()
+        XCTAssertTrue(item.waitForExistence(timeout: 5))
+        app.buttons["pantry.review"].tap()
+        app.buttons["Out of it"].tap()
+        app.buttons["Save Review"].tap()
+        XCTAssertTrue(app.staticTexts["Your pantry is empty"].waitForExistence(timeout: 5))
     }
 
     @MainActor
@@ -25,6 +55,12 @@ final class PantryUITests: XCTestCase {
         XCTAssertEqual(app.staticTexts["shopping.itemsLeft"].label, "0 items left")
         app.buttons["Finish trip"].tap(); app.buttons["Record purchased items"].tap()
         XCTAssertTrue(app.staticTexts["Trip summary"].waitForExistence(timeout: 10))
+        app.tabBars.buttons["Pantry"].tap()
+        XCTAssertTrue(app.buttons.matching(identifier: "pantry.item").firstMatch.waitForExistence(timeout: 5))
+        let pantryCapture = XCTAttachment(screenshot: app.screenshot())
+        pantryCapture.name = "Pantry inventory grid"
+        pantryCapture.lifetime = .keepAlways
+        add(pantryCapture)
         app.tabBars.buttons["Today"].tap(); app.buttons.matching(identifier: "today.meal").firstMatch.tap()
         reveal(app.buttons["Mark as cooked"], in: app)
         app.buttons["Mark as cooked"].tap(); app.buttons["Confirm cooked"].tap()
@@ -32,18 +68,14 @@ final class PantryUITests: XCTestCase {
         let rating = app.buttons["rating.liked"]
         reveal(rating, in: app); rating.tap()
         XCTAssertTrue(app.staticTexts["rating.saved"].waitForExistence(timeout: 5))
-        app.tabBars.buttons["Pantry"].tap(); app.buttons["Wrap up this cycle"].tap()
-        let available = app.switches.matching(identifier: "wrap.available").firstMatch
-        reveal(available, in: app)
-        // Native switches expose the full label row; tap the trailing control.
-        available.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
-        XCTAssertEqual(available.value as? String, "1", "Carryover must be explicitly checked before closing the cycle")
-        let checked = XCTAttachment(screenshot: app.screenshot()); checked.name = "Checked carryover source"; checked.lifetime = .keepAlways; add(checked)
-        app.buttons["Confirm carryover"].tap(); app.buttons["Finish cycle"].tap()
-        XCTAssertTrue(app.buttons["Plan next week"].waitForExistence(timeout: 10))
+        app.tabBars.buttons["Pantry"].tap()
+        app.buttons["pantry.options"].tap()
+        app.buttons["Plan next week"].tap()
+        app.buttons["Finish this week"].tap()
+        XCTAssertTrue(app.navigationBars["Plan next week"].waitForExistence(timeout: 10))
         app.terminate(); app.launch(); app.tabBars.buttons["Pantry"].tap()
-        XCTAssertTrue(app.buttons["Plan next week"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons.matching(identifier: "pantry.item").firstMatch.exists)
+        XCTAssertTrue(app.buttons.matching(identifier: "pantry.item").firstMatch.waitForExistence(timeout: 10))
+        app.buttons["pantry.options"].tap()
         app.buttons["Plan next week"].tap()
         app.buttons["Favorites and next-plan pins"].tap()
         let pin = app.buttons["Pin into next plan"]
@@ -72,9 +104,11 @@ final class PantryUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Accept new plan"].waitForNonExistence(timeout: 10))
         app.tabBars.buttons["Week"].tap()
         XCTAssertTrue(app.buttons["week.budget"].waitForExistence(timeout: 10))
-        app.tabBars.buttons["Pantry"].tap(); app.buttons["Cycle history"].tap()
+        app.tabBars.buttons["Pantry"].tap()
+        app.buttons["pantry.options"].tap()
+        app.buttons["Week history"].tap()
         app.buttons.matching(identifier: "history.cycle").firstMatch.tap()
-        XCTAssertTrue(app.staticTexts["Cycle summary"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Week summary"].waitForExistence(timeout: 5))
         app.buttons["Shopping receipts"].tap()
         let receipt = app.buttons.matching(identifier: "shopping.history").firstMatch
         XCTAssertTrue(receipt.waitForExistence(timeout: 5)); receipt.tap()

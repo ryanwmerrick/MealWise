@@ -11,8 +11,8 @@ struct NextWeekView: View {
         NavigationStack(path: $path) {
             List {
                 if viewModel.isLoading { ProgressView("Loading next-week choices").mealWiseListRows() }
-                Section("A separate weekly cycle") {
-                    Text("Your completed cycle stays in history. Review the next dates and choices in setup before accepting a new plan.")
+                Section("Next week’s dates") {
+                    Text("Your previous plan stays in Week History.")
                     if let first = viewModel.profile.days.min(), let last = viewModel.profile.days.max() {
                         Text("\(first.formatted(date: .abbreviated, time: .omitted)) – \(last.formatted(date: .abbreviated, time: .omitted))")
                     }
@@ -63,7 +63,7 @@ struct NextWeekView: View {
                 }
             }.mealWiseListStyle()
                 .navigationTitle("Plan next week")
-                .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Keep current cycle") { dismiss() } } }
+                .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Close") { dismiss() } } }
                 .task { await viewModel.load() }
                 .sheet(isPresented: $showingFavorites) {
                     NavigationStack {

@@ -1,6 +1,24 @@
 import Foundation
 
 enum PantryQuantityInput {
+    static func fromGroceryText(_ text: String) -> (amount: Int64, unit: QuantityUnit)? {
+        let value = text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let unit: QuantityUnit
+        let number: String
+        if value.hasSuffix("ml") {
+            unit = .milliliters
+            number = String(value.dropLast(2))
+        } else if value.hasSuffix("g") {
+            unit = .milligrams
+            number = String(value.dropLast())
+        } else {
+            unit = .count
+            number = value
+        }
+        guard let amount = try? parse(number, unit: unit), amount > 0 else { return nil }
+        return (amount, unit)
+    }
+
     static func parse(_ text: String, unit: QuantityUnit) throws -> Int64 {
         let value = text.trimmingCharacters(in: .whitespacesAndNewlines)
         let pattern = unit == .milligrams ? #"^[0-9]+(?:\.[0-9]{1,3})?$"# : #"^[0-9]+$"#
