@@ -18,7 +18,7 @@ struct TodayView: View {
                                 .font(.title.bold())
                                 .accessibilityAddTraits(.isHeader)
                             if viewModel.plan.closedAt != nil {
-                                Text("This cycle is finished. Open Pantry to plan your next week.").font(.subheadline)
+                                Text("This week is finished. Open Week to plan next week.").font(.subheadline)
                             }
                         }
                     }

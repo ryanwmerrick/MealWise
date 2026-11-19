@@ -4761,6 +4761,16 @@
         }
       }
     },
+    "Refresh your plan and try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh your plan and try again."
+          }
+        }
+      }
+    },
     "Regenerate %@": {
       "localizations": {
         "en": {
@@ -6389,6 +6399,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "This was a partial trip. Unpurchased requirements remain on your grocery list."
+          }
+        }
+      }
+    },
+    "This week is finished. Open Week to plan next week.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week is finished. Open Week to plan next week."
+          }
+        }
+      }
+    },
+    "This week is finished. Use Plan actions to plan next week.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week is finished. Use Plan actions to plan next week."
           }
         }
       }

@@ -30,7 +30,7 @@ struct GroceryView: View {
                     }
                 }
                 if plan.closedAt != nil {
-                    Text("This cycle is finished. Open Pantry to plan your next week.").mealWiseListRows()
+                    Text("This week is finished. Open Week to plan next week.").mealWiseListRows()
                 } else {
                     listHeading
                     groceryList

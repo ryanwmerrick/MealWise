@@ -2,17 +2,24 @@ import SwiftUI
 
 struct PantryInventoryCard: View {
     let item: PantryInventoryItem
+    var reviewHeight: CGFloat? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             RoundedRectangle(cornerRadius: 12)
                 .fill(DesignTokens.selection.opacity(0.5))
-                .frame(height: 78)
+                .frame(height: reviewHeight.map { $0 * 0.70 } ?? 78)
+                .overlay {
+                    Image("PantryDefaultFood")
+                        .resizable()
+                        .scaledToFill()
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .accessibilityHidden(true)
 
-            Text(LocalizedStringKey(item.name)).font(.headline)
+            Text(LocalizedStringKey(item.name)).font(reviewHeight == nil ? .headline : .title.bold())
             quantityLabel
-                .font(.subheadline.weight(.semibold))
+                .font((reviewHeight == nil ? Font.subheadline : .title3).weight(.semibold))
                 .foregroundStyle(DesignTokens.action)
             if let date = item.acquiredAt {
                 ageLabel(date)
@@ -31,7 +38,8 @@ struct PantryInventoryCard: View {
             }
         }
         .foregroundStyle(DesignTokens.textPrimary)
-        .padding(12)
+        .padding(reviewHeight == nil ? 12 : 16)
+        .frame(minHeight: reviewHeight, alignment: .topLeading)
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(DesignTokens.card, in: RoundedRectangle(cornerRadius: DesignTokens.cardRadius))
     }
@@ -128,6 +136,7 @@ struct PantryInventoryDetail: View {
 
 struct PantryReviewView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @GestureState private var drag: CGFloat = 0
     @State private var decisions: [Decision] = []
     @State private var isSaving = false
@@ -140,29 +149,31 @@ struct PantryReviewView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 16) {
-                    if decisions.count < items.count {
-                        reviewCard(items[decisions.count])
-                        ViewThatFits {
-                            HStack { reviewActions }
-                            VStack { reviewActions }
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack(spacing: 12) {
+                        reviewProgress
+                        if decisions.count < items.count {
+                            reviewCard(items[decisions.count], height: max(280, geometry.size.height - 164))
+                            Text("Swipe right to keep it or left if you’re out.")
+                                .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
+                            ViewThatFits {
+                                HStack { reviewActions }
+                                VStack { reviewActions }
+                            }
+                        } else {
+                            ContentUnavailableView("All items reviewed", systemImage: "checkmark.circle",
+                                                   description: Text("Save your review to update Pantry."))
                         }
-                    } else {
-                        ContentUnavailableView("All items reviewed", systemImage: "checkmark.circle",
-                                               description: Text("Save your review to update Pantry."))
+                        if showsError {
+                            Text("Your pantry changed. Close this review and open it again.")
+                                .foregroundStyle(DesignTokens.textSecondary)
+                        }
                     }
-                    if !decisions.isEmpty {
-                        Button("Undo last choice", systemImage: "arrow.uturn.backward") { decisions.removeLast() }
-                            .frame(minHeight: 44)
-                    }
-                    if showsError {
-                        Text("Your pantry changed. Close this review and open it again.")
-                            .foregroundStyle(DesignTokens.textSecondary)
-                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
+                    .disabled(isSaving)
                 }
-                .padding(20)
-                .disabled(isSaving)
             }
             .mealWiseScreenStyle()
             .navigationTitle("Review Pantry")
@@ -179,28 +190,58 @@ struct PantryReviewView: View {
         .interactiveDismissDisabled(isSaving)
     }
 
-    private func reviewCard(_ item: PantryInventoryItem) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Item \(decisions.count + 1) of \(items.count)")
-                .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
-            PantryInventoryCard(item: item)
-                .offset(x: drag)
-                .rotationEffect(.degrees(Double(drag) / 18))
-                .contentShape(Rectangle())
-                .gesture(
-                    DragGesture(minimumDistance: 20)
-                        .updating($drag) { value, state, _ in
-                            if abs(value.translation.width) > abs(value.translation.height) { state = value.translation.width }
-                        }
-                        .onEnded { value in
-                            let horizontal = value.translation.width
-                            guard abs(horizontal) > 65, abs(horizontal) > abs(value.translation.height) else { return }
-                            choose(horizontal > 0 ? .stillHave : .out)
-                        }
-                )
-            Text("Swipe right to keep it or left if you’re out.")
-                .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
+    private var reviewProgress: some View {
+        HStack {
+            if decisions.count < items.count {
+                Text("Item \(decisions.count + 1) of \(items.count)")
+                    .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
+            }
+            Spacer()
+            if !decisions.isEmpty {
+                Button("Undo last choice", systemImage: "arrow.uturn.backward") { decisions.removeLast() }
+                    .labelStyle(.iconOnly)
+                    .frame(minWidth: 44, minHeight: 44)
+            }
         }
+        .frame(minHeight: 44)
+    }
+
+    private func reviewCard(_ item: PantryInventoryItem, height: CGFloat) -> some View {
+        PantryInventoryCard(item: item, reviewHeight: height)
+            .accessibilityElement(children: .combine)
+            .accessibilityIdentifier("pantry.review.card")
+            .overlay(alignment: drag > 0 ? .topLeading : .topTrailing) {
+                if abs(drag) > 16 {
+                    swipeFeedback(keeping: drag > 0)
+                }
+            }
+            .rotationEffect(.degrees(reduceMotion ? 0 : Double(drag) / 24))
+            .offset(x: reduceMotion ? 0 : drag)
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: 20)
+                    .updating($drag) { value, state, _ in
+                        if abs(value.translation.width) > abs(value.translation.height) { state = value.translation.width }
+                    }
+                    .onEnded { value in
+                        let horizontal = value.translation.width
+                        guard abs(horizontal) > 65, abs(horizontal) > abs(value.translation.height) else { return }
+                        choose(horizontal > 0 ? .stillHave : .out)
+                    }
+            )
+    }
+
+    private func swipeFeedback(keeping: Bool) -> some View {
+        Label(keeping ? LocalizedStringKey("Still have it") : "Out of it", systemImage: keeping ? "checkmark" : "xmark")
+            .font(.headline)
+            .foregroundStyle(.white)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .background(keeping ? DesignTokens.panel : Color(red: 0.64, green: 0.13, blue: 0.20), in: Capsule())
+            .padding(26)
+            .opacity(min(1, Double(abs(drag) / 54)))
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
     }
 
     @ViewBuilder

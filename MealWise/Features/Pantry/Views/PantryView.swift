@@ -7,11 +7,6 @@ struct PantryView: View {
     @State private var adding = false
     @State private var editing: PantryInventoryItem?
     @State private var review: ReviewSession?
-    @State private var showingHistory = false
-    @State private var confirmingNextWeek = false
-    @State private var startingNextWeek = false
-    @State private var nextPlan: WeeklyPlan?
-    @State private var nextWeekError = false
 
     let plan: WeeklyPlan
     let services: AppServices
@@ -47,32 +42,8 @@ struct PantryView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add pantry item", systemImage: "plus") { adding = true }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu("Pantry options", systemImage: "ellipsis") {
-                        Button("Plan next week", systemImage: "calendar.badge.plus") {
-                            if plan.closedAt == nil { confirmingNextWeek = true }
-                            else { nextPlan = plan }
-                        }
-                        Button("Week history", systemImage: "clock.arrow.circlepath") { showingHistory = true }
-                    }
-                    .accessibilityIdentifier("pantry.options")
-                    .disabled(startingNextWeek)
-                }
-            }
-            .navigationDestination(isPresented: $showingHistory) {
-                CycleHistoryView(services: services)
             }
             .task(id: plan.revision) { await viewModel.load() }
-            .confirmationDialog("Finish this week and plan next week?", isPresented: $confirmingNextWeek, titleVisibility: .visible) {
-                Button("Finish this week") { Task { await startNextWeek() } }
-            } message: {
-                Text("Your remaining food stays in Pantry. This week’s plan and receipts move to history.")
-            }
-            .alert("Could not finish this week", isPresented: $nextWeekError) {
-                Button("OK", role: .cancel) {}
-            } message: {
-                Text("Refresh your Pantry and try again.")
-            }
         }
         .sheet(isPresented: $adding, onDismiss: reload) {
             PantryEditorView(item: nil, services: services)
@@ -80,11 +51,8 @@ struct PantryView: View {
         .sheet(item: $editing, onDismiss: reload) { item in
             PantryInventoryDetail(item: item, services: services)
         }
-        .sheet(item: $review, onDismiss: reload) { review in
+        .fullScreenCover(item: $review, onDismiss: reload) { review in
             PantryReviewView(items: review.items, pantry: services.pantry)
-        }
-        .fullScreenCover(item: $nextPlan) { closedPlan in
-            NextWeekView(plan: closedPlan, services: services)
         }
     }
 
@@ -123,21 +91,6 @@ struct PantryView: View {
         Task {
             await session.refreshPlan()
             await viewModel.load()
-        }
-    }
-
-    private func startNextWeek() async {
-        startingNextWeek = true
-        defer { startingNextWeek = false }
-        do {
-            try await services.pantry.finishWeek(planID: plan.id, revision: plan.revision)
-            guard let closed = try await services.plans.loadActivePlan(),
-                  closed.id == plan.id, closed.closedAt != nil else { throw PantryError.staleStock }
-            session.accept(closed)
-            nextPlan = closed
-        } catch {
-            nextWeekError = true
-            reload()
         }
     }
 }
