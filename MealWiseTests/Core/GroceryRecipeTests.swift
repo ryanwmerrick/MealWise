@@ -20,10 +20,10 @@ struct GroceryRecipeTests {
         context.insert(StoredDocument(key: "activePlan", payload: try JSONSerialization.data(withJSONObject: payload)))
         try context.save()
         let restored = try #require(try await PlanRepository(container: container).loadActivePlan())
-        let groceries = GroceryViewModel(plan: restored, checklist: ChecklistRepository(container: container))
+        let groceries = GroceryViewModel(planID: restored.id, shopping: ShoppingService(container: container))
         await groceries.load()
         #expect(groceries.errorMessage == nil)
-        #expect(groceries.sections.first?.category == .other)
+        #expect(groceries.sections(for: restored).first?.category == .other)
         #expect(restored.totalMinorUnits == plan.totalMinorUnits)
     }
 

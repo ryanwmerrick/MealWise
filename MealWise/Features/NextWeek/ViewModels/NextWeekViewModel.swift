@@ -16,7 +16,7 @@ final class NextWeekViewModel: ObservableObject {
     func load() async {
         isLoading = true; defer { isLoading = false }
         do {
-            stock = try await services.pantry.loadItems()
+            stock = try await services.pantry.loadItems().filter { $0.customName == nil }
             observations = ReceiptCatalog.observations(from: try await services.shopping.history(planID: closedPlan.id), catalog: services.catalog)
             if let draft = try await services.profiles.loadProfile(),
                let last = closedPlan.profile.days.max(), draft.days.allSatisfy({ $0 > last }) {

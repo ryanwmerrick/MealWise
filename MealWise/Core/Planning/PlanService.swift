@@ -19,7 +19,7 @@ actor PlanService: PlanServiceProtocol {
         if !input.confirmedStock.isEmpty {
             guard resources == nil else { return .invalidInputs }
             var credits: [PantryCredit] = []
-            for item in input.confirmedStock {
+            for item in input.confirmedStock where item.customName == nil {
                 try item.validate(catalog: input.catalog)
                 if item.availabilityConfirmed, item.availableQuantity > 0, item.expiry.map({ $0 >= now }) ?? true {
                     credits.append(PantryCredit(id: item.id, ingredientID: item.ingredientID, unit: item.unit, sourceRevision: item.revision,

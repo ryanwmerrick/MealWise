@@ -16,14 +16,14 @@ struct WrapUpView: View {
                         LabeledContent("Purchase lines missing actual prices", value: report.missingPriceCount.formatted())
                         LabeledContent("Cooked meals", value: (report.plan.resources?.cookedMeals?.count ?? 0).formatted())
                         Text("Uncooked meals have not consumed ingredients. Count actual stock and confirm only what you have checked.").font(.footnote)
-                    }
+                    }.mealWiseListRows()
                     DisclosureGroup("Original leftover forecast") {
                         ForEach(report.forecast.items) { item in
                             LabeledContent { Text(QuantityFormatting.display(amount: item.remainingQuantity, unit: item.unit)) } label: { Text(LocalizedStringKey(item.name)) }
                         }
                         Text("This forecast assumed all planned meals would be cooked. It is separate from recorded stock and your confirmed quantities.").font(.footnote)
-                    }
-                    if viewModel.drafts.isEmpty { Text("No recorded stock remains. You can finish without adding anything to Pantry.") }
+                    }.mealWiseListRows()
+                    if viewModel.drafts.isEmpty { Text("No recorded stock remains. You can finish without adding anything to Pantry.").mealWiseListRows() }
                     ForEach($viewModel.drafts) { $draft in
                         Section(LocalizedStringKey(report.plan.catalog.ingredients.first { $0.id == draft.source.ingredientID }?.name ?? "Ingredient")) {
                             Text("Recorded stock remaining: \(QuantityFormatting.display(amount: draft.source.quantity, unit: draft.source.unit))")
@@ -32,11 +32,12 @@ struct WrapUpView: View {
                             Text("Quantity unit: \(PantryQuantityInput.symbol(unit: draft.source.unit))")
                             StorageFields(storage: $draft.storage, hasExpiry: $draft.hasExpiry, expiry: $draft.expiry)
                             Toggle("I have checked this stock for carryover", isOn: $draft.available).accessibilityIdentifier("wrap.available")
-                        }
+                        }.mealWiseListRows()
                     }
                 }
-                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-            }.disabled(viewModel.isWorking)
+                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+            }.mealWiseListStyle()
+                .disabled(viewModel.isWorking)
                 .navigationTitle("Wrap up your cycle")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() }.disabled(viewModel.isWorking) } }
                 .safeAreaInset(edge: .bottom) {

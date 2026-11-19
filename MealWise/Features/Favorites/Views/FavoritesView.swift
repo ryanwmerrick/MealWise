@@ -18,7 +18,7 @@ struct FavoritesView: View {
                         Button("Remove favorite") { Task { await viewModel.removeFavorite(recipe) } }.frame(minHeight: 44)
                     }.accessibilityIdentifier("favorite.recipe")
                 }
-            }
+            }.mealWiseListRows()
             Section("Pending next-plan pins") {
                 Text("Each pin selects a recipe for one date and meal slot. Review these pins if you change your next week’s schedule.").font(.footnote)
                 if viewModel.pins.isEmpty { Text("No pending pins") }
@@ -29,9 +29,14 @@ struct FavoritesView: View {
                         Button("Remove pin") { Task { await viewModel.removePin(pin) } }.frame(minHeight: 44)
                     }
                 }
+            }.mealWiseListRows()
+            if let error = viewModel.errorMessage {
+                Section {
+                    Text(LocalizedStringKey(error))
+                    Button("Reload favorites") { Task { await viewModel.load() } }
+                }.mealWiseListRows()
             }
-            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)); Button("Reload favorites") { Task { await viewModel.load() } } }
-        }.buttonStyle(.borderless).navigationTitle("Favorites").task { await viewModel.load() }
+        }.mealWiseListStyle().buttonStyle(.borderless).navigationTitle("Favorites").task { await viewModel.load() }
             .sheet(item: $selected) { recipe in
                 if let profile = viewModel.profile { FavoritePinView(recipe: recipe, profile: profile, viewModel: viewModel) }
             }
@@ -53,13 +58,18 @@ private struct FavoritePinView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Text(LocalizedStringKey(recipe.title)).font(.headline)
-                Picker("Cooking date", selection: $date) { ForEach(profile.days.sorted(), id: \.self) { Text($0, style: .date).tag($0) } }
-                Picker("Meal slot", selection: $slot) { ForEach(MealSlot.allCases.filter { profile.mealSlots.contains($0) }, id: \.self) { Text(LocalizedStringKey($0.title)).tag($0) } }
-                Text("The full plan must still fit your budget and food requirements. This saves a request; it does not change your current plan.")
-                Button("Save next-plan pin") { Task { if await viewModel.pin(recipeID: recipe.id, date: date, slot: slot) { dismiss() } } }.frame(minHeight: 44)
-                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-            }.navigationTitle("Pin favorite")
+                Section {
+                    Text(LocalizedStringKey(recipe.title)).font(.headline)
+                    Picker("Cooking date", selection: $date) { ForEach(profile.days.sorted(), id: \.self) { Text($0, style: .date).tag($0) } }
+                    Picker("Meal slot", selection: $slot) { ForEach(MealSlot.allCases.filter { profile.mealSlots.contains($0) }, id: \.self) { Text(LocalizedStringKey($0.title)).tag($0) } }
+                    Text("The full plan must still fit your budget and food requirements. This saves a request; it does not change your current plan.")
+                        .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
+                }.mealWiseListRows()
+                Button("Save next-plan pin") { Task { if await viewModel.pin(recipeID: recipe.id, date: date, slot: slot) { dismiss() } } }
+                    .buttonStyle(MealWiseButtonStyle()).mealWiseListRows()
+                if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+            }.mealWiseListStyle()
+                .navigationTitle("Pin favorite")
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
         }
     }

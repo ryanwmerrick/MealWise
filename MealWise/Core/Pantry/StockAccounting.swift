@@ -29,6 +29,10 @@ enum StockAccounting {
                 result[debit.ingredientID, default: 0] -= debit.quantity
             }
         }
+        for (ingredient, quantity) in resources.usedOutsidePlan ?? [:] {
+            guard quantity > 0, quantity <= result[ingredient, default: 0] else { throw PantryError.invalidQuantity }
+            result[ingredient, default: 0] -= quantity
+        }
         return result
     }
 

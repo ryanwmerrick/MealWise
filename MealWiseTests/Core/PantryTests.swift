@@ -5,6 +5,65 @@ import Testing
 struct PantryTests {
     private let now = Date(timeIntervalSince1970: 1794528000)
 
+    @Test func inventoryReflectsCookingAndRolloverWithoutReview() async throws {
+        let (plans, pantry, _, cooking, plan) = try await purchasedFixture()
+        let before = try await pantry.inventory(planID: plan.id)
+        let pasta = try #require(before.first { $0.id == .purchased("whole-wheat-pasta") })
+        #expect(pasta.acquiredAt == now)
+        try await cooking.markCooked(mealID: plan.meals[0].id, planID: plan.id)
+        let after = try await pantry.inventory(planID: plan.id)
+        let remaining = try #require(after.first { $0.id == pasta.id })
+        #expect(remaining.quantity < pasta.quantity)
+        try await pantry.applyInventory([PantryInventoryEdit(item: remaining, quantity: remaining.quantity / 2)])
+        let updated = try #require(try await plans.loadActivePlan())
+        try await pantry.finishWeek(planID: updated.id, revision: updated.revision)
+        let rolledOver = try await pantry.inventory(planID: plan.id)
+        let savedPasta = try #require(rolledOver.first { $0.name == pasta.name })
+        #expect(savedPasta.quantity == remaining.quantity / 2)
+        #expect(savedPasta.acquiredAt == now)
+        #expect(try await plans.loadActivePlan()?.closedAt != nil)
+    }
+
+    @Test func midweekPantryAdditionsCoverRemainingMealsAndAreConsumed() async throws {
+        let clock: @Sendable () -> Date = { Date(timeIntervalSince1970: 1794528000) }
+        let container = try await LocalStore.makeContainer(inMemory: true)
+        let plans = PlanRepository(container: container, clock: clock)
+        let catalog = try await CatalogService(allowDevelopment: true, now: now).loadCatalog()
+        let recipe = try #require(catalog.recipes.first { $0.id == "spinach-bean-pasta" })
+        let profile = profile()
+        let meal = ScheduledMeal(id: UUID(), date: now, slot: .dinner, recipeID: recipe.id)
+        let outcome = try await PlanService(clock: clock).generate(PlanRequest(profile: profile, catalog: catalog, fixedMeals: [meal]))
+        guard case .feasible(let plan) = outcome else { throw PlanningError.invalidPlan }
+        try await plans.saveActivePlan(plan)
+        let pantry = PantryRepository(plans: plans, catalog: catalog, clock: clock)
+        for ingredient in recipe.ingredients {
+            let quantity = try CartCalculator.scaledAmount(ingredient, recipe: recipe, profile: profile)
+            let item = PantryItem(id: UUID(), ingredientID: ingredient.ingredientID, quantity: max(1, quantity / 2),
+                                  unit: ingredient.unit, storage: nil, expiry: nil, availabilityConfirmed: true, revision: UUID())
+            try await pantry.save(item, expectedRevision: nil)
+            var saved = try #require(try await pantry.loadItems().first { $0.id == item.id })
+            saved.quantity = quantity + 1
+            try await pantry.save(saved, expectedRevision: saved.revision)
+        }
+        let stocked = try #require(try await plans.loadActivePlan())
+        #expect(stocked.cart.allSatisfy { $0.packageCount == 0 })
+        try await plans.completeCooking(mealID: meal.id, planID: plan.id, date: now, expectedRevision: stocked.revision)
+        #expect(try await pantry.inventory(planID: plan.id).allSatisfy { $0.quantity == 1 })
+    }
+
+    @Test func savedStockReplacesPurchasedStockUsedOutsideThePlan() async throws {
+        let (plans, pantry, _, _, plan) = try await purchasedFixture()
+        let purchased = try #require(try await pantry.inventory(planID: plan.id).first { $0.id == .purchased("whole-wheat-pasta") })
+        let item = PantryItem(id: UUID(), ingredientID: "whole-wheat-pasta", quantity: purchased.quantity,
+                              unit: purchased.unit, storage: nil, expiry: nil, availabilityConfirmed: true, revision: UUID())
+        try await pantry.save(item, expectedRevision: nil)
+        #expect(try await pantry.loadItems().first { $0.id == item.id }?.reservations.isEmpty == true)
+        try await pantry.applyInventory([PantryInventoryEdit(item: purchased, quantity: 0)])
+        let updated = try #require(try await plans.loadActivePlan())
+        #expect(updated.cart.first { $0.id == item.ingredientID }?.packageCount == 0)
+        #expect((updated.resources?.pantryCredits?.first { $0.id == item.id }?.remainingQuantity ?? 0) > 0)
+    }
+
     @Test func receiptEstimateRoundsUpWithoutRewritingActual() throws {
         let catalog = try JSONDecoder().decode(RecipeCatalog.self, from: Data(contentsOf: #require(Bundle.main.url(forResource: "development-catalog", withExtension: "json"))))
         let offer = try #require(catalog.offers.first)
@@ -114,7 +173,7 @@ struct PantryTests {
         let planner = PlanService(clock: { Date(timeIntervalSince1970: 1794528000) })
         guard case .feasible(let next) = try await planner.generate(PlanRequest(profile: nextProfile, catalog: original.catalog, fixedMeals: meals, confirmedStock: try await pantry.loadItems())) else { throw PlanningError.invalidPlan }
         try await plans.startNextCycle(next, expectedPreviousRevision: closed.revision, now: now)
-        let shopping = ShoppingService(plans: plans)
+        let shopping = ShoppingService(plans: plans, clock: { Date(timeIntervalSince1970: 1794528000) })
         let trip = try await shopping.openTrip(planID: next.id)
         for line in trip.lines { _ = try await shopping.setChecked(itemID: line.id, checked: true, tripID: trip.id) }
         _ = try await shopping.finishTrip(trip.id)
@@ -152,7 +211,7 @@ struct PantryTests {
         let planner = PlanService(clock: { Date(timeIntervalSince1970: 1794528000) })
         guard case .feasible(let plan) = try await planner.generate(PlanRequest(profile: profile, catalog: catalog, fixedMeals: meals)) else { throw PlanningError.invalidPlan }
         try await plans.saveActivePlan(plan)
-        let shopping = ShoppingService(plans: plans)
+        let shopping = ShoppingService(plans: plans, clock: { Date(timeIntervalSince1970: 1794528000) })
         let trip = try await shopping.openTrip(planID: plan.id)
         for line in trip.lines { _ = try await shopping.setChecked(itemID: line.id, checked: true, tripID: trip.id) }
         _ = try await shopping.finishTrip(trip.id)

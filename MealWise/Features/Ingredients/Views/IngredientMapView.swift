@@ -17,14 +17,16 @@ struct IngredientMapView: View {
                         LabeledContent("Shelf-stable carryover", value: report.items.filter { $0.status == .carryOver }.count.formatted())
                         LabeledContent("Needs attention", value: report.items.filter { $0.status == .needsAttention }.count.formatted())
                         ForecastNotice()
-                    }
+                    }.mealWiseListRows()
                     ForEach(report.items) { item in
                         NavigationLink(value: PlanRoute.ingredientDetail(planID: plan.id, ingredientID: item.id)) {
                             allocationRow(item)
                         }
                         .accessibilityIdentifier("ingredient.row")
+                        .mealWiseListRows()
                     }
                 }
+                .scrollContentBackground(.hidden)
             } else if let error = viewModel.errorMessage {
                 ContentUnavailableView {
                     Label("Ingredient map unavailable", systemImage: "exclamationmark.triangle")
@@ -33,8 +35,8 @@ struct IngredientMapView: View {
                 }
             } else { ProgressView("Checking package allocations") }
         }
+        .mealWiseScreenStyle()
         .navigationTitle("Ingredient map")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar(.hidden, for: .tabBar)
         .task(id: reload) { await viewModel.load() }
     }

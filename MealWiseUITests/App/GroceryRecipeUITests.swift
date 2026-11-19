@@ -2,7 +2,7 @@ import XCTest
 
 final class GroceryRecipeUITests: XCTestCase {
     @MainActor
-    func testEveryMealOpensAndGroceryCheckSurvivesRelaunch() {
+    func testEveryMealOpensAndGroceriesAreReadOnly() {
         let app = XCUIApplication()
         launchFresh(app)
         app.buttons["welcome.start"].tap()
@@ -32,18 +32,30 @@ final class GroceryRecipeUITests: XCTestCase {
             app.navigationBars.buttons.firstMatch.tap()
         }
         app.tabBars.buttons["Groceries"].tap()
-        let checkbox = app.buttons.matching(identifier: "grocery.check").firstMatch
-        XCTAssertTrue(checkbox.waitForExistence(timeout: 5))
-        checkbox.tap()
-        XCTAssertTrue(checkbox.isSelected)
+        XCTAssertTrue(app.staticTexts["Estimated Cost"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["grocery.start"].exists)
+        XCTAssertTrue(app.buttons["grocery.history"].exists)
+        XCTAssertFalse(app.buttons.matching(identifier: "grocery.check").firstMatch.exists)
+        XCTAssertFalse(app.buttons.matching(identifier: "shopping.check").firstMatch.exists)
         let capture = XCTAttachment(screenshot: app.screenshot())
         capture.name = "Phase 4 groceries"
         capture.lifetime = .keepAlways
         add(capture)
-        app.terminate(); app.launch()
-        XCTAssertTrue(app.staticTexts["Your week"].waitForExistence(timeout: 10))
+
+        XCTAssertTrue(app.staticTexts["Your List"].exists)
+        XCTAssertFalse(app.staticTexts["Uses actual prices when entered and sample prices for the rest."].exists)
+        app.buttons["grocery.add"].tap()
+        app.textFields["Ingredient"].tap()
+        app.textFields["Ingredient"].typeText("Fresh basil")
+        app.textFields["Quantity (optional)"].tap()
+        app.textFields["Quantity (optional)"].typeText("1 bunch")
+        app.buttons["Add"].tap()
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Fresh basil")).firstMatch.waitForExistence(timeout: 5))
+        app.terminate()
+        app.launch()
         app.tabBars.buttons["Groceries"].tap()
-        XCTAssertTrue(app.buttons.matching(identifier: "grocery.check").firstMatch.waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons.matching(identifier: "grocery.check").firstMatch.isSelected)
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Fresh basil")).firstMatch.waitForExistence(timeout: 5))
+        app.buttons["grocery.start"].tap()
+        XCTAssertTrue(app.buttons.matching(identifier: "shopping.manualCheck").matching(NSPredicate(format: "label CONTAINS %@", "Fresh basil")).firstMatch.waitForExistence(timeout: 5))
     }
 }

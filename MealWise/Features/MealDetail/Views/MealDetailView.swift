@@ -20,9 +20,8 @@ struct MealDetailView: View {
                 }
             } else { ProgressView("Opening recipe") }
         }
-        .background(DesignTokens.surface)
+        .mealWiseScreenStyle()
         .navigationTitle("Recipe")
-        .navigationBarTitleDisplayMode(.inline)
         .task(id: reload) { await viewModel.load() }
     }
 
@@ -38,7 +37,7 @@ struct MealDetailView: View {
                     LabeledContent("Consumed ingredients", value: detail.ingredientCost.formatted(.currency(code: "USD")))
                     LabeledContent("Per adult-equivalent serving", value: (detail.ingredientCost * 2 / Decimal(detail.adultHalfPortions)).formatted(.currency(code: "USD")))
                 }.padding(.vertical, 8)
-            }
+            }.mealWiseListRows()
             Section("Ingredients for this meal") {
                 ForEach(detail.ingredients) { ingredient in
                     LabeledContent {
@@ -47,7 +46,7 @@ struct MealDetailView: View {
                 }
                 Text("These are the amounts to use for this meal. Your grocery list rounds the combined week up to whole packages.")
                     .font(.footnote).foregroundStyle(DesignTokens.textSecondary)
-            }
+            }.mealWiseListRows()
             Section("Recipe steps") {
                 ForEach(detail.steps) { step in
                     HStack(alignment: .top, spacing: 14) {
@@ -55,12 +54,12 @@ struct MealDetailView: View {
                         Text(LocalizedStringKey(step.instruction)).fixedSize(horizontal: false, vertical: true)
                     }.padding(.vertical, 8)
                 }
-            }
+            }.mealWiseListRows()
             Section("Simple balance indicators") {
                 nutritionRow("Vegetables", included: detail.nutrition.vegetable)
                 nutritionRow("Protein", included: detail.nutrition.protein)
                 nutritionRow("Whole grains", included: detail.nutrition.wholeGrain)
-            }
+            }.mealWiseListRows()
             if !detail.linkedMeals.isEmpty {
                 Section("Other meals using these ingredients") {
                     ForEach(detail.linkedMeals) { meal in
@@ -72,16 +71,18 @@ struct MealDetailView: View {
                         }
                         .accessibilityIdentifier("recipe.related")
                     }
-                }
+                }.mealWiseListRows()
             }
             if !viewModel.reservations.isEmpty {
                 Section {
                     DisclosureGroup("Save for later meals") {
                         ReservationNotes(notes: viewModel.reservations)
                     }
-                }
+                }.mealWiseListRows()
             }
-        }.listStyle(.insetGrouped)
+        }
+        .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
     }
 
     private func nutritionRow(_ title: LocalizedStringKey, included: Bool) -> some View {

@@ -92,6 +92,26 @@
         }
       }
     },
+    "%lld days ago" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld days ago"
+          }
+        }
+      }
+    },
+    "%lld items left" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld items left"
+          }
+        }
+      }
+    },
     "%lld × %@" : {
       "localizations" : {
         "en" : {
@@ -388,6 +408,16 @@
         }
       }
     },
+    "About this week" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About this week"
+          }
+        }
+      }
+    },
     "Accept change" : {
       "localizations" : {
         "en" : {
@@ -424,6 +454,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Accepting starts a separate cycle. Completed history is preserved, and confirmed stock is reserved once."
+          }
+        }
+      }
+    },
+    "Acquired %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acquired %@"
+          }
+        }
+      }
+    },
+    "Actual" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actual"
           }
         }
       }
@@ -468,6 +518,26 @@
         }
       }
     },
+    "Add" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "Add an item or confirm leftovers at wrap-up." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add an item or confirm leftovers at wrap-up."
+          }
+        }
+      }
+    },
     "Add beans and cumin, stir until hot throughout, and serve." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -475,6 +545,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add beans and cumin, stir until hot throughout, and serve."
+          }
+        }
+      }
+    },
+    "Add food you have at home or finish a shopping trip." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add food you have at home or finish a shopping trip."
+          }
+        }
+      }
+    },
+    "Add grocery item" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add grocery item"
+          }
+        }
+      }
+    },
+    "Add Grocery Item" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Grocery Item"
           }
         }
       }
@@ -507,6 +607,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add tomatoes, chickpeas and cumin. Simmer, stirring, until hot throughout and the onion is tender; serve."
+          }
+        }
+      }
+    },
+    "Added by you" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added by you"
           }
         }
       }
@@ -592,6 +702,16 @@
         }
       }
     },
+    "All items reviewed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All items reviewed"
+          }
+        }
+      }
+    },
     "Allergies" : {
       "localizations" : {
         "en" : {
@@ -639,6 +759,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Almost all"
+          }
+        }
+      }
+    },
+    "Amount left" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount left"
+          }
+        }
+      }
+    },
+    "Amount unknown" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount unknown"
+          }
+        }
+      }
+    },
+    "Amount used" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount used"
           }
         }
       }
@@ -1216,6 +1366,16 @@
     "Choose Include meat for at least one meat meal in your plan." : {
 
     },
+    "Choose store" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose store"
+          }
+        }
+      }
+    },
     "Choose the days you usually cook." : {
 
     },
@@ -1246,12 +1406,32 @@
         }
       }
     },
+    "Clear store selection" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear store selection"
+          }
+        }
+      }
+    },
     "Clear timer" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clear timer"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
           }
         }
       }
@@ -1547,6 +1727,16 @@
         }
       }
     },
+    "Could not finish this week" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not finish this week"
+          }
+        }
+      }
+    },
     "Could not open MealWise" : {
       "localizations" : {
         "en" : {
@@ -1563,6 +1753,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "count"
+          }
+        }
+      }
+    },
+    "Count" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count"
           }
         }
       }
@@ -1617,6 +1817,16 @@
         }
       }
     },
+    "Cycle complete" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cycle complete"
+          }
+        }
+      }
+    },
     "Cycle history" : {
       "localizations" : {
         "en" : {
@@ -1638,6 +1848,16 @@
         }
       }
     },
+    "Cycle in progress" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cycle in progress"
+          }
+        }
+      }
+    },
     "Cycle summary" : {
       "localizations" : {
         "en" : {
@@ -1654,6 +1874,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cycle totals"
+          }
+        }
+      }
+    },
+    "Date acquired" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date acquired"
+          }
+        }
+      }
+    },
+    "Date unknown" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date unknown"
           }
         }
       }
@@ -1926,12 +2166,32 @@
         }
       }
     },
+    "Edit details" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit details"
+          }
+        }
+      }
+    },
     "Edit plan settings" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit plan settings"
+          }
+        }
+      }
+    },
+    "Edit price" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit price"
           }
         }
       }
@@ -1943,6 +2203,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eggs"
+          }
+        }
+      }
+    },
+    "Elapsed time" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elapsed time"
           }
         }
       }
@@ -2074,6 +2344,16 @@
         }
       }
     },
+    "Estimated Cost" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimated Cost"
+          }
+        }
+      }
+    },
     "Estimated ingredients: %@" : {
 
     },
@@ -2114,6 +2394,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estimated total"
+          }
+        }
+      }
+    },
+    "Estimated weekly cost %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimated weekly cost %@"
           }
         }
       }
@@ -2239,6 +2529,26 @@
         }
       }
     },
+    "Finish this week" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish this week"
+          }
+        }
+      }
+    },
+    "Finish this week and plan next week?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish this week and plan next week?"
+          }
+        }
+      }
+    },
     "Finish trip" : {
       "localizations" : {
         "en" : {
@@ -2255,6 +2565,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finish with only these purchased items?"
+          }
+        }
+      }
+    },
+    "Finished and reset plans appear here." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished and reset plans appear here."
           }
         }
       }
@@ -2286,6 +2606,16 @@
     },
     "Food allergies" : {
 
+    },
+    "Food kept for later" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Food kept for later"
+          }
+        }
+      }
     },
     "Food needs" : {
       "extractionState" : "stale",
@@ -2410,6 +2740,36 @@
     },
     "Goals" : {
 
+    },
+    "Got it today" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Got it today"
+          }
+        }
+      }
+    },
+    "Got it yesterday" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Got it yesterday"
+          }
+        }
+      }
+    },
+    "Grams" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grams"
+          }
+        }
+      }
     },
     "Groceries" : {
       "localizations" : {
@@ -2541,6 +2901,16 @@
         }
       }
     },
+    "I know when I got this" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I know when I got this"
+          }
+        }
+      }
+    },
     "In a skillet, warm oil and add spinach and chickpeas. Cook spinach according to its package, stirring until the mixture is hot throughout." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2611,6 +2981,16 @@
         }
       }
     },
+    "Ingredient name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredient name"
+          }
+        }
+      }
+    },
     "Ingredient unavailable" : {
       "localizations" : {
         "en" : {
@@ -2669,6 +3049,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ingredients reused: %lld"
+          }
+        }
+      }
+    },
+    "Item %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Item %lld of %lld"
           }
         }
       }
@@ -2847,6 +3237,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loading pantry stock"
+          }
+        }
+      }
+    },
+    "Loading week history" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading week history"
           }
         }
       }
@@ -3064,6 +3464,26 @@
         }
       }
     },
+    "Milliliters" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Milliliters"
+          }
+        }
+      }
+    },
+    "Minimize shopping" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimize shopping"
+          }
+        }
+      }
+    },
     "Missing actual prices remain unknown. Tax, deposits and fees are excluded unless you include them in your entered line totals." : {
       "localizations" : {
         "en" : {
@@ -3165,6 +3585,16 @@
         }
       }
     },
+    "Next week’s dates" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next week’s dates"
+          }
+        }
+      }
+    },
     "Next-week stock and receipt observations could not be loaded. Please retry." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3239,12 +3669,32 @@
         }
       }
     },
+    "No confirmed stock" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No confirmed stock"
+          }
+        }
+      }
+    },
     "No confirmed stock is in your pantry. Add an item or confirm leftovers at wrap-up." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No confirmed stock is in your pantry. Add an item or confirm leftovers at wrap-up."
+          }
+        }
+      }
+    },
+    "No cycle history" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No cycle history"
           }
         }
       }
@@ -3266,6 +3716,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No favorites yet. Rate a cooked meal in Today to save what you liked."
+          }
+        }
+      }
+    },
+    "No groceries left to buy for this week." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No groceries left to buy for this week."
           }
         }
       }
@@ -3322,12 +3782,32 @@
         }
       }
     },
+    "No past weeks" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No past weeks"
+          }
+        }
+      }
+    },
     "No pending pins" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No pending pins"
+          }
+        }
+      }
+    },
+    "No purchases were added to Pantry at the end of this week." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No purchases were added to Pantry at the end of this week."
           }
         }
       }
@@ -3348,6 +3828,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No recorded stock remains. You can finish without adding anything to Pantry."
+          }
+        }
+      }
+    },
+    "No shopping trips" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No shopping trips"
           }
         }
       }
@@ -3462,6 +3952,16 @@
     "OK" : {
 
     },
+    "Only checked items are recorded as purchased. Unchecked items stay on your grocery list." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only checked items are recorded as purchased. Unchecked items stay on your grocery list."
+          }
+        }
+      }
+    },
     "Only checked items become purchased stock. Unchecked items stay on the next shopping list. Missing receipt prices remain explicitly unknown." : {
       "localizations" : {
         "en" : {
@@ -3543,6 +4043,16 @@
         }
       }
     },
+    "Opening shopping" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opening shopping"
+          }
+        }
+      }
+    },
     "Optional reminder timer" : {
       "localizations" : {
         "en" : {
@@ -3584,12 +4094,42 @@
         }
       }
     },
+    "Other ingredient" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other ingredient"
+          }
+        }
+      }
+    },
     "Other meals using these ingredients" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Other meals using these ingredients"
+          }
+        }
+      }
+    },
+    "Out of it" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Out of it"
+          }
+        }
+      }
+    },
+    "Over budget by %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over budget by %@"
           }
         }
       }
@@ -3675,6 +4215,26 @@
         }
       }
     },
+    "Pantry options" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pantry options"
+          }
+        }
+      }
+    },
+    "Pantry stock" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pantry stock"
+          }
+        }
+      }
+    },
     "Pantry stock could not be loaded. Please retry." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3682,6 +4242,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pantry stock could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Pantry unavailable" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pantry unavailable"
           }
         }
       }
@@ -4153,6 +4723,26 @@
         }
       }
     },
+    "Quantity (optional)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quantity (optional)"
+          }
+        }
+      }
+    },
+    "Quantity unit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quantity unit"
+          }
+        }
+      }
+    },
     "Quantity unit: %@" : {
       "localizations" : {
         "en" : {
@@ -4378,6 +4968,26 @@
         }
       }
     },
+    "Refresh your Pantry and try again." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh your Pantry and try again."
+          }
+        }
+      }
+    },
+    "Refresh your plan and try again." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh your plan and try again."
+          }
+        }
+      }
+    },
     "Regenerate %@" : {
       "localizations" : {
         "en" : {
@@ -4489,12 +5099,32 @@
         }
       }
     },
+    "Remove" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove"
+          }
+        }
+      }
+    },
     "Remove favorite" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remove favorite"
+          }
+        }
+      }
+    },
+    "Remove item" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove item"
           }
         }
       }
@@ -4515,6 +5145,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remove stock"
+          }
+        }
+      }
+    },
+    "Remove this item from Pantry?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove this item from Pantry?"
           }
         }
       }
@@ -4622,6 +5262,16 @@
         }
       }
     },
+    "Resume Shopping" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume Shopping"
+          }
+        }
+      }
+    },
     "Retry" : {
       "localizations" : {
         "en" : {
@@ -4678,6 +5328,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Review next-week setup"
+          }
+        }
+      }
+    },
+    "Review Pantry" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review Pantry"
           }
         }
       }
@@ -4768,6 +5428,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save price"
+          }
+        }
+      }
+    },
+    "Save Review" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Review"
+          }
+        }
+      }
+    },
+    "Save your review to update Pantry." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save your review to update Pantry."
           }
         }
       }
@@ -4869,6 +5549,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sesame"
+          }
+        }
+      }
+    },
+    "Set the amount in Edit details before recording use." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set the amount in Edit details before recording use."
           }
         }
       }
@@ -4999,6 +5689,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Simple balance indicators"
+          }
+        }
+      }
+    },
+    "Some purchases have no recorded price." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some purchases have no recorded price."
           }
         }
       }
@@ -5144,12 +5844,32 @@
         }
       }
     },
+    "Start Shopping" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Shopping"
+          }
+        }
+      }
+    },
     "Step %lld" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Step %lld"
+          }
+        }
+      }
+    },
+    "Still have it" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Still have it"
           }
         }
       }
@@ -5269,6 +5989,16 @@
         }
       }
     },
+    "Swap package" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swap package"
+          }
+        }
+      }
+    },
     "Sweet potato" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -5276,6 +6006,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sweet potato"
+          }
+        }
+      }
+    },
+    "Swipe right to keep it or left if you’re out." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe right to keep it or left if you’re out."
           }
         }
       }
@@ -5370,6 +6110,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The full plan must still fit your budget and food requirements. This saves a request; it does not change your current plan."
+          }
+        }
+      }
+    },
+    "The item could not be added. Please try again." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The item could not be added. Please try again."
+          }
+        }
+      }
+    },
+    "The item could not be removed. Please try again." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The item could not be removed. Please try again."
           }
         }
       }
@@ -5469,6 +6229,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The shopping projection above includes other entered receipt prices. This replacement resets only this item's check and actual price; confirm the replacement package before purchasing."
+          }
+        }
+      }
+    },
+    "The store could not be saved. Reopen the current trip and retry." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The store could not be saved. Reopen the current trip and retry."
           }
         }
       }
@@ -5715,6 +6485,16 @@
         }
       }
     },
+    "This item could not be updated. Reopen it and try again." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This item could not be updated. Reopen it and try again."
+          }
+        }
+      }
+    },
     "This meal changed or completion could not be saved. Reopen it from your current plan before confirming." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -5896,6 +6676,26 @@
         }
       }
     },
+    "This week is finished. Open Week to plan next week." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This week is finished. Open Week to plan next week."
+          }
+        }
+      }
+    },
+    "This week is finished. Use Plan actions to plan next week." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This week is finished. Use Plan actions to plan next week."
+          }
+        }
+      }
+    },
     "Three bean tomato skillet" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6026,6 +6826,16 @@
         }
       }
     },
+    "Unconfirmed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unconfirmed"
+          }
+        }
+      }
+    },
     "Unconfirmed or expired stock stays out of planning. Check the package's actual storage instructions; unknown dates do not imply a safety guarantee." : {
       "localizations" : {
         "en" : {
@@ -6042,6 +6852,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uncooked meals have not consumed ingredients. Count actual stock and confirm only what you have checked."
+          }
+        }
+      }
+    },
+    "Undo last choice" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undo last choice"
+          }
+        }
+      }
+    },
+    "Unit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unit"
           }
         }
       }
@@ -6118,12 +6948,32 @@
         }
       }
     },
+    "Use some" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use some"
+          }
+        }
+      }
+    },
     "Use this package" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Use this package"
+          }
+        }
+      }
+    },
+    "Use-by %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use-by %@"
           }
         }
       }
@@ -6149,6 +6999,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "User-approved development estimate from a recorded receipt line; per-package average rounded up. Original catalog validity is unchanged."
+          }
+        }
+      }
+    },
+    "Uses actual prices when entered and sample prices for the rest." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses actual prices when entered and sample prices for the rest."
           }
         }
       }
@@ -6322,12 +7182,52 @@
         }
       }
     },
+    "Week history" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Week history"
+          }
+        }
+      }
+    },
+    "Week history could not be loaded. Please retry." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Week history could not be loaded. Please retry."
+          }
+        }
+      }
+    },
+    "Week summary" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Week summary"
+          }
+        }
+      }
+    },
     "Weekly budget" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weekly budget"
+          }
+        }
+      }
+    },
+    "Weekly budget %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weekly budget %@"
           }
         }
       }
@@ -6666,6 +7566,16 @@
         }
       }
     },
+    "Your List" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your List"
+          }
+        }
+      }
+    },
     "Your meal rating could not be loaded." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6694,6 +7604,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your money sets\nthe menu."
+          }
+        }
+      }
+    },
+    "Your pantry changed. Close this review and open it again." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your pantry changed. Close this review and open it again."
           }
         }
       }
@@ -6752,6 +7672,16 @@
         }
       }
     },
+    "Your previous plan stays in Week History." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your previous plan stays in Week History."
+          }
+        }
+      }
+    },
     "Your purchase check could not be saved. Reopen the current trip and retry." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6770,6 +7700,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your rating could not be saved. The cooked meal remains recorded."
+          }
+        }
+      }
+    },
+    "Your remaining food stays in Pantry. This week’s plan and receipts move to history." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your remaining food stays in Pantry. This week’s plan and receipts move to history."
           }
         }
       }

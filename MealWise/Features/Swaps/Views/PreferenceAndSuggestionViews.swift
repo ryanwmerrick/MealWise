@@ -9,15 +9,15 @@ struct ExcludedRecipesView: View {
     }
     var body: some View {
         List {
-            if viewModel.ids.isEmpty { Text("No recipes are excluded from future plans.") }
+            if viewModel.ids.isEmpty { Text("No recipes are excluded from future plans.").mealWiseListRows() }
             ForEach(viewModel.ids.sorted(), id: \.self) { id in
                 VStack(alignment: .leading) {
                     Text(LocalizedStringKey(catalog.recipes.first { $0.id == id }?.title ?? "Unavailable recipe"))
                     Button("Allow again") { Task { await viewModel.allow(id) } }.frame(minHeight: 44)
-                }
+                }.mealWiseListRows()
             }
-            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
-        }.navigationTitle("Excluded recipes").task { await viewModel.load() }
+            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
+        }.mealWiseListStyle().navigationTitle("Excluded recipes").task { await viewModel.load() }
     }
 }
 
@@ -32,8 +32,11 @@ struct RemainderSuggestionView: View {
     var body: some View {
         List {
             Text("These swaps use more of the selected ingredient without adding another package of it. All proposed carts fit the budget.")
-            if viewModel.isLoading { ProgressView("Checking remainder swaps") }
-            if !viewModel.isLoading && viewModel.options.isEmpty { Text("No suitable swap was found. Keep the current plan and review the remainder at wrap-up.") }
+                .mealWiseListRows()
+            if viewModel.isLoading { ProgressView("Checking remainder swaps").mealWiseListRows() }
+            if !viewModel.isLoading && viewModel.options.isEmpty {
+                Text("No suitable swap was found. Keep the current plan and review the remainder at wrap-up.").mealWiseListRows()
+            }
             ForEach(viewModel.options) { option in
                 Button { selected = option } label: {
                     VStack(alignment: .leading, spacing: 6) {
@@ -41,10 +44,11 @@ struct RemainderSuggestionView: View {
                         Text(option.meal.date, format: .dateTime.weekday().month().day())
                         if let plan = option.preview.proposedPlan { Text("New checkout: \(plan.totalMinorUnits.currency)") }
                     }.padding(.vertical, 8)
-                }
+                }.mealWiseListRows()
             }
-            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)) }
+            if let error = viewModel.errorMessage { Text(LocalizedStringKey(error)).mealWiseListRows() }
         }
+        .mealWiseListStyle()
         .navigationTitle("Use a remainder")
         .task { await viewModel.load() }
         .sheet(item: $selected) { option in

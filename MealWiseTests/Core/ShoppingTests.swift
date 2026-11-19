@@ -3,6 +3,54 @@ import Testing
 @testable import MealWise
 
 struct ShoppingTests {
+    @Test func manuallyAddedGroceriesPersistAndOnlyCheckedItemsLeaveTheList() async throws {
+        let now = Date(timeIntervalSince1970: 1794528000)
+        let container = try await LocalStore.makeContainer(inMemory: true)
+        let plans = PlanRepository(container: container, clock: { now })
+        let catalog = try await CatalogService(allowDevelopment: true, now: now).loadCatalog()
+        let result = try await PlanService(clock: { now }).generate(PlanRequest(profile: .fixture, catalog: catalog))
+        guard case .feasible(let plan) = result else {
+            Issue.record("Fixture failed")
+            return
+        }
+        try await plans.saveActivePlan(plan)
+        let service = ShoppingService(plans: plans, clock: { now })
+        let first = try await service.addManualItem(name: " Basil ", quantity: " 1 bunch ", planID: plan.id)
+        let basil = try #require(first.trip.addedItems.first)
+        #expect(basil.name == "Basil")
+        #expect(basil.quantity == "1 bunch")
+        #expect(!first.isActive)
+        #expect(try first.trip.projectedMinorUnits == plan.totalMinorUnits)
+
+        let trip = try await service.openTrip(planID: plan.id)
+        _ = try await service.addManualItem(name: "Lemons", quantity: "", planID: plan.id)
+        _ = try await service.setChecked(itemID: basil.id, checked: true, tripID: trip.id)
+        let resumed = try await ShoppingService(container: container, clock: { now }).openTrip(planID: plan.id)
+        #expect(resumed.addedItems.map(\.checked) == [true, false])
+        let summary = try await service.finishTrip(resumed.id)
+        #expect(summary.purchasedCount == 1)
+        #expect(try await plans.loadActivePlan() == plan)
+        let pantry = PantryRepository(plans: plans, catalog: catalog)
+        let basilStock = try #require(try await pantry.inventory(planID: plan.id).first { $0.name == "Basil" })
+        #expect(basilStock.acquiredAt == now)
+        #expect(basilStock.savedItem?.unknownQuantity == "1 bunch")
+        let pending = try await service.cart(planID: plan.id)
+        #expect(pending.trip.addedItems.map(\.name) == ["Lemons"])
+        let lemon = try #require(pending.trip.addedItems.first)
+        #expect(try await service.removeManualItem(lemon.id, planID: plan.id).trip.addedItems.isEmpty)
+
+        let catalogTrip = try await service.openTrip(planID: plan.id)
+        for line in catalogTrip.lines {
+            _ = try await service.setChecked(itemID: line.id, checked: true, tripID: catalogTrip.id)
+        }
+        _ = try await service.finishTrip(catalogTrip.id)
+        let added = try await service.addManualItem(name: "Pears", quantity: "", planID: plan.id)
+        let pears = try #require(added.trip.addedItems.first)
+        _ = try await service.openTrip(planID: plan.id)
+        #expect(try await !service.removeManualItem(pears.id, planID: plan.id).isActive)
+        #expect(try await !service.cart(planID: plan.id).isActive)
+    }
+
     @Test func malformedAndNegativePricesAreRejected() {
         for text in ["-1", "1.001", "NaN", "1e3", "", "$3"] {
             #expect(throws: (any Error).self) { try Money.parse(text) }
@@ -17,6 +65,7 @@ struct ShoppingTests {
                                  packageQuantity: 1, unit: .count, estimatedMinorUnits: 5534, actualMinorUnits: nil, checked: false)
         let trip = ShoppingTrip(id: UUID(), planID: UUID(), planRevision: UUID(), storeID: "development-grocery",
                                 budgetMinorUnits: 7000, priorSpendingMinorUnits: 0, lines: [line, other], finishedAt: nil)
+        #expect(try JSONDecoder().decode(ShoppingTrip.self, from: JSONEncoder().encode(trip)) == trip)
         #expect(try trip.projectedMinorUnits == 6550)
         #expect(try trip.actualToDateMinorUnits == 0)
         #expect(try trip.remainingMinorUnits == 450)
@@ -48,6 +97,7 @@ struct ShoppingTests {
         let service = ShoppingService(plans: plans, clock: { Date(timeIntervalSince1970: 1794528000) })
         let trip = try await service.openTrip(planID: plan.id)
         let line = try #require(trip.lines.first)
+        _ = try await service.selectStore(.aldi, tripID: trip.id)
         _ = try await service.updatePrice(itemID: line.id, actualPrice: Money(minorUnits: 8000), tripID: trip.id)
         let options = try await service.cheaperSubstitutes(itemID: line.id, tripID: trip.id)
         let option = try #require(options.first)
@@ -60,6 +110,8 @@ struct ShoppingTests {
         #expect(changed.lines.first?.actualMinorUnits == nil)
         #expect(changed.lines.first?.checked == false)
         #expect(changed.lines.first?.offerID.hasSuffix("-alternate") == true)
+        #expect(changed.startedAt == trip.startedAt)
+        #expect(changed.selectedStore == .aldi)
         #expect(try await plans.loadActivePlan()?.meals == plan.meals)
     }
 
@@ -104,7 +156,13 @@ struct ShoppingTests {
         guard case .feasible(let plan) = try await planner.generate(PlanRequest(profile: profile, catalog: catalog)) else { Issue.record("Fixture failed"); return }
         try await plans.saveActivePlan(plan)
         let service = ShoppingService(container: container, clock: { Date(timeIntervalSince1970: 1794528000) })
+        let forecast = try await service.cart(planID: plan.id)
+        #expect(!forecast.isActive)
+        #expect(try forecast.trip.projectedMinorUnits == plan.totalMinorUnits)
+        #expect(try await !service.cart(planID: plan.id).isActive)
         let trip = try await service.openTrip(planID: plan.id)
+        #expect(trip.startedAt == Date(timeIntervalSince1970: 1794528000))
+        _ = try await service.selectStore(.aldi, tripID: trip.id)
         let line = try #require(trip.lines.first)
         #expect(try await service.cheaperSubstitutes(itemID: line.id, tripID: trip.id).isEmpty)
         _ = try await service.setChecked(itemID: line.id, checked: true, tripID: trip.id)
@@ -114,6 +172,9 @@ struct ShoppingTests {
         _ = try await service.updatePrice(itemID: line.id, actualPrice: price, tripID: trip.id)
         _ = try await service.setChecked(itemID: line.id, checked: false, tripID: trip.id)
         let reloaded = try await service.openTrip(planID: plan.id)
+        #expect(reloaded.startedAt == trip.startedAt)
+        #expect(reloaded.selectedStore == .aldi)
+        #expect(try await service.cart(planID: plan.id).trip == reloaded)
         #expect(reloaded.lines.first?.actualMinorUnits == 8000)
         #expect(try reloaded.actualToDateMinorUnits == 0)
         #expect(try reloaded.projectedMinorUnits > 7000)
@@ -138,6 +199,11 @@ struct ShoppingTests {
             #expect(proposed.totalMinorUnits >= purchased.resources!.committedMinorUnits)
         }
         #expect(try await reopened.history(planID: plan.id).first == summary)
+        #expect(summary.trip.selectedStore == .aldi)
+        let remainingForecast = try await reopened.cart(planID: plan.id)
+        #expect(!remainingForecast.isActive)
+        #expect(remainingForecast.trip.priorSpendingMinorUnits == 8000)
+        #expect(remainingForecast.trip.lines.first { $0.ingredientID == pending.ingredientID }?.actualMinorUnits == 1016)
         let next = try await reopened.openTrip(planID: plan.id)
         #expect(!next.lines.contains { $0.ingredientID == line.ingredientID })
         #expect(next.lines.first { $0.ingredientID == pending.ingredientID }?.actualMinorUnits == 1016)

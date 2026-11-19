@@ -7,14 +7,20 @@ struct WeekView: View {
     @State private var showSettings = false
     @State private var swapTarget: MealSwapTarget?
     @State private var pendingChange: PendingPlanChange?
+    let isStartingNextWeek: Bool
+    let onPlanNextWeek: () -> Void
 
-    init(plan: WeeklyPlan) { _viewModel = StateObject(wrappedValue: WeekViewModel(plan: plan)) }
+    init(plan: WeeklyPlan, isStartingNextWeek: Bool, onPlanNextWeek: @escaping () -> Void) {
+        _viewModel = StateObject(wrappedValue: WeekViewModel(plan: plan))
+        self.isStartingNextWeek = isStartingNextWeek
+        self.onPlanNextWeek = onPlanNextWeek
+    }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 16) {
-                    if viewModel.plan.closedAt != nil { Text("This cycle is finished. Open Pantry to plan the next week; history stays unchanged.").font(.headline) }
+                    if viewModel.plan.closedAt != nil { Text("This week is finished. Use Plan actions to plan next week.").font(.headline) }
                     if viewModel.plan.reviewRequired == true { Text("Stock changed and the cycle needs budget review before additional purchases.").font(.headline) }
                     ingredientMapLink
                     ForEach(viewModel.plan.meals) { meal in
@@ -36,13 +42,17 @@ struct WeekView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Menu("Plan actions") {
-                        Button("Regenerate week") { pendingChange = PendingPlanChange(change: .regenerateWeek) }
-                        ForEach(viewModel.plan.profile.days.sorted(), id: \.self) { day in
-                            Button { pendingChange = PendingPlanChange(change: .regenerateDay(day)) } label: {
-                                Text("Regenerate \(day.formatted(date: .abbreviated, time: .omitted))")
+                        Button("Plan next week", systemImage: "calendar.badge.plus", action: onPlanNextWeek)
+                            .disabled(isStartingNextWeek)
+                        if viewModel.plan.closedAt == nil {
+                            Button("Regenerate week") { pendingChange = PendingPlanChange(change: .regenerateWeek) }
+                            ForEach(viewModel.plan.profile.days.sorted(), id: \.self) { day in
+                                Button { pendingChange = PendingPlanChange(change: .regenerateDay(day)) } label: {
+                                    Text("Regenerate \(day.formatted(date: .abbreviated, time: .omitted))")
+                                }
                             }
                         }
-                    }.disabled(viewModel.plan.closedAt != nil)
+                    }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showSettings = true } label: { Image("IconSettings").frame(width: 44, height: 44) }
